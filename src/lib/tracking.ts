@@ -9,32 +9,35 @@ export type ShipmentStatus =
   | 'delivered'
   | 'delayed';
 
-export interface TrackingMilestone {
-  step: number;
-  title: string;
-  location: string;
-  timestamp: string;
-  status: 'completed' | 'current' | 'upcoming';
-  note?: string;
+export interface LiveTimelineEvent {
+  status: string;
+  date: string;
+  isBooked?: boolean;
 }
 
-export interface TrackingRecord {
-  id: string;
-  serviceType: string;
-  origin: string;
-  destination: string;
-  bookingDate: string;
-  estimatedDelivery: string;
-  currentStatus: ShipmentStatus;
-  statusLabel: string;
-  carrierNotes?: string;
-  milestones: TrackingMilestone[];
+export interface LiveShipmentData {
+  carrier: string;
+  trackingNumber: string;
+  pickupLocation?: string;
+  pickupDate?: string;
+  deliveryDestination?: string;
+  deliveryDate?: string;
+  receiversName?: string;
+  remark?: string;
+  gaRemark?: string;
+  podUrl?: string;
+  gstInvoiceUrl?: string;
+  currentLocation?: string;
+  packagesCount?: number | string;
+  vessel?: string;
+  containerType?: string;
+  timeline: LiveTimelineEvent[];
 }
 
 export interface TrackingLookupResult {
   found: boolean;
   searchedId: string;
-  record?: TrackingRecord;
+  data?: LiveShipmentData;
   message?: string;
   portalFallbackUrl: string;
 }
@@ -49,8 +52,8 @@ export function cleanTrackingId(raw: string): string {
 
 /**
  * Validates tracking ID structure.
- * Bharat Relocators consignment notes / consignment numbers typically range from 5 to 25
- * alphanumeric characters (e.g. BR-84920, BREL-2024-912, or numerical Docket numbers).
+ * Bharat Relocators consignment notes / consignment numbers typically range from 4 to 35
+ * alphanumeric characters (e.g. 430803710, 1847004934, BR-84920, or DP World container codes).
  */
 export function validateTrackingId(id: string): { valid: boolean; error?: string } {
   const cleaned = cleanTrackingId(id);
@@ -60,7 +63,7 @@ export function validateTrackingId(id: string): { valid: boolean; error?: string
   if (cleaned.length < 4) {
     return { valid: false, error: 'Tracking ID is too short. Please enter at least 4 characters.' };
   }
-  if (cleaned.length > 30) {
+  if (cleaned.length > 35) {
     return { valid: false, error: 'Tracking ID is too long. Please verify your consignment document.' };
   }
   // Alphanumeric + hyphens/slashes
@@ -76,28 +79,60 @@ export function validateTrackingId(id: string): { valid: boolean; error?: string
 
 /**
  * Primary shipment lookup engine.
- * Transparently checks verified operational records. When an internal DB record
- * is not present, returns a structured not-found response with direct live fallbacks
- * to the operational carrier portal and customer support channels.
- *
- * NOTE: As per system architecture guidelines, we do not fabricate fake shipment records.
+ * Directly contacts the live Next.js tracking API route (/api/track) which coordinates
+ * with Allcargo Gati and DP World / CARGOES production systems in real-time.
  */
-export async function lookupShipment(rawId: string): Promise<TrackingLookupResult> {
+export async function lookupShipment(rawId: string, carrier?: string): Promise<TrackingLookupResult> {
   const cleaned = cleanTrackingId(rawId);
   const portalFallbackUrl = BUSINESS.tracking.portalUrl;
 
-  // Simulate network roundtrip latency for realistic operational feel
-  await new Promise((resolve) => setTimeout(resolve, 800));
+  try {
+    const res = await fetch('/api/track', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        trackingNumber: cleaned,
+        carrier,
+      }),
+    });
 
-  // In this client-side / static deployment without an internal SQL consignment DB,
-  // all queries seamlessly provide fallback to the live TrackingMore carrier portal
-  // and direct WhatsApp/Phone operational support.
-  return {
-    found: false,
-    searchedId: cleaned,
-    message: `We could not find active internal dispatch logs for ID "${cleaned}". Consignments booked within the last 2-4 hours may still be indexing in the central logistics registry.`,
-    portalFallbackUrl,
-  };
+    if (!res.ok) {
+      return {
+        found: false,
+        searchedId: cleaned,
+        message: `Consignment "${cleaned}" could not be verified at this moment. Please check the carrier portal or contact dispatch.`,
+        portalFallbackUrl,
+      };
+    }
+
+    const json = await res.json();
+
+    if (json.success && json.data) {
+      return {
+        found: true,
+        searchedId: cleaned,
+        data: json.data as LiveShipmentData,
+        message: json.message || 'Consignment located successfully.',
+        portalFallbackUrl,
+      };
+    }
+
+    return {
+      found: false,
+      searchedId: cleaned,
+      message: json.message || `We could not find active internal dispatch logs for ID "${cleaned}". Consignments booked recently may still be indexing in the central logistics registry.`,
+      portalFallbackUrl,
+    };
+  } catch {
+    return {
+      found: false,
+      searchedId: cleaned,
+      message: `Unable to connect to logistics servers. Please try again or connect directly with our dispatch desk.`,
+      portalFallbackUrl,
+    };
+  }
 }
 
 export const TRACKING_FAQS = [
