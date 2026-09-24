@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import AppLogo from '@/components/ui/AppLogo';
 import { BUSINESS, getTelUrl } from '@/lib/business';
 import { mainNavLinks, serviceNavLinks, NavItem } from '@/lib/navigation';
 
@@ -129,19 +128,13 @@ export default function Header() {
       >
         <div className="w-full max-w-[1600px] mx-auto px-3.5 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 flex items-center justify-between gap-2 sm:gap-4">
           {/* Brand Identity */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 group focus:outline-none shrink-0 min-w-0">
-            <AppLogo
-              size={38}
-              className="shrink-0 transition-transform duration-200 group-hover:scale-105 ring-2 ring-white/10"
+          <Link href="/" className="flex items-center shrink-0 min-w-0 group focus:outline-none">
+            {/* Logo: Drop your logo in /public/images/ and set src="/images/your-logo.png" */}
+            <img
+              src="/images/logo.png"
+              alt="Bharat Relocators - Packers and Movers Kolkata"
+              className="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
             />
-            <div className="flex flex-col min-w-0">
-              <span className="font-extrabold text-white text-[0.925rem] sm:text-base md:text-[1.125rem] tracking-tight font-display whitespace-nowrap uppercase">
-                {BUSINESS.name}
-              </span>
-              <span className="text-[#F28A32] text-[8.5px] sm:text-[10px] font-semibold tracking-[0.06em] sm:tracking-[0.08em] uppercase whitespace-nowrap">
-                {BUSINESS.tagline}
-              </span>
-            </div>
           </Link>
 
           {/* Desktop Navigation Links */}

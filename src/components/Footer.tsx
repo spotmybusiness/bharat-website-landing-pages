@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import AppLogo from '@/components/ui/AppLogo';
 
 const serviceLinks = [
   { name: 'Household Shifting', href: '/household-shifting' },
@@ -106,14 +105,13 @@ export default function Footer() {
 
         <div className="grid grid-cols-1 gap-12 border-b border-white/10 pb-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           <section className="lg:col-span-4" aria-label="Company information">
-            <Link href="/" className="group mb-5 flex items-center gap-3">
-              <AppLogo size={44} className="transition-transform group-hover:scale-105" />
-              <span className="flex flex-col">
-                <span className="font-display text-lg font-bold tracking-tight">BHARAT RELOCATORS</span>
-                <span className="text-[11px] font-medium uppercase tracking-wider text-white/70">
-                  Packers & Movers · Kolkata
-                </span>
-              </span>
+            <Link href="/" className="group mb-5 flex items-center">
+              {/* Logo: Drop your logo in /public/images/ and set src="/images/your-logo.png" */}
+              <img
+                src="/images/logo.png"
+                alt="Bharat Relocators - Packers and Movers Kolkata"
+                className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
+              />
             </Link>
 
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-white/75">
