@@ -243,7 +243,7 @@ export default function WhyUsPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src="/images/stars.png"
+            src="/images/why_us.jpeg"
             alt="Why Choose Bharat Relocators Kolkata"
           />
         }

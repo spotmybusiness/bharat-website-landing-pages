@@ -416,10 +416,10 @@ export default function PageHero({
           {showPlaceholder && (
             <div className="hidden lg:flex lg:col-span-5 xl:col-span-5 justify-center lg:justify-end">
               {hasValidImage ? (
-                <div className="w-full max-w-[340px] xl:max-w-[390px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative group">
+                <div className="flex items-center justify-center lg:justify-end w-full">
                   {image &&
                     React.cloneElement(image, {
-                      className: `w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${image.props.className || ''}`,
+                      className: `max-w-full max-h-[360px] xl:max-h-[400px] w-auto h-auto object-contain transition-transform duration-300 hover:scale-[1.02] drop-shadow-2xl ${image.props.className || ''}`,
                     })}
                 </div>
               ) : visual ? (
