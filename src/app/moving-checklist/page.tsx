@@ -224,7 +224,7 @@ export default function MovingChecklistPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src=""
+            src="/images/Moving_guides.png"
             alt="Home Shifting Checklist and Moving Guide - Bharat Relocators"
           />
         }

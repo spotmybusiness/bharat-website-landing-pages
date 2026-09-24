@@ -195,7 +195,7 @@ export default function ProcessPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src="/iamges/process.png"
+            src="/images/process.png"
             alt="Relocation Process and Workflow - Bharat Relocators"
           />
         }

@@ -141,7 +141,7 @@ export default function ParcelShiftingPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src=""
+            src="images/cargo_shifting.jpeg"
             alt="Parcel and Cargo Shifting Services - Bharat Relocators"
           />
         }

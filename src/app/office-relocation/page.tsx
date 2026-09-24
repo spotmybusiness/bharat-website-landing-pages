@@ -178,7 +178,7 @@ export default function OfficeRelocationPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src=""
+            src="images/office_relocation.png"
             alt="Office Relocation Corporate Shifting - Bharat Relocators"
           />
         }

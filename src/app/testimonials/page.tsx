@@ -144,7 +144,7 @@ export default function TestimonialsPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src=""
+            src="/images/stars.png"
             alt="Customer Reviews and Testimonials - Bharat Relocators"
           />
         }

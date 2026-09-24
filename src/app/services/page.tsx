@@ -230,7 +230,7 @@ export default function ServicesPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src=""
+            src="/images/Services.png"
             alt="Packers and Movers Services - Bharat Relocators"
           />
         }

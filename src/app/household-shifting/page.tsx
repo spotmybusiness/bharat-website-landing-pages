@@ -164,7 +164,7 @@ export default function HouseholdShiftingPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src=""
+            src="/images/household_shifting.png"
             alt="Household Shifting Services Kolkata - Bharat Relocators"
           />
         }
