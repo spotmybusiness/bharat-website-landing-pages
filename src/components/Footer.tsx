@@ -48,6 +48,15 @@ function MailIcon() {
   );
 }
 
+function ClockIcon() {
+  return (
+    <svg className="mt-1 h-4 w-4 shrink-0 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" strokeLinecap="round" strokeLinejoin="round" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
+    </svg>
+  );
+}
+
 export default function Footer() {
   return (
     <footer id="contact" className="bg-[#071A2B] text-white pt-20 pb-10 border-t border-white/10 relative">
@@ -162,13 +171,34 @@ export default function Footer() {
             </ul>
           </nav>
 
-          <section className="min-w-0 lg:col-span-3" aria-label="Contact information">
+          <section
+            className="min-w-0 lg:col-span-3"
+            aria-label="Contact information"
+            itemScope
+            itemType="https://schema.org/LocalBusiness"
+          >
+            <meta itemProp="name" content="Bharat Relocators" />
+            <meta itemProp="url" content="https://bharatrelocators.com" />
+            <meta itemProp="telephone" content="+919123046504" />
+            <meta itemProp="openingHours" content="Mo-Su 00:00-24:00" />
+            <div itemProp="openingHoursSpecification" itemScope itemType="https://schema.org/OpeningHoursSpecification" className="hidden">
+              <meta itemProp="dayOfWeek" content="https://schema.org/Monday" />
+              <meta itemProp="dayOfWeek" content="https://schema.org/Tuesday" />
+              <meta itemProp="dayOfWeek" content="https://schema.org/Wednesday" />
+              <meta itemProp="dayOfWeek" content="https://schema.org/Thursday" />
+              <meta itemProp="dayOfWeek" content="https://schema.org/Friday" />
+              <meta itemProp="dayOfWeek" content="https://schema.org/Saturday" />
+              <meta itemProp="dayOfWeek" content="https://schema.org/Sunday" />
+              <meta itemProp="opens" content="00:00" />
+              <meta itemProp="closes" content="23:59" />
+            </div>
+
             <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.08em]">Contact Us</h2>
 
             <ul className="space-y-3 text-sm text-white/80">
               <li className="flex items-start gap-2.5">
                 <PinIcon />
-                <span>17, Ramlal Bazar Rd, Haltu, Kolkata 700078</span>
+                <span itemProp="address">17, Ramlal Bazar Rd, Haltu, Kolkata 700078</span>
               </li>
               <li>
                 <a href="tel:+919123046504" className="flex items-center gap-2 transition-colors hover:text-[#F28A32]">
@@ -185,8 +215,25 @@ export default function Footer() {
               <li>
                 <a href="mailto:contact@bharatrelocators.com" className="flex items-start gap-2 transition-colors hover:text-[#F28A32]">
                   <MailIcon />
-                  <span className="break-all">contact@bharatrelocators.com</span>
+                  <span className="break-all" itemProp="email">contact@bharatrelocators.com</span>
                 </a>
+              </li>
+              <li className="flex items-start gap-2.5 pt-2 border-t border-white/10 mt-2">
+                <ClockIcon />
+                <div>
+                  <span className="text-white/60 text-xs block font-medium">Opening Hours:</span>
+                  <time
+                    itemProp="openingHours"
+                    dateTime="Mo-Su 00:00-24:00"
+                    className="font-semibold text-white text-xs sm:text-sm block"
+                  >
+                    Monday to Sunday: Open 24 Hours
+                  </time>
+                  <span className="text-[11px] text-[#36c27a] font-medium flex items-center gap-1.5 mt-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#36c27a] animate-pulse" />
+                    Open 24/7 · Round-the-Clock Service
+                  </span>
+                </div>
               </li>
             </ul>
 
@@ -220,6 +267,28 @@ export default function Footer() {
             <Link href="/about" className="transition-colors hover:text-white">About Us</Link>
             <Link href="/faqs" className="transition-colors hover:text-white">FAQ</Link>
           </div>
+        </div>
+
+        {/* Brand Credit */}
+        <div className="mt-4 pt-4 border-t border-white/5 text-center text-xs text-white/60">
+          <p>
+            Made and Maintained with{' '}
+            <a
+              href="https://share.google/hBseUBVk1PHI4ZUgJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#F28A32] hover:text-white font-semibold transition-colors underline underline-offset-2"
+            >
+              Spot My Business (SMB)
+            </a>
+            {' '}&middot; Contact Us:{' '}
+            <a
+              href="tel:+919007960333"
+              className="text-white/85 hover:text-[#F28A32] font-semibold transition-colors"
+            >
+              +91-9007960333
+            </a>
+          </p>
         </div>
       </div>
     </footer>

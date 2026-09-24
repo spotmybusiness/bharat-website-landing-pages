@@ -42,6 +42,8 @@ const aboutSchema = {
       ratingValue: BUSINESS.locations.main.google.rating,
       reviewCount: BUSINESS.locations.main.google.reviewCount,
     },
+    openingHours: BUSINESS.hours.schemaOpeningHours,
+    openingHoursSpecification: BUSINESS.hours.openingHoursSpecification,
     subOrganization: {
       '@type': 'MovingCompany',
       name: BUSINESS.locations.secondary.name,
@@ -59,6 +61,8 @@ const aboutSchema = {
         ratingValue: BUSINESS.locations.secondary.google.rating,
         reviewCount: BUSINESS.locations.secondary.google.reviewCount,
       },
+      openingHours: BUSINESS.hours.schemaOpeningHours,
+      openingHoursSpecification: BUSINESS.hours.openingHoursSpecification,
     },
   },
 };
@@ -555,6 +559,23 @@ export default function AboutPage() {
                       </a>
                     </div>
                   </div>
+
+                  <div className="flex items-center gap-3">
+                    <svg className="w-5 h-5 text-[#E53935] shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+                    </svg>
+                    <div>
+                      <strong className="block text-[#082F52] text-xs font-bold uppercase tracking-wider mb-0.5">
+                        Opening Hours
+                      </strong>
+                      <time
+                        dateTime="Mo-Su 00:00-24:00"
+                        className="text-xs sm:text-sm font-semibold text-emerald-700 block"
+                      >
+                        {BUSINESS.hours.display}
+                      </time>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -646,6 +667,23 @@ export default function AboutPage() {
                       >
                         {secLoc.phoneFormatted}
                       </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <svg className="w-5 h-5 text-[#E53935] shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+                    </svg>
+                    <div>
+                      <strong className="block text-[#082F52] text-xs font-bold uppercase tracking-wider mb-0.5">
+                        Opening Hours
+                      </strong>
+                      <time
+                        dateTime="Mo-Su 00:00-24:00"
+                        className="text-xs sm:text-sm font-semibold text-emerald-700 block"
+                      >
+                        {BUSINESS.hours.display}
+                      </time>
                     </div>
                   </div>
                 </div>

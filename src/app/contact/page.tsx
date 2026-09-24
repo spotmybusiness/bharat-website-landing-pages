@@ -3,6 +3,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
 import PageHero from '@/components/PageHero';
+import JsonLd from '@/components/JsonLd';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getTelUrl, getWhatsAppUrl } from '@/lib/business';
 
@@ -12,6 +13,26 @@ export const metadata: Metadata = generatePageMetadata({
     'Contact Bharat Relocators for home shifting, vehicle transportation, and intercity moving in Kolkata. Call +91 91230 46504 or visit our Haltu office.',
   path: '/contact',
 });
+
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MovingCompany',
+  name: BUSINESS.name,
+  legalName: BUSINESS.legalName,
+  telephone: BUSINESS.phone.primary,
+  email: BUSINESS.email.primary,
+  url: 'https://bharatrelocators.com/contact',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: BUSINESS.address.street,
+    addressLocality: BUSINESS.address.locality,
+    addressRegion: BUSINESS.address.state,
+    postalCode: BUSINESS.address.postalCode,
+    addressCountry: BUSINESS.address.country,
+  },
+  openingHours: BUSINESS.hours.schemaOpeningHours,
+  openingHoursSpecification: BUSINESS.hours.openingHoursSpecification,
+};
 
 function PhoneIcon() {
   return (
@@ -37,9 +58,18 @@ function MailIcon() {
   );
 }
 
+function ClockIcon() {
+  return (
+    <svg className="h-5 w-5 shrink-0 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+    </svg>
+  );
+}
+
 export default function ContactPage() {
   return (
     <PageLayout>
+      <JsonLd data={contactSchema} />
       <PageHero
         label="Get in Touch"
         title={
@@ -151,6 +181,37 @@ export default function ContactPage() {
                     >
                       {BUSINESS.email.primary}
                     </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Operating / Opening Hours */}
+              <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80" itemScope itemType="https://schema.org/LocalBusiness">
+                <meta itemProp="name" content={BUSINESS.name} />
+                <div className="flex items-start gap-3.5">
+                  <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0">
+                    <ClockIcon />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="font-bold text-[#082F52] text-sm font-display">
+                        Opening Hours
+                      </h3>
+                      <span className="inline-flex items-center gap-1 bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        Open 24/7
+                      </span>
+                    </div>
+                    <time
+                      itemProp="openingHours"
+                      dateTime="Mo-Su 00:00-24:00"
+                      className="text-slate-800 font-semibold text-sm block"
+                    >
+                      {BUSINESS.hours.display}
+                    </time>
+                    <p className="text-slate-500 text-xs mt-1">
+                      Operations, shifting support & bookings are active round-the-clock, 7 days a week.
+                    </p>
                   </div>
                 </div>
               </div>

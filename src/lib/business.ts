@@ -59,6 +59,32 @@ export const BUSINESS = {
     portalUrl: 'https://bharatrelocators8j.trackingmore.org/',
   },
 
+  /** Verified Operating Hours */
+  hours: {
+    display: 'Monday to Sunday: Open 24 Hours',
+    short: 'Mon - Sun: 24 Hours Open',
+    days: 'Monday – Sunday',
+    timing: '24 Hours Open',
+    is24Hours: true,
+    schemaOpeningHours: 'Mo-Su 00:00-24:00',
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: [
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+          'Sunday',
+        ],
+        opens: '00:00',
+        closes: '23:59',
+      },
+    ],
+  },
+
   /** Verified physical branch locations in Kolkata */
   locations: {
     main: {
@@ -124,8 +150,8 @@ export const BUSINESS = {
  * Safe for general marketing display, but NOT for schema.org assertions.
  */
 export const UNVERIFIED = {
-  /** GBP shows Mon-Sat 8AM-7PM; website claims "24/7" — needs confirmation */
-  operatingHours: 'Client confirmation required',
+  /** Operating hours confirmed by client: Monday to Sunday 24 Hours Open */
+  operatingHours: 'Monday to Sunday: Open 24 Hours',
   /** GA4 Measurement ID found in external audit — needs client verification */
   ga4MeasurementId: 'G-5RGEEXWNMT',
   /** GTM container ID — unknown; needs client input */
