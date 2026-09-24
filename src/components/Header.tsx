@@ -116,7 +116,7 @@ export default function Header() {
               className="transition-transform duration-200 group-hover:scale-105 ring-2 ring-white/10"
             />
             <div className="flex flex-col">
-              <span className="font-extrabold text-white text-[1.125rem] tracking-tight font-display whitespace-nowrap">
+              <span className="font-extrabold text-white text-[1.125rem] tracking-tight font-display whitespace-nowrap uppercase">
                 {BUSINESS.name}
               </span>
               <span className="text-[#F28A32] text-[10px] font-semibold tracking-[0.08em] uppercase whitespace-nowrap">
