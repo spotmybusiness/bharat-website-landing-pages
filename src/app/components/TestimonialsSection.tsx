@@ -3,6 +3,8 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { getReviewSlug } from '@/data/reviews';
 
 type GoogleReviewItem = {
   name: string;
@@ -152,20 +154,30 @@ function ReviewCard({
 }: {
   review: GoogleReviewItem;
 }) {
+  const slug = getReviewSlug(review.name);
+
   return (
-    <article className="bg-white rounded-2xl p-6 sm:p-7 border-2 border-[#082F52] shadow-[0_4px_16px_rgba(8,47,82,0.06)] flex flex-col justify-between">
+    <Link
+      href={`/testimonials?review=${slug}#review-${slug}`}
+      className="bg-white rounded-2xl p-6 sm:p-7 border-2 border-[#082F52] hover:border-[#E53935] shadow-[0_4px_16px_rgba(8,47,82,0.06)] hover:shadow-xl transition-all duration-200 flex flex-col justify-between group cursor-pointer block h-full select-none"
+      title={`Read ${review.name}'s verified story on our customer reviews page`}
+    >
       <div>
         <div className="flex items-center justify-between gap-3 mb-4">
-          <span className="inline-block bg-slate-100 text-[#082F52] text-[11px] font-semibold px-3 py-1 rounded-full">
+          <span className="inline-block bg-slate-100 text-[#082F52] text-[11px] font-semibold px-3 py-1 rounded-full group-hover:bg-red-50 group-hover:text-[#E53935] transition-colors">
             {review.service}
           </span>
 
-          <GoogleIcon />
+          <div className="flex items-center gap-1.5 text-xs text-slate-400 group-hover:text-[#E53935] font-semibold transition-colors">
+            <GoogleIcon />
+            <span className="text-[11px] font-medium hidden sm:inline">Verified Review</span>
+            <span className="text-xs">→</span>
+          </div>
         </div>
 
         <StarRating rating={review.rating} />
 
-        <p className="text-slate-700 text-sm leading-relaxed my-4 line-clamp-4">
+        <p className="text-slate-700 text-sm leading-relaxed my-4 line-clamp-4 group-hover:text-slate-900 transition-colors">
           &ldquo;{review.text}&rdquo;
         </p>
       </div>
@@ -182,7 +194,7 @@ function ReviewCard({
           />
         ) : (
           <div
-            className="w-10 h-10 rounded-xl bg-[#082F52] text-white flex items-center justify-center font-bold text-sm shrink-0 font-display"
+            className="w-10 h-10 rounded-xl bg-[#082F52] group-hover:bg-[#E53935] text-white flex items-center justify-center font-bold text-sm shrink-0 font-display transition-colors"
             aria-hidden="true"
           >
             {review.initials}
@@ -190,7 +202,7 @@ function ReviewCard({
         )}
 
         <div className="flex-1 min-w-0">
-          <div className="font-bold text-[#082F52] text-sm truncate flex items-center gap-1.5 font-display">
+          <div className="font-bold text-[#082F52] group-hover:text-[#E53935] text-sm truncate flex items-center gap-1.5 font-display transition-colors">
             {review.name}
             <VerifiedIcon />
           </div>
@@ -204,13 +216,14 @@ function ReviewCard({
           {review.date}
         </time>
       </div>
-    </article>
+    </Link>
   );
 }
 
 export default function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [sectionRevealed, setSectionRevealed] = useState(false);
+  const [isMarqueePaused, setIsMarqueePaused] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -379,9 +392,21 @@ export default function TestimonialsSection() {
             : 'translateY(24px)',
           transition: 'opacity 0.6s ease 100ms, transform 0.6s ease 100ms',
         }}
+        onTouchStart={() => setIsMarqueePaused(true)}
+        onTouchEnd={() => setIsMarqueePaused(false)}
+        onTouchCancel={() => setIsMarqueePaused(false)}
+        onMouseEnter={() => setIsMarqueePaused(true)}
+        onMouseLeave={() => setIsMarqueePaused(false)}
+        onPointerDown={() => setIsMarqueePaused(true)}
+        onPointerUp={() => setIsMarqueePaused(false)}
       >
         <div className="overflow-hidden w-full relative">
-          <div className="flex w-max animate-marquee-right">
+          <div
+            className="flex w-max animate-marquee-right hover:[animation-play-state:paused] active:[animation-play-state:paused]"
+            style={{
+              animationPlayState: isMarqueePaused ? 'paused' : 'running',
+            }}
+          >
             <div className="flex items-stretch gap-4 pr-4 shrink-0">
               {DEFAULT_REVIEWS.map((review, index) => (
                 <div

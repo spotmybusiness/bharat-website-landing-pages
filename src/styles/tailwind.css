@@ -316,6 +316,12 @@
     will-change: transform;
   }
 
+  .animate-marquee-right:hover,
+  .animate-marquee-right:active,
+  .animate-marquee-right:focus-within {
+    animation-play-state: paused;
+  }
+
   /* Subtle mask for marquee container edges */
   .marquee-mask {
     -webkit-mask-image: linear-gradient(

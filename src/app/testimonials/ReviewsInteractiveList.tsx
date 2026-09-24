@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { ReviewItem, VERIFIED_REVIEWS } from '@/data/reviews';
+import { ReviewItem, VERIFIED_REVIEWS, getReviewSlug } from '@/data/reviews';
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -68,7 +68,8 @@ const CATEGORIES = [
 export default function ReviewsInteractiveList() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [reviews, setReviews] = useState<ReviewItem[]>(VERIFIED_REVIEWS);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [highlightedSlug, setHighlightedSlug] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -99,6 +100,45 @@ export default function ReviewsInteractiveList() {
       isMounted = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    function handleHashOrQuery() {
+      if (typeof window === 'undefined') return;
+
+      const params = new URLSearchParams(window.location.search);
+      const queryReview = params.get('review');
+      const hash = window.location.hash.replace('#', '');
+      const cleanHash = hash.startsWith('review-') ? hash.replace('review-', '') : hash;
+      const targetSlug = (queryReview || cleanHash || '').toLowerCase().trim();
+
+      if (!targetSlug) return;
+
+      const matchingReview = reviews.find(
+        (r) => getReviewSlug(r.name) === targetSlug
+      );
+
+      if (matchingReview) {
+        setSelectedCategory('All');
+        setHighlightedSlug(targetSlug);
+
+        // Scroll into view smoothly with comfortable offset
+        const timer = setTimeout(() => {
+          const el = document.getElementById(`review-${targetSlug}`);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 150);
+
+        return () => clearTimeout(timer);
+      }
+    }
+
+    handleHashOrQuery();
+    window.addEventListener('hashchange', handleHashOrQuery);
+    return () => window.removeEventListener('hashchange', handleHashOrQuery);
+  }, [isLoading, reviews]);
 
   const filteredReviews = reviews.filter((rev) => {
     if (selectedCategory === 'All') return true;
@@ -169,62 +209,81 @@ export default function ReviewsInteractiveList() {
       ) : (
         /* Reviews Grid */
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredReviews.map((review, i) => (
-            <article
-              key={`${review.name}-${review.date}-${i}`}
-              className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200 hover:border-[#1478B5]/50 shadow-xs hover:shadow-lg transition-all duration-200 flex flex-col justify-between group"
-            >
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="inline-block bg-slate-100 text-[#082F52] text-[11px] font-semibold px-3 py-1 rounded-full">
-                    {review.service}
-                  </span>
-                  <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                    <GoogleIcon />
-                    <span>Google Review</span>
+          {filteredReviews.map((review, i) => {
+            const slug = getReviewSlug(review.name);
+            const isHighlighted = highlightedSlug === slug;
+
+            return (
+              <article
+                key={`${review.name}-${review.date}-${i}`}
+                id={`review-${slug}`}
+                className={`bg-white rounded-2xl p-6 sm:p-7 transition-all duration-300 flex flex-col justify-between group scroll-mt-32 ${
+                  isHighlighted
+                    ? 'border-2 border-[#E53935] ring-4 ring-[#E53935]/25 shadow-2xl scale-[1.02] bg-gradient-to-b from-red-50/25 to-white'
+                    : 'border border-slate-200 hover:border-[#1478B5]/50 shadow-xs hover:shadow-lg'
+                }`}
+              >
+                <div>
+                  {isHighlighted && (
+                    <div className="mb-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#E53935] text-white shadow-sm animate-pulse">
+                      <span>★</span>
+                      <span>Selected Customer Review</span>
+                    </div>
+                  )}
+
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <span className="inline-block bg-slate-100 text-[#082F52] text-[11px] font-semibold px-3 py-1 rounded-full">
+                      {review.service}
+                    </span>
+                    <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                      <GoogleIcon />
+                      <span>Google Review</span>
+                    </div>
                   </div>
+
+                  <StarRating rating={review.rating} />
+
+                  <p className="text-slate-700 text-sm leading-relaxed my-4">
+                    &ldquo;{review.text}&rdquo;
+                  </p>
                 </div>
 
-                <StarRating rating={review.rating} />
+                <div className="flex items-center gap-3 pt-4 border-t border-slate-100 mt-2">
+                  {review.profile_photo_url ? (
+                    <Image
+                      src={review.profile_photo_url}
+                      alt={`${review.name}'s profile photo`}
+                      width={40}
+                      height={40}
+                      className="w-10 h-10 rounded-xl object-cover shrink-0 border border-slate-200"
+                      unoptimized
+                    />
+                  ) : (
+                    <div
+                      className={`w-10 h-10 rounded-xl ${
+                        isHighlighted ? 'bg-[#E53935]' : 'bg-[#082F52]'
+                      } text-white flex items-center justify-center font-bold text-sm shrink-0 font-display transition-colors`}
+                      aria-hidden="true"
+                    >
+                      {review.initials}
+                    </div>
+                  )}
 
-                <p className="text-slate-700 text-sm leading-relaxed my-4">
-                  &ldquo;{review.text}&rdquo;
-                </p>
-              </div>
-
-              <div className="flex items-center gap-3 pt-4 border-t border-slate-100 mt-2">
-                {review.profile_photo_url ? (
-                  <Image
-                    src={review.profile_photo_url}
-                    alt={`${review.name}'s profile photo`}
-                    width={40}
-                    height={40}
-                    className="w-10 h-10 rounded-xl object-cover shrink-0 border border-slate-200"
-                    unoptimized
-                  />
-                ) : (
-                  <div
-                    className="w-10 h-10 rounded-xl bg-[#082F52] text-white flex items-center justify-center font-bold text-sm shrink-0 font-display"
-                    aria-hidden="true"
-                  >
-                    {review.initials}
+                  <div className="flex-1 min-w-0">
+                    <div className="font-bold text-[#082F52] text-sm truncate flex items-center gap-1.5 font-display">
+                      {review.name}
+                      <VerifiedBadge />
+                    </div>
+                    <div className="text-slate-500 text-xs truncate">{review.role}</div>
                   </div>
-                )}
 
-                <div className="flex-1 min-w-0">
-                  <div className="font-bold text-[#082F52] text-sm truncate flex items-center gap-1.5 font-display">
-                    {review.name}
-                    <VerifiedBadge />
-                  </div>
-                  <div className="text-slate-500 text-xs truncate">{review.role}</div>
+                  <time className="text-xs text-slate-400 font-medium shrink-0">
+                    {review.date}
+                  </time>
                 </div>
-
-                <time className="text-xs text-slate-400 font-medium shrink-0">
-                  {review.date}
-                </time>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       )}
     </div>
