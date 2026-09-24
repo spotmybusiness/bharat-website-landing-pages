@@ -100,7 +100,7 @@ export default function Footer() {
             <Link href="/" className="group mb-5 flex items-center gap-3">
               <AppLogo size={44} className="transition-transform group-hover:scale-105" />
               <span className="flex flex-col">
-                <span className="font-display text-lg font-bold tracking-tight">Bharat Relocators</span>
+                <span className="font-display text-lg font-bold tracking-tight">BHARAT RELOCATORS</span>
                 <span className="text-[11px] font-medium uppercase tracking-wider text-white/70">
                   Packers & Movers · Kolkata
                 </span>
