@@ -9,7 +9,7 @@
 export const BUSINESS = {
   name: 'Bharat Relocators',
   legalName: 'Bharat Relocators',
-  tagline: 'Packers and Movers · Behala, Kolkata',
+  tagline: 'Packers and Movers · Kolkata',
 
   phone: {
     primary: '+919123046504',
