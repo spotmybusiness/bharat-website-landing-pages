@@ -105,13 +105,21 @@ export default function Footer() {
 
         <div className="grid grid-cols-1 gap-12 border-b border-white/10 pb-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           <section className="lg:col-span-4" aria-label="Company information">
-            <Link href="/" className="group mb-5 flex items-center">
+            <Link href="/" className="group mb-5 flex items-center gap-3">
               {/* Logo: Drop your logo in /public/images/ and set src="/images/your-logo.png" */}
               <img
                 src="/images/logo.png"
                 alt="Bharat Relocators - Packers and Movers Kolkata"
                 className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
               />
+              <span className="flex flex-col">
+                <span className="font-display text-lg font-bold tracking-tight uppercase whitespace-nowrap">
+                  BHARAT RELOCATORS
+                </span>
+                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#F28A32] whitespace-nowrap">
+                  Packers and Movers · Kolkata
+                </span>
+              </span>
             </Link>
 
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-white/75">
