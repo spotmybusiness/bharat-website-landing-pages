@@ -2,7 +2,6 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-import VehicleScrollNavigation from '@/components/VehicleScrollNavigation';
 import HeroSection from '@/app/components/HeroSection';
 import TrackingInteractiveView from '@/app/tracking/TrackingInteractiveView';
 import ServicesSection from '@/app/components/ServicesSection';
@@ -19,9 +18,6 @@ export default function HomePage() {
     <main className="relative overflow-x-hidden min-h-screen bg-background text-foreground selection:bg-[#E53935] selection:text-white">
       {/* Floating Glass Header */}
       <Header />
-
-      {/* Signature Interactive Vehicle Route Navigator */}
-      <VehicleScrollNavigation />
 
       {/* Scene 1: The Truck Arrival Experience */}
       <HeroSection />

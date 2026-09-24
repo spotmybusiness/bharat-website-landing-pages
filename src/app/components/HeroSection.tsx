@@ -11,7 +11,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen lg:h-screen lg:max-h-screen flex flex-col justify-center overflow-hidden bg-[#071A2B] text-white pt-20 sm:pt-24 lg:pt-20 pb-8 sm:pb-10 lg:pb-12"
+      className="relative min-h-[580px] lg:h-[84vh] lg:min-h-[620px] lg:max-h-[780px] flex flex-col justify-start overflow-hidden bg-[#071A2B] text-white pt-16 sm:pt-18 lg:pt-16 pb-8"
     >
       {/* Embedded High-Performance Cinematic Animation Styles */}
       <style>{`
@@ -193,7 +193,7 @@ export default function HeroSection() {
       >
         {/* Sleek Linear Road Reference (Ground line on which truck moves) */}
         <div
-          className="absolute inset-x-0 bottom-[106px] xl:bottom-[126px] 2xl:bottom-[146px] pointer-events-none"
+          className="absolute inset-x-0 bottom-[96px] xl:bottom-[112px] 2xl:bottom-[128px] pointer-events-none"
           aria-hidden="true"
         >
           <div className="relative w-full">
@@ -215,7 +215,7 @@ export default function HeroSection() {
         </div>
 
         <div
-          className="absolute bottom-12 sm:bottom-16 lg:bottom-20 xl:bottom-24 2xl:bottom-28 right-2 sm:right-4 lg:right-4 xl:right-8 flex items-end"
+          className="absolute bottom-10 sm:bottom-12 lg:bottom-[70px] xl:bottom-[82px] 2xl:bottom-[94px] right-2 sm:right-4 lg:right-4 xl:right-8 flex items-end"
           style={{
             animation: 'truckDriveInCinematic 3.6s cubic-bezier(0.12, 0.85, 0.25, 1) 0.1s both',
           }}
@@ -482,7 +482,7 @@ export default function HeroSection() {
       {/* ----------------------------------------------------------------- */}
       {/* 2. SYNCHRONIZED HERO CONTENT (Shifted Left, strictly left of red line) */}
       {/* ----------------------------------------------------------------- */}
-      <div className="relative z-20 w-full max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 my-auto py-6">
+      <div className="relative z-20 w-full max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 mt-3 sm:mt-5 lg:mt-6 mb-auto pt-2 pb-6">
         <div className="w-full max-w-xl lg:max-w-[490px] xl:max-w-[530px] 2xl:max-w-[580px]">
           {/* Live Verification Badge (Unpacked from Relocation Box after pause) */}
           <div className="text-center sm:text-left">

@@ -21,7 +21,21 @@ export default function FloatingContactWidget() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-      {/* Track Us Button */}
+      {/* 1. Phone Button (First) */}
+      <a
+        href={getTelUrl(BUSINESS.phone.primary)}
+        className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#E53935] hover:bg-[#c62828] text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 group relative border-2 border-white/20"
+        aria-label="Call Us"
+      >
+        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
+        </svg>
+        <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-white text-[#E53935] text-xs font-semibold rounded-lg shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+          Call {BUSINESS.phone.primaryFormatted}
+        </span>
+      </a>
+
+      {/* 2. Track Us Button (Second) */}
       <Link
         href="/tracking"
         onClick={handleTrackClick}
@@ -47,7 +61,7 @@ export default function FloatingContactWidget() {
         </span>
       </Link>
 
-      {/* WhatsApp Button */}
+      {/* 3. WhatsApp Button (Third) */}
       <a
         href={`https://wa.me/${BUSINESS.phone.primary.replace(/\s+/g, '')}`}
         target="_blank"
@@ -61,20 +75,6 @@ export default function FloatingContactWidget() {
         </svg>
         <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-white text-emerald-700 text-xs font-semibold rounded-lg shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
           Chat on WhatsApp
-        </span>
-      </a>
-
-      {/* Phone Button */}
-      <a
-        href={getTelUrl(BUSINESS.phone.primary)}
-        className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#E53935] hover:bg-[#c62828] text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 group relative border-2 border-white/20"
-        aria-label="Call Us"
-      >
-        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
-        </svg>
-        <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-white text-[#E53935] text-xs font-semibold rounded-lg shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-          Call {BUSINESS.phone.primaryFormatted}
         </span>
       </a>
     </div>
