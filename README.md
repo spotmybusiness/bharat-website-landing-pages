@@ -84,7 +84,7 @@ You can check out the [Next.js GitHub repository](https://github.com/vercel/next
 
 ## 🙏 Acknowledgments
 
-- Collaborated and Worked with [Srijan Seal](https://github.com/SealSrijan), [Swapnonil Nath](https://github.com/swapnonil2007) and Sagnik Bhaskar!
+- Collaborated and Worked with [Srijan Seal](https://github.com/SealSrijan), [Swapnonil Nath](https://github.com/swapnonil2007) and [Sagnik Bhaskar](https://github.com/SagnikBhaskar)!
 - Powered by Next.js and React
 - Styled with Tailwind CSS
 
