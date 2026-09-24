@@ -21,6 +21,8 @@ const plusJakartaSansDisplay = Plus_Jakarta_Sans({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#071A2B',
 };
 
 import { getSiteUrl } from '@/lib/business';

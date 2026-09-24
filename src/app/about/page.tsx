@@ -597,7 +597,7 @@ export default function AboutPage() {
                   href={getTelUrl(mainLoc.phone)}
                   className="inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-[#082F52] text-xs sm:text-sm font-semibold px-4 py-3 rounded-xl border border-slate-200 transition-colors"
                 >
-                  <span>Call Location</span>
+                  <span>Call Us!</span>
                 </a>
               </div>
             </div>
@@ -707,7 +707,7 @@ export default function AboutPage() {
                   href={getTelUrl(secLoc.phone)}
                   className="inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-[#082F52] text-xs sm:text-sm font-semibold px-4 py-3 rounded-xl border border-slate-200 transition-colors"
                 >
-                  <span>Call Location</span>
+                  <span>Call Us!</span>
                 </a>
               </div>
             </div>

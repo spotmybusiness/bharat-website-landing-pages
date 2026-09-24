@@ -493,8 +493,8 @@ export default function HeroSection() {
               }}
             >
               <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#36c27a] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#11a659]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#fe5900] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#ff3401]" />
               </span>
               <span className="text-xs font-bold uppercase tracking-wider text-white/90">
                 ISO 9001:2015 Certified · Kolkata to PAN India
@@ -504,7 +504,7 @@ export default function HeroSection() {
 
           {/* Clean Confident Headline (Unpacked from Relocation Box) */}
           <h1
-            className="anim-hero-item text-3xl sm:text-4xl lg:text-[2.65rem] xl:text-[3.1rem] font-display font-extrabold leading-[1.14] mb-5 tracking-tight text-white text-center sm:text-left"
+            className="anim-hero-item text-2xl sm:text-4xl lg:text-[2.65rem] xl:text-[3.1rem] font-display font-extrabold leading-[1.18] sm:leading-[1.14] mb-4 sm:mb-5 tracking-tight text-white text-center sm:text-left"
             style={{
               animation: 'heroUnpackEmerge 0.95s cubic-bezier(0.16, 1, 0.3, 1) 5.65s both',
             }}
@@ -516,7 +516,7 @@ export default function HeroSection() {
 
           {/* Subtext (Unpacked from Relocation Box) */}
           <p
-            className="anim-hero-item text-sm sm:text-base text-white/80 font-normal leading-relaxed mb-8 max-w-lg text-center sm:text-left pl-7"
+            className="anim-hero-item text-sm sm:text-base text-white/80 font-normal leading-relaxed mb-6 sm:mb-8 max-w-lg text-center sm:text-left"
             style={{
               animation: 'heroUnpackEmerge 0.9s cubic-bezier(0.16, 1, 0.3, 1) 5.9s both',
             }}

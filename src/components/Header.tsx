@@ -11,7 +11,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(true);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   const pathname = usePathname();
   const isHomepage = pathname === '/';
@@ -25,6 +25,24 @@ export default function Header() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Prevent background scrolling when mobile drawer is open
+  useEffect(() => {
+    if (menuOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [menuOpen]);
+
+  // Reset mobile services accordion when mobile menu closes
+  useEffect(() => {
+    if (!menuOpen) {
+      setMobileServicesOpen(false);
+    }
+  }, [menuOpen]);
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -54,10 +72,11 @@ export default function Header() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [servicesDropdownOpen]);
 
-  // Close mobile menu on route change
+  // Close mobile menu and reset dropdowns on route change
   useEffect(() => {
     setMenuOpen(false);
     setServicesDropdownOpen(false);
+    setMobileServicesOpen(false);
   }, [pathname]);
 
   const handleMouseEnter = useCallback(() => {
@@ -105,21 +124,21 @@ export default function Header() {
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled
             ? 'bg-[#071A2B]/95 shadow-2xl backdrop-blur-xl py-2.5 sm:py-3'
-            : 'bg-[#071A2B]/85 backdrop-blur-md py-3.5 sm:py-4'
+            : 'bg-[#071A2B]/90 backdrop-blur-md py-3 sm:py-4'
         }`}
       >
-        <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 flex items-center justify-between gap-4">
+        <div className="w-full max-w-[1600px] mx-auto px-3.5 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 flex items-center justify-between gap-2 sm:gap-4">
           {/* Brand Identity */}
-          <Link href="/" className="flex items-center gap-3 group focus:outline-none shrink-0">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 group focus:outline-none shrink-0 min-w-0">
             <AppLogo
-              size={42}
-              className="transition-transform duration-200 group-hover:scale-105 ring-2 ring-white/10"
+              size={38}
+              className="shrink-0 transition-transform duration-200 group-hover:scale-105 ring-2 ring-white/10"
             />
-            <div className="flex flex-col">
-              <span className="font-extrabold text-white text-[1.125rem] tracking-tight font-display whitespace-nowrap uppercase">
+            <div className="flex flex-col min-w-0">
+              <span className="font-extrabold text-white text-[0.925rem] sm:text-base md:text-[1.125rem] tracking-tight font-display whitespace-nowrap uppercase">
                 {BUSINESS.name}
               </span>
-              <span className="text-[#F28A32] text-[10px] font-semibold tracking-[0.08em] uppercase whitespace-nowrap">
+              <span className="text-[#F28A32] text-[8.5px] sm:text-[10px] font-semibold tracking-[0.06em] sm:tracking-[0.08em] uppercase whitespace-nowrap">
                 {BUSINESS.tagline}
               </span>
             </div>
@@ -285,12 +304,12 @@ export default function Header() {
           </div>
 
           {/* Mobile Right Controls */}
-          <div className="flex xl:hidden items-center gap-2">
+          <div className="flex xl:hidden items-center gap-2 shrink-0">
             <a
               href={getTelUrl(BUSINESS.phone.primary)}
-              className="w-9 h-9 rounded-xl bg-[#E53935] text-white flex items-center justify-center shadow-md md:hidden"
-              aria-label="Dial Now"
-              title="Dial Now"
+              className="w-10 h-10 rounded-xl bg-[#E53935] hover:bg-[#c62828] active:scale-95 text-white flex items-center justify-center shadow-md transition-transform md:hidden shrink-0"
+              aria-label="Call Now"
+              title="Call Now"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.057 15.057 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.01A11.36 11.36 0 018.57 3.9c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.52c0-.55-.45-1-1-1z" />
@@ -298,9 +317,10 @@ export default function Header() {
             </a>
 
             <button
-              className="text-white p-2 rounded-xl glass-card focus:outline-none focus:ring-2 focus:ring-[#E53935]"
+              type="button"
+              className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/15 active:bg-white/20 border border-white/15 text-white flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[#E53935] shrink-0"
               onClick={() => setMenuOpen((v) => !v)}
-              aria-label="Toggle navigation menu"
+              aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={menuOpen}
             >
               {menuOpen ? (
@@ -308,7 +328,7 @@ export default function Header() {
                   className="w-5 h-5"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth={2}
+                  strokeWidth={2.2}
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -318,7 +338,7 @@ export default function Header() {
                   className="w-5 h-5"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth={2}
+                  strokeWidth={2.2}
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -334,45 +354,52 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#071A2B] flex flex-col justify-between px-6 pt-24 pb-8 xl:hidden animate-in fade-in duration-200 overflow-y-auto">
-          <div className="flex flex-col gap-2">
-            
+        <div
+          id="mobile-nav-menu"
+          className="fixed inset-0 z-40 bg-[#071A2B]/98 backdrop-blur-2xl flex flex-col justify-between px-4 sm:px-6 pt-20 pb-6 xl:hidden animate-in fade-in duration-200 overflow-y-auto overscroll-contain"
+        >
+          <div className="flex flex-col gap-1">
             {/* High Priority Contact Actions */}
-            <div className="flex flex-col gap-3 mb-4">
+            <div className="grid grid-cols-2 gap-2.5 mb-3">
               <a
                 href={getTelUrl(BUSINESS.phone.primary)}
-                className="flex items-center justify-center gap-3 bg-[#E53935] text-white font-bold py-3.5 rounded-xl shadow-lg text-base"
+                className="flex items-center justify-center gap-2 bg-[#E53935] hover:bg-[#c62828] text-white font-bold py-3 px-3 rounded-xl shadow-md text-xs sm:text-sm transition-all"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.057 15.057 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.01A11.36 11.36 0 018.57 3.9c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.52c0-.55-.45-1-1-1z" />
                 </svg>
-                Dial Now: {BUSINESS.phone.primaryFormatted}
+                <span>Call Now</span>
               </a>
               <a
                 href={`https://wa.me/${BUSINESS.phone.primary.replace(/\s+/g, '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 bg-emerald-500 text-white font-bold py-3.5 rounded-xl shadow-lg text-base"
+                className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-3 rounded-xl shadow-md text-xs sm:text-sm transition-all"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
                   <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.558 4.116 1.535 5.847L.057 23.5l5.82-1.527A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.66-.5-5.195-1.378l-.373-.22-3.453.906.921-3.365-.242-.388A9.954 9.954 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
                 </svg>
-                Chat on WhatsApp
+                <span>WhatsApp</span>
               </a>
             </div>
 
-            {/* Expandable Services Accordion */}
-            <div className="border-b border-white/10 pb-2">
+            {/* Expandable Services Accordion (COLLAPSED BY DEFAULT) */}
+            <div className="border-b border-white/10 pb-1">
               <button
                 type="button"
                 onClick={() => setMobileServicesOpen((prev) => !prev)}
-                className="w-full flex items-center justify-between text-white text-lg font-bold py-2 hover:text-[#F28A32] transition-colors focus:outline-none"
+                className="w-full flex items-center justify-between text-white text-base font-bold py-2.5 hover:text-[#F28A32] transition-colors focus:outline-none"
                 aria-expanded={mobileServicesOpen}
               >
-                <span>Our Services</span>
+                <div className="flex items-center gap-2">
+                  <span>Our Services</span>
+                  <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-[#F28A32]/20 text-[#F28A32] border border-[#F28A32]/30">
+                    6 Options
+                  </span>
+                </div>
                 <svg
-                  className={`w-5 h-5 transition-transform duration-200 ${
+                  className={`w-4 h-4 transition-transform duration-200 ${
                     mobileServicesOpen ? 'rotate-180 text-[#F28A32]' : 'text-white/60'
                   }`}
                   fill="none"
@@ -385,21 +412,27 @@ export default function Header() {
               </button>
 
               {mobileServicesOpen && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 pb-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 pb-3 pl-1 sm:pl-0 animate-in fade-in slide-in-from-top-1 duration-150">
                   <Link
                     href="/services"
-                    onClick={() => setMenuOpen(false)}
-                    className="bg-[#071A2B] hover:bg-[#0B253D] border border-[#F28A32]/50 text-[#F28A32] hover:text-white py-2.5 px-3.5 rounded-xl text-sm font-bold transition-all flex items-center justify-between group sm:col-span-2"
+                    onClick={() => {
+                      setMenuOpen(false);
+                      setMobileServicesOpen(false);
+                    }}
+                    className="bg-[#071A2B] hover:bg-[#0B253D] border border-[#F28A32]/50 text-[#F28A32] hover:text-white py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-between sm:col-span-2"
                   >
                     <span>Overview: All Relocation Services</span>
-                    <span className="text-[#E53935] group-hover:text-[#F28A32] group-hover:translate-x-1 transition-all text-xs font-bold">→</span>
+                    <span className="text-[#E53935] text-xs font-bold">→</span>
                   </Link>
-                  {mainNavLinks.find((l) => l.children)?.children?.map((service) => (
+                  {serviceNavLinks.map((service) => (
                     <Link
                       key={service.href}
                       href={service.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="bg-[#0B253D] hover:bg-[#0F3252] border border-white/10 text-white/90 hover:text-white py-2.5 px-3.5 rounded-xl text-sm font-semibold transition-all flex items-center justify-between group"
+                      onClick={() => {
+                        setMenuOpen(false);
+                        setMobileServicesOpen(false);
+                      }}
+                      className="bg-[#0B253D] hover:bg-[#0F3252] border border-white/10 text-white/90 hover:text-white py-2 px-3 rounded-xl text-xs font-medium transition-all flex items-center justify-between group"
                     >
                       <span className="group-hover:text-[#F28A32] transition-colors">{service.label}</span>
                       <span className="text-[#E53935] text-xs font-bold">→</span>
@@ -412,88 +445,119 @@ export default function Header() {
             {/* Track Us Navigation Link */}
             <Link
               href="/tracking"
-              onClick={() => setMenuOpen(false)}
-              className="text-white text-lg font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none flex items-center justify-between"
+              onClick={() => {
+                setMenuOpen(false);
+                setMobileServicesOpen(false);
+              }}
+              className="text-white text-base font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
             >
-              <span>Track Us</span>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded-md bg-[#E53935]/20 text-[#F28A32] border border-[#E53935]/30">Live</span>
+              Track Us
             </Link>
 
             {/* Other Navigation Links */}
             <Link
               href="/moving-guides"
-              onClick={() => setMenuOpen(false)}
-              className="text-white text-lg font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
+              onClick={() => {
+                setMenuOpen(false);
+                setMobileServicesOpen(false);
+              }}
+              className="text-white text-base font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
             >
               Moving Guides
             </Link>
 
             <Link
               href="/about"
-              onClick={() => setMenuOpen(false)}
-              className="text-white text-lg font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
+              onClick={() => {
+                setMenuOpen(false);
+                setMobileServicesOpen(false);
+              }}
+              className="text-white text-base font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
             >
               About Us
             </Link>
 
             <Link
               href="/process"
-              onClick={() => setMenuOpen(false)}
-              className="text-white text-lg font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
+              onClick={() => {
+                setMenuOpen(false);
+                setMobileServicesOpen(false);
+              }}
+              className="text-white text-base font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
             >
               Process
             </Link>
 
             <Link
               href="/why-us"
-              onClick={() => setMenuOpen(false)}
-              className="text-white text-lg font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
+              onClick={() => {
+                setMenuOpen(false);
+                setMobileServicesOpen(false);
+              }}
+              className="text-white text-base font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
             >
               Why Us
             </Link>
 
             <Link
               href="/testimonials"
-              onClick={() => setMenuOpen(false)}
-              className="text-white text-lg font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
+              onClick={() => {
+                setMenuOpen(false);
+                setMobileServicesOpen(false);
+              }}
+              className="text-white text-base font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
             >
               Customer Reviews
             </Link>
 
             <Link
               href="/faqs"
-              onClick={() => setMenuOpen(false)}
-              className="text-white text-lg font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
+              onClick={() => {
+                setMenuOpen(false);
+                setMobileServicesOpen(false);
+              }}
+              className="text-white text-base font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
             >
               Frequently Asked Questions
             </Link>
 
             <Link
               href="/contact"
-              onClick={() => setMenuOpen(false)}
-              className="text-white text-lg font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
+              onClick={() => {
+                setMenuOpen(false);
+                setMobileServicesOpen(false);
+              }}
+              className="text-white text-base font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
             >
               Contact Us
             </Link>
           </div>
 
-          <div className="flex flex-col gap-3 pt-6 mt-4">
+          <div className="flex flex-col gap-2.5 pt-4 mt-2">
             {isHomepage ? (
               <button
                 onClick={handleQuoteClick}
-                className="glass-card hover:bg-white/20 text-white font-bold py-3 rounded-xl text-base text-center"
+                className="bg-[#E53935] hover:bg-[#c62828] active:scale-[0.99] text-white font-bold py-3.5 rounded-xl text-base text-center shadow-lg transition-all"
               >
                 Get Free Moving Quote
               </button>
             ) : (
               <Link
                 href="/get-a-quote"
-                onClick={() => setMenuOpen(false)}
-                className="glass-card hover:bg-white/20 text-white font-bold py-3 rounded-xl text-base text-center"
+                onClick={() => {
+                  setMenuOpen(false);
+                  setMobileServicesOpen(false);
+                }}
+                className="bg-[#E53935] hover:bg-[#c62828] active:scale-[0.99] text-white font-bold py-3.5 rounded-xl text-base text-center shadow-lg transition-all"
               >
                 Get Free Moving Quote
               </Link>
             )}
+
+            <div className="flex items-center justify-center gap-1.5 text-xs text-white/70 py-1 text-center">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>Monday to Sunday: Open 24 Hours</span>
+            </div>
           </div>
         </div>
       )}

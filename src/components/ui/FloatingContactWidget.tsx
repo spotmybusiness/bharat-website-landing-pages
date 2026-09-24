@@ -2,29 +2,15 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { BUSINESS, getTelUrl } from '@/lib/business';
 
 export default function FloatingContactWidget() {
-  const pathname = usePathname();
-  const isHomepage = pathname === '/';
-
-  const handleTrackClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (isHomepage) {
-      const el = document.getElementById('track-us');
-      if (el) {
-        e.preventDefault();
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-  };
-
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+    <div className="fixed bottom-4 right-3.5 sm:bottom-6 sm:right-6 z-50 flex flex-col gap-2.5 sm:gap-3">
       {/* 1. Phone Button (First) */}
       <a
         href={getTelUrl(BUSINESS.phone.primary)}
-        className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#E53935] hover:bg-[#c62828] text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 group relative border-2 border-white/20"
+        className="flex items-center justify-center w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 bg-[#E53935] hover:bg-[#c62828] text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 group relative border-2 border-white/20"
         aria-label="Call Us"
       >
         <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -38,8 +24,7 @@ export default function FloatingContactWidget() {
       {/* 2. Track Us Button (Second) */}
       <Link
         href="/tracking"
-        onClick={handleTrackClick}
-        className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#F28A32] hover:bg-[#e07922] text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 group relative border-2 border-white/20"
+        className="flex items-center justify-center w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 bg-[#F28A32] hover:bg-[#e07922] text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 group relative border-2 border-white/20"
         aria-label="Track Us"
       >
         <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -66,7 +51,7 @@ export default function FloatingContactWidget() {
         href={`https://wa.me/${BUSINESS.phone.primary.replace(/\s+/g, '')}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 group relative border-2 border-white/20"
+        className="flex items-center justify-center w-11 h-11 sm:w-13 sm:h-13 md:w-14 md:h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-lg hover:scale-110 active:scale-95 transition-all duration-300 group relative border-2 border-white/20"
         aria-label="Chat on WhatsApp"
       >
         <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="currentColor" viewBox="0 0 24 24">
