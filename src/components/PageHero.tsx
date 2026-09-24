@@ -360,10 +360,15 @@ export default function PageHero({
   const resolvedIcon = placeholderIcon || contextual.icon;
 
   const imageSrc = image?.props?.src;
+  const imageType = image?.type;
   const hasValidImage =
     Boolean(image) &&
-    typeof imageSrc === 'string' &&
-    imageSrc.trim() !== '';
+    (
+      // bare <img> with a non-empty src
+      (imageType === 'img' && typeof imageSrc === 'string' && imageSrc.trim() !== '') ||
+      // <div> wrapper (glass border) containing the image
+      (imageType === 'div' && Boolean(image?.props?.children))
+    );
 
   return (
     <section
@@ -417,10 +422,12 @@ export default function PageHero({
             <div className="hidden lg:flex lg:col-span-5 xl:col-span-5 justify-center lg:justify-end">
               {hasValidImage ? (
                 <div className="flex items-center justify-center lg:justify-end w-full">
-                  {image &&
-                    React.cloneElement(image, {
-                      className: `max-w-full max-h-[360px] xl:max-h-[400px] w-auto h-auto object-contain transition-transform duration-300 hover:scale-[1.02] drop-shadow-2xl ${image.props.className || ''}`,
-                    })}
+                  {imageType === 'div'
+                    ? image
+                    : image &&
+                      React.cloneElement(image, {
+                        className: `max-w-full max-h-[360px] xl:max-h-[400px] w-auto h-auto object-contain transition-transform duration-300 hover:scale-[1.02] drop-shadow-2xl ${image.props.className || ''}`,
+                      })}
                 </div>
               ) : visual ? (
                 visual

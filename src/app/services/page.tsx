@@ -229,10 +229,12 @@ export default function ServicesPage() {
         breadcrumbs={[{ label: 'Services' }]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
-          <img
-            src="/images/Services.png"
-            alt="Packers and Movers Services - Bharat Relocators"
-          />
+          <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
+            <img
+              src="/images/Services.png"
+              alt="Packers and Movers Services - Bharat Relocators"
+            />
+          </div>
         }
         actions={
           <>

@@ -172,10 +172,12 @@ export default function MovingGuidesPage() {
         breadcrumbs={[{ label: 'Moving Guides' }]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
-          <img
-            src="/images/Moving_guides.png"
-            alt="Relocation Planning and Moving Guides - Bharat Relocators"
-          />
+          <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
+            <img
+              src="/images/Moving_guides.png"
+              alt="Relocation Planning and Moving Guides - Bharat Relocators"
+            />
+          </div>
         }
         actions={
           <Link
