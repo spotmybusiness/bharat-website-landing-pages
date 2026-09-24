@@ -416,16 +416,11 @@ export default function PageHero({
           {showPlaceholder && (
             <div className="hidden lg:flex lg:col-span-5 xl:col-span-5 justify-center lg:justify-end">
               {hasValidImage ? (
-                <div className="w-full max-w-[340px] xl:max-w-[390px] rounded-3xl bg-gradient-to-b from-[#0B253D] to-[#071A2B] border border-white/15 p-3 sm:p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group transition-all duration-300 hover:border-[#F28A32]/40">
-                  {/* Ambient Glows */}
-                  <div className="absolute -top-12 -right-12 w-36 h-36 bg-[#F28A32]/15 rounded-full blur-2xl pointer-events-none group-hover:bg-[#F28A32]/25 transition-all duration-500" />
-                  <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-[#E53935]/15 rounded-full blur-2xl pointer-events-none group-hover:bg-[#E53935]/25 transition-all duration-500" />
-                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 shadow-lg">
-                    {image &&
-                      React.cloneElement(image, {
-                        className: `w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${image.props.className || ''}`,
-                      })}
-                  </div>
+                <div className="w-full max-w-[340px] xl:max-w-[390px] aspect-[4/3] rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative group">
+                  {image &&
+                    React.cloneElement(image, {
+                      className: `w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${image.props.className || ''}`,
+                    })}
                 </div>
               ) : visual ? (
                 visual
