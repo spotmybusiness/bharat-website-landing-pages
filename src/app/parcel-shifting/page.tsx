@@ -138,6 +138,13 @@ export default function ParcelShiftingPage() {
           { label: 'Services' },
           { label: 'Parcel & Cargo Shifting' },
         ]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src=""
+            alt="Parcel and Cargo Shifting Services - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <Link

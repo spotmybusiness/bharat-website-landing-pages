@@ -170,6 +170,13 @@ export default function MovingGuidesPage() {
         }
         subtitle="Practical, step-by-step guides developed by Kolkata relocation specialists to help you plan, prepare, and execute a smooth household or vehicle move."
         breadcrumbs={[{ label: 'Moving Guides' }]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src="/images/Moving_guides.png"
+            alt="Relocation Planning and Moving Guides - Bharat Relocators"
+          />
+        }
         actions={
           <Link
             href="/get-a-quote"

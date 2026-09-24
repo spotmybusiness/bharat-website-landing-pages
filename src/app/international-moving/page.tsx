@@ -157,6 +157,13 @@ export default function InternationalMovingPage() {
           { label: 'Services' },
           { label: 'International Moving' },
         ]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src=""
+            alt="International Moving and Relocation Services - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <Link

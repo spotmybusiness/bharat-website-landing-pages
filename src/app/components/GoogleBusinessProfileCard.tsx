@@ -41,7 +41,7 @@ export default function GoogleBusinessProfileCard() {
   return (
     <div className="relative mx-auto select-none font-sans flex items-center justify-center">
       {/* Smartphone Outer Chassis */}
-      <div className="relative w-[320px] sm:w-[350px] bg-gradient-to-b from-[#2a2e33] via-[#1b1e22] to-[#111417] p-2.5 sm:p-3 rounded-[48px] shadow-[0_30px_70px_-15px_rgba(0,0,0,0.95),0_0_50px_rgba(8,47,82,0.6)] border-2 border-slate-700/80 ring-1 ring-white/20">
+      <div className="relative w-full max-w-[320px] sm:max-w-[350px] bg-gradient-to-b from-[#2a2e33] via-[#1b1e22] to-[#111417] p-2.5 sm:p-3 rounded-[48px] shadow-[0_30px_70px_-15px_rgba(0,0,0,0.95),0_0_50px_rgba(8,47,82,0.6)] border-2 border-slate-700/80 ring-1 ring-white/20">
         {/* Hardware Button Accents */}
         <div className="absolute -left-[5px] top-24 w-[3px] h-7 bg-slate-500 rounded-l-sm" />
         <div className="absolute -left-[5px] top-36 w-[3px] h-12 bg-slate-500 rounded-l-sm" />

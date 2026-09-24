@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
@@ -161,6 +161,13 @@ export default function HouseholdShiftingPage() {
           { label: 'Services' },
           { label: 'Household Shifting' },
         ]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src=""
+            alt="Household Shifting Services Kolkata - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <Link

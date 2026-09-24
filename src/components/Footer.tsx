@@ -59,7 +59,7 @@ function ClockIcon() {
 
 export default function Footer() {
   return (
-    <footer id="contact" className="bg-[#071A2B] text-white pt-20 pb-10 border-t border-white/10 relative">
+    <footer id="contact" className="bg-[#071A2B] text-white pt-20 pb-10 border-t border-white/10 relative overflow-hidden w-full max-w-full">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1478B5]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#E53935]/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

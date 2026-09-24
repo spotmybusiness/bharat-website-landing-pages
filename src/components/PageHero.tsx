@@ -9,6 +9,8 @@ export interface PageHeroProps {
   actions?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;
+  /** Hero image tag slot: e.g. <img src="" alt="..." />. If src is blank, default placeholder frame displays. */
+  image?: React.ReactElement<React.ImgHTMLAttributes<HTMLImageElement>>;
   /** Custom right-hand visual/image/graphic to override the placeholder */
   visual?: React.ReactNode;
   /** Custom icon node to override the contextual placeholder icon */
@@ -347,6 +349,7 @@ export default function PageHero({
   actions,
   children,
   className = '',
+  image,
   visual,
   placeholderIcon,
   placeholderLabel,
@@ -356,9 +359,15 @@ export default function PageHero({
   const resolvedLabel = placeholderLabel || contextual.label;
   const resolvedIcon = placeholderIcon || contextual.icon;
 
+  const imageSrc = image?.props?.src;
+  const hasValidImage =
+    Boolean(image) &&
+    typeof imageSrc === 'string' &&
+    imageSrc.trim() !== '';
+
   return (
     <section
-      className={`relative pt-32 pb-16 lg:pt-36 lg:pb-20 bg-[#071A2B] text-white overflow-hidden ${className}`}
+      className={`relative pt-32 pb-16 lg:pt-36 lg:pb-20 bg-[#071A2B] text-white overflow-hidden w-full max-w-full ${className}`}
     >
       {/* Ambient Dark Navy & Ember Glow Gradients */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#071A2B] via-[#071A2B]/95 to-[#082f52]/85 pointer-events-none" />
@@ -375,7 +384,7 @@ export default function PageHero({
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Heading, Subtitle, Actions, Children */}
-          <div className="lg:col-span-7 xl:col-span-7 max-w-3xl">
+          <div className="lg:col-span-7 xl:col-span-7 max-w-3xl min-w-0 w-full">
             {label && (
               <div className="mb-4">
                 <span className="inline-block bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white/90 shadow-xs">
@@ -384,17 +393,21 @@ export default function PageHero({
               </div>
             )}
 
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-display font-extrabold leading-[1.15] mb-5 tracking-tight text-white">
+            <h1 className="text-2xl sm:text-4xl lg:text-[2.75rem] font-display font-extrabold leading-[1.15] mb-5 tracking-tight text-white break-words">
               {title}
             </h1>
 
             {subtitle && (
-              <p className="text-base sm:text-lg text-white/80 font-normal leading-relaxed mb-8 max-w-2xl">
+              <p className="text-base sm:text-lg text-white/80 font-normal leading-relaxed mb-8 max-w-2xl break-words">
                 {subtitle}
               </p>
             )}
 
-            {actions && <div className="flex flex-wrap gap-4 items-center">{actions}</div>}
+            {actions && (
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-stretch sm:items-center max-w-full">
+                {actions}
+              </div>
+            )}
 
             {children}
           </div>
@@ -402,7 +415,19 @@ export default function PageHero({
           {/* Right Column: Visual Media / Icon Placeholder Slot */}
           {showPlaceholder && (
             <div className="hidden lg:flex lg:col-span-5 xl:col-span-5 justify-center lg:justify-end">
-              {visual ? (
+              {hasValidImage ? (
+                <div className="w-full max-w-[340px] xl:max-w-[390px] rounded-3xl bg-gradient-to-b from-[#0B253D] to-[#071A2B] border border-white/15 p-3 sm:p-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group transition-all duration-300 hover:border-[#F28A32]/40">
+                  {/* Ambient Glows */}
+                  <div className="absolute -top-12 -right-12 w-36 h-36 bg-[#F28A32]/15 rounded-full blur-2xl pointer-events-none group-hover:bg-[#F28A32]/25 transition-all duration-500" />
+                  <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-[#E53935]/15 rounded-full blur-2xl pointer-events-none group-hover:bg-[#E53935]/25 transition-all duration-500" />
+                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 shadow-lg">
+                    {image &&
+                      React.cloneElement(image, {
+                        className: `w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 ${image.props.className || ''}`,
+                      })}
+                  </div>
+                </div>
+              ) : visual ? (
                 visual
               ) : (
                 <div className="w-full max-w-[340px] xl:max-w-[390px] rounded-3xl bg-gradient-to-b from-[#0B253D] to-[#071A2B] border border-white/15 p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-hidden group transition-all duration-300 hover:border-[#F28A32]/40">

@@ -175,6 +175,13 @@ export default function OfficeRelocationPage() {
           { label: 'Services' },
           { label: 'Office Relocation' },
         ]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src=""
+            alt="Office Relocation Corporate Shifting - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <Link

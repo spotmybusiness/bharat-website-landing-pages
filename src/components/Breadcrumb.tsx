@@ -100,7 +100,7 @@ export default function Breadcrumb({
   return (
     <>
       {withJsonLd && <JsonLd data={jsonLdData} />}
-      <nav aria-label="Breadcrumb" className={`flex items-center text-xs ${className}`}>
+      <nav aria-label="Breadcrumb" className={`flex items-center text-xs max-w-full overflow-hidden ${className}`}>
         <ol className="flex items-center flex-wrap gap-1.5 text-white/80">
           {allItems.map((item, index) => {
             const isLast = index === allItems.length - 1;

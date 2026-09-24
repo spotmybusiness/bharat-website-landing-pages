@@ -198,6 +198,13 @@ export default function BikeShiftingPage() {
           { label: 'Services' },
           { label: 'Bike Transport' },
         ]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src=""
+            alt="Bike Transport Two Wheeler Shifting Services - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <Link

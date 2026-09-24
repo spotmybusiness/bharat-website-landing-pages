@@ -227,6 +227,13 @@ export default function ServicesPage() {
         }
         subtitle="From household relocation and vehicle transportation to office moves, cargo and international moving, explore the complete relocation and logistics services offered by Bharat Relocators."
         breadcrumbs={[{ label: 'Services' }]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src=""
+            alt="Packers and Movers Services - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <Link

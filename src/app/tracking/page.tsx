@@ -125,6 +125,13 @@ export default function TrackingPage() {
         }
         subtitle="Check the real-time movement of your household relocation, car carrier, bike crate, or parcel shipment across India."
         breadcrumbs={[{ label: 'Track Us' }]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src="/images/track.png"
+            alt="Track Your Consignment Live - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <a

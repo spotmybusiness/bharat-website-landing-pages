@@ -69,8 +69,8 @@ import FloatingContactWidget from '@/components/ui/FloatingContactWidget';
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${plusJakartaSansDisplay.variable}`}>
-      <body className="font-sans antialiased bg-background text-foreground">
+    <html lang="en" className={`${plusJakartaSans.variable} ${plusJakartaSansDisplay.variable} overflow-x-hidden max-w-full`}>
+      <body className="font-sans antialiased bg-background text-foreground overflow-x-hidden min-h-screen w-full max-w-full">
         <GoogleAnalytics />
         {children}
         <FloatingContactWidget />

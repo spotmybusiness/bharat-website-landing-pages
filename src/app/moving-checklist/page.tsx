@@ -221,6 +221,13 @@ export default function MovingChecklistPage() {
         breadcrumbs={[
           { label: 'Moving Checklist' },
         ]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src=""
+            alt="Home Shifting Checklist and Moving Guide - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <Link

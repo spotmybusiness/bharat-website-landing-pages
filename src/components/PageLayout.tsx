@@ -19,9 +19,9 @@ export default function PageLayout({
   smoothScroll = false,
 }: PageLayoutProps) {
   const content = (
-    <div className="relative min-h-screen flex flex-col bg-background text-foreground selection:bg-[#E53935] selection:text-white">
+    <div className="relative min-h-screen flex flex-col w-full max-w-full overflow-x-hidden bg-background text-foreground selection:bg-[#E53935] selection:text-white">
       <Header />
-      <main className="flex-1 overflow-x-hidden">{children}</main>
+      <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
       <Footer />
     </div>
   );

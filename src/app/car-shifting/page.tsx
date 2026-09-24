@@ -198,6 +198,13 @@ export default function CarShiftingPage() {
           { label: 'Services' },
           { label: 'Car Transportation' },
         ]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src=""
+            alt="Car Transportation Carrier Services - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <Link

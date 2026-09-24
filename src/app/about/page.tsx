@@ -363,6 +363,13 @@ export default function AboutPage() {
         }
         subtitle="Bharat Relocators provides dependable relocation and transportation services from Kolkata, with two local business locations in Haltu and Behala serving residential and commercial moves across the city and beyond."
         breadcrumbs={[{ label: 'About Us' }]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src="/images/logo.png"
+            alt="About Bharat Relocators - Kolkata Packers and Movers"
+          />
+        }
         actions={
           <>
             <Link

@@ -240,6 +240,13 @@ export default function WhyUsPage() {
         title="More Than Moving a Load From One Place to Another."
         subtitle="A relocation involves planning, preparation, handling, transportation and handover. Our approach is built around coordinating each part of that journey with care."
         breadcrumbs={[{ label: 'Why Us' }]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src="/images/stars.png"
+            alt="Why Choose Bharat Relocators Kolkata"
+          />
+        }
         actions={
           <>
             <Link

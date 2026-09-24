@@ -192,6 +192,13 @@ export default function ProcessPage() {
         }
         subtitle="At Bharat Relocators, every relocation follows a structured workflow designed around careful planning, safe packing, monitored transit, and a smooth handover at your destination."
         breadcrumbs={[{ label: 'Process' }]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src="/iamges/process.png"
+            alt="Relocation Process and Workflow - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <Link

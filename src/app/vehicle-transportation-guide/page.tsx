@@ -105,6 +105,13 @@ export default function VehicleTransportationGuidePage() {
         breadcrumbs={[
           { label: 'Vehicle Transportation Guide' },
         ]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src=""
+            alt="Vehicle Transportation Safety Guide - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <Link

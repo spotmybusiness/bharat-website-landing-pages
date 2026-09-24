@@ -25,6 +25,13 @@ export default function GetAQuotePage() {
         }
         subtitle="Transparent pricing with zero hidden surcharges. Share your route and moving inventory to receive an accurate, customized logistical estimate."
         breadcrumbs={[{ label: 'Get a Quote' }]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src="/images/quote.png"
+            alt="Get Free Relocation Quote - Bharat Relocators"
+          />
+        }
         actions={
           <>
             <a

@@ -122,9 +122,9 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-[#071A2B]/95 shadow-2xl backdrop-blur-xl py-2.5 sm:py-3'
-            : 'bg-[#071A2B]/90 backdrop-blur-md py-3 sm:py-4'
+          menuOpen || scrolled
+            ? 'bg-[#071A2B] shadow-2xl py-2.5 sm:py-3'
+            : 'bg-[#071A2B] py-3 sm:py-4'
         }`}
       >
         <div className="w-full max-w-[1600px] mx-auto px-3.5 sm:px-6 lg:px-8 xl:px-10 2xl:px-12 flex items-center justify-between gap-2 sm:gap-4">
@@ -356,7 +356,7 @@ export default function Header() {
       {menuOpen && (
         <div
           id="mobile-nav-menu"
-          className="fixed inset-0 z-40 bg-[#071A2B]/98 backdrop-blur-2xl flex flex-col justify-between px-4 sm:px-6 pt-20 pb-6 xl:hidden animate-in fade-in duration-200 overflow-y-auto overscroll-contain"
+          className="fixed inset-0 z-40 bg-[#071A2B] flex flex-col justify-between px-4 sm:px-6 pt-20 pb-6 xl:hidden animate-in fade-in duration-200 overflow-y-auto overscroll-contain"
         >
           <div className="flex flex-col gap-1">
             {/* High Priority Contact Actions */}

@@ -79,6 +79,13 @@ export default function ContactPage() {
         }
         subtitle="Have questions about your upcoming move or need an immediate quote? Our move coordinators are available to help you plan a smooth relocation."
         breadcrumbs={[{ label: 'Contact Us' }]}
+        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
+        image={
+          <img
+            src="/images/contact_us.png"
+            alt="Contact Bharat Relocators Kolkata"
+          />
+        }
         actions={
           <>
             <a
