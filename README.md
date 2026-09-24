@@ -84,8 +84,8 @@ You can check out the [Next.js GitHub repository](https://github.com/vercel/next
 
 ## 🙏 Acknowledgments
 
-- Built with [Rocket.new](https://rocket.new)
+- Collaborated and Worked with Swapnonil Nath, Sagnik Bhaskar
 - Powered by Next.js and React
 - Styled with Tailwind CSS
 
-Built with ❤️ on Rocket.new
+Built with ❤️ Spot My Business @ 2026
