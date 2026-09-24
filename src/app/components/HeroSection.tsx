@@ -521,7 +521,7 @@ export default function HeroSection() {
               animation: 'heroUnpackEmerge 0.9s cubic-bezier(0.16, 1, 0.3, 1) 5.9s both',
             }}
           >
-            From high-value household shifting and specialized vehicle transport to structured
+            From high-value household shifting and specialized bike and vehicle transport to structured
             office relocation. Experience seamless logistics handled by verified specialists.
           </p>
 

@@ -102,7 +102,7 @@ export default function Footer() {
               <span className="flex flex-col">
                 <span className="font-display text-lg font-bold tracking-tight">Bharat Relocators</span>
                 <span className="text-[11px] font-medium uppercase tracking-wider text-white/70">
-                  Packers & Movers · Behala, Kolkata
+                  Packers & Movers · Kolkata
                 </span>
               </span>
             </Link>
