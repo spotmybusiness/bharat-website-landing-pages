@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { BUSINESS, getTelUrl } from '@/lib/business';
 import {
   cleanTrackingId,
@@ -47,12 +46,6 @@ export default function TrackingInteractiveView({ compact = false }: TrackingInt
     }
   };
 
-  const handleQuickSample = (sampleId: string, carrierType: 'auto' | 'allcargo' | 'dpworld') => {
-    setTrackingId(sampleId);
-    setCarrierFilter(carrierType);
-    setValidationError(null);
-  };
-
   const handleReset = () => {
     setTrackingId('');
     setValidationError(null);
@@ -84,8 +77,7 @@ export default function TrackingInteractiveView({ compact = false }: TrackingInt
         } transition-all`}
       >
         <div className={`text-center max-w-2xl mx-auto ${compact ? 'mb-5' : 'mb-8'}`}>
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#E53935]/15 text-[#F28A32] border border-[#E53935]/30 mb-2.5">
-            <span className="w-2 h-2 rounded-full bg-[#E53935] animate-ping" />
+          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#E53935]/15 text-[#F28A32] border border-[#E53935]/30 mb-2.5">
             Live Shipment Tracker
           </span>
           <h2
@@ -232,42 +224,12 @@ export default function TrackingInteractiveView({ compact = false }: TrackingInt
             </div>
           )}
 
-          {/* Live Quick Examples & Format Hint */}
+          {/* Format Hint & Security Note */}
           <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400 pt-1">
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-slate-500">Quick Test:</span>
-              <button
-                type="button"
-                onClick={() => handleQuickSample('430803710', 'allcargo')}
-                className="underline hover:text-[#F28A32] text-slate-300 transition-colors"
-              >
-                430803710 (Allcargo Gati)
-              </button>
-              <span className="text-slate-600">|</span>
-              <button
-                type="button"
-                onClick={() => handleQuickSample('1847004934', 'dpworld')}
-                className="underline hover:text-[#F28A32] text-slate-300 transition-colors"
-              >
-                1847004934 (DP World)
-              </button>
-            </div>
+            <span>Format: 5 to 25 letters/digits as on your Lorry Receipt (LR)</span>
             <span className="text-slate-500">256-bit Encrypted Logistics Gateway</span>
           </div>
         </form>
-
-        {compact && !loading && !lookupResult && (
-          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
-            <span className="text-slate-400">Official live carrier synchronization</span>
-            <Link
-              href="/tracking"
-              className="text-[#F28A32] hover:text-white transition-colors inline-flex items-center gap-1 font-semibold"
-            >
-              <span>Full Tracking Portal</span>
-              <span>→</span>
-            </Link>
-          </div>
-        )}
 
         {/* Loading State Skeleton */}
         {loading && (
