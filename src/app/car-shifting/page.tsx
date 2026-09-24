@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
@@ -81,39 +81,39 @@ const vehicleDocGuidance = [
   },
   {
     title: 'Owner Identification Proof',
-    desc: 'Photocopy of ownerâ€™s government photo ID (Aadhar / Passport / License).',
+    desc: "Photocopy of owner's government photo ID (Aadhar / Passport / License).",
   },
 ];
 
-/** Major outbound corridors from Kolkata â€” qualitative logistics context from intercity guide */
+/** Major outbound corridors from Kolkata — qualitative logistics context from intercity guide */
 const carCorridors = [
   {
-    destination: 'Kolkata â†’ Delhi NCR',
+    destination: 'Kolkata → Delhi NCR',
     routeInfo: 'Via NH 19 Northern Trunk Corridor',
     logistics:
       'Primary northern route connecting West Bengal through Bihar and Uttar Pradesh to Delhi, Noida, and Gurgaon. Handled via regular carrier line-hauls.',
   },
   {
-    destination: 'Kolkata â†’ Mumbai & Pune',
+    destination: 'Kolkata → Mumbai & Pune',
     routeInfo: 'Via NH 53 / NH 16 Western Highway Grid',
     logistics:
       'Major industrial corridor to Maharashtra. Extensive cross-country highway transit where closed-container protection shields against dust, weather, and road debris.',
   },
   {
-    destination: 'Kolkata â†’ Bangalore',
+    destination: 'Kolkata → Bangalore',
     routeInfo: 'Via NH 16 Eastern Coastal Corridor',
     logistics:
       'High-demand technology corridor connecting southwards. Commonly booked for dedicated car carriers and corporate relocation transfers.',
   },
   {
-    destination: 'Kolkata â†’ Hyderabad',
+    destination: 'Kolkata → Hyderabad',
     routeInfo: 'Via NH 16 & NH 65 Highway Networks',
     logistics:
       'Southern transit route passing through Odisha and Andhra Pradesh into Telangana, suitable for standard sedans, hatchbacks, and premium SUVs.',
   },
 ];
 
-/** Cost drivers for car transport â€” factors only, no fabricated price numbers */
+/** Cost drivers for car transport — factors only, no fabricated price numbers */
 const carCostFactors = [
   {
     factor: 'Route Distance & Highway Tolls',
@@ -162,7 +162,7 @@ const carPrepProtocol = [
   {
     step: '03',
     title: 'Photographic & Odometer Record',
-    desc: 'Take clear, time-stamped photographs or a video walkaround of your car from all angles in daylight â€” capturing bumpers, windshield, tyres, and the odometer reading â€” to keep alongside the signed Condition Report.',
+    desc: 'Take clear, time-stamped photographs or a video walkaround of your car from all angles in daylight — capturing bumpers, windshield, tyres, and the odometer reading — to keep alongside the signed Condition Report.',
   },
   {
     step: '04',
@@ -243,13 +243,13 @@ export default function CarShiftingPage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ Hatchbacks & Sedans
+                  ✓ Hatchbacks & Sedans
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ Compact & Luxury SUVs
+                  ✓ Compact & Luxury SUVs
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ Electric Vehicles (EVs)
+                  ✓ Electric Vehicles (EVs)
                 </span>
               </div>
             </div>
@@ -340,7 +340,7 @@ export default function CarShiftingPage() {
                 className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-[#F28A32] transition-colors"
               >
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#E53935] flex items-center justify-center font-bold text-sm mb-3">
-                  âœ“
+                  ✓
                 </div>
                 <h3 className="font-bold text-[#082F52] text-base font-display mb-2">
                   {item.title}
@@ -354,7 +354,7 @@ export default function CarShiftingPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Route Corridors & Cost Factors â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Route Corridors & Cost Factors ─────────────────────────── */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80 dot-pattern">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -447,7 +447,7 @@ export default function CarShiftingPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Documentation Requirements Guidance â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Documentation Requirements Guidance ─────────────────────── */}
       <section className="py-16 bg-white border-t border-slate-200/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -460,7 +460,7 @@ export default function CarShiftingPage() {
             {vehicleDocGuidance.map((doc) => (
               <div key={doc.title} className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80 shadow-xs">
                 <div className="w-7 h-7 rounded-md bg-[#082F52] text-white flex items-center justify-center font-bold text-xs mb-3">
-                  ðŸ“„
+                  📄
                 </div>
                 <h3 className="font-bold text-[#082F52] text-sm font-display mb-2">
                   {doc.title}
@@ -474,7 +474,7 @@ export default function CarShiftingPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Pre-Transit Preparation Protocol â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Pre-Transit Preparation Protocol ────────────────────────── */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -510,7 +510,7 @@ export default function CarShiftingPage() {
           </div>
 
           <div className="mt-8 p-4 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 leading-relaxed text-center">
-            ðŸ’¡ <strong>Carrier &amp; Coordination Notice:</strong> Specific loading or documentation steps may vary depending on carrier configuration, route checkpoints, and destination RTO requirements. Always confirm special instructions with your move coordinator prior to pickup.
+            💡 <strong>Carrier &amp; Coordination Notice:</strong> Specific loading or documentation steps may vary depending on carrier configuration, route checkpoints, and destination RTO requirements. Always confirm special instructions with your move coordinator prior to pickup.
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
@@ -519,15 +519,15 @@ export default function CarShiftingPage() {
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#E53935] hover:underline"
             >
               <span>Read Full Vehicle Transportation &amp; Safety Guide</span>
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
-            <span className="hidden sm:inline text-slate-300">Â·</span>
+            <span className="hidden sm:inline text-slate-300">·</span>
             <Link
               href="/household-shifting"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#082F52] hover:underline"
             >
               <span>Pair with Household Relocation</span>
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
@@ -549,7 +549,7 @@ export default function CarShiftingPage() {
               href="/bike-shifting"
               className="text-[#E53935] text-xs font-semibold hover:underline"
             >
-              Need Two-Wheeler Transport? â†’
+              Need Two-Wheeler Transport? →
             </Link>
           </div>
 

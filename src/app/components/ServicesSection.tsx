@@ -333,8 +333,26 @@ export default function ServicesSection() {
         <div className="mt-16 reveal">
           <div className="bg-[#082F52] rounded-3xl p-6 sm:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 border border-white/10 shadow-xl">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#E53935] text-white flex items-center justify-center flex-shrink-0 text-xl font-bold">
-                ðŸšš
+              <div className="w-12 h-12 rounded-2xl bg-[#E53935] text-white flex items-center justify-center flex-shrink-0 shadow-md">
+                <svg
+                  className="w-6 h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l1 1h1m8-1h1l1-1v-3.65a1 1 0 00-.22-.624l-3.48-4.35A1 1 0 0011.52 6H10"
+                  />
+                </svg>
               </div>
               <div>
                 <h4 className="text-base sm:text-lg font-bold text-white font-sans">
@@ -349,7 +367,7 @@ export default function ServicesSection() {
               href="#quote"
               className="inline-flex items-center gap-2 bg-[#E53935] hover:bg-[#c62828] text-white font-semibold text-xs sm:text-sm px-6 py-3.5 rounded-xl transition-all shadow-md flex-shrink-0"
             >
-              Get Custom Quote â†’
+              Get Custom Quote →
             </a>
           </div>
         </div>

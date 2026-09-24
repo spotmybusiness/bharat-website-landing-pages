@@ -202,13 +202,13 @@ export default function InternationalMovingPage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ Full Container Load (FCL)
+                  ✓ Full Container Load (FCL)
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ Less than Container (LCL)
+                  ✓ Less than Container (LCL)
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ Priority Air Baggage Freight
+                  ✓ Priority Air Baggage Freight
                 </span>
               </div>
             </div>
@@ -299,7 +299,7 @@ export default function InternationalMovingPage() {
                 className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-[#F28A32] transition-colors"
               >
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#E53935] flex items-center justify-center font-bold text-sm mb-3">
-                  âœ“
+                  ✓
                 </div>
                 <h3 className="font-bold text-[#082F52] text-base font-display mb-2">
                   {item.title}
@@ -313,7 +313,7 @@ export default function InternationalMovingPage() {
         </div>
       </section>
 
-      {/* â”€â”€ International Preparation, Customs Documentation & Move Stages â”€â”€ */}
+      {/* ── International Preparation, Customs Documentation & Move Stages ── */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80 dot-pattern">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -332,7 +332,7 @@ export default function InternationalMovingPage() {
                 <div key={doc.doc} className="p-6 bg-white rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between">
                   <div>
                     <div className="w-7 h-7 rounded-md bg-[#082F52] text-white flex items-center justify-center font-bold text-xs mb-3">
-                      ðŸ“„
+                      📄
                     </div>
                     <h4 className="font-bold text-[#082F52] text-sm font-display mb-2">
                       {doc.doc}
@@ -401,7 +401,7 @@ export default function InternationalMovingPage() {
 
           {/* Regulatory Advisory Callout */}
           <div className="p-5 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 leading-relaxed text-center">
-            ðŸ’¡ <strong>Regulatory &amp; Customs Advisory:</strong> Import regulations, quarantine requirements, duty exemptions (including Transfer of Residence rules), and restricted cargo lists vary by destination country. Customers should independently confirm destination customs guidelines prior to dispatch. Our move coordinators assist with Indian origin export documentation and freight waybill management.
+            💡 <strong>Regulatory &amp; Customs Advisory:</strong> Import regulations, quarantine requirements, duty exemptions (including Transfer of Residence rules), and restricted cargo lists vary by destination country. Customers should independently confirm destination customs guidelines prior to dispatch. Our move coordinators assist with Indian origin export documentation and freight waybill management.
           </div>
 
           {/* Navigation Links */}
@@ -411,15 +411,15 @@ export default function InternationalMovingPage() {
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#E53935] hover:underline"
             >
               <span>View Full Moving Checklist &amp; Timeline Guide</span>
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
-            <span className="hidden sm:inline text-slate-300">Â·</span>
+            <span className="hidden sm:inline text-slate-300">·</span>
             <Link
               href="/household-shifting"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#082F52] hover:underline"
             >
               <span>Planning Domestic Relocation in India?</span>
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
@@ -441,7 +441,7 @@ export default function InternationalMovingPage() {
               href="/household-shifting"
               className="text-[#E53935] text-xs font-semibold hover:underline"
             >
-              Domestic Household Shifting â†’
+              Domestic Household Shifting →
             </Link>
           </div>
 

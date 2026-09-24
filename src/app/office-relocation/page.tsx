@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
@@ -54,7 +54,7 @@ const officeInclusions = [
   },
   {
     title: 'Color-Coded Department Labeling',
-    desc: 'Systematic labeling protocol matching each employeeâ€™s crate directly to their designated seat in the new office layout.',
+    desc: "Systematic labeling protocol matching each employee's crate directly to their designated seat in the new office layout.",
   },
   {
     title: 'Confidential File & Archive Security',
@@ -208,7 +208,7 @@ export default function OfficeRelocationPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Relocating an office demands strict timeline precision, asset protection, and zero disruption to your companyâ€™s core business operations.
+                  Relocating an office demands strict timeline precision, asset protection, and zero disruption to your company&apos;s core business operations.
                 </p>
                 <p>
                   Bharat Relocators delivers structured commercial relocation services for startups, IT firms, corporate headquarters, and commercial establishments in Kolkata and across India. From individual workstation breakdown and file archive transfers to specialized server rack handling, our crews manage the transition efficiently. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Reach out for a custom corporate quote</Link>.
@@ -220,13 +220,13 @@ export default function OfficeRelocationPage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ Corporate Offices & IT Hubs
+                  ✓ Corporate Offices & IT Hubs
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ Commercial Clinics & Retail
+                  ✓ Commercial Clinics & Retail
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ Document & File Archives
+                  ✓ Document & File Archives
                 </span>
               </div>
             </div>
@@ -317,7 +317,7 @@ export default function OfficeRelocationPage() {
                 className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-[#F28A32] transition-colors"
               >
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#E53935] flex items-center justify-center font-bold text-sm mb-3">
-                  âœ“
+                  ✓
                 </div>
                 <h3 className="font-bold text-[#082F52] text-base font-display mb-2">
                   {item.title}
@@ -331,7 +331,7 @@ export default function OfficeRelocationPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Kolkata Commercial Business Districts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Kolkata Commercial Business Districts ──────────────────── */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80 dot-pattern">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -374,7 +374,7 @@ export default function OfficeRelocationPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Office Scope & Cost Factors Framework â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Office Scope & Cost Factors Framework ───────────────────── */}
       <section className="py-20 bg-white border-t border-slate-200/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -444,7 +444,7 @@ export default function OfficeRelocationPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Readiness Checklist & IT Responsibility Division â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Readiness Checklist & IT Responsibility Division ────────── */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -472,19 +472,19 @@ export default function OfficeRelocationPage() {
               IT Asset Scope: Physical Logistics vs. Technical Responsibility
             </h3>
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
-              To ensure data security, hardware safety, and swift post-move reconnection, we recommend defining clear boundaries between our physical logistics crew and your organizationâ€™s IT engineering team:
+              To ensure data security, hardware safety, and swift post-move reconnection, we recommend defining clear boundaries between our physical logistics crew and your organization&apos;s IT engineering team:
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="p-5 bg-slate-50 rounded-xl border border-slate-200">
                 <h4 className="font-bold text-[#082F52] text-sm font-display mb-3 flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-md bg-[#082F52] text-white flex items-center justify-center text-xs">ðŸ“¦</span>
+                  <span className="w-5 h-5 rounded-md bg-[#082F52] text-white flex items-center justify-center text-xs">📦</span>
                   What Our Relocation Team Handles
                 </h4>
                 <ul className="space-y-2 text-xs text-slate-600 leading-relaxed">
                   {itBoundaryGuidelines.physicalScope.map((item) => (
                     <li key={item} className="flex items-start gap-2">
-                      <span className="text-[#E53935] font-bold">âœ“</span>
+                      <span className="text-[#E53935] font-bold">✓</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -493,13 +493,13 @@ export default function OfficeRelocationPage() {
 
               <div className="p-5 bg-blue-50/50 rounded-xl border border-blue-200/80">
                 <h4 className="font-bold text-[#082F52] text-sm font-display mb-3 flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-md bg-[#E53935] text-white flex items-center justify-center text-xs">ðŸ’»</span>
+                  <span className="w-5 h-5 rounded-md bg-[#E53935] text-white flex items-center justify-center text-xs">💻</span>
                   What Your Internal IT Team Handles
                 </h4>
                 <ul className="space-y-2 text-xs text-slate-700 leading-relaxed">
                   {itBoundaryGuidelines.technicalScope.map((item) => (
                     <li key={item} className="flex items-start gap-2">
-                      <span className="text-[#082F52] font-bold">âœ“</span>
+                      <span className="text-[#082F52] font-bold">✓</span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -508,7 +508,7 @@ export default function OfficeRelocationPage() {
             </div>
 
             <div className="mt-6 p-4 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 leading-relaxed text-center">
-              ðŸ’¡ <strong>IT Coordination Tip:</strong> Reviewing this division with your IT department prior to moving weekend supports complete hardware readiness and prevents unscheduled downtime on launch morning.
+              💡 <strong>IT Coordination Tip:</strong> Reviewing this division with your IT department prior to moving weekend supports complete hardware readiness and prevents unscheduled downtime on launch morning.
             </div>
           </div>
 
@@ -518,15 +518,15 @@ export default function OfficeRelocationPage() {
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#E53935] hover:underline"
             >
               <span>View Full Moving Checklist &amp; Timeline Guide</span>
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
-            <span className="hidden sm:inline text-slate-300">Â·</span>
+            <span className="hidden sm:inline text-slate-300">·</span>
             <Link
               href="/household-shifting"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#082F52] hover:underline"
             >
               <span>Coordinate Employee Household Shifting</span>
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
@@ -548,7 +548,7 @@ export default function OfficeRelocationPage() {
               href="/household-shifting"
               className="text-[#E53935] text-xs font-semibold hover:underline"
             >
-              Employee Home Shifting â†’
+              Employee Home Shifting →
             </Link>
           </div>
 

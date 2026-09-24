@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
@@ -81,39 +81,39 @@ const vehicleDocGuidance = [
   },
   {
     title: 'Government ID Proof',
-    desc: 'Photocopy of ownerÃ¢â‚¬â„¢s Aadhar Card, Driving License, or Passport.',
+    desc: "Photocopy of owner's Aadhar Card, Driving License, or Passport.",
   },
 ];
 
 /** Major outbound corridors from Kolkata for two-wheeler shipping */
 const bikeCorridors = [
   {
-    destination: 'Kolkata Ã¢â€ â€™ Bangalore & South India',
+    destination: 'Kolkata → Bangalore & South India',
     routeInfo: 'Via NH 16 Eastern Coastal Corridor',
     logistics:
       'Major southern technology route connecting West Bengal with Bangalore, Chennai, and Hyderabad. Handled via regular containerized vehicle line-hauls.',
   },
   {
-    destination: 'Kolkata Ã¢â€ â€™ Delhi NCR & North India',
+    destination: 'Kolkata → Delhi NCR & North India',
     routeInfo: 'Via NH 19 Northern Trunk Corridor',
     logistics:
       'Primary northern route serving Delhi, Noida, Gurgaon, and surrounding regions with scheduled line-haul departures.',
   },
   {
-    destination: 'Kolkata Ã¢â€ â€™ Mumbai & Pune (West India)',
+    destination: 'Kolkata → Mumbai & Pune (West India)',
     routeInfo: 'Via NH 53 / NH 16 Western Highway Grid',
     logistics:
       'Cross-country corridor connecting to Maharashtra commercial centres where closed container trucks protect bikes against highway dust, rain, and road vibrations.',
   },
   {
-    destination: 'Kolkata Ã¢â€ â€™ Hyderabad (Telangana)',
+    destination: 'Kolkata → Hyderabad (Telangana)',
     routeInfo: 'Via NH 16 & NH 65 Highway Networks',
     logistics:
       'Established southern corridor through Odisha and Andhra Pradesh, suitable for both standard commuters and premium sports motorcycles.',
   },
 ];
 
-/** Cost drivers for two-wheeler transport Ã¢â‚¬â€ qualitative factors only */
+/** Cost drivers for two-wheeler transport — qualitative factors only */
 const bikeCostFactors = [
   {
     factor: 'Journey Distance & Highway Corridors',
@@ -166,7 +166,7 @@ const bikeVsRailwayData = [
   },
   {
     feature: 'Fuel in Tank',
-    carrier: 'Minimal reserve fuel (under 1Ã¢â‚¬â€œ2 litres) is maintained to enable ramp loading and unloading operations.',
+    carrier: 'Minimal reserve fuel (under 1–2 litres) is maintained to enable ramp loading and unloading operations.',
     railway: 'Complete fuel tank emptying is mandatory prior to booking as a railway fire-safety regulation.',
   },
   {
@@ -243,13 +243,13 @@ export default function BikeShiftingPage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  Ã¢Å“â€œ Door-to-Door Pickup & Delivery
+                  ✓ Door-to-Door Pickup & Delivery
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  Ã¢Å“â€œ Transit Insurance Included
+                  ✓ Transit Insurance Included
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  Ã¢Å“â€œ Premium Wooden Crating Available
+                  ✓ Premium Wooden Crating Available
                 </span>
               </div>
             </div>
@@ -340,7 +340,7 @@ export default function BikeShiftingPage() {
                 className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-[#F28A32] transition-colors"
               >
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#E53935] flex items-center justify-center font-bold text-sm mb-3">
-                  Ã¢Å“â€œ
+                  ✓
                 </div>
                 <h3 className="font-bold text-[#082F52] text-base font-display mb-2">
                   {item.title}
@@ -354,7 +354,7 @@ export default function BikeShiftingPage() {
         </div>
       </section>
 
-      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Destination Corridors & Cost Factors Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
+      {/* ── Destination Corridors & Cost Factors ──────────────────── */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80 dot-pattern">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -447,7 +447,7 @@ export default function BikeShiftingPage() {
         </div>
       </section>
 
-      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Documentation Requirements Guidance Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
+      {/* ── Documentation Requirements Guidance ─────────────────────── */}
       <section className="py-16 bg-white border-t border-slate-200/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -460,7 +460,7 @@ export default function BikeShiftingPage() {
             {vehicleDocGuidance.map((doc) => (
               <div key={doc.title} className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80 shadow-xs">
                 <div className="w-7 h-7 rounded-md bg-[#082F52] text-white flex items-center justify-center font-bold text-xs mb-3">
-                  Ã°Å¸â€œâ€ž
+                  📄
                 </div>
                 <h3 className="font-bold text-[#082F52] text-sm font-display mb-2">
                   {doc.title}
@@ -474,7 +474,7 @@ export default function BikeShiftingPage() {
         </div>
       </section>
 
-      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Railway vs. Professional Carrier Comparison Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
+      {/* ── Railway vs. Professional Carrier Comparison ─────────────── */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -520,7 +520,7 @@ export default function BikeShiftingPage() {
           </div>
 
           <div className="mt-8 p-4 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 leading-relaxed text-center">
-            Ã°Å¸â€™Â¡ <strong>Railway Guidelines Notice:</strong> Railway parcel rules, booking hours, loading procedures, and counter formalities are governed by Indian Railways regulations and station-specific policies. Customers considering rail transport should verify current booking requirements directly with the parcel office at Howrah, Sealdah, or their departure station.
+            💡 <strong>Railway Guidelines Notice:</strong> Railway parcel rules, booking hours, loading procedures, and counter formalities are governed by Indian Railways regulations and station-specific policies. Customers considering rail transport should verify current booking requirements directly with the parcel office at Howrah, Sealdah, or their departure station.
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
@@ -529,15 +529,15 @@ export default function BikeShiftingPage() {
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#E53935] hover:underline"
             >
               <span>Read Full Vehicle Transportation &amp; Safety Guide</span>
-              <span aria-hidden="true">Ã¢â€ â€™</span>
+              <span aria-hidden="true">→</span>
             </Link>
-            <span className="hidden sm:inline text-slate-300">Ã‚Â·</span>
+            <span className="hidden sm:inline text-slate-300">·</span>
             <Link
               href="/household-shifting"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#082F52] hover:underline"
             >
               <span>Pair with Household Relocation</span>
-              <span aria-hidden="true">Ã¢â€ â€™</span>
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
@@ -559,7 +559,7 @@ export default function BikeShiftingPage() {
               href="/car-shifting"
               className="text-[#E53935] text-xs font-semibold hover:underline"
             >
-              Need Car Transportation? Ã¢â€ â€™
+              Need Car Transportation? →
             </Link>
           </div>
 

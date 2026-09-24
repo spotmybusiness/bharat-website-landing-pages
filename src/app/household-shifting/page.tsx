@@ -66,7 +66,7 @@ const inclusions = [
   },
 ];
 
-/** Cost factors table â€” qualitative only, no fabricated â‚¹ figures */
+/** Cost factors table — qualitative only, no fabricated ₹ figures */
 const costFactors = [
   {
     factor: 'Home Size & Volume',
@@ -101,7 +101,7 @@ const costFactors = [
   {
     factor: 'Move Date & Timing',
     effect:
-      'Demand peaks around month-ends, public holidays, and the Octoberâ€“November festive season. Flexible mid-month or mid-week scheduling often allows better availability.',
+      'Demand peaks around month-ends, public holidays, and the October–November festive season. Flexible mid-month or mid-week scheduling often allows better availability.',
   },
   {
     factor: 'Transit Insurance Coverage',
@@ -110,21 +110,21 @@ const costFactors = [
   },
 ];
 
-/** Kolkata geographic zones â€” framed around access planning, not coverage promises */
+/** Kolkata geographic zones — framed around access planning, not coverage promises */
 const kolkataZones = [
   {
     zone: 'South Kolkata',
-    localities: 'Haltu Â· Behala Â· Jadavpur Â· Garia Â· Tollygunge Â· Ballygunge Â· Alipore Â· Joka',
+    localities: 'Haltu · Behala · Jadavpur · Garia · Tollygunge · Ballygunge · Alipore · Joka',
     note: 'Our base of operations is in Haltu, South Kolkata. Many residential streets in this belt feature narrow access lanes and older multi-storey buildings, which we account for in crew and vehicle planning.',
   },
   {
     zone: 'East & North-East Kolkata',
-    localities: 'Salt Lake (Sectors Iâ€“V) Â· New Town Â· Rajarhat Â· Kasba',
+    localities: 'Salt Lake (Sectors I–V) · New Town · Rajarhat · Kasba',
     note: 'Gated residential complexes in Salt Lake and New Town typically require advance gate pass requests and booked service-elevator time slots. Our move coordinators initiate this with your society office proactively.',
   },
   {
     zone: 'North, Central Kolkata & Howrah',
-    localities: 'Park Street Â· Shyambazar Â· Dum Dum Â· Barasat Â· Howrah Â· Dalhousie',
+    localities: 'Park Street · Shyambazar · Dum Dum · Barasat · Howrah · Dalhousie',
     note: 'High-density residential and mixed-use buildings in central Kolkata and Howrah often have walkup floors without a service lift. Our trained crew is equipped for manual stair-carry operations and coordinates parking clearance for loading vehicles.',
   },
 ];
@@ -194,7 +194,7 @@ export default function HouseholdShiftingPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Relocating your household requires more than just moving boxes â€” it requires structured care for personal belongings, heavy furniture, sensitive electronics, and delicate glassware.
+                  Relocating your household requires more than just moving boxes — it requires structured care for personal belongings, heavy furniture, sensitive electronics, and delicate glassware.
                 </p>
                 <p>
                   At Bharat Relocators, our residential shifting service is built on systematic multi-layer packing standards. Whether you are shifting a 1 BHK locally within Kolkata or relocating a 3+ BHK villa across India, our trained crew manages the complete move from <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">pre-move survey</Link> to final room placement.
@@ -206,13 +206,13 @@ export default function HouseholdShiftingPage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ 1-2 BHK Local Moves
+                  ✓ 1-2 BHK Local Moves
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ 3+ BHK & Villa Relocation
+                  ✓ 3+ BHK & Villa Relocation
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  âœ“ Intercity PAN India Shifting
+                  ✓ Intercity PAN India Shifting
                 </span>
               </div>
             </div>
@@ -303,7 +303,7 @@ export default function HouseholdShiftingPage() {
                 className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-[#F28A32] transition-colors"
               >
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#E53935] flex items-center justify-center font-bold text-sm mb-3">
-                  âœ“
+                  ✓
                 </div>
                 <h3 className="font-bold text-[#082F52] text-base font-display mb-2">
                   {item.title}
@@ -317,7 +317,7 @@ export default function HouseholdShiftingPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Cost Factors â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Cost Factors ─────────────────────────────────────────────── */}
       <section className="py-20 bg-white border-t border-slate-200/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -359,8 +359,8 @@ export default function HouseholdShiftingPage() {
           <div className="mt-8 p-5 bg-slate-50 rounded-2xl border border-slate-200 text-sm text-slate-700 leading-relaxed space-y-2">
             <p>
               <strong className="text-[#082F52]">How the estimate process works:</strong>{' '}
-              Our move coordinator reviews your inventory â€” either via a brief call or a
-              virtual survey â€” and provides a written, all-inclusive quotation. There are
+              Our move coordinator reviews your inventory — either via a brief call or a
+              virtual survey — and provides a written, all-inclusive quotation. There are
               no surprise charges on the day of the move.
             </p>
             <p>
@@ -382,7 +382,7 @@ export default function HouseholdShiftingPage() {
         </div>
       </section>
 
-      {/* â”€â”€ Kolkata Service Areas â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Kolkata Service Areas ──────────────────────────────────────── */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80 dot-pattern">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -418,7 +418,7 @@ export default function HouseholdShiftingPage() {
             >
               Contact our coordinator
             </Link>{' '}
-            â€” we serve destinations across the wider Kolkata metropolitan area.
+            — we serve destinations across the wider Kolkata metropolitan area.
           </p>
         </div>
       </section>
@@ -448,7 +448,7 @@ export default function HouseholdShiftingPage() {
           {/* Prohibited goods callout */}
           <div className="mt-8 p-5 bg-amber-50 rounded-xl border border-amber-200">
             <p className="text-xs font-bold text-amber-900 uppercase tracking-wide mb-2">
-              âš  Items That Cannot Be Transported
+              ⚠️ Items That Cannot Be Transported
             </p>
             <p className="text-xs text-amber-800 leading-relaxed mb-3">
               For safety, legal, and transit-compliance reasons, the following items must
@@ -456,11 +456,11 @@ export default function HouseholdShiftingPage() {
               consignment:
             </p>
             <p className="text-xs text-amber-900 font-medium leading-relaxed">
-              LPG / cooking gas cylinders &nbsp;Â·&nbsp; Flammable liquids (petrol,
-              kerosene, paint, thinners) &nbsp;Â·&nbsp; Cash, loose jewellery, or
-              financial instruments &nbsp;Â·&nbsp; Prescription medicines and medical
-              devices &nbsp;Â·&nbsp; Perishable or frozen food &nbsp;Â·&nbsp; Unsealed
-              liquids and open containers &nbsp;Â·&nbsp; Important legal documents
+              LPG / cooking gas cylinders &nbsp;·&nbsp; Flammable liquids (petrol,
+              kerosene, paint, thinners) &nbsp;·&nbsp; Cash, loose jewellery, or
+              financial instruments &nbsp;·&nbsp; Prescription medicines and medical
+              devices &nbsp;·&nbsp; Perishable or frozen food &nbsp;·&nbsp; Unsealed
+              liquids and open containers &nbsp;·&nbsp; Important legal documents
               (carry these personally)
             </p>
             <p className="text-xs text-amber-700 mt-3">
@@ -475,15 +475,15 @@ export default function HouseholdShiftingPage() {
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#E53935] hover:underline"
             >
               <span>View Home Moving Checklist & Timeline Guide</span>
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
-            <span className="hidden sm:inline text-slate-300">Â·</span>
+            <span className="hidden sm:inline text-slate-300">·</span>
             <Link
               href="/intercity-moving-guide"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#082F52] hover:underline"
             >
               <span>Read Kolkata Intercity Relocation Guide</span>
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
@@ -505,7 +505,7 @@ export default function HouseholdShiftingPage() {
               href="/faqs"
               className="text-[#E53935] text-xs font-semibold hover:underline"
             >
-              Household Moving FAQs â†’
+              Household Moving FAQs →
             </Link>
           </div>
 

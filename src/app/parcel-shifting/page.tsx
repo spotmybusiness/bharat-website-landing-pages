@@ -109,7 +109,7 @@ const volumetricWeightDrivers = [
   },
   {
     factor: 'Dimensional (Volumetric) Space',
-    desc: 'The volume of cargo space occupied by the parcel inside the transport carrier, calculated from the cartonÃ¢â‚¬â„¢s external length, width, and height.',
+    desc: "The volume of cargo space occupied by the parcel inside the transport carrier, calculated from the carton's external length, width, and height.",
   },
   {
     factor: 'Chargeable Weight Basis',
@@ -183,13 +183,13 @@ export default function ParcelShiftingPage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  Ã¢Å“â€œ Student & Hostel Luggage
+                  ✓ Student & Hostel Luggage
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  Ã¢Å“â€œ Excess Baggage Shipping
+                  ✓ Excess Baggage Shipping
                 </span>
                 <span className="text-xs bg-slate-100 text-slate-700 font-semibold px-3.5 py-1.5 rounded-lg">
-                  Ã¢Å“â€œ Commercial Box Shipments
+                  ✓ Commercial Box Shipments
                 </span>
               </div>
             </div>
@@ -280,7 +280,7 @@ export default function ParcelShiftingPage() {
                 className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80 hover:border-[#F28A32] transition-colors"
               >
                 <div className="w-8 h-8 rounded-lg bg-red-50 text-[#E53935] flex items-center justify-center font-bold text-sm mb-3">
-                  Ã¢Å“â€œ
+                  ✓
                 </div>
                 <h3 className="font-bold text-[#082F52] text-base font-display mb-2">
                   {item.title}
@@ -294,7 +294,7 @@ export default function ParcelShiftingPage() {
         </div>
       </section>
 
-      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Student & Professional Luggage Section Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
+      {/* ── Student & Professional Luggage Section ─────────────────── */}
       <section className="py-20 bg-slate-50 border-t border-slate-200/80 dot-pattern">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -351,7 +351,7 @@ export default function ParcelShiftingPage() {
         </div>
       </section>
 
-      {/* Ã¢â€â‚¬Ã¢â€â‚¬ Volumetric Weight & Billing Explainer Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬ */}
+      {/* ── Volumetric Weight & Billing Explainer ────────────────────── */}
       <section className="py-20 bg-white border-t border-slate-200/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
@@ -368,7 +368,7 @@ export default function ParcelShiftingPage() {
               >
                 <div>
                   <span className="w-7 h-7 rounded-md bg-[#082F52] text-white flex items-center justify-center font-bold text-xs mb-3">
-                    Ã°Å¸â€œÂ
+                    📦
                   </span>
                   <h3 className="font-bold text-[#082F52] text-sm font-display mb-2">
                     {item.factor}
@@ -382,7 +382,7 @@ export default function ParcelShiftingPage() {
           </div>
 
           <div className="p-5 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 leading-relaxed text-center">
-            Ã°Å¸â€™Â¡ <strong>Practical Packing Tip:</strong> When packing personal items, balance dense items (such as books or files) with lighter volume goods. Keeping cartons compact minimizes dimensional cargo space and ensures economical parcel pricing. When requesting an estimate, sharing approximate box dimensions helps our coordinator calculate the exact chargeable weight basis.
+            💡 <strong>Practical Packing Tip:</strong> When packing personal items, balance dense items (such as books or files) with lighter volume goods. Keeping cartons compact minimizes dimensional cargo space and ensures economical parcel pricing. When requesting an estimate, sharing approximate box dimensions helps our coordinator calculate the exact chargeable weight basis.
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
@@ -391,15 +391,15 @@ export default function ParcelShiftingPage() {
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#E53935] hover:underline"
             >
               <span>View Full Moving Checklist &amp; Packing Tips</span>
-              <span aria-hidden="true">Ã¢â€ â€™</span>
+              <span aria-hidden="true">→</span>
             </Link>
-            <span className="hidden sm:inline text-slate-300">Ã‚Â·</span>
+            <span className="hidden sm:inline text-slate-300">·</span>
             <Link
               href="/household-shifting"
               className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#082F52] hover:underline"
             >
               <span>Moving Full Household Instead?</span>
-              <span aria-hidden="true">Ã¢â€ â€™</span>
+              <span aria-hidden="true">→</span>
             </Link>
           </div>
         </div>
@@ -463,7 +463,7 @@ export default function ParcelShiftingPage() {
               href="/household-shifting"
               className="text-[#E53935] text-xs font-semibold hover:underline"
             >
-              Full Household Shifting Ã¢â€ â€™
+              Full Household Shifting →
             </Link>
           </div>
 
