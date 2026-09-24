@@ -82,7 +82,7 @@ export const mainNavLinks: NavItem[] = [
     href: '/services',
     children: serviceNavLinks,
   },
-  { label: 'Track Us', href: '/tracking' },
+  { label: 'Track Us', href: '/tracking', homepageHash: '#track-us' },
   { label: 'Moving Guides', href: '/moving-guides' },
   { label: 'Process', href: '/process' },
   { label: 'About Us', href: '/about' },

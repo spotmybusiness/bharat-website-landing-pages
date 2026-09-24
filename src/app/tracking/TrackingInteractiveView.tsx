@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { BUSINESS, getTelUrl } from '@/lib/business';
 import {
   cleanTrackingId,
@@ -10,7 +11,11 @@ import {
   LiveShipmentData,
 } from '@/lib/tracking';
 
-export default function TrackingInteractiveView() {
+interface TrackingInteractiveViewProps {
+  compact?: boolean;
+}
+
+export default function TrackingInteractiveView({ compact = false }: TrackingInteractiveViewProps) {
   const [trackingId, setTrackingId] = useState('');
   const [carrierFilter, setCarrierFilter] = useState<'auto' | 'allcargo' | 'dpworld'>('auto');
   const [loading, setLoading] = useState(false);
@@ -73,21 +78,31 @@ export default function TrackingInteractiveView() {
   return (
     <div className="w-full max-w-4xl mx-auto">
       {/* Central Search Card */}
-      <div className="bg-[#0B253D] rounded-3xl border border-white/10 shadow-2xl overflow-hidden p-6 sm:p-8 lg:p-10 transition-all">
-        <div className="text-center max-w-2xl mx-auto mb-8">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#E53935]/15 text-[#F28A32] border border-[#E53935]/30 mb-3">
+      <div
+        className={`bg-[#0B253D] rounded-3xl border border-white/10 shadow-2xl overflow-hidden ${
+          compact ? 'p-5 sm:p-7 lg:p-8' : 'p-6 sm:p-8 lg:p-10'
+        } transition-all`}
+      >
+        <div className={`text-center max-w-2xl mx-auto ${compact ? 'mb-5' : 'mb-8'}`}>
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold tracking-wide uppercase bg-[#E53935]/15 text-[#F28A32] border border-[#E53935]/30 mb-2.5">
             <span className="w-2 h-2 rounded-full bg-[#E53935] animate-ping" />
             Live Shipment Tracker
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Enter Your Consignment or Tracking Number
+          <h2
+            className={`${
+              compact ? 'text-xl sm:text-2xl lg:text-3xl' : 'text-2xl sm:text-3xl'
+            } font-extrabold text-white tracking-tight`}
+          >
+            {compact ? 'Track Your Consignment Live' : 'Enter Your Consignment or Tracking Number'}
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 mt-2">
-            Real-time verified status for Allcargo Gati dockets, DP World Express shipments, and Bharat Relocators consignments across India.
+          <p className="text-xs sm:text-sm text-slate-300 mt-1.5">
+            {compact
+              ? 'Instant live status for Allcargo Gati, DP World Express & Bharat Relocators shipments.'
+              : 'Real-time verified status for Allcargo Gati dockets, DP World Express shipments, and Bharat Relocators consignments across India.'}
           </p>
 
           {/* Carrier Switcher Tabs */}
-          <div className="flex items-center justify-center gap-2 mt-5">
+          <div className={`flex items-center justify-center gap-2 ${compact ? 'mt-3.5' : 'mt-5'}`}>
             <button
               type="button"
               onClick={() => setCarrierFilter('auto')}
@@ -240,6 +255,19 @@ export default function TrackingInteractiveView() {
             <span className="text-slate-500">256-bit Encrypted Logistics Gateway</span>
           </div>
         </form>
+
+        {compact && !loading && !lookupResult && (
+          <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+            <span className="text-slate-400">Official live carrier synchronization</span>
+            <Link
+              href="/tracking"
+              className="text-[#F28A32] hover:text-white transition-colors inline-flex items-center gap-1 font-semibold"
+            >
+              <span>Full Tracking Portal</span>
+              <span>→</span>
+            </Link>
+          </div>
+        )}
 
         {/* Loading State Skeleton */}
         {loading && (

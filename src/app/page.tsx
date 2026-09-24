@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 
 import VehicleScrollNavigation from '@/components/VehicleScrollNavigation';
 import HeroSection from '@/app/components/HeroSection';
+import TrackingInteractiveView from '@/app/tracking/TrackingInteractiveView';
 import ServicesSection from '@/app/components/ServicesSection';
 import StatsSection from '@/app/components/StatsSection';
 import AboutSection from '@/app/components/AboutSection';
@@ -12,7 +13,6 @@ import HowItWorksSection from '@/app/components/HowItWorksSection';
 import TestimonialsSection from '@/app/components/TestimonialsSection';
 import FAQSection from '@/app/components/FAQSection';
 import QuoteSection from '@/app/components/QuoteSection';
-import WhatsAppButton from '@/app/components/WhatsAppButton';
 
 export default function HomePage() {
   return (
@@ -25,6 +25,16 @@ export default function HomePage() {
 
       {/* Scene 1: The Truck Arrival Experience */}
       <HeroSection />
+
+      {/* Scene 1.5: Track Us Now — Immediate Operational Console */}
+      <section
+        id="track-us"
+        className="relative z-20 py-8 sm:py-10 bg-[#071A2B] border-b border-white/10"
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <TrackingInteractiveView compact />
+        </div>
+      </section>
 
       {/* Specialized Relocation Services Grid */}
       <ServicesSection />
@@ -52,9 +62,6 @@ export default function HomePage() {
 
       {/* Premium Luxury Footer */}
       <Footer />
-
-      {/* Direct WhatsApp Instant Pulse Button */}
-      <WhatsAppButton />
     </main>
   );
 }

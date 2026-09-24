@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import WhatsAppButton from '@/app/components/WhatsAppButton';
 import SmoothScroll from '@/components/SmoothScroll';
 
 interface PageLayoutProps {
@@ -12,7 +11,8 @@ interface PageLayoutProps {
 
 /**
  * Standard layout wrapper for all inner pages.
- * Includes multi-page Header, main landmark, Footer, and WhatsApp CTA.
+ * Includes multi-page Header, main landmark, and Footer.
+ * FloatingContactWidget (Track Us, WhatsApp, Phone) is provided globally by RootLayout.
  */
 export default function PageLayout({
   children,
@@ -23,7 +23,6 @@ export default function PageLayout({
       <Header />
       <main className="flex-1 overflow-x-hidden">{children}</main>
       <Footer />
-      <WhatsAppButton />
     </div>
   );
 
