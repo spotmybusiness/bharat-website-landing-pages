@@ -80,7 +80,10 @@ export default function FAQSection() {
                 }`}
               >
                 <button
-                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-[#E53935]/40 rounded-2xl"
+                  type="button"
+                  id={`home-faq-question-${index}`}
+                  aria-controls={`home-faq-answer-${index}`}
+                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-[#E53935]/40 rounded-2xl cursor-pointer"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                   aria-expanded={isOpen}
                 >
@@ -110,11 +113,16 @@ export default function FAQSection() {
                   </span>
                 </button>
 
-                {isOpen && (
-                  <div className="px-6 pb-6 pt-1 text-slate-600 text-sm sm:text-[15px] leading-relaxed border-t border-slate-100 animate-in fade-in duration-200">
-                    {faq.a}
-                  </div>
-                )}
+                <div
+                  id={`home-faq-answer-${index}`}
+                  role="region"
+                  aria-labelledby={`home-faq-question-${index}`}
+                  className={`px-6 pb-6 pt-1 text-slate-600 text-sm sm:text-[15px] leading-relaxed border-t border-slate-100 ${
+                    isOpen ? 'block animate-in fade-in duration-200' : 'hidden'
+                  }`}
+                >
+                  {faq.a}
+                </div>
               </div>
             );
           })}
