@@ -210,7 +210,7 @@ export default function CarShiftingPage() {
             Car Transportation & Dedicated <span className="text-[#F28A32]">Carrier Services</span>
           </>
         }
-        subtitle="Secure, enclosed car carrier transportation from Kolkata to PAN India. Scrape-free hydraulic loading, comprehensive transit insurance, and signed condition reports."
+        subtitle="Bharat Relocators provides dedicated enclosed car carrier transportation from Kolkata across India, featuring low-angle hydraulic loading, comprehensive transit insurance, and signed condition reports."
         breadcrumbs={[
           { label: 'Services' },
           { label: 'Car Transportation' },
@@ -255,10 +255,10 @@ export default function CarShiftingPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Driving your car across long intercity highway corridors can cause unnecessary wear, tire damage, and high fuel expenses.
+                  Bharat Relocators provides dedicated car transportation services from Kolkata across India, utilizing enclosed carrier containers equipped with hydraulic loading ramps and wheel-locking chocks to prevent transit damage.
                 </p>
                 <p>
-                  Bharat Relocators provides specialized car transportation services utilizing closed-container vehicle carriers. From compact hatchbacks and executive sedans to luxury SUVs and electric vehicles, our dedicated car-carrier transport is structured to protect vehicles against road transit hazards from Kolkata to destinations nationwide. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get an instant quote for your vehicle</Link>.
+                  From compact hatchbacks and executive sedans to luxury SUVs, our dedicated closed-container car carriers are equipped with low-angle hydraulic loading ramps and wheel-locking chocks to ensure scrape-free transport. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get an instant quote for your vehicle</Link>.
                 </p>
                 <p>
                   Every relocation begins with a joint physical inspection and pre-move condition report, followed by low-incline hydraulic ramp loading and multi-point wheel chock anchoring.
@@ -282,7 +282,7 @@ export default function CarShiftingPage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
                   src="/images/car.png"
-                  alt="Multi-car carrier loading a secure vehicle for transport"
+                  alt="Passenger sedan locked into wheel chocks inside an enclosed car transport carrier"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"

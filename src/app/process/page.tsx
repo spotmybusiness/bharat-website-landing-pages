@@ -190,14 +190,14 @@ export default function ProcessPage() {
             <span className="text-[#F28A32]">Every Move Has a Process.</span>
           </>
         }
-        subtitle="At Bharat Relocators, every relocation follows a structured workflow designed around careful planning, safe packing, monitored transit, and a smooth handover at your destination."
+        subtitle="At Bharat Relocators, every relocation in Kolkata and across India follows a structured workflow designed around careful planning, safe packing, monitored transit, and a smooth handover at your destination."
         breadcrumbs={[{ label: 'Process' }]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
             <img
               src="/images/process.png"
-              alt="Relocation Process and Workflow - Bharat Relocators"
+              alt="Step-by-step relocation and packing process workflow at Bharat Relocators"
             />
           </div>
         }

@@ -117,7 +117,7 @@ export default function IntercityMovingGuidePage() {
             Intercity Relocation Guide: <span className="text-[#F28A32]">Moving from Kolkata</span>
           </>
         }
-        subtitle="A comprehensive guide to planning, packing, and executing long-distance household and vehicle relocations across India's national highway network."
+        subtitle="A comprehensive guide by Bharat Relocators to planning, packing, and executing long-distance household and vehicle relocations across India."
         breadcrumbs={[
           { label: 'Intercity Moving Guide' },
         ]}
@@ -152,10 +152,10 @@ export default function IntercityMovingGuidePage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Intercity relocation presents distinct logistical challenges that differ significantly from local in-city moves. Over hundreds or thousands of highway kilometers, cargo experiences constant road vibrations, temperature fluctuations, and state border documentation checkposts.
+                  This intercity moving guide from Bharat Relocators explains how to plan, pack, and execute long-distance relocations originating from Kolkata across major national highway corridors in India. Over hundreds or thousands of highway kilometers, cargo experiences continuous road vibrations, temperature fluctuations, and state border documentation checkposts.
                 </p>
                 <p>
-                  At Bharat Relocators, our intercity operations span 230+ cities across India. We built this comprehensive guide to help families, professionals, and corporate transferees understand how interstate logistics works — from initial volume estimation to final destination unpacking.
+                  With intercity operations spanning 230+ cities across India, we built this comprehensive guide to help families, professionals, and corporate transferees understand interstate logistics — from initial volume estimation to final destination unpacking.
                 </p>
                 <p>
                   Before starting your packing, consult our step-by-step{' '}
@@ -175,7 +175,7 @@ export default function IntercityMovingGuidePage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
                   src="/images/cargo_shifting.jpeg"
-                  alt="Intercity cargo and household shipment preparation"
+                  alt="Intercity container truck and cargo parcels being prepared for highway transit across India"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"

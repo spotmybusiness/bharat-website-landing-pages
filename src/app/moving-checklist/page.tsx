@@ -229,7 +229,7 @@ export default function MovingChecklistPage() {
             The Ultimate <span className="text-[#F28A32]">Home Shifting Checklist</span> & Pre-Move Guide
           </>
         }
-        subtitle="A structured, week-by-week timeline to help you plan, organize, and execute a seamless household relocation in Kolkata and across India."
+        subtitle="Bharat Relocators provides a structured, week-by-week timeline to help you plan, organize, and execute a seamless household relocation in Kolkata and across India."
         breadcrumbs={[
           { label: 'Moving Checklist' },
         ]}
@@ -271,10 +271,10 @@ export default function MovingChecklistPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Relocating an entire home involves coordinating hundreds of individual belongings, service transfers, and building permissions. Without a clear plan, the days leading up to a move can quickly become overwhelming.
+                  This home shifting checklist from Bharat Relocators provides a structured, step-by-step roadmap for planning and executing a residential relocation in Kolkata and across India. Relocating an entire home involves coordinating hundreds of individual belongings, service transfers, and building permissions, making early planning essential for a smooth move.
                 </p>
                 <p>
-                  At Bharat Relocators, we have managed thousands of residential relocations across Kolkata and PAN India. We created this comprehensive checklist to provide a practical, stress-free roadmap that keeps your preparation organized from four weeks out to moving day.
+                  From pre-move surveys and room-by-room decluttering to utility transfers and moving-day handover, our timeline outlines key milestones from four weeks out to post-move unpacking.
                 </p>
                 <p>
                   For specialized packing methods, review our dedicated{' '}
@@ -298,7 +298,7 @@ export default function MovingChecklistPage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
                   src="/images/packaging.png"
-                  alt="Packed home relocation boxes organized systematically"
+                  alt="Sealed 5-layer corrugated packing cartons stacked for household relocation"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"

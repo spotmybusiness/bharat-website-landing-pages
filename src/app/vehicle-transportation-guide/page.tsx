@@ -113,7 +113,7 @@ export default function VehicleTransportationGuidePage() {
             Vehicle Transportation & <span className="text-[#F28A32]">Safety Guide</span>
           </>
         }
-        subtitle="A practical guide to shipping two-wheelers and four-wheelers from Kolkata across India — covering document checklists, carrier safety, and delivery protocols."
+        subtitle="A practical guide by Bharat Relocators to shipping two-wheelers and four-wheelers from Kolkata across India — covering document checklists, carrier safety, and delivery protocols."
         breadcrumbs={[
           { label: 'Vehicle Transportation Guide' },
         ]}
@@ -155,10 +155,10 @@ export default function VehicleTransportationGuidePage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Shipping a car or motorcycle across state lines requires dedicated transport infrastructure, proper legal paperwork, and disciplined handling. Unlike standard household boxes, motorized vehicles require specific tie-down mechanisms, weight balance, and pre-transit condition recording.
+                  This vehicle transportation guide by Bharat Relocators outlines the legal documentation, carrier safety measures, and handover procedures required for shipping cars and two-wheelers from Kolkata across India. Unlike standard household boxes, motorized vehicles require dedicated tie-down mechanisms, weight balance, and pre-transit condition recording to guarantee damage-free transit.
                 </p>
                 <p>
-                  At Bharat Relocators, we coordinate dedicated vehicle movements originating from Kolkata to destinations throughout India. This guide outlines everything you need to prepare before handing over your keys, ensuring complete transparency and peace of mind.
+                  Whether relocating a commuter scooter or a family SUV, our vehicle coordinators manage enclosed container transport, terminal handling, and destination delivery with full transit insurance coverage.
                 </p>
                 <p>
                   For dedicated service specifications, explore our{' '}
@@ -178,7 +178,7 @@ export default function VehicleTransportationGuidePage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
                   src="/images/car_relocation.png"
-                  alt="Car safely positioned inside closed vehicle transport container"
+                  alt="Passenger car secured with wheel chocks inside an enclosed vehicle carrier container"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"

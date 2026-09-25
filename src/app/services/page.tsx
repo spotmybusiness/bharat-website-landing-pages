@@ -225,14 +225,14 @@ export default function ServicesPage() {
             <span className="text-[#F28A32]">Your Needs</span>
           </>
         }
-        subtitle="From household relocation and vehicle transportation to office moves, cargo and international moving, explore the complete relocation and logistics services offered by Bharat Relocators."
+        subtitle="From household relocation and vehicle transportation to office moves, cargo, and international moving, explore the complete relocation and logistics services offered by Bharat Relocators across Kolkata and PAN India."
         breadcrumbs={[{ label: 'Services' }]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
             <img
               src="/images/Services.png"
-              alt="Packers and Movers Services - Bharat Relocators"
+              alt="Comprehensive packers and movers services by Bharat Relocators in Kolkata"
             />
           </div>
         }
@@ -264,7 +264,7 @@ export default function ServicesPage() {
           <SectionHeader
             label="Service Directory"
             title="Explore Our Relocation & Transportation Services"
-            subtitle="Every move has different requirements. Choose the service that best matches what you need to move, where it needs to go, and the type of support you require."
+            subtitle="Every move has different requirements. Bharat Relocators provides specialized relocation divisions in Kolkata and across India matching your shipment size, route, and handling needs."
           />
 
           {/* 3. Main 6-Service Cards Grid */}

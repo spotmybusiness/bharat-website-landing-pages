@@ -78,13 +78,13 @@ export default function FAQsPage() {
       <PageHero
         label="Frequently Asked Questions"
         title="Everything You Need to Know Before Your Move"
-        subtitle="From planning and packing to transportation and delivery, find answers to common questions about moving with Bharat Relocators."
+        subtitle="From planning and packing to transportation and delivery, find answers to common questions about moving with Bharat Relocators in Kolkata and across India."
         breadcrumbs={[{ label: 'FAQ' }]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
             src="/images/faq.png"
-            alt="Frequently Asked Questions - Bharat Relocators"
+            alt="Frequently asked questions about moving with Bharat Relocators in Kolkata"
           />
         }
         actions={

@@ -223,14 +223,14 @@ export default function WhyUsPage() {
       <PageHero
         label="Why Bharat Relocators"
         title="More Than Moving a Load From One Place to Another."
-        subtitle="A relocation involves planning, preparation, handling, transportation and handover. Our approach is built around coordinating each part of that journey with care."
+        subtitle="Bharat Relocators provides structured relocation management across Kolkata and PAN India, coordinating every stage from initial survey and multi-layer packing to highway transit and room-by-room setup."
         breadcrumbs={[{ label: 'Why Us' }]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
             <img
               src="/images/why_us.jpeg"
-              alt="Why Choose Bharat Relocators Kolkata"
+              alt="Bharat Relocators relocation team coordinating residential and commercial moves in Kolkata"
             />
           </div>
         }
@@ -266,7 +266,7 @@ export default function WhyUsPage() {
               A Move Has More Moving Parts Than the Truck
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              When people think of moving, they often picture a truck traveling down the road. In reality, transportation is only one link in a complex chain. A smooth move depends on the preparation before the truck arrives and the care taken after it reaches your destination.
+              Bharat Relocators manages relocations across Kolkata and PAN India as a complete logistics lifecycle rather than a simple transport run. A smooth move depends on methodical preparation before the carrier arrives, protective packing for transit, and careful room placement after reaching your destination.
             </p>
           </div>
 
@@ -756,9 +756,9 @@ export default function WhyUsPage() {
 
                 <div className="border-t border-slate-200/80 pt-4 flex items-center justify-between">
                   <div>
-                    <h4 className="font-bold text-xs sm:text-sm text-[#082F52] font-display">
+                    <h3 className="font-bold text-xs sm:text-sm text-[#082F52] font-display">
                       {rev.name}
-                    </h4>
+                    </h3>
                     <span className="text-[11px] text-slate-500">{rev.role}</span>
                   </div>
                   <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">

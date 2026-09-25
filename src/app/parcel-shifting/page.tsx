@@ -150,7 +150,7 @@ export default function ParcelShiftingPage() {
             Parcel & Cargo Shifting <span className="text-[#F28A32]">Services</span>
           </>
         }
-        subtitle="Express courier and smaller-consignment parcel shipping from Kolkata across 230+ Indian cities. Doorstep pickup, barcoded tracking, and scheduled delivery."
+        subtitle="Bharat Relocators provides express parcel, luggage courier, and part-load cargo shipping from Kolkata across 230+ cities in India with doorstep pickup and milestone tracking."
         breadcrumbs={[
           { label: 'Services' },
           { label: 'Parcel & Cargo Shifting' },
@@ -158,7 +158,7 @@ export default function ParcelShiftingPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src="images/cargo_shifting.jpeg"
+            src="/images/cargo_shifting.jpeg"
             alt="Parcel and Cargo Shifting Services - Bharat Relocators"
           />
         }
@@ -195,10 +195,10 @@ export default function ParcelShiftingPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Not every move requires an entire dedicated truck. When you need to ship a few boxes of luggage, personal belongings, hostel essentials, or small business cargo, our express parcel service provides the ideal balance of speed and cost-efficiency.
+                  Bharat Relocators provides express parcel, luggage courier, and part-load cargo shipping services from Kolkata across 230+ cities in India, offering cost-effective solutions for student baggage, personal boxes, and commercial consignments.
                 </p>
                 <p>
-                  Bharat Relocators connects Kolkata with a nationwide logistics grid spanning 230+ cities across India. With scheduled line-haul departures, barcoded package handling, and doorstep collection, your parcel reaches its destination safely. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get a parcel shipping estimate today</Link>.
+                  With scheduled line-haul departures, barcoded package handling, and convenient doorstep pickup, your parcels are transported securely without requiring an entire dedicated truck. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get a parcel shipping estimate today</Link>.
                 </p>
                 <p>
                   Every parcel is assigned a digital consignment tracking number, allowing you to monitor shipping progress directly through our online tracking system.
@@ -222,7 +222,7 @@ export default function ParcelShiftingPage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
                   src="/images/cargo_shifting.jpeg"
-                  alt="Delivery personnel handling parcels at customer doorstep"
+                  alt="Parcel and courier boxes being sorted and weighed for intercity cargo dispatch"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"

@@ -521,8 +521,7 @@ export default function HeroSection() {
               animation: 'heroUnpackEmerge 0.9s cubic-bezier(0.16, 1, 0.3, 1) 5.9s both',
             }}
           >
-            From high-value household shifting and specialized bike and vehicle transport to structured
-            office relocation. Experience seamless logistics handled by verified specialists.
+            Bharat Relocators provides comprehensive household shifting, vehicle transport, parcel courier, and corporate relocation services across Kolkata and PAN India. Experience seamless logistics handled by verified specialists.
           </p>
 
           {/* Primary & Secondary Action CTAs (Unpacked Together in Harmony) */}

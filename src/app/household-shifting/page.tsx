@@ -173,7 +173,7 @@ export default function HouseholdShiftingPage() {
             Household Shifting Services in <span className="text-[#F28A32]">Kolkata & PAN India</span>
           </>
         }
-        subtitle="Complete residential relocation with 5-layer protective packing, safe furniture dismantling, dedicated container trucks, and room-wise unpacking."
+        subtitle="Bharat Relocators provides comprehensive household shifting services in Kolkata and across India, featuring 5-layer protective packing, safe furniture dismantling, dedicated container trucks, and room-by-room setup."
         breadcrumbs={[
           { label: 'Services' },
           { label: 'Household Shifting' },
@@ -218,10 +218,10 @@ export default function HouseholdShiftingPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Relocating your household requires more than just moving boxes — it requires structured care for personal belongings, heavy furniture, sensitive electronics, and delicate glassware.
+                  Bharat Relocators provides comprehensive household shifting services in Kolkata and across India, managing residential moves with multi-layer packing, secure vehicle transit, and room-by-room setup.
                 </p>
                 <p>
-                  At Bharat Relocators, our residential shifting service is built on systematic multi-layer packing standards. Whether you are shifting a 1 BHK locally within Kolkata or relocating a 3+ BHK villa across India, our trained crew manages the complete move from <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">pre-move survey</Link> to final room placement.
+                  Whether shifting a 1 BHK apartment locally within Kolkata or relocating a multi-storey villa across India, our trained moving crews ensure structured care for personal belongings, modular furniture, sensitive electronics, and delicate glassware from initial <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">pre-move survey</Link> to final room placement.
                 </p>
                 <p>
                   Operating with structured quality standards, we utilize dedicated closed-body container trucks with shock-absorption padding, ensuring your home goods arrive on time and in intact condition.
@@ -245,7 +245,7 @@ export default function HouseholdShiftingPage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
                   src="/images/packaging.png"
-                  alt="Living room with packed moving boxes and organized furniture for home relocation"
+                  alt="Bharat Relocators packing crew securing residential furniture with 5-layer corrugated sheets"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"

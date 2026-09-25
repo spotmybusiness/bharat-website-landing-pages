@@ -70,14 +70,14 @@ export default function ContactPage() {
             Contact Our <span className="text-[#F28A32]">Relocation Office</span>
           </>
         }
-        subtitle="Have questions about your upcoming move or need an immediate quote? Our move coordinators are available to help you plan a smooth relocation."
+        subtitle="Contact the Bharat Relocators coordination team in Kolkata for household shifting, vehicle transport, and intercity moving assistance across West Bengal and PAN India."
         breadcrumbs={[{ label: 'Contact Us' }]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
             <img
               src="/images/contact_us.png"
-              alt="Contact Bharat Relocators Kolkata"
+              alt="Bharat Relocators customer support and relocation coordination office in Kolkata"
             />
           </div>
         }

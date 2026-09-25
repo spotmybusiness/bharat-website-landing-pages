@@ -35,13 +35,13 @@ export default function GetAQuotePage() {
             Get Your Free <span className="text-[#F28A32]">Relocation Quote</span>
           </>
         }
-        subtitle="Transparent pricing with zero hidden surcharges. Share your route and moving inventory to receive an accurate, customized logistical estimate."
+        subtitle="Request a free, transparent relocation quote from Bharat Relocators for household shifting, vehicle transportation, and commercial moving in Kolkata and PAN India."
         breadcrumbs={[{ label: 'Get a Quote' }]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
             src="/images/quote.png"
-            alt="Get Free Relocation Quote - Bharat Relocators"
+            alt="Request a free moving quote from Bharat Relocators in Kolkata"
           />
         }
         actions={

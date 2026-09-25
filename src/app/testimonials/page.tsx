@@ -124,13 +124,13 @@ export default function TestimonialsPage() {
       <PageHero
         label="Customer Reviews"
         title="Real Experiences From People Who Moved With Us"
-        subtitle="Every move is different. Our customer reviews offer a glimpse into how people experienced the planning, handling, transportation and handover process with Bharat Relocators."
+        subtitle="Read verified customer reviews and experiences with Bharat Relocators across household shifting, vehicle transportation, and office moves in Kolkata and across India."
         breadcrumbs={[{ label: 'Reviews' }]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
             src="/images/stars.png"
-            alt="Customer Reviews and Testimonials - Bharat Relocators"
+            alt="Verified customer reviews and ratings for Bharat Relocators in Kolkata"
           />
         }
         actions={

@@ -168,14 +168,14 @@ export default function MovingGuidesPage() {
             <span className="text-[#F28A32]">Moving Guides</span>
           </>
         }
-        subtitle="Practical, step-by-step guides developed by Kolkata relocation specialists to help you plan, prepare, and execute a smooth household or vehicle move."
+        subtitle="Explore practical relocation and moving guides prepared by Bharat Relocators in Kolkata to help you plan, prepare, and execute a seamless household or vehicle move across India."
         breadcrumbs={[{ label: 'Moving Guides' }]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
             <img
               src="/images/Moving_guides.png"
-              alt="Relocation Planning and Moving Guides - Bharat Relocators"
+              alt="Relocation planning resources and moving guides from Bharat Relocators"
             />
           </div>
         }

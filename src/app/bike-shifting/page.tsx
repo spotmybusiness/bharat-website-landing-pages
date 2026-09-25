@@ -210,7 +210,7 @@ export default function BikeShiftingPage() {
             Bike Transport & Two-Wheeler <span className="text-[#F28A32]">Shifting Services</span>
           </>
         }
-        subtitle="Safe, high-protection motorcycle and scooter transportation from Kolkata to all major cities in India with custom wooden crating and closed container security."
+        subtitle="Bharat Relocators provides specialized motorcycle and scooter transportation from Kolkata across India, featuring multi-layer packaging, optional custom wooden crating, and enclosed container transit."
         breadcrumbs={[
           { label: 'Services' },
           { label: 'Bike Transport' },
@@ -255,10 +255,10 @@ export default function BikeShiftingPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Relocating your motorcycle or scooter requires specific care to prevent cosmetic damage, mechanical stress, or fluid leakage during long highway journeys.
+                  Bharat Relocators provides specialized two-wheeler and motorcycle transportation services from Kolkata to destinations across India, utilizing multi-layer protective packaging and dedicated vehicle carrier slots.
                 </p>
                 <p>
-                  Bharat Relocators provides specialized bike transport services from Kolkata to major cities across India. Whether you are moving a lightweight commuter scooter or a high-end cruiser, we employ multi-layered shock-absorbing packaging and heavy-duty strapping inside closed container trucks. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get an instant quote for your bike model</Link>.
+                  Whether moving a lightweight commuter scooter, sports motorbike, or high-end cruiser, our team deploys multi-layered shock-absorbing packaging, optional custom wooden crating, and heavy-duty strapping inside closed container trucks. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get an instant quote for your bike model</Link>.
                 </p>
                 <p>
                   With comprehensive Goods Receipt (GR) tracking and dedicated transit insurance, we ensure your vehicle arrives in the exact condition it was handed over.
@@ -282,7 +282,7 @@ export default function BikeShiftingPage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
                   src="/images/bike.png"
-                  alt="Multi-layer packed motorcycle being securely transported in Kolkata"
+                  alt="Two-wheeler bubble wrapped and anchored with heavy-duty ratchet tie-down straps"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"

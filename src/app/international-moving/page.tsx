@@ -169,7 +169,7 @@ export default function InternationalMovingPage() {
             International Moving & Cross-Border <span className="text-[#F28A32]">Relocation Services</span>
           </>
         }
-        subtitle="End-to-end overseas household shifting from Kolkata with export-grade seaworthy packing, customs paperwork guidance, and air/sea freight coordination."
+        subtitle="Bharat Relocators provides international moving and overseas relocation services from Kolkata, featuring export-grade seaworthy packing, customs paperwork guidance, and air/sea freight logistics."
         breadcrumbs={[
           { label: 'Services' },
           { label: 'International Moving' },
@@ -177,7 +177,7 @@ export default function InternationalMovingPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src="images/international.jpeg"
+            src="/images/international.jpeg"
             alt="International Moving and Relocation Services - Bharat Relocators"
           />
         }
@@ -214,10 +214,10 @@ export default function InternationalMovingPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Relocating overseas involves navigating strict maritime cargo standards, air freight weight limitations, and stringent customs inspection regulations.
+                  Bharat Relocators provides international moving and overseas relocation services originating from Kolkata, managing cross-border household transitions with export-grade seaworthy packaging, customs clearance assistance, and air and ocean freight logistics.
                 </p>
                 <p>
-                  Bharat Relocators provides comprehensive international relocation support from Kolkata for families, expatriates, and corporate professionals moving abroad. From specialized moisture-barrier packing and wooden lift-van fabrication to port customs documentation, our team manages the complex steps of international shipping. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Speak with a relocation expert</Link>.
+                  Whether moving abroad for corporate transfer, study, or permanent residency, our team deploys moisture-barrier wrapping, export-standard wooden lift-van fabrication, and end-to-end port logistics. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Speak with a relocation expert</Link>.
                 </p>
                 <p>
                   We coordinate with reputable global maritime and air freight lines to ensure your household goods and personal effects arrive securely at your new international destination.
@@ -241,7 +241,7 @@ export default function InternationalMovingPage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
                   src="https://images.unsplash.com/photo-1528259105746-48a73c688cd2"
-                  alt="Cargo containers at international shipping port"
+                  alt="International air and sea freight cargo container being prepared for export dispatch"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"

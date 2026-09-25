@@ -187,7 +187,7 @@ export default function OfficeRelocationPage() {
             Office Relocation & Corporate <span className="text-[#F28A32]">Shifting Services</span>
           </>
         }
-        subtitle="Structured corporate moving in Kolkata with IT server protection, modular workstation reassembly, weekend shift execution, and minimal business downtime."
+        subtitle="Bharat Relocators provides structured corporate moving and office relocation services in Kolkata and across India, featuring IT server protection, workstation reassembly, weekend execution, and minimal downtime."
         breadcrumbs={[
           { label: 'Services' },
           { label: 'Office Relocation' },
@@ -195,7 +195,7 @@ export default function OfficeRelocationPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src="images/office_relocation.png"
+            src="/images/office_relocation.png"
             alt="Office Relocation Corporate Shifting - Bharat Relocators"
           />
         }
@@ -232,10 +232,10 @@ export default function OfficeRelocationPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Relocating an office demands strict timeline precision, asset protection, and zero disruption to your company&apos;s core business operations.
+                  Bharat Relocators delivers structured office relocation and corporate shifting services in Kolkata and across India, designed to safeguard company assets and eliminate operational downtime.
                 </p>
                 <p>
-                  Bharat Relocators delivers structured commercial relocation services for startups, IT firms, corporate headquarters, and commercial establishments in Kolkata and across India. From individual workstation breakdown and file archive transfers to specialized server rack handling, our crews manage the transition efficiently. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Reach out for a custom corporate quote</Link>.
+                  From modular workstation dismantling and secure file-archive transfers to anti-static IT server handling, our trained commercial crews execute moves over weekends or overnight schedules so your employees walk into a fully operational workspace on Monday morning. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Reach out for a custom corporate quote</Link>.
                 </p>
                 <p>
                   By planning and executing moves over weekends or overnight schedules, we ensure your employees walk into a fully assembled, operational office on Monday morning.
@@ -259,7 +259,7 @@ export default function OfficeRelocationPage() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
                   src="/images/office_relocation.png"
-                  alt="Office equipment and desks being packed for commercial corporate move"
+                  alt="Commercial office workstations and IT server equipment secured for business relocation"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"

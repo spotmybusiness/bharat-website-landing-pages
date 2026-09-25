@@ -20,7 +20,7 @@ export const SERVICES: ServiceDefinition[] = [
     shortDesc:
       'Complete home shifting with multi-layer packing, safe furniture dismantling, dedicated container transport, and room-wise unpacking.',
     img: '/images/packaging.png',
-    alt: 'Living room with packed moving boxes and organized furniture for home relocation',
+    alt: 'Professional household goods packing with bubble wrap and corrugated boxes for home relocation',
     features: ['5-Layer Packing', 'Furniture Assembly', 'Damage-Protection Care'],
   },
   {
@@ -32,7 +32,7 @@ export const SERVICES: ServiceDefinition[] = [
     shortDesc:
       'Custom wooden crating and bubble protection for premium motorcycles and scooters with door-to-door transit across India.',
     img: '/images/bike_transportation.jpeg',
-    alt: 'Motorcycle secured on dedicated transport carrier',
+    alt: 'Two-wheeler securely crated and wrapped for motorcycle transport',
     features: ['Wooden Crate Option', 'Showroom Pickup', 'GPS Milestone Link'],
   },
   {
@@ -44,7 +44,7 @@ export const SERVICES: ServiceDefinition[] = [
     shortDesc:
       'Specialized vehicle shipping across India using closed container car carriers with hydraulic ramps and comprehensive transit insurance.',
     img: '/images/car_relocation.png',
-    alt: 'Car being safely loaded onto vehicle transport carrier truck',
+    alt: 'Enclosed car carrier trailer transporting automobiles across India',
     features: ['Closed Car Carrier', 'Hydraulic Loading', 'Transit Insurance'],
   },
   {
@@ -56,7 +56,7 @@ export const SERVICES: ServiceDefinition[] = [
     shortDesc:
       'Express courier and parcel shipping across 230+ cities in India with reliable milestone tracking and scheduled delivery.',
     img: '/images/cargo_shifting.jpeg',
-    alt: 'Delivery personnel handling parcels at customer doorstep',
+    alt: 'Consolidated cargo and parcel consignments prepared for intercity transit',
     features: ['Doorstep Pickup', '230+ Cities Network', 'Real-Time Tracking'],
   },
   {
@@ -68,7 +68,7 @@ export const SERVICES: ServiceDefinition[] = [
     shortDesc:
       'Cross-border relocation with documentation assistance, air/sea cargo packing, and door-to-door destination delivery worldwide.',
     img: 'https://images.unsplash.com/photo-1528259105746-48a73c688cd2',
-    alt: 'Cargo containers at international shipping port',
+    alt: 'Air and ocean cargo container freight logistics for international moving',
     features: ['Customs Documentation', 'Air & Sea Freight', 'Door Delivery Worldwide'],
   },
   {
@@ -80,7 +80,7 @@ export const SERVICES: ServiceDefinition[] = [
     shortDesc:
       'Structured corporate moving with specialized handling for IT servers, modular workstations, files, and minimal office downtime.',
     img: '/images/office_relocation.png',
-    alt: 'Office equipment and desks being packed for commercial corporate move',
+    alt: 'Commercial office workstation and IT server relocation management',
     features: ['Weekend / Night Shifts', 'Server & IT Packing', 'Minimal Downtime Plan'],
   },
 ];
