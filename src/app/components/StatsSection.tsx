@@ -19,11 +19,22 @@ const stats: StatItem[] = [
 ];
 
 function useCounter(end: number, duration: number, started: boolean) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(end);
 
   useEffect(() => {
     if (!started) return;
+
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+      setCount(end);
+      return;
+    }
+
+    setCount(0);
     let startTime: number | null = null;
+    let animationFrameId: number;
     const isDecimal = end % 1 !== 0;
 
     const step = (timestamp: number) => {
@@ -32,11 +43,17 @@ function useCounter(end: number, duration: number, started: boolean) {
       const eased = 1 - Math.pow(1 - progress, 3);
       const current = isDecimal ? Math.round(eased * end * 10) / 10 : Math.floor(eased * end);
       setCount(current);
-      if (progress < 1) requestAnimationFrame(step);
-      else setCount(end);
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(step);
+      } else {
+        setCount(end);
+      }
     };
 
-    requestAnimationFrame(step);
+    animationFrameId = requestAnimationFrame(step);
+    return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
   }, [started, end, duration]);
 
   return count;
