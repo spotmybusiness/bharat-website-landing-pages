@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
@@ -8,6 +8,10 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
+import JsonLd from '@/components/JsonLd';
+import ServiceFAQSection from '@/components/ServiceFAQSection';
+import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
+import { getServiceFaqs } from '@/data/serviceFaqs';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'International Moving Services in Kolkata',
@@ -15,6 +19,18 @@ export const metadata: Metadata = generatePageMetadata({
     'Reliable international relocation from Kolkata. Export-grade seaworthy packing, customs documentation guidance, air and sea freight coordination, and global destination delivery.',
   path: '/international-moving',
 });
+
+const faqs = getServiceFaqs('international-moving');
+const pageSchema = buildGraphSchema([
+  getServiceSchema({
+    name: 'International Moving Services in Kolkata',
+    description:
+      'Reliable international relocation from Kolkata. Export-grade seaworthy packing, customs documentation guidance, air and sea freight coordination, and global destination delivery.',
+    path: '/international-moving',
+    serviceType: 'International Relocation',
+  }),
+  getFAQSchema(faqs),
+]);
 
 const internationalSteps = [
   {
@@ -145,6 +161,7 @@ export default function InternationalMovingPage() {
 
   return (
     <PageLayout>
+      <JsonLd data={pageSchema} />
       <PageHero
         label="Global Freight & Relocation"
         title={
@@ -431,6 +448,9 @@ export default function InternationalMovingPage() {
           </div>
         </div>
       </section>
+
+      {/* Service FAQs */}
+      <ServiceFAQSection heading="International Moving FAQs" faqs={faqs} />
 
       {/* Related Services Navigation */}
       <section className="py-16 bg-white border-t border-slate-200/80">

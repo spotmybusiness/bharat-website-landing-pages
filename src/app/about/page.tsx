@@ -8,6 +8,7 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import JsonLd from '@/components/JsonLd';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getTelUrl, getWhatsAppUrl } from '@/lib/business';
+import { getOrganizationId } from '@/lib/schema';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'About Bharat Relocators | Packers & Movers in Kolkata',
@@ -23,47 +24,7 @@ const aboutSchema = {
   description:
     'Learn about Bharat Relocators, a Kolkata-based relocation and transportation company with physical branch locations in Haltu and Behala.',
   mainEntity: {
-    '@type': 'MovingCompany',
-    name: BUSINESS.name,
-    legalName: BUSINESS.legalName,
-    telephone: BUSINESS.phone.primary,
-    email: BUSINESS.email.primary,
-    url: 'https://bharatrelocators.com',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: BUSINESS.locations.main.address.street,
-      addressLocality: BUSINESS.locations.main.address.area,
-      addressRegion: BUSINESS.locations.main.address.state,
-      postalCode: BUSINESS.locations.main.address.postalCode,
-      addressCountry: BUSINESS.locations.main.address.country,
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: BUSINESS.locations.main.google.rating,
-      reviewCount: BUSINESS.locations.main.google.reviewCount,
-    },
-    openingHours: BUSINESS.hours.schemaOpeningHours,
-    openingHoursSpecification: BUSINESS.hours.openingHoursSpecification,
-    subOrganization: {
-      '@type': 'MovingCompany',
-      name: BUSINESS.locations.secondary.name,
-      telephone: BUSINESS.locations.secondary.phone,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: `${BUSINESS.locations.secondary.address.street}, ${BUSINESS.locations.secondary.address.landmark}`,
-        addressLocality: BUSINESS.locations.secondary.address.area,
-        addressRegion: BUSINESS.locations.secondary.address.state,
-        postalCode: BUSINESS.locations.secondary.address.postalCode,
-        addressCountry: BUSINESS.locations.secondary.address.country,
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: BUSINESS.locations.secondary.google.rating,
-        reviewCount: BUSINESS.locations.secondary.google.reviewCount,
-      },
-      openingHours: BUSINESS.hours.schemaOpeningHours,
-      openingHoursSpecification: BUSINESS.hours.openingHoursSpecification,
-    },
+    '@id': getOrganizationId(),
   },
 };
 

@@ -8,6 +8,10 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
+import JsonLd from '@/components/JsonLd';
+import ServiceFAQSection from '@/components/ServiceFAQSection';
+import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
+import { getServiceFaqs } from '@/data/serviceFaqs';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Household Shifting Services in Kolkata',
@@ -15,6 +19,18 @@ export const metadata: Metadata = generatePageMetadata({
     'Reliable household shifting and home relocation in Kolkata & PAN India. 5-layer packing, trained carpenters for furniture assembly, and dedicated transit safety.',
   path: '/household-shifting',
 });
+
+const faqs = getServiceFaqs('household-shifting');
+const pageSchema = buildGraphSchema([
+  getServiceSchema({
+    name: 'Household Shifting Services in Kolkata',
+    description:
+      'Reliable household shifting and home relocation in Kolkata & PAN India. 5-layer packing, trained carpenters for furniture assembly, and dedicated transit safety.',
+    path: '/household-shifting',
+    serviceType: 'Household Relocation',
+  }),
+  getFAQSchema(faqs),
+]);
 
 const processSteps = [
   {
@@ -149,6 +165,7 @@ export default function HouseholdShiftingPage() {
 
   return (
     <PageLayout>
+      <JsonLd data={pageSchema} />
       <PageHero
         label="Residential Relocation"
         title={
@@ -495,6 +512,9 @@ export default function HouseholdShiftingPage() {
           </div>
         </div>
       </section>
+
+      {/* Service FAQs */}
+      <ServiceFAQSection heading="Household Shifting FAQs" faqs={faqs} />
 
       {/* Related Services Navigation */}
       <section className="py-16 bg-white border-t border-slate-200/80">

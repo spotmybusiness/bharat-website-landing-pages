@@ -66,11 +66,14 @@ export const metadata: Metadata = {
 
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import FloatingContactWidget from '@/components/ui/FloatingContactWidget';
+import JsonLd from '@/components/JsonLd';
+import { getOrganizationSchema, getWebsiteSchema, buildGraphSchema } from '@/lib/schema';
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${plusJakartaSans.variable} ${plusJakartaSansDisplay.variable} overflow-x-hidden max-w-full`}>
       <body className="font-sans antialiased bg-background text-foreground overflow-x-hidden min-h-screen w-full max-w-full">
+        <JsonLd data={buildGraphSchema([getOrganizationSchema(), getWebsiteSchema()])} />
         <GoogleAnalytics />
         {children}
         <FloatingContactWidget />

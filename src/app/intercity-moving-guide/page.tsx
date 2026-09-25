@@ -8,6 +8,8 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getTelUrl } from '@/lib/business';
 import TrackPillarGuide from '@/components/analytics/TrackPillarGuide';
+import JsonLd from '@/components/JsonLd';
+import { getArticleSchema, buildGraphSchema } from '@/lib/schema';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Intercity Relocation Guide: Moving from Kolkata',
@@ -15,6 +17,15 @@ export const metadata: Metadata = generatePageMetadata({
     'Comprehensive guide to interstate moving from Kolkata across India. Understand long-distance packing, highway container transport, documentation, and major national corridors.',
   path: '/intercity-moving-guide',
 });
+
+const articleSchema = buildGraphSchema([
+  getArticleSchema({
+    headline: 'Intercity Relocation Guide: Moving from Kolkata',
+    description:
+      'Comprehensive guide to interstate moving from Kolkata across India. Understand long-distance packing, highway container transport, documentation, and major national corridors.',
+    path: '/intercity-moving-guide',
+  }),
+]);
 
 const intercityPhases = [
   {
@@ -97,6 +108,7 @@ const evaluationCriteria = [
 export default function IntercityMovingGuidePage() {
   return (
     <PageLayout>
+      <JsonLd data={articleSchema} />
       <TrackPillarGuide slug="intercity-moving-guide" />
       <PageHero
         label="Interstate Relocation Guide"

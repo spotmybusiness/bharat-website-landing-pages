@@ -8,6 +8,10 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
+import JsonLd from '@/components/JsonLd';
+import ServiceFAQSection from '@/components/ServiceFAQSection';
+import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
+import { getServiceFaqs } from '@/data/serviceFaqs';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Office Relocation & Corporate Shifting in Kolkata',
@@ -15,6 +19,18 @@ export const metadata: Metadata = generatePageMetadata({
     'Structured corporate and office relocation in Kolkata. Weekend shifts, IT server packing, modular workstation assembly, and minimal business downtime logistics.',
   path: '/office-relocation',
 });
+
+const faqs = getServiceFaqs('office-relocation');
+const pageSchema = buildGraphSchema([
+  getServiceSchema({
+    name: 'Office Relocation & Corporate Shifting in Kolkata',
+    description:
+      'Structured corporate and office relocation in Kolkata. Weekend shifts, IT server packing, modular workstation assembly, and minimal business downtime logistics.',
+    path: '/office-relocation',
+    serviceType: 'Corporate Relocation',
+  }),
+  getFAQSchema(faqs),
+]);
 
 const officeSteps = [
   {
@@ -163,6 +179,7 @@ export default function OfficeRelocationPage() {
 
   return (
     <PageLayout>
+      <JsonLd data={pageSchema} />
       <PageHero
         label="Commercial & Corporate Logistics"
         title={
@@ -538,6 +555,9 @@ export default function OfficeRelocationPage() {
           </div>
         </div>
       </section>
+
+      {/* Service FAQs */}
+      <ServiceFAQSection heading="Office Relocation FAQs" faqs={faqs} />
 
       {/* Related Services Navigation */}
       <section className="py-16 bg-white border-t border-slate-200/80">

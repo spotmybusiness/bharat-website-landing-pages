@@ -8,6 +8,10 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
+import JsonLd from '@/components/JsonLd';
+import ServiceFAQSection from '@/components/ServiceFAQSection';
+import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
+import { getServiceFaqs } from '@/data/serviceFaqs';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Bike Transportation Services in Kolkata',
@@ -15,6 +19,18 @@ export const metadata: Metadata = generatePageMetadata({
     'Secure bike transport and two-wheeler shipping from Kolkata to PAN India. Custom wooden crating, bubble packaging, cushioned protective transit, and showroom pickup.',
   path: '/bike-shifting',
 });
+
+const faqs = getServiceFaqs('bike-shifting');
+const pageSchema = buildGraphSchema([
+  getServiceSchema({
+    name: 'Bike Transportation Services in Kolkata',
+    description:
+      'Secure bike transport and two-wheeler shipping from Kolkata to PAN India. Custom wooden crating, bubble packaging, cushioned protective transit, and showroom pickup.',
+    path: '/bike-shifting',
+    serviceType: 'Two-Wheeler Transport',
+  }),
+  getFAQSchema(faqs),
+]);
 
 const bikeSteps = [
   {
@@ -186,6 +202,7 @@ export default function BikeShiftingPage() {
 
   return (
     <PageLayout>
+      <JsonLd data={pageSchema} />
       <PageHero
         label="Two-Wheeler Express Logistics"
         title={
@@ -549,6 +566,9 @@ export default function BikeShiftingPage() {
           </div>
         </div>
       </section>
+
+      {/* Service FAQs */}
+      <ServiceFAQSection heading="Bike Transportation FAQs" faqs={faqs} />
 
       {/* Related Services Navigation */}
       <section className="py-16 bg-white border-t border-slate-200/80">

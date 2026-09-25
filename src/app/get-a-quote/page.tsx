@@ -5,6 +5,8 @@ import PageHero from '@/components/PageHero';
 import QuoteSection from '@/app/components/QuoteSection';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getTelUrl, getWhatsAppUrl } from '@/lib/business';
+import JsonLd from '@/components/JsonLd';
+import { getWebPageSchema, buildGraphSchema } from '@/lib/schema';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Get a Free Moving Quote',
@@ -13,9 +15,19 @@ export const metadata: Metadata = generatePageMetadata({
   path: '/get-a-quote',
 });
 
+const quotePageSchema = buildGraphSchema([
+  getWebPageSchema({
+    name: 'Get a Free Moving Quote',
+    description:
+      'Get an instant, transparent relocation estimate from Bharat Relocators for home shifting, car/bike transport, and office relocation in Kolkata and PAN India.',
+    path: '/get-a-quote',
+  }),
+]);
+
 export default function GetAQuotePage() {
   return (
     <PageLayout>
+      <JsonLd data={quotePageSchema} />
       <PageHero
         label="Relocation Cost Estimation"
         title={

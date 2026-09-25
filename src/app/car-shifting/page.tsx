@@ -8,6 +8,10 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
+import JsonLd from '@/components/JsonLd';
+import ServiceFAQSection from '@/components/ServiceFAQSection';
+import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
+import { getServiceFaqs } from '@/data/serviceFaqs';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Car Transportation Services in Kolkata',
@@ -15,6 +19,18 @@ export const metadata: Metadata = generatePageMetadata({
     'Dedicated closed carrier car transportation from Kolkata to PAN India. Hydraulic ramp loading, comprehensive transit insurance, vehicle condition report, and GPS milestone tracking.',
   path: '/car-shifting',
 });
+
+const faqs = getServiceFaqs('car-shifting');
+const pageSchema = buildGraphSchema([
+  getServiceSchema({
+    name: 'Car Transportation Services in Kolkata',
+    description:
+      'Dedicated closed carrier car transportation from Kolkata to PAN India. Hydraulic ramp loading, comprehensive transit insurance, vehicle condition report, and GPS milestone tracking.',
+    path: '/car-shifting',
+    serviceType: 'Car Transportation',
+  }),
+  getFAQSchema(faqs),
+]);
 
 const carSteps = [
   {
@@ -186,6 +202,7 @@ export default function CarShiftingPage() {
 
   return (
     <PageLayout>
+      <JsonLd data={pageSchema} />
       <PageHero
         label="Automotive Carrier Logistics"
         title={
@@ -539,6 +556,9 @@ export default function CarShiftingPage() {
           </div>
         </div>
       </section>
+
+      {/* Service FAQs */}
+      <ServiceFAQSection heading="Car Transportation FAQs" faqs={faqs} />
 
       {/* Related Services Navigation */}
       <section className="py-16 bg-white border-t border-slate-200/80">

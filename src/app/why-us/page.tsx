@@ -7,7 +7,8 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import FAQAccordion from '@/components/FAQAccordion';
 import JsonLd from '@/components/JsonLd';
 import { generatePageMetadata } from '@/lib/metadata';
-import { BUSINESS, getTelUrl, getWhatsAppUrl } from '@/lib/business';
+import { BUSINESS, getSiteUrl, getTelUrl, getWhatsAppUrl } from '@/lib/business';
+import { getOrganizationId } from '@/lib/schema';
 import { VERIFIED_REVIEWS } from '@/data/reviews';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -23,25 +24,9 @@ const pageSchema = {
   name: 'Why Choose Bharat Relocators',
   description:
     'Discover how Bharat Relocators approaches household, vehicle, office and other relocation services through organized planning, careful handling, transit coordination and customer support.',
+  url: `${getSiteUrl()}/why-us`,
   mainEntity: {
-    '@type': 'MovingCompany',
-    name: BUSINESS.name,
-    legalName: BUSINESS.legalName,
-    telephone: BUSINESS.phone.primary,
-    email: BUSINESS.email.primary,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: BUSINESS.address.street,
-      addressLocality: BUSINESS.address.locality,
-      addressRegion: BUSINESS.address.state,
-      postalCode: BUSINESS.address.postalCode,
-      addressCountry: BUSINESS.address.country,
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: BUSINESS.google.rating,
-      reviewCount: BUSINESS.google.reviewCount,
-    },
+    '@id': getOrganizationId(),
   },
 };
 

@@ -5,7 +5,8 @@ import PageLayout from '@/components/PageLayout';
 import PageHero from '@/components/PageHero';
 import JsonLd from '@/components/JsonLd';
 import { generatePageMetadata } from '@/lib/metadata';
-import { BUSINESS, getTelUrl, getWhatsAppUrl } from '@/lib/business';
+import { BUSINESS, getSiteUrl, getTelUrl, getWhatsAppUrl } from '@/lib/business';
+import { getOrganizationId } from '@/lib/schema';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Contact Us',
@@ -16,22 +17,14 @@ export const metadata: Metadata = generatePageMetadata({
 
 const contactSchema = {
   '@context': 'https://schema.org',
-  '@type': 'MovingCompany',
-  name: BUSINESS.name,
-  legalName: BUSINESS.legalName,
-  telephone: BUSINESS.phone.primary,
-  email: BUSINESS.email.primary,
-  url: 'https://bharatrelocators.com/contact',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: BUSINESS.address.street,
-    addressLocality: BUSINESS.address.locality,
-    addressRegion: BUSINESS.address.state,
-    postalCode: BUSINESS.address.postalCode,
-    addressCountry: BUSINESS.address.country,
+  '@type': 'ContactPage',
+  name: 'Contact Bharat Relocators',
+  description:
+    'Contact Bharat Relocators for home shifting, vehicle transportation, and intercity moving in Kolkata. Call +91 91230 46504 or visit our Haltu office.',
+  url: `${getSiteUrl()}/contact`,
+  mainEntity: {
+    '@id': getOrganizationId(),
   },
-  openingHours: BUSINESS.hours.schemaOpeningHours,
-  openingHoursSpecification: BUSINESS.hours.openingHoursSpecification,
 };
 
 function PhoneIcon() {

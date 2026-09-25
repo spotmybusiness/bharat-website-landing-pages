@@ -8,6 +8,8 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getTelUrl } from '@/lib/business';
 import TrackPillarGuide from '@/components/analytics/TrackPillarGuide';
+import JsonLd from '@/components/JsonLd';
+import { getArticleSchema, buildGraphSchema } from '@/lib/schema';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Vehicle Transportation & RTO Documentation Guide',
@@ -15,6 +17,15 @@ export const metadata: Metadata = generatePageMetadata({
     'Complete guide to two-wheeler and car shipping from Kolkata across India. Learn about essential paperwork, vehicle preparation, enclosed carriers, and handover inspection.',
   path: '/vehicle-transportation-guide',
 });
+
+const articleSchema = buildGraphSchema([
+  getArticleSchema({
+    headline: 'Vehicle Transportation & RTO Documentation Guide',
+    description:
+      'Complete guide to two-wheeler and car shipping from Kolkata across India. Learn about essential paperwork, vehicle preparation, enclosed carriers, and handover inspection.',
+    path: '/vehicle-transportation-guide',
+  }),
+]);
 
 const requiredDocuments = [
   {
@@ -93,6 +104,7 @@ const bikeVsCarDifferences = [
 export default function VehicleTransportationGuidePage() {
   return (
     <PageLayout>
+      <JsonLd data={articleSchema} />
       <TrackPillarGuide slug="vehicle-transportation-guide" />
       <PageHero
         label="Automotive Logistics Guide"

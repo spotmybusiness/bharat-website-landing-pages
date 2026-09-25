@@ -8,6 +8,8 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getTelUrl } from '@/lib/business';
 import TrackPillarGuide from '@/components/analytics/TrackPillarGuide';
+import JsonLd from '@/components/JsonLd';
+import { getArticleSchema, buildGraphSchema } from '@/lib/schema';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Home Shifting Checklist & Pre-Move Guide',
@@ -15,6 +17,15 @@ export const metadata: Metadata = generatePageMetadata({
     'Comprehensive step-by-step moving checklist and timeline for home shifting in Kolkata & PAN India. Practical tips for packing, decluttering, utilities, and move-day preparation.',
   path: '/moving-checklist',
 });
+
+const articleSchema = buildGraphSchema([
+  getArticleSchema({
+    headline: 'Home Shifting Checklist & Pre-Move Guide',
+    description:
+      'Comprehensive step-by-step moving checklist and timeline for home shifting in Kolkata & PAN India. Practical tips for packing, decluttering, utilities, and move-day preparation.',
+    path: '/moving-checklist',
+  }),
+]);
 
 const timelineSteps = [
   {
@@ -209,6 +220,7 @@ const roomTips = [
 export default function MovingChecklistPage() {
   return (
     <PageLayout>
+      <JsonLd data={articleSchema} />
       <TrackPillarGuide slug="moving-checklist" />
       <PageHero
         label="Relocation Guide"

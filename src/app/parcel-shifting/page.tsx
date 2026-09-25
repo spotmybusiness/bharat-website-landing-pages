@@ -8,6 +8,10 @@ import SectionHeader from '@/components/ui/SectionHeader';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
+import JsonLd from '@/components/JsonLd';
+import ServiceFAQSection from '@/components/ServiceFAQSection';
+import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
+import { getServiceFaqs } from '@/data/serviceFaqs';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Parcel & Cargo Shifting Services in Kolkata',
@@ -15,6 +19,18 @@ export const metadata: Metadata = generatePageMetadata({
     'Express parcel shipping, luggage moving, and cargo courier services from Kolkata to 230+ cities across India. Doorstep pickup, barcoded labeling, and real-time tracking.',
   path: '/parcel-shifting',
 });
+
+const faqs = getServiceFaqs('parcel-shifting');
+const pageSchema = buildGraphSchema([
+  getServiceSchema({
+    name: 'Parcel & Cargo Shifting Services in Kolkata',
+    description:
+      'Express parcel shipping, luggage moving, and cargo courier services from Kolkata to PAN India. Doorstep pickup, barcoded labeling, and real-time tracking.',
+    path: '/parcel-shifting',
+    serviceType: 'Parcel & Cargo Logistics',
+  }),
+  getFAQSchema(faqs),
+]);
 
 const parcelSteps = [
   {
@@ -126,6 +142,7 @@ export default function ParcelShiftingPage() {
 
   return (
     <PageLayout>
+      <JsonLd data={pageSchema} />
       <PageHero
         label="Express Intercity Parcel Logistics"
         title={
@@ -453,6 +470,9 @@ export default function ParcelShiftingPage() {
           </div>
         </div>
       </section>
+
+      {/* Service FAQs */}
+      <ServiceFAQSection heading="Parcel & Cargo Shifting FAQs" faqs={faqs} />
 
       {/* Related Services Navigation */}
       <section className="py-16 bg-white border-t border-slate-200/80">
