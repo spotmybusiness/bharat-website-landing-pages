@@ -59,9 +59,6 @@ export const metadata: Metadata = {
       'Bharat Relocators offers trusted packers & movers services in Kolkata — home shifting, car & bike transport, PAN India delivery. 4.9★ rated, 305+ reviews.',
     images: ['/images/packaging.png'],
   },
-  icons: {
-    icon: [{ url: '/assets/favicon.ico', type: 'image/x-icon' }],
-  },
 };
 
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
