@@ -138,6 +138,8 @@ export default function Header() {
             <img
               src="/images/logo.png"
               alt="Bharat Relocators - Packers and Movers Kolkata"
+              width={200}
+              height={80}
               className="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
             />
             <div className="flex flex-col min-w-0">
