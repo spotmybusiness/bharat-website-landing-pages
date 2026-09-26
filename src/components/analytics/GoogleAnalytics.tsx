@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import Script from 'next/script';
 import {
   GA_MEASUREMENT_ID,
   trackClickToCall,
@@ -11,53 +12,12 @@ import {
 /**
  * Google Analytics
  *
- * GA4 is loaded only after the browser has finished its initial work.
- * This keeps analytics off the critical loading path while preserving
- * click/conversion tracking.
+ * GA4 is loaded with lazyOnload so it does not compete with the
+ * critical rendering path and initial page performance.
  */
 export default function GoogleAnalytics() {
   useEffect(() => {
     if (!GA_MEASUREMENT_ID) return;
-
-    let scriptLoaded = false;
-
-    const loadAnalytics = () => {
-      if (scriptLoaded || document.querySelector(`script[data-ga4="${GA_MEASUREMENT_ID}"]`)) {
-        return;
-      }
-
-      scriptLoaded = true;
-
-      window.dataLayer = window.dataLayer || [];
-
-      window.gtag = function gtag(
-        command: 'config' | 'event' | 'js' | 'set',
-        targetIdOrEventName: string | Date,
-        params?: Record<string, unknown>
-      ) {
-        window.dataLayer?.push([command, targetIdOrEventName, params]);
-      };
-
-      window.gtag('js', new Date());
-
-      window.gtag('config', GA_MEASUREMENT_ID, {
-        page_path: window.location.pathname,
-        send_page_view: true,
-        anonymize_ip: true,
-      });
-
-      const script = document.createElement('script');
-      script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-      script.dataset.ga4 = GA_MEASUREMENT_ID;
-
-      document.head.appendChild(script);
-    };
-
-    const idleCallback =
-      'requestIdleCallback' in window
-        ? window.requestIdleCallback(loadAnalytics, { timeout: 5000 })
-        : window.setTimeout(loadAnalytics, 3000);
 
     const handleGlobalClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
@@ -68,13 +28,17 @@ export default function GoogleAnalytics() {
 
       const href = anchor.getAttribute('href') || '';
       const actionOverride = anchor.getAttribute('data-analytics-action');
-      const locationOverride = anchor.getAttribute('data-analytics-location');
+      const locationOverride = anchor.getAttribute(
+        'data-analytics-location'
+      );
 
+      // Explicit action override
       if (actionOverride === 'track_shipment_launch') {
         trackShipmentLaunch();
         return;
       }
 
+      // Telephone link tracking
       if (href.startsWith('tel:')) {
         let location = locationOverride;
 
@@ -96,6 +60,7 @@ export default function GoogleAnalytics() {
         return;
       }
 
+      // WhatsApp link tracking
       if (
         href.includes('wa.me') ||
         href.includes('api.whatsapp.com') ||
@@ -124,6 +89,7 @@ export default function GoogleAnalytics() {
         return;
       }
 
+      // Shipment tracking portal
       if (
         href.includes('trackingmore.com') ||
         href.includes('trackingmore.org')
@@ -132,16 +98,14 @@ export default function GoogleAnalytics() {
       }
     };
 
-    document.addEventListener('click', handleGlobalClick, { capture: true });
+    document.addEventListener('click', handleGlobalClick, {
+      capture: true,
+    });
 
     return () => {
-      if ('cancelIdleCallback' in window && typeof idleCallback === 'number') {
-        window.cancelIdleCallback(idleCallback);
-      } else {
-        window.clearTimeout(idleCallback);
-      }
-
-      document.removeEventListener('click', handleGlobalClick, { capture: true });
+      document.removeEventListener('click', handleGlobalClick, {
+        capture: true,
+      });
     };
   }, []);
 
@@ -149,5 +113,30 @@ export default function GoogleAnalytics() {
     return null;
   }
 
-  return null;
+  return (
+    <>
+      {/* Load GA4 only after the page has finished loading */}
+      <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+      />
+
+      {/* Initialize GA4 */}
+      <Script
+        id="ga4-init"
+        strategy="lazyOnload"
+      >
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_MEASUREMENT_ID}', {
+            page_path: window.location.pathname,
+            send_page_view: true,
+            anonymize_ip: true
+          });
+        `}
+      </Script>
+    </>
+  );
 }
