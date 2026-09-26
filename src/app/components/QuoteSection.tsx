@@ -354,6 +354,8 @@ export default function QuoteSection() {
                   noValidate
                   className="space-y-4"
                   aria-label="Request a moving quotation"
+                  toolname="request_moving_quote"
+                  tooldescription="Submit relocation requirements including customer contact details, origin, destination, service category, and planned move date to request a free, customized moving quote from Bharat Relocators."
                 >
                   {/* Row 1: Name & Phone */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -374,6 +376,7 @@ export default function QuoteSection() {
                         aria-invalid={!!errors.fullName}
                         aria-describedby={errors.fullName ? 'full-name-error' : undefined}
                         autoComplete="name"
+                        toolparamdescription="Customer's full name for contact and quotation identification"
                         value={fullName}
                         onChange={(e) => {
                           setFullName(e.target.value);
@@ -417,6 +420,7 @@ export default function QuoteSection() {
                         aria-describedby={errors.phone ? 'phone-error' : undefined}
                         autoComplete="tel"
                         inputMode="tel"
+                        toolparamdescription="Customer's 10-digit primary telephone or mobile number for callback and WhatsApp quote delivery"
                         value={phone}
                         onChange={(e) => {
                           setPhone(e.target.value);
@@ -462,6 +466,7 @@ export default function QuoteSection() {
                         aria-invalid={!!errors.originCity}
                         aria-describedby={errors.originCity ? 'origin-city-error' : undefined}
                         autoComplete="address-level2"
+                        toolparamdescription="Pickup city, town, or locality in Kolkata or other origin location"
                         value={originCity}
                         onChange={(e) => {
                           setOriginCity(e.target.value);
@@ -504,6 +509,7 @@ export default function QuoteSection() {
                         aria-invalid={!!errors.destCity}
                         aria-describedby={errors.destCity ? 'dest-city-error' : undefined}
                         autoComplete="address-level2"
+                        toolparamdescription="Delivery destination city, town, or state across India"
                         value={destCity}
                         onChange={(e) => {
                           setDestCity(e.target.value);
@@ -544,6 +550,7 @@ export default function QuoteSection() {
                       name="serviceType"
                       required
                       aria-required="true"
+                      toolparamdescription="Specific category of moving service required (e.g. Household Shifting 1-2 BHK, Car Transportation, Bike Transport, Office Relocation, International Relocation, Express Parcel)"
                       value={serviceType}
                       onChange={(e) => setServiceType(e.target.value)}
                       className="w-full bg-[#f8fafc] border border-border rounded-xl px-4 py-3 text-base sm:text-sm text-foreground focus:outline-none focus:border-[#E53935] focus:ring-2 focus:ring-[#E53935]/20 transition-colors"
@@ -592,6 +599,7 @@ export default function QuoteSection() {
                       name="moveDate"
                       type="date"
                       min={todayStr}
+                      toolparamdescription="Optional planned or tentative relocation date in YYYY-MM-DD format"
                       value={moveDate}
                       onChange={(e) => setMoveDate(e.target.value)}
                       className="w-full bg-[#f8fafc] border border-border rounded-xl px-4 py-3 text-base sm:text-sm text-foreground focus:outline-none focus:border-[#E53935] focus:ring-2 focus:ring-[#E53935]/20 transition-colors"

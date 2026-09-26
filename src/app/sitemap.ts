@@ -43,9 +43,11 @@ const CANONICAL_ROUTES: RouteConfig[] = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
+  const buildDate = new Date();
 
   return CANONICAL_ROUTES.map((route) => ({
     url: `${siteUrl}${route.path}`,
+    lastModified: buildDate,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
