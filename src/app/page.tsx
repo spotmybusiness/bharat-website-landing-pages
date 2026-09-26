@@ -60,50 +60,52 @@ export default function HomePage() {
   };
 
   return (
-    <main className="relative overflow-x-hidden min-h-screen bg-background text-foreground selection:bg-[#E53935] selection:text-white">
+    <div className="relative overflow-x-hidden min-h-screen bg-background text-foreground selection:bg-[#E53935] selection:text-white">
       <JsonLd data={faqSchema} />
       {/* Floating Glass Header */}
       <Header />
 
-      {/* Scene 1: The Truck Arrival Experience */}
-      <HeroSection />
+      <main id="main-content">
+        {/* Scene 1: The Truck Arrival Experience */}
+        <HeroSection />
 
-      {/* Scene 1.5: Track Us Now — Immediate Operational Console */}
-      <section
-        id="track-us"
-        className="relative z-20 py-8 sm:py-10 bg-[#071A2B] border-b border-white/10"
-      >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <TrackingInteractiveView compact />
-        </div>
-      </section>
+        {/* Scene 1.5: Track Us Now — Immediate Operational Console */}
+        <section
+          id="track-us"
+          className="relative z-20 py-8 sm:py-10 bg-[#071A2B] border-b border-white/10"
+        >
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <TrackingInteractiveView compact />
+          </div>
+        </section>
 
-      {/* Specialized Relocation Services Grid */}
-      <ServicesSection />
+        {/* Specialized Relocation Services Grid */}
+        <ServicesSection />
 
-      {/* Quantitative Trust & Milestone Counters */}
-      <StatsSection />
+        {/* Quantitative Trust & Milestone Counters */}
+        <StatsSection />
 
-      {/* 4-Step Structured Moving Workflow */}
-      <HowItWorksSection />
+        {/* 4-Step Structured Moving Workflow */}
+        <HowItWorksSection />
 
-      {/* Editorial About & Verified Credentials */}
-      <AboutSection />
+        {/* Editorial About & Verified Credentials */}
+        <AboutSection />
 
-      {/* Engineering Reliability & Why Choose Us Bento */}
-      <WhyChooseSection />
+        {/* Engineering Reliability & Why Choose Us Bento */}
+        <WhyChooseSection />
 
-      {/* Verified Customer Testimonials Carousel */}
-      <TestimonialsSection />
+        {/* Verified Customer Testimonials Carousel */}
+        <TestimonialsSection />
 
-      {/* Transparent FAQ Knowledge Base */}
-      <FAQSection />
+        {/* Transparent FAQ Knowledge Base */}
+        <FAQSection />
 
-      {/* Instant Quote Estimation Suite */}
-      <QuoteSection />
+        {/* Instant Quote Estimation Suite */}
+        <QuoteSection />
+      </main>
 
       {/* Premium Luxury Footer */}
       <Footer />
-    </main>
+    </div>
   );
 }

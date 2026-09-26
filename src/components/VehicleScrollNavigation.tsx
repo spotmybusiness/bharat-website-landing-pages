@@ -51,6 +51,16 @@ export default function VehicleScrollNavigation() {
     };
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isMobileOpen) {
+        setIsMobileOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMobileOpen]);
+
   const scrollToSection = (id: string) => {
     setIsMobileOpen(false);
     if (id === 'hero') {
@@ -105,12 +115,14 @@ export default function VehicleScrollNavigation() {
       {/* Mobile Floating Quick Route Pill */}
       <div className="fixed bottom-5 left-4 z-40 md:hidden flex items-center">
         <button
+          type="button"
           onClick={() => setIsMobileOpen(!isMobileOpen)}
-          className="flex items-center gap-2 bg-[#082f52]/90 backdrop-blur-xl border border-white/20 text-white px-3.5 py-2 rounded-full shadow-xl text-xs font-bold"
+          className="flex items-center gap-2 bg-[#082f52]/90 backdrop-blur-xl border border-white/20 text-white px-3.5 py-2 rounded-full shadow-xl text-xs font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F28A32]"
           aria-expanded={isMobileOpen}
+          aria-controls="mobile-waypoint-menu"
           aria-label="Toggle Route Navigation"
         >
-          <span className="w-5 h-5 rounded-full bg-[#E53935] text-white flex items-center justify-center text-[10px]">
+          <span className="w-5 h-5 rounded-full bg-[#E53935] text-white flex items-center justify-center text-[10px]" aria-hidden="true">
             🚚
           </span>
           <span className="text-[#F28A32]">{Math.round(scrollProgress * 100)}%</span>
@@ -119,15 +131,22 @@ export default function VehicleScrollNavigation() {
 
         {/* Mobile Waypoint Modal Menu */}
         {isMobileOpen && (
-          <div className="absolute bottom-12 left-0 w-52 bg-[#082f52]/95 backdrop-blur-2xl border border-white/20 rounded-2xl p-2 shadow-2xl flex flex-col gap-1 animate-in fade-in slide-in-from-bottom-2 duration-200">
+          <div
+            id="mobile-waypoint-menu"
+            role="menu"
+            aria-label="Moving Waypoints"
+            className="absolute bottom-12 left-0 w-52 bg-[#082f52]/95 backdrop-blur-2xl border border-white/20 rounded-2xl p-2 shadow-2xl flex flex-col gap-1 animate-in fade-in slide-in-from-bottom-2 duration-200"
+          >
             <div className="px-3 py-1.5 text-[10px] uppercase tracking-wider font-bold text-[#F28A32] border-b border-white/10">
               Moving Waypoints
             </div>
             {checkpoints.map((cp) => (
               <button
                 key={cp.id}
+                type="button"
+                role="menuitem"
                 onClick={() => scrollToSection(cp.id)}
-                className={`text-left px-3 py-2 text-xs font-semibold rounded-xl transition-colors ${
+                className={`text-left px-3 py-2 text-xs font-semibold rounded-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E53935] ${
                   activeSection === cp.id
                     ? 'bg-[#E53935] text-white font-bold'
                     : 'text-white/80 hover:bg-white/10'

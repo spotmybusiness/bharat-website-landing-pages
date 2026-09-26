@@ -8,6 +8,7 @@ import FAQAccordion from '@/components/FAQAccordion';
 import JsonLd from '@/components/JsonLd';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getTelUrl, getWhatsAppUrl } from '@/lib/business';
+import { getFAQSchema, buildGraphSchema } from '@/lib/schema';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Moving Process — How Bharat Relocators Handles Your Move',
@@ -15,41 +16,6 @@ export const metadata: Metadata = generatePageMetadata({
     'Understand the Bharat Relocators moving process, from planning and packing to secure transit, delivery, unpacking, and final handover across Kolkata and PAN India.',
   path: '/process',
 });
-
-// JSON-LD structured data for HowTo Process
-const processSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'HowTo',
-  name: 'How Bharat Relocators Handles Your Move',
-  description:
-    'A step-by-step moving process from survey and planning to multi-layer packing, secure transit, and final destination handover.',
-  step: [
-    {
-      '@type': 'HowToStep',
-      name: 'Survey, Planning & Custom Quote',
-      text: 'Inventory assessment, route evaluation, scheduling, and transparent written quote preparation.',
-      position: 1,
-    },
-    {
-      '@type': 'HowToStep',
-      name: 'Professional Packing & Preparation',
-      text: 'Multi-layer bubble cushioning, 5-layer corrugated boxing, modular furniture dismantling, and itemized labeling.',
-      position: 2,
-    },
-    {
-      '@type': 'HowToStep',
-      name: 'Secure Loading & Monitored Transit',
-      text: 'Organized container loading, shock-absorption padding, verified highway drivers, and milestone transit tracking.',
-      position: 3,
-    },
-    {
-      '@type': 'HowToStep',
-      name: 'Delivery, Unpacking & Final Handover',
-      text: 'Safe destination unloading, room-specific placement, furniture reassembly, debris removal, and final customer sign-off.',
-      position: 4,
-    },
-  ],
-};
 
 const overviewCards = [
   {
@@ -176,10 +142,46 @@ const processFaqs = [
   },
 ];
 
+const pageSchema = buildGraphSchema([
+  {
+    '@type': 'HowTo',
+    name: 'How Bharat Relocators Handles Your Move',
+    description:
+      'A step-by-step moving process from survey and planning to multi-layer packing, secure transit, and final destination handover.',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Survey, Planning & Custom Quote',
+        text: 'Inventory assessment, route evaluation, scheduling, and transparent written quote preparation.',
+        position: 1,
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Professional Packing & Preparation',
+        text: 'Multi-layer bubble cushioning, 5-layer corrugated boxing, modular furniture dismantling, and itemized labeling.',
+        position: 2,
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Secure Loading & Monitored Transit',
+        text: 'Organized container loading, shock-absorption padding, verified highway drivers, and milestone transit tracking.',
+        position: 3,
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Delivery, Unpacking & Final Handover',
+        text: 'Safe destination unloading, room-specific placement, furniture reassembly, debris removal, and final customer sign-off.',
+        position: 4,
+      },
+    ],
+  },
+  getFAQSchema(processFaqs),
+]);
+
 export default function ProcessPage() {
   return (
     <PageLayout>
-      <JsonLd data={processSchema} />
+      <JsonLd data={pageSchema} />
 
       {/* 1. Page Hero */}
       <PageHero

@@ -71,70 +71,79 @@ export default function GoogleBusinessProfileCard() {
             href={googleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Search Bharat Relocators on Google Maps"
             title="Search Bharat Relocators on Google Maps"
             style={{ top: '1.46%', left: '3.98%', width: '92.0%', height: '6.05%' }}
-            className="absolute rounded-full cursor-pointer hover:bg-white/10 active:bg-white/20 transition-all focus:outline-none"
+            className="absolute rounded-full cursor-pointer hover:bg-white/10 active:bg-white/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 2. Top-Right Share Icon */}
           <button
+            type="button"
             onClick={handleShare}
+            aria-label="Share Bharat Relocators profile"
             title="Share Profile"
             style={{ top: '9.28%', right: '3.98%', width: '9.96%', height: '4.88%' }}
-            className="absolute rounded-full cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus:outline-none"
+            className="absolute rounded-full cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 3. Rating & Review Count Link "(305)" */}
           <a
             href="#reviews"
             onClick={(e) => handleScrollTo('reviews', e)}
+            aria-label="View 305+ Verified Customer Reviews"
             title="View 305+ Verified Customer Reviews"
             style={{ top: '22.0%', left: '13.5%', width: '12.5%', height: '3.0%' }}
-            className="absolute rounded-md cursor-pointer hover:bg-[#8AB4F8]/20 active:bg-[#8AB4F8]/30 transition-all focus:outline-none"
+            className="absolute rounded-md cursor-pointer hover:bg-[#8AB4F8]/20 active:bg-[#8AB4F8]/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 4. Tab: Overview */}
           <a
             href="#hero"
             onClick={(e) => handleScrollTo('hero', e)}
+            aria-label="Overview tab - navigate to hero section"
             title="Overview"
             style={{ top: '28.3%', left: '3.98%', width: '22.9%', height: '5.4%' }}
-            className="absolute rounded-full cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus:outline-none"
+            className="absolute rounded-full cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 5. Tab: Reviews */}
           <a
             href="#reviews"
             onClick={(e) => handleScrollTo('reviews', e)}
+            aria-label="Client Reviews tab - navigate to customer reviews"
             title="Client Reviews"
             style={{ top: '28.3%', left: '27.88%', width: '19.9%', height: '5.4%' }}
-            className="absolute rounded-full cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus:outline-none"
+            className="absolute rounded-full cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 6. Tab: Services */}
           <a
             href="#services"
             onClick={(e) => handleScrollTo('services', e)}
+            aria-label="Our Services tab - navigate to services suite"
             title="Our Services"
             style={{ top: '28.3%', left: '49.4%', width: '20.9%', height: '5.4%' }}
-            className="absolute rounded-full cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus:outline-none"
+            className="absolute rounded-full cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 7. Tab: Photos */}
           <a
             href="#services"
             onClick={(e) => handleScrollTo('services', e)}
+            aria-label="Fleet Photos and Packaging tab - navigate to services showcase"
             title="Fleet Photos & Packaging"
             style={{ top: '28.3%', left: '71.7%', width: '18.3%', height: '5.4%' }}
-            className="absolute rounded-full cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus:outline-none"
+            className="absolute rounded-full cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 8. Action: CALL Button */}
           <a
             href="tel:+919123046504"
+            aria-label="Call Bharat Relocators at +91 91230 46504"
             title="Call +91 91230 46504"
             style={{ top: '61.5%', left: '3.58%', width: '15.5%', height: '9.8%' }}
-            className="absolute rounded-2xl cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus:outline-none"
+            className="absolute rounded-2xl cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 9. Action: DIRECTIONS Button */}
@@ -142,9 +151,10 @@ export default function GoogleBusinessProfileCard() {
             href={directionsUrl}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Get Directions to Bharat Relocators on Google Maps"
             title="Get Directions on Google Maps"
             style={{ top: '61.5%', left: '23.5%', width: '16.3%', height: '9.8%' }}
-            className="absolute rounded-2xl cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus:outline-none"
+            className="absolute rounded-2xl cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 10. Action: WHATSAPP Button */}
@@ -152,26 +162,30 @@ export default function GoogleBusinessProfileCard() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Chat with Bharat Relocators on WhatsApp"
             title="Chat with Us on WhatsApp"
             style={{ top: '61.5%', left: '43.4%', width: '16.3%', height: '9.8%' }}
-            className="absolute rounded-2xl cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus:outline-none"
+            className="absolute rounded-2xl cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 11. Action: WEBSITE Button */}
           <a
             href="#hero"
             onClick={(e) => handleScrollTo('hero', e)}
+            aria-label="Explore Website - navigate to hero section"
             title="Explore Website"
             style={{ top: '61.5%', left: '63.3%', width: '16.3%', height: '9.8%' }}
-            className="absolute rounded-2xl cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus:outline-none"
+            className="absolute rounded-2xl cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 12. Action: SHARE Button */}
           <button
+            type="button"
             onClick={handleShare}
+            aria-label="Share Business Profile"
             title="Share Business Profile"
             style={{ top: '61.5%', left: '82.6%', width: '14.9%', height: '9.8%' }}
-            className="absolute rounded-2xl cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus:outline-none"
+            className="absolute rounded-2xl cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 13. ADDRESS & MINI MAP Row */}
@@ -179,9 +193,10 @@ export default function GoogleBusinessProfileCard() {
             href={googleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Open Haltu office location at 17, Ramlal Bazar Rd on Google Maps"
             title="Open 17, Ramlal Bazar Rd, Haltu on Google Maps"
             style={{ top: '71.8%', left: '2.98%', width: '94.0%', height: '12.7%' }}
-            className="absolute rounded-xl cursor-pointer hover:bg-white/10 active:bg-white/20 transition-all focus:outline-none"
+            className="absolute rounded-xl cursor-pointer hover:bg-white/10 active:bg-white/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 14. WHATSAPP Row */}
@@ -189,18 +204,20 @@ export default function GoogleBusinessProfileCard() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Connect with Bharat Relocators via WhatsApp"
             title="Connect via WhatsApp"
             style={{ top: '84.5%', left: '2.98%', width: '94.0%', height: '6.8%' }}
-            className="absolute rounded-xl cursor-pointer hover:bg-white/10 active:bg-white/20 transition-all focus:outline-none"
+            className="absolute rounded-xl cursor-pointer hover:bg-white/10 active:bg-white/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* 15. Instant Quote Action Row */}
           <a
             href="#quote"
             onClick={(e) => handleScrollTo('quote', e)}
+            aria-label="Get an Instant Relocation Quote - navigate to quote form"
             title="Get an Instant Relocation Quote"
             style={{ top: '91.3%', left: '2.98%', width: '94.0%', height: '7.3%' }}
-            className="absolute rounded-xl cursor-pointer hover:bg-white/10 active:bg-white/20 transition-all focus:outline-none"
+            className="absolute rounded-xl cursor-pointer hover:bg-white/10 active:bg-white/20 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
           {/* Feedback Toast */}

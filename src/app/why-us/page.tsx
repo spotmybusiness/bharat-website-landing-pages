@@ -8,7 +8,7 @@ import FAQAccordion from '@/components/FAQAccordion';
 import JsonLd from '@/components/JsonLd';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getSiteUrl, getTelUrl, getWhatsAppUrl } from '@/lib/business';
-import { getOrganizationId } from '@/lib/schema';
+import { getOrganizationId, getFAQSchema, buildGraphSchema } from '@/lib/schema';
 import { VERIFIED_REVIEWS } from '@/data/reviews';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -17,18 +17,6 @@ export const metadata: Metadata = generatePageMetadata({
     'Discover how Bharat Relocators approaches household, vehicle, office and other relocation services through organized planning, careful handling, transit coordination and customer support.',
   path: '/why-us',
 });
-
-const pageSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  name: 'Why Choose Bharat Relocators',
-  description:
-    'Discover how Bharat Relocators approaches household, vehicle, office and other relocation services through organized planning, careful handling, transit coordination and customer support.',
-  url: `${getSiteUrl()}/why-us`,
-  mainEntity: {
-    '@id': getOrganizationId(),
-  },
-};
 
 // 6 Core Reasons
 const coreReasons = [
@@ -211,6 +199,20 @@ const decisionFaqs = [
     a: 'You are assigned a dedicated move coordinator as your primary point of contact. You receive direct status updates at packing completion, vehicle dispatch, key highway transit milestones, and advance coordination before the delivery vehicle arrives at your destination.',
   },
 ];
+
+const pageSchema = buildGraphSchema([
+  {
+    '@type': 'WebPage',
+    name: 'Why Choose Bharat Relocators',
+    description:
+      'Discover how Bharat Relocators approaches household, vehicle, office and other relocation services through organized planning, careful handling, transit coordination and customer support.',
+    url: `${getSiteUrl()}/why-us`,
+    mainEntity: {
+      '@id': getOrganizationId(),
+    },
+  },
+  getFAQSchema(decisionFaqs),
+]);
 
 export default function WhyUsPage() {
   const featuredReviews = VERIFIED_REVIEWS.slice(0, 3);

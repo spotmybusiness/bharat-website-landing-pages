@@ -8,7 +8,7 @@ import FAQAccordion from '@/components/FAQAccordion';
 import JsonLd from '@/components/JsonLd';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getSiteUrl, getTelUrl, getWhatsAppUrl } from '@/lib/business';
-import { getOrganizationId } from '@/lib/schema';
+import { getOrganizationId, getFAQSchema, buildGraphSchema } from '@/lib/schema';
 import ReviewsInteractiveList from './ReviewsInteractiveList';
 
 export const metadata: Metadata = generatePageMetadata({
@@ -17,18 +17,6 @@ export const metadata: Metadata = generatePageMetadata({
     'Read customer reviews and experiences with Bharat Relocators across household shifting, vehicle transportation, office relocation and other moving services.',
   path: '/testimonials',
 });
-
-const pageSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ItemPage',
-  name: 'Customer Reviews — Bharat Relocators',
-  description:
-    'Read customer reviews and experiences with Bharat Relocators across household shifting, vehicle transportation, office relocation and other moving services.',
-  url: `${getSiteUrl()}/testimonials`,
-  mainEntity: {
-    '@id': getOrganizationId(),
-  },
-};
 
 const recurringThemes = [
   {
@@ -114,6 +102,20 @@ const reviewsFaqs = [
     a: 'Simply share your pickup and drop locations, preferred moving date, and general list of belongings via our online quote tool or by phone to receive a transparent written estimate with zero hidden fees.',
   },
 ];
+
+const pageSchema = buildGraphSchema([
+  {
+    '@type': 'ItemPage',
+    name: 'Customer Reviews — Bharat Relocators',
+    description:
+      'Read customer reviews and experiences with Bharat Relocators across household shifting, vehicle transportation, office relocation and other moving services.',
+    url: `${getSiteUrl()}/testimonials`,
+    mainEntity: {
+      '@id': getOrganizationId(),
+    },
+  },
+  getFAQSchema(reviewsFaqs),
+]);
 
 export default function TestimonialsPage() {
   return (

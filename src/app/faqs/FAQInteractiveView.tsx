@@ -64,7 +64,7 @@ export default function FAQInteractiveView() {
             className="w-full bg-white text-[#082F52] placeholder:text-slate-400 text-sm sm:text-base pl-12 pr-10 py-4 rounded-2xl border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#E53935]/40 focus:border-[#E53935] transition-all"
           />
           <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
@@ -73,7 +73,7 @@ export default function FAQInteractiveView() {
               type="button"
               onClick={() => setSearchQuery('')}
               className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1"
-              aria-label="Clear search"
+              aria-label="Clear search query"
             >
               ✕
             </button>
@@ -92,6 +92,7 @@ export default function FAQInteractiveView() {
         <button
           type="button"
           onClick={() => setActiveCategory('all')}
+          aria-pressed={activeCategory === 'all'}
           className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
             activeCategory === 'all'
               ? 'bg-[#082F52] text-white shadow-sm'
@@ -108,6 +109,7 @@ export default function FAQInteractiveView() {
               key={cat.id}
               type="button"
               onClick={() => setActiveCategory(cat.id)}
+              aria-pressed={isSelected}
               className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 isSelected
                   ? 'bg-[#082F52] text-white shadow-sm'
@@ -124,7 +126,7 @@ export default function FAQInteractiveView() {
       {filteredCategories.length === 0 ? (
         <div className="bg-white rounded-3xl p-10 sm:p-14 text-center border border-slate-200 max-w-lg mx-auto shadow-sm">
           <div className="w-12 h-12 rounded-2xl bg-red-50 text-[#E53935] flex items-center justify-center mx-auto mb-4">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
@@ -179,6 +181,8 @@ export default function FAQInteractiveView() {
                 {category.faqs.map((faq, idx) => {
                   const itemKey = `${category.id}-${idx}`;
                   const isOpen = !!openItems[itemKey];
+                  const questionId = `faq-interactive-q-${itemKey}`;
+                  const answerId = `faq-interactive-a-${itemKey}`;
 
                   return (
                     <div
@@ -191,8 +195,10 @@ export default function FAQInteractiveView() {
                     >
                       <button
                         type="button"
-                        onClick={() => toggleItem(itemKey)}
+                        id={questionId}
+                        aria-controls={answerId}
                         aria-expanded={isOpen}
+                        onClick={() => toggleItem(itemKey)}
                         className="w-full flex items-center justify-between gap-4 px-5 py-4 sm:px-6 sm:py-4.5 text-left focus:outline-none focus:ring-2 focus:ring-[#E53935]/30 rounded-2xl cursor-pointer"
                       >
                         <span
@@ -209,17 +215,22 @@ export default function FAQInteractiveView() {
                               : 'bg-slate-100 text-slate-500'
                           }`}
                         >
-                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24" aria-hidden="true">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                           </svg>
                         </span>
                       </button>
 
-                      {isOpen && (
-                        <div className="px-5 pb-5 sm:px-6 sm:pb-5 pt-1 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 mt-1">
-                          {faq.a}
-                        </div>
-                      )}
+                      <div
+                        id={answerId}
+                        role="region"
+                        aria-labelledby={questionId}
+                        className={`px-5 pb-5 sm:px-6 sm:pb-5 pt-1 text-slate-600 text-xs sm:text-sm leading-relaxed border-t border-slate-100 mt-1 ${
+                          isOpen ? 'block animate-in fade-in duration-200' : 'hidden'
+                        }`}
+                      >
+                        {faq.a}
+                      </div>
                     </div>
                   );
                 })}

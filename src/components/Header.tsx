@@ -58,18 +58,23 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close dropdown on Escape key
+  // Close dropdown or mobile menu on Escape key
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && servicesDropdownOpen) {
-        setServicesDropdownOpen(false);
-        triggerRef.current?.focus();
+      if (event.key === 'Escape') {
+        if (servicesDropdownOpen) {
+          setServicesDropdownOpen(false);
+          triggerRef.current?.focus();
+        }
+        if (menuOpen) {
+          setMenuOpen(false);
+        }
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [servicesDropdownOpen]);
+  }, [servicesDropdownOpen, menuOpen]);
 
   // Close mobile menu and reset dropdowns on route change
   useEffect(() => {
@@ -146,7 +151,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav aria-label="Main Navigation" className="hidden xl:flex items-center gap-4 xl:gap-5 2xl:gap-7 shrink-0">
+          <nav aria-label="Primary Navigation" className="hidden xl:flex items-center gap-4 xl:gap-5 2xl:gap-7 shrink-0">
             {mainNavLinks.map((link) => {
               // 1. Services Dropdown Menu
               if (link.children && link.children.length > 0) {
@@ -309,10 +314,10 @@ export default function Header() {
             <a
               href={getTelUrl(BUSINESS.phone.primary)}
               className="w-10 h-10 rounded-xl bg-[#E53935] hover:bg-[#c62828] active:scale-95 text-white flex items-center justify-center shadow-md transition-transform md:hidden shrink-0"
-              aria-label="Call Now"
-              title="Call Now"
+              aria-label={`Call Bharat Relocators at ${BUSINESS.phone.primaryFormatted}`}
+              title={`Call ${BUSINESS.phone.primaryFormatted}`}
             >
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-2.2 2.2a15.057 15.057 0 01-6.59-6.59l2.2-2.21a.96.96 0 00.25-1.01A11.36 11.36 0 018.57 3.9c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.52c0-.55-.45-1-1-1z" />
               </svg>
             </a>
@@ -323,6 +328,7 @@ export default function Header() {
               onClick={() => setMenuOpen((v) => !v)}
               aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={menuOpen}
+              aria-controls="mobile-nav-menu"
             >
               {menuOpen ? (
                 <svg
@@ -331,6 +337,7 @@ export default function Header() {
                   stroke="currentColor"
                   strokeWidth={2.2}
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -341,6 +348,7 @@ export default function Header() {
                   stroke="currentColor"
                   strokeWidth={2.2}
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -355,8 +363,9 @@ export default function Header() {
 
       {/* Mobile Menu Overlay */}
       {menuOpen && (
-        <div
+        <nav
           id="mobile-nav-menu"
+          aria-label="Mobile Navigation"
           className="fixed inset-0 z-40 bg-[#071A2B] flex flex-col justify-between px-4 sm:px-6 pt-20 pb-6 xl:hidden animate-in fade-in duration-200 overflow-y-auto overscroll-contain"
         >
           <div className="flex flex-col gap-1">
@@ -560,7 +569,7 @@ export default function Header() {
               <span>Monday to Sunday: Open 24 Hours</span>
             </div>
           </div>
-        </div>
+        </nav>
       )}
     </>
   );

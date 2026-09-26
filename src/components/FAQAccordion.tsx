@@ -15,6 +15,9 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
       {items.map((faq, index) => {
         const isOpen = openIndex === index;
 
+        const questionId = `faq-accordion-q-${index}`;
+        const answerId = `faq-accordion-a-${index}`;
+
         return (
           <div
             key={faq.q}
@@ -25,9 +28,12 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
             }`}
           >
             <button
-              className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-[#E53935]/40 rounded-2xl"
-              onClick={() => setOpenIndex(isOpen ? null : index)}
+              type="button"
+              id={questionId}
+              aria-controls={answerId}
               aria-expanded={isOpen}
+              className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left focus:outline-none focus:ring-2 focus:ring-[#E53935]/40 rounded-2xl cursor-pointer"
+              onClick={() => setOpenIndex(isOpen ? null : index)}
             >
               <span
                 className={`font-semibold text-[15px] sm:text-base transition-colors font-display ${
@@ -49,17 +55,23 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
                   stroke="currentColor"
                   strokeWidth={2.5}
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
                 </svg>
               </span>
             </button>
 
-            {isOpen && (
-              <div className="px-6 pb-6 pt-1 text-slate-600 text-sm sm:text-[15px] leading-relaxed border-t border-slate-100 animate-in fade-in duration-200">
-                {faq.a}
-              </div>
-            )}
+            <div
+              id={answerId}
+              role="region"
+              aria-labelledby={questionId}
+              className={`px-6 pb-6 pt-1 text-slate-600 text-sm sm:text-[15px] leading-relaxed border-t border-slate-100 ${
+                isOpen ? 'block animate-in fade-in duration-200' : 'hidden'
+              }`}
+            >
+              {faq.a}
+            </div>
           </div>
         );
       })}
