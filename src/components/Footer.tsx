@@ -110,6 +110,8 @@ export default function Footer() {
               <img
                 src="/images/logo.png"
                 alt="Bharat Relocators - Packers and Movers Kolkata"
+                width={200}
+                height={80}
                 className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
               />
               <span className="flex flex-col">
