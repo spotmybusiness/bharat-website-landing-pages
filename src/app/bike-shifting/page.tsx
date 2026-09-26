@@ -281,7 +281,7 @@ export default function BikeShiftingPage() {
             <div className="lg:col-span-6">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
-                  src="/images/bike.png"
+                  src="/images/bike_transportation.jpeg"
                   alt="Two-wheeler bubble wrapped and anchored with heavy-duty ratchet tie-down straps"
                   fill
                   className="object-cover"
