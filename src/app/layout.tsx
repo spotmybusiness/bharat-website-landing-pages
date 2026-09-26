@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     images: ['/images/packaging.png'],
   },
   icons: {
-    icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
+    icon: [{ url: '/assets/favicon.ico', type: 'image/x-icon' }],
   },
 };
 
