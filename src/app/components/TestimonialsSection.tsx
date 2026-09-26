@@ -419,18 +419,19 @@ export default function TestimonialsSection() {
             </div>
 
             <div
-              className="flex items-stretch gap-4 pr-4 shrink-0"
-              aria-hidden="true"
-            >
-              {DEFAULT_REVIEWS.map((review, index) => (
-                <div
-                  key={`mobile-duplicate-${review.name}-${index}`}
-                  className="w-[285px] sm:w-[320px] shrink-0"
-                >
-                  <ReviewCard review={review} />
-                </div>
-              ))}
-            </div>
+  className="flex items-stretch gap-4 pr-4 shrink-0"
+  aria-hidden="true"
+  inert
+>
+  {DEFAULT_REVIEWS.map((review, index) => (
+    <div
+      key={`mobile-duplicate-${review.name}-${index}`}
+      className="w-[285px] sm:w-[320px] shrink-0"
+    >
+      <ReviewCard review={review} />
+    </div>
+  ))}
+</div>
           </div>
         </div>
       </div>
