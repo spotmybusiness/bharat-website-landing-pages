@@ -218,7 +218,7 @@ export default function BikeShiftingPage() {
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
           <img
-            src="/images/bike_transportation.jpeg"
+            src="/images/packaging.png"
             alt="Bike Transport Two Wheeler Shifting Services - Bharat Relocators"
           />
         }
