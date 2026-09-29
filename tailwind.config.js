@@ -49,7 +49,7 @@ module.exports = {
         display: ['var(--font-display)', 'var(--font-sans)', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       animation: {
-        'marquee-left':  'marquee-left 35s linear infinite',
+        'marquee-left':  'marquee-left 150s linear infinite',
         'marquee-right': 'marquee-right 38s linear infinite',
       },
       keyframes: {

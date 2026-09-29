@@ -324,7 +324,11 @@
 
   .animate-marquee-right:hover,
   .animate-marquee-right:active,
-  .animate-marquee-right:focus-within {
+  .animate-marquee-right:focus-within,
+  .animate-marquee-left:hover,
+  .animate-marquee-left:active,
+  .animate-marquee-left:focus-within,
+  .group:hover .animate-marquee-left {
     animation-play-state: paused;
   }
 

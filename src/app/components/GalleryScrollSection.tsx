@@ -42,15 +42,15 @@ export default function GalleryScrollSection() {
         </Link>
       </div>
 
-      {/* ── Infinite Scroll Strip ──────────────────────────────────────── */}
-      <Link href="/gallery" className="block group cursor-pointer" aria-label="Open gallery">
-        {/* Row 1 — scrolls left */}
-        <div className="relative flex gap-3 mb-3" style={{ width: 'max-content' }}>
-          <div className="flex gap-3 animate-marquee-left">
+      {/* ── Infinite Scroll Strip (Single Row) ───────────────────────── */}
+      <Link href="/gallery" className="block group cursor-pointer overflow-hidden w-full" aria-label="Open gallery">
+        {/* Single Row — scrolls left at a calm, smooth pace */}
+        <div className="relative overflow-hidden marquee-mask py-2 w-full max-w-full">
+          <div className="flex w-max gap-4 sm:gap-6 animate-marquee-left group-hover:[animation-play-state:paused] hover:[animation-play-state:paused]">
             {displayItems.map((img, i) => (
               <div
                 key={i}
-                className="relative w-44 h-32 sm:w-56 sm:h-40 shrink-0 rounded-xl overflow-hidden border border-white/10 bg-white/5 group-hover:border-white/20 transition-all duration-300"
+                className="relative w-64 h-44 sm:w-80 sm:h-56 md:w-96 md:h-64 shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-white/5 group-hover:border-white/25 shadow-xl shadow-black/25 transition-all duration-300"
               >
                 {img.src ? (
                   <img
@@ -62,34 +62,7 @@ export default function GalleryScrollSection() {
                 ) : (
                   /* Placeholder shimmer */
                   <div className="w-full h-full bg-gradient-to-br from-white/5 to-white/[0.02] flex items-center justify-center">
-                    <svg className="w-8 h-8 text-white/15" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M13.5 12h.008v.008H13.5V12z" />
-                    </svg>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Row 2 — scrolls right (offset start) */}
-        <div className="relative flex gap-3 overflow-hidden" style={{ width: '100vw' }}>
-          <div className="flex gap-3 animate-marquee-right">
-            {[...displayItems].reverse().map((img, i) => (
-              <div
-                key={i}
-                className="relative w-44 h-32 sm:w-56 sm:h-40 shrink-0 rounded-xl overflow-hidden border border-white/10 bg-white/5 group-hover:border-white/20 transition-all duration-300"
-              >
-                {img.src ? (
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-white/5 to-white/[0.02] flex items-center justify-center">
-                    <svg className="w-8 h-8 text-white/15" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                    <svg className="w-12 h-12 text-white/20" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M13.5 12h.008v.008H13.5V12z" />
                     </svg>
                   </div>
@@ -100,8 +73,8 @@ export default function GalleryScrollSection() {
         </div>
 
         {/* Tap hint overlay */}
-        <div className="mt-6 flex justify-center">
-          <span className="inline-flex items-center gap-2 text-white/35 text-xs font-medium group-hover:text-white/60 transition-colors">
+        <div className="mt-8 flex justify-center">
+          <span className="inline-flex items-center gap-2 text-white/40 text-xs font-medium group-hover:text-white/70 transition-colors">
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225M13.684 16.6l2.224-2.51M6.116 7.358L7.474 12.43m0 0l2.51-2.224M7.474 12.43l-2.224 2.51M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707" />
             </svg>
