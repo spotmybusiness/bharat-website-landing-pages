@@ -217,10 +217,12 @@ export default function CarShiftingPage() {
         ]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
-          <img
-            src="/images/car_relocation_2.png"
-            alt="Car Transportation Carrier Services - Bharat Relocators"
-          />
+          <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
+            <img
+              src="/images/car_relocation_2.png"
+              alt="Car Transportation Carrier Services - Bharat Relocators"
+            />
+          </div>
         }
         actions={
           <>
