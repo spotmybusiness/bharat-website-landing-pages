@@ -122,7 +122,7 @@ export class AllcargoAdapter {
         return {
           success: false,
           code: 'TIMEOUT',
-          message: 'Request to Allcargo live tracking service timed out. Please try again.'
+          message: 'Request to live tracking service timed out. Please try again.'
         };
       }
 
@@ -130,7 +130,7 @@ export class AllcargoAdapter {
       return {
         success: false,
         code: 'NETWORK_ERROR',
-        message: `Failed to connect to Allcargo live service: ${msg}`
+        message: `Failed to connect to live tracking service: ${msg}`
       };
     }
   }
@@ -178,7 +178,7 @@ export class AllcargoAdapter {
       return {
         success: true,
         data: this.normalizeTrackShipmentResponse(docketNo, item),
-        message: 'Live tracking details retrieved successfully from Allcargo.'
+        message: 'Live tracking details retrieved successfully.'
       };
     } catch {
       return null;
@@ -206,7 +206,7 @@ export class AllcargoAdapter {
       return {
         success: false,
         code: 'API_ERROR',
-        message: `Allcargo service responded with status code ${response.status}.`
+        message: `Logistics service responded with status code ${response.status}.`
       };
     }
 
@@ -217,7 +217,7 @@ export class AllcargoAdapter {
       return {
         success: false,
         code: 'NOT_FOUND',
-        message: `No live record found for docket number "${docketNo}" in Allcargo Gati database (${errMsg}).`
+        message: `No live record found for docket number "${docketNo}" in logistics database (${errMsg}).`
       };
     }
 
@@ -225,7 +225,7 @@ export class AllcargoAdapter {
     return {
       success: true,
       data: this.normalizeDocketDetailsResponse(docketNo, item),
-      message: 'Live tracking details retrieved successfully from Allcargo.'
+      message: 'Live tracking details retrieved successfully.'
     };
   }
 
@@ -252,7 +252,7 @@ export class AllcargoAdapter {
     }
 
     return {
-      carrier: 'Allcargo Gati',
+      carrier: 'Bharat Relocators',
       trackingNumber: item.docketNumber || docketNo,
       pickupLocation: this.formatCity(item.bookingStation),
       pickupDate: pickupDateFormatted,
@@ -261,8 +261,6 @@ export class AllcargoAdapter {
       receiversName: this.formatCity(item.ReceiversName || item.consigneeName),
       remark: item.ReceiversRemarks || 'Delivered',
       gaRemark: item.GARemarks || item.ReceiversRemarks || 'Delivered',
-      podUrl: item.pod || `https://www.gati.com/showPOD.jsp?dktNo=${docketNo}`,
-      gstInvoiceUrl: `https://www.gati.com/download-gst-invoice?dktNo=${docketNo}`,
       timeline
     };
   }
@@ -273,7 +271,7 @@ export class AllcargoAdapter {
     const deliveryDateFormatted = this.formatDate(item.APPROVED_DLY_DT);
 
     return {
-      carrier: 'Allcargo Gati',
+      carrier: 'Bharat Relocators',
       trackingNumber: docketNo,
       pickupLocation: this.formatCity(item.BOOKING_STN),
       pickupDate: pickupDateFormatted,
@@ -282,8 +280,6 @@ export class AllcargoAdapter {
       receiversName: this.formatCity(item.CONSIGNEE_NAME),
       remark: 'Shipment delivered / in transit as per schedule',
       gaRemark: 'Shipment delivered / in transit as per schedule',
-      podUrl: `https://www.gati.com/showPOD.jsp?dktNo=${docketNo}`,
-      gstInvoiceUrl: `https://www.gati.com/download-gst-invoice?dktNo=${docketNo}`,
       timeline: [
         { status: `Delivered`, date: deliveryDateFormatted, isBooked: false },
         { status: `Shipment Booked`, date: pickupDateFormatted, isBooked: true }

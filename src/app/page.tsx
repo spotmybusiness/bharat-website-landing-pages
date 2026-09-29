@@ -13,6 +13,7 @@ import HowItWorksSection from '@/app/components/HowItWorksSection';
 import TestimonialsSection from '@/app/components/TestimonialsSection';
 import FAQSection from '@/app/components/FAQSection';
 import QuoteSection from '@/app/components/QuoteSection';
+import GalleryScrollSection from '@/app/components/GalleryScrollSection';
 
 const homeFaqs = [
   {
@@ -93,6 +94,9 @@ export default function HomePage() {
 
         {/* Engineering Reliability & Why Choose Us Bento */}
         <WhyChooseSection />
+
+        {/* Photo Gallery — Infinite Horizontal Scroll */}
+        <GalleryScrollSection />
 
         {/* Verified Customer Testimonials Carousel */}
         <TestimonialsSection />

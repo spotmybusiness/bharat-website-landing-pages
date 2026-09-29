@@ -53,7 +53,7 @@ export function cleanTrackingId(raw: string): string {
 /**
  * Validates tracking ID structure.
  * Bharat Relocators consignment notes / consignment numbers typically range from 4 to 35
- * alphanumeric characters (e.g. 430803710, 1847004934, BR-84920, or DP World container codes).
+ * alphanumeric characters (e.g. 430803710, 1847004934, BR-84920, or container codes).
  */
 export function validateTrackingId(id: string): { valid: boolean; error?: string } {
   const cleaned = cleanTrackingId(id);
@@ -80,7 +80,7 @@ export function validateTrackingId(id: string): { valid: boolean; error?: string
 /**
  * Primary shipment lookup engine.
  * Directly contacts the live Next.js tracking API route (/api/track) which coordinates
- * with Allcargo Gati and DP World / CARGOES production systems in real-time.
+ * with central logistics production systems in real-time.
  */
 export async function lookupShipment(rawId: string, carrier?: string): Promise<TrackingLookupResult> {
   const cleaned = cleanTrackingId(rawId);
@@ -102,7 +102,7 @@ export async function lookupShipment(rawId: string, carrier?: string): Promise<T
       return {
         found: false,
         searchedId: cleaned,
-        message: `Consignment "${cleaned}" could not be verified at this moment. Please check the carrier portal or contact dispatch.`,
+        message: `Consignment "${cleaned}" could not be verified at this moment. Please check the tracking portal or contact dispatch.`,
         portalFallbackUrl,
       };
     }
@@ -149,7 +149,7 @@ export const TRACKING_FAQS = [
   {
     question: 'Why does my Tracking ID show no status yet?',
     answer:
-      'If your move was booked or packed recently, vehicle dispatch manifests typically take 2 to 4 hours to index into the central tracking system after transit vehicle seal verification. You can check the live carrier portal or contact your move coordinator directly for immediate updates.',
+      'If your move was booked or packed recently, vehicle dispatch manifests typically take 2 to 4 hours to index into the central tracking system after transit vehicle seal verification. You can check the tracking portal or contact your move coordinator directly for immediate updates.',
   },
   {
     question: 'Can I change my delivery address or schedule while in transit?',

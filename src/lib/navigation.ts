@@ -77,12 +77,9 @@ export const serviceNavLinks: ServiceNavItem[] = [
  * On other pages, `href` is used via next/link for client-side navigation.
  */
 export const mainNavLinks: NavItem[] = [
-  {
-    label: 'Services',
-    href: '/services',
-    children: serviceNavLinks,
-  },
+  { label: 'Services', href: '/services', children: serviceNavLinks },
   { label: 'Track Us', href: '/tracking' },
+  { label: 'Gallery', href: '/gallery' },
   { label: 'Moving Guides', href: '/moving-guides' },
   { label: 'Process', href: '/process' },
   { label: 'About Us', href: '/about' },
@@ -119,6 +116,7 @@ export const footerServiceLinks: FooterLink[] = [
  */
 export const footerCompanyLinks: FooterLink[] = [
   { label: 'About Us', href: '/about' },
+  { label: 'Gallery', href: '/gallery' },
   { label: 'Customer Reviews', href: '/testimonials' },
   { label: 'Frequently Asked Questions', href: '/faqs' },
   { label: 'Contact Us', href: '/contact' },

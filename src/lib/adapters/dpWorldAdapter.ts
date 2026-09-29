@@ -62,7 +62,7 @@ export class DPWorldAdapter {
     if (sanitized.length < 4 || sanitized.length > 35) {
       return {
         valid: false,
-        error: 'Invalid tracking number length. Please enter a valid DP World container, booking, or docket number.'
+        error: 'Invalid tracking number length. Please enter a valid container, booking, or docket number.'
       };
     }
 
@@ -127,18 +127,18 @@ export class DPWorldAdapter {
             return {
               success: true,
               data: normalized,
-              message: 'DP World tracking details retrieved successfully.'
+              message: 'Tracking details retrieved successfully.'
             };
           }
         }
 
-        // DP World standard "not found" response format:
+        // Standard "not found" response format:
         // { status: 'success', message: 'No bookings found in the last 6 months', code: '40417' }
         if (json.code === '40417' || (typeof json.message === 'string' && json.message.toLowerCase().includes('no bookings found'))) {
           return {
             success: false,
             code: 'NOT_FOUND',
-            message: `No active DP World shipments or container bookings found for: ${trackingNumber}.`
+            message: `No active shipments or container bookings found for: ${trackingNumber}.`
           };
         }
       }
@@ -168,7 +168,7 @@ export class DPWorldAdapter {
               return {
                 success: true,
                 data: normalized,
-                message: 'DP World tracking details retrieved successfully.'
+                message: 'Tracking details retrieved successfully.'
               };
             }
           }
@@ -177,7 +177,7 @@ export class DPWorldAdapter {
             return {
               success: false,
               code: 'NOT_FOUND',
-              message: `No DP World shipment records found for: ${trackingNumber}.`
+              message: `No shipment records found for: ${trackingNumber}.`
             };
           }
         }
@@ -188,7 +188,7 @@ export class DPWorldAdapter {
       return {
         success: false,
         code: 'NOT_FOUND',
-        message: `No DP World shipment records found for tracking number: ${trackingNumber}.`
+        message: `No shipment records found for tracking number: ${trackingNumber}.`
       };
     } catch (error: unknown) {
       const isAbort = error instanceof Error && error.name === 'AbortError';
@@ -196,14 +196,14 @@ export class DPWorldAdapter {
         return {
           success: false,
           code: 'TIMEOUT',
-          message: 'DP World tracking request timed out. Please try again.'
+          message: 'Tracking request timed out. Please try again.'
         };
       }
       const msg = error instanceof Error ? error.message : String(error);
       return {
         success: false,
         code: 'NETWORK_ERROR',
-        message: `Failed to connect to DP World tracking service: ${msg}`
+        message: `Failed to connect to tracking service: ${msg}`
       };
     }
   }
@@ -235,7 +235,7 @@ export class DPWorldAdapter {
         return {
           success: false,
           code: 'AUTHENTICATION_FAILED',
-          message: 'DP World API key authentication failed. Please check credentials.'
+          message: 'Tracking service authentication failed. Please check credentials.'
         };
       }
 
@@ -251,7 +251,7 @@ export class DPWorldAdapter {
         return {
           success: false,
           code: 'API_ERROR',
-          message: `DP World service error: HTTP ${response.status}`
+          message: `Logistics service error: HTTP ${response.status}`
         };
       }
 
@@ -310,7 +310,7 @@ export class DPWorldAdapter {
     if (!raw) return null;
 
     const result: DPWorldTrackingData = {
-      carrier: raw.trackingType === 'express' ? 'DP World Express' : 'DP World / CARGOES',
+      carrier: 'Bharat Relocators',
       trackingNumber: raw.identifier?.identifierValue || trackingNumber,
       timeline: []
     };
