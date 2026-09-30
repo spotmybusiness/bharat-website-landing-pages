@@ -18,8 +18,14 @@ export default function GalleryPage() {
   return (
     <PageLayout>
       {/* ── Page Header ─────────────────────────────────────────────────── */}
-      <section className="pt-32 pb-8 bg-[#071A2B] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative pt-32 pb-8 bg-[#071A2B] text-white overflow-hidden w-full max-w-full">
+        {/* Ambient Dark Navy & Emerald Green Glow Gradients (Matching Homepage Hero Banner) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071A2B] via-[#071A2B]/90 to-[#082f52]/80 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#36c27a]/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[300px] bg-[#11a659]/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute inset-0 grain-overlay opacity-[0.03] pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav className="mb-4 flex items-center gap-2 text-xs text-white/40">
             <Link href="/" className="hover:text-white/70 transition-colors">Home</Link>

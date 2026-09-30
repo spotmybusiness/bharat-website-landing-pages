@@ -374,10 +374,10 @@ export default function PageHero({
     <section
       className={`relative pt-32 pb-16 lg:pt-36 lg:pb-20 bg-[#071A2B] text-white overflow-hidden w-full max-w-full ${className}`}
     >
-      {/* Ambient Dark Navy & Ember Glow Gradients */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#071A2B] via-[#071A2B]/95 to-[#082f52]/85 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1478B5]/15 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[400px] h-[250px] bg-[#E53935]/10 rounded-full blur-[100px] pointer-events-none" />
+      {/* Ambient Dark Navy & Emerald Green Glow Gradients (Matching Homepage Hero Banner) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#071A2B] via-[#071A2B]/90 to-[#082f52]/80 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#36c27a]/15 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[500px] h-[300px] bg-[#11a659]/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute inset-0 grain-overlay opacity-[0.03] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
