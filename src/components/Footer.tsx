@@ -280,7 +280,7 @@ export default function Footer() {
         {/* Brand Credit */}
         <div className="mt-4 pt-4 border-t border-white/5 text-center text-xs text-white/60">
           <p>
-            Made and Maintained with{' '}
+            Made and Maintained by{' '}
             <a
               href="https://share.google/hBseUBVk1PHI4ZUgJ"
               target="_blank"
