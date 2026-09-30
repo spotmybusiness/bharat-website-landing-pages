@@ -33,6 +33,7 @@ const CANONICAL_ROUTES: RouteConfig[] = [
   { path: '/testimonials', changeFrequency: 'weekly', priority: 0.7 },
   { path: '/faqs', changeFrequency: 'monthly', priority: 0.6 },
   { path: '/tracking', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/gallery', changeFrequency: 'weekly', priority: 0.8 },
 
   // Resource Hub & Authoritative Pillar Guides
   { path: '/moving-guides', changeFrequency: 'monthly', priority: 0.8 },

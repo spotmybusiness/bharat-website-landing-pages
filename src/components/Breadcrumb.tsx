@@ -30,6 +30,7 @@ const CANONICAL_PAGE_PATHS: Record<string, string> = {
   'Testimonials': '/testimonials',
   'Track Us': '/tracking',
   'Track Your Shipment': '/tracking',
+  'Gallery': '/gallery',
   'Services': '/services',
   'Our Services': '/services',
   'Household Shifting': '/household-shifting',

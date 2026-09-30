@@ -466,6 +466,18 @@ export default function Header() {
               Track Us
             </Link>
 
+            {/* Gallery Navigation Link */}
+            <Link
+              href="/gallery"
+              onClick={() => {
+                setMenuOpen(false);
+                setMobileServicesOpen(false);
+              }}
+              className="text-white text-base font-bold text-left py-2.5 border-b border-white/10 hover:text-[#F28A32] transition-colors focus:outline-none"
+            >
+              Gallery
+            </Link>
+
             {/* Other Navigation Links */}
             <Link
               href="/moving-guides"
