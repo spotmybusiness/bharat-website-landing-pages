@@ -1,85 +1,11 @@
-
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getReviewSlug } from '@/data/reviews';
+import { getReviewSlug, getWeekendReviews, ReviewItem } from '@/data/reviews';
 
-type GoogleReviewItem = {
-  name: string;
-  initials: string;
-  role: string;
-  rating: number;
-  text: string;
-  service: string;
-  date: string;
-  source: 'verified';
-  profile_photo_url?: string;
-};
-
-const DEFAULT_REVIEWS: GoogleReviewItem[] = [
-  {
-    name: 'Nirendar Singh',
-    initials: 'NS',
-    role: 'Car Transport — Kolkata to Bengaluru',
-    rating: 5,
-    text: 'Extremely happy with the service provided by Bharat Relocators\n\nI was looking to transport my Maruti Zen Estilo from Kolkata to Bengaluru and found the perfect solution in Bharat Relocators at most competitive rates . The car was picked up from my residence and dropped at location in unbelievable 6 days !!\n\nThanks to Mr Subhasis for hassle free experience',
-    service: 'Car Shifting',
-    date: 'a week ago',
-    source: 'verified',
-  },
-  {
-    name: 'Anuroop Roy',
-    initials: 'AR',
-    role: 'Bike Transportation',
-    rating: 5,
-    text: 'Very good experience',
-    service: 'Bike Shifting',
-    date: 'a week ago',
-    source: 'verified',
-  },
-  {
-    name: 'Sobha Halder',
-    initials: 'SH',
-    role: 'Bike relocation- Kolkata to Navi Mumbai',
-    rating: 5,
-    text: "I had a good experience with Bharat Relocators for transporting my bike from Kolkata to Navi Mumbai. Subhasish assisted me throughout the process and was very helpful and responsive whenever I needed any assistance.\n\nThere was a minor issue where the spring of my bike stand was broken during transportation. However, the team immediately informed me and called to confirm if any charges were required to fix it. The repair cost was only ₹50, so it wasn't a major concern.\n\nMy bike reached Navi Mumbai from Kolkata within 7 days, which I found quite fast. The team also supported me throughout the entire process, right until my bike was unloaded at the destination.\n\nOverall, I'm satisfied with their service and especially appreciate Subhasish's support and communication. Would definitely recommend Bharat Relocators for bike transportation. 👍🙏",
-    service: 'Bike Shifting',
-    date: 'a week ago',
-    source: 'verified',
-  },
-  {
-    name: 'Dip Chakraborty',
-    initials: 'DC',
-    role: 'Home Shifting',
-    rating: 5,
-    text: "Good service in the given time period, Fantastic",
-    service: 'Household Shifting',
-    date: '2 weeks ago',
-    source: 'verified',
-  },
-  {
-    name: 'A Google User',
-    initials: 'AGU',
-    role: 'Transport Service — Intercity',
-    rating: 5,
-    text: 'Excellent transport service! The entire process of moving my household items and bike was smooth, safe, and well-coordinated. The team was professional, responsive, and handled everything with great care. All items were delivered on time and without any damage. Communication throughout the process was also very good. Highly recommended for anyone looking for a reliable and hassle-free household and bike transportation service.',
-    service: 'Parcel Shifting',
-    date: '2 weeks ago',
-    source: 'verified',
-  },
-  {
-    name: 'Dipankar Das',
-    initials: 'DD',
-    role: 'Bike Transportation',
-    rating: 5,
-    text: 'Excellent service by Bharat Relocators!\nI had a very good experience with Bharat Relocators. The entire process was smooth, professional, and well managed. The staff was helpful, polite, and responsive throughout the service. My vehicle was handled with proper care and delivered safely.\nI really appreciate their timely service and professional approach. Highly recommended to anyone looking for a reliable vehicle transportation service. Great job, Bharat Relocators! 👍',
-    service: 'Bike Relocation',
-    date: '3 weeks ago',
-    source: 'verified',
-  },
-];
+export type GoogleReviewItem = ReviewItem;
 
 function StarRating({ rating }: { rating: number }) {
   return (
@@ -221,14 +147,64 @@ function ReviewCard({
 }
 
 export default function TestimonialsSection() {
+  const [reviews, setReviews] = useState<GoogleReviewItem[]>(() => getWeekendReviews(undefined, 6));
+  const [overallRating, setOverallRating] = useState<number>(4.9);
+  const [totalRatingsCount, setTotalRatingsCount] = useState<number>(306);
+  const [isLiveGmb, setIsLiveGmb] = useState<boolean>(false);
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [sectionRevealed, setSectionRevealed] = useState(false);
   const [isMarqueePaused, setIsMarqueePaused] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
 
-  const overallRating = 4.9;
-  const totalRatingsCount = 305;
+  // Sync real Google reviews from /api/google-reviews endpoint (advances every Saturday at 23:59 IST)
+  useEffect(() => {
+    let isMounted = true;
+    let syncTimer: ReturnType<typeof setTimeout> | null = null;
+
+    async function syncReviewsFromGmb() {
+      try {
+        const res = await fetch('/api/google-reviews');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (isMounted && data.success && Array.isArray(data.reviews) && data.reviews.length > 0) {
+          // Strictly filter for reviews with rating >= 4 stars and limit to latest 6
+          const filtered = data.reviews
+            .filter((r: GoogleReviewItem) => r.rating >= 4)
+            .slice(0, 6);
+          if (filtered.length > 0) {
+            setReviews(filtered);
+          }
+          if (typeof data.rating === 'number') {
+            setOverallRating(data.rating);
+          }
+          if (typeof data.user_ratings_total === 'number') {
+            setTotalRatingsCount(data.user_ratings_total);
+          }
+          if (data.isLive) {
+            setIsLiveGmb(true);
+          }
+
+          // Schedule auto-refresh if user has the page open through Saturday 23:59 IST
+          if (typeof data.secondsUntilNextSync === 'number' && data.secondsUntilNextSync > 0) {
+            const delayMs = (data.secondsUntilNextSync + 2) * 1000;
+            // Cap to 24 hours for reliable browser timer execution
+            const safeDelay = Math.min(delayMs, 24 * 60 * 60 * 1000);
+            syncTimer = setTimeout(syncReviewsFromGmb, safeDelay);
+          }
+        }
+      } catch (err) {
+        console.warn('Google reviews sync using rotating verified pool:', err);
+      }
+    }
+
+    syncReviewsFromGmb();
+    return () => {
+      isMounted = false;
+      if (syncTimer) clearTimeout(syncTimer);
+    };
+  }, []);
 
   useEffect(() => {
     const element = sectionRef.current;
@@ -251,12 +227,13 @@ export default function TestimonialsSection() {
   }, []);
 
   useEffect(() => {
+    if (reviews.length === 0) return;
     const interval = window.setInterval(() => {
-      setActiveIndex((previous) => (previous + 1) % DEFAULT_REVIEWS.length);
+      setActiveIndex((previous) => (previous + 1) % reviews.length);
     }, 5000);
 
     return () => window.clearInterval(interval);
-  }, []);
+  }, [reviews.length]);
 
   const handleIndicatorKeyDown = (
     event: React.KeyboardEvent<HTMLButtonElement>,
@@ -264,13 +241,13 @@ export default function TestimonialsSection() {
   ) => {
     if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
       event.preventDefault();
-      setActiveIndex((index + 1) % DEFAULT_REVIEWS.length);
+      setActiveIndex((index + 1) % reviews.length);
     }
 
     if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
       event.preventDefault();
       setActiveIndex(
-        (index - 1 + DEFAULT_REVIEWS.length) % DEFAULT_REVIEWS.length
+        (index - 1 + reviews.length) % reviews.length
       );
     }
   };
@@ -320,7 +297,7 @@ export default function TestimonialsSection() {
                 className="w-1.5 h-1.5 rounded-full bg-emerald-500"
                 aria-hidden="true"
               />
-              Updated weekly
+              {isLiveGmb ? 'Synced with Google Live' : 'Rotated every weekend (4★+)'}
             </span>
           </div>
         </div>
@@ -330,7 +307,7 @@ export default function TestimonialsSection() {
           className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           aria-label="Customer reviews"
         >
-          {DEFAULT_REVIEWS.map((review, index) => (
+          {reviews.map((review, index) => (
             <div
               key={`${review.name}-${index}`}
               className="transition-all duration-700"
@@ -353,7 +330,7 @@ export default function TestimonialsSection() {
           role="group"
           aria-label="Choose highlighted testimonial"
         >
-          {DEFAULT_REVIEWS.map((review, index) => {
+          {reviews.map((review, index) => {
             const isActive = index === activeIndex;
 
             return (
@@ -408,7 +385,7 @@ export default function TestimonialsSection() {
             }}
           >
             <div className="flex items-stretch gap-4 pr-4 shrink-0">
-              {DEFAULT_REVIEWS.map((review, index) => (
+              {reviews.map((review, index) => (
                 <div
                   key={`mobile-primary-${review.name}-${index}`}
                   className="w-[285px] sm:w-[320px] shrink-0"
@@ -419,19 +396,19 @@ export default function TestimonialsSection() {
             </div>
 
             <div
-  className="flex items-stretch gap-4 pr-4 shrink-0"
-  aria-hidden="true"
-  inert
->
-  {DEFAULT_REVIEWS.map((review, index) => (
-    <div
-      key={`mobile-duplicate-${review.name}-${index}`}
-      className="w-[285px] sm:w-[320px] shrink-0"
-    >
-      <ReviewCard review={review} />
-    </div>
-  ))}
-</div>
+              className="flex items-stretch gap-4 pr-4 shrink-0"
+              aria-hidden="true"
+              inert
+            >
+              {reviews.map((review, index) => (
+                <div
+                  key={`mobile-duplicate-${review.name}-${index}`}
+                  className="w-[285px] sm:w-[320px] shrink-0"
+                >
+                  <ReviewCard review={review} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

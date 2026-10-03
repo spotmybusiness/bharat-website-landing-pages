@@ -178,11 +178,23 @@ export default function HeroSection() {
 
       {/* Background Ambience & Atmospheric Twilight Highway */}
 
-        {/* Ambient Dark Navy & Ember Glow Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071A2B] via-[#071A2B]/90 to-[#082f52]/80" />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#36c27a]/15 rounded-full blur-[120px]" />
-        <div className="absolute bottom-10 left-1/4 w-[500px] h-[300px] bg-[#11a659]/10 rounded-full blur-[100px]" />
+      {/* ── Panoramic City & Moon Banner Background (behind truck) ── */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <img
+          src="/images/hero_banner.png"
+          alt="Night City Skyline & Moon - Bharat Relocators"
+          className="w-full h-full object-cover object-bottom"
+        />
+        {/* Soft atmospheric gradient: slightly darker on the left for text contrast, open on the right for moon & city */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071A2B]/85 via-[#071A2B]/35 to-transparent" />
+        {/* Subtle top header blend so the fixed header transitions seamlessly */}
+        <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#071A2B]/90 via-[#071A2B]/40 to-transparent" />
+        {/* Subtle bottom road blend */}
+        <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-[#071A2B]/50 to-transparent" />
+        {/* Ambient subtle green-blue glow matching theme */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#36c27a]/10 rounded-full blur-[120px]" />
         <div className="absolute inset-0 grain-overlay opacity-[0.03]" />
+      </div>
 
       {/* ----------------------------------------------------------------- */}
       {/* 1. HERO RELOCATION TRUCK & MOVING BOX (Desktop Only: Right Side)  */}
@@ -193,7 +205,7 @@ export default function HeroSection() {
       >
         {/* Sleek Linear Road Reference (Ground line on which truck moves) */}
         <div
-          className="absolute inset-x-0 bottom-[106px] xl:bottom-[122px] 2xl:bottom-[138px] pointer-events-none"
+          className="absolute inset-x-0 bottom-[59px] xl:bottom-[75px] 2xl:bottom-[91px] pointer-events-none"
           aria-hidden="true"
         >
           <div className="relative w-full">
@@ -215,7 +227,7 @@ export default function HeroSection() {
         </div>
 
         <div
-          className="absolute bottom-12 sm:bottom-14 lg:bottom-[80px] xl:bottom-[92px] 2xl:bottom-[104px] right-2 sm:right-4 lg:right-4 xl:right-8 flex items-end"
+          className="absolute bottom-4 sm:bottom-6 lg:bottom-[33px] xl:bottom-[45px] 2xl:bottom-[57px] right-2 sm:right-4 lg:right-4 xl:right-8 flex items-end"
           style={{
             animation: 'truckDriveInCinematic 3.6s cubic-bezier(0.12, 0.85, 0.25, 1) 0.1s both',
           }}
@@ -483,11 +495,16 @@ export default function HeroSection() {
       {/* 2. SYNCHRONIZED HERO CONTENT (Shifted Left, strictly left of red line) */}
       {/* ----------------------------------------------------------------- */}
       <div className="relative z-20 w-full max-w-[1560px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 mt-4 sm:mt-6 lg:mt-8 mb-auto pt-2 pb-6">
-        <div className="w-full max-w-xl lg:max-w-[490px] xl:max-w-[530px] 2xl:max-w-[580px]">
+        <div
+          className="anim-hero-item w-full max-w-2xl lg:max-w-[620px] xl:max-w-[660px] 2xl:max-w-[700px] bg-[#071A2B]/75 backdrop-blur-md p-5 sm:p-7 lg:p-8 rounded-3xl border border-white/15 shadow-2xl shadow-black/60"
+          style={{
+            animation: 'heroUnpackEmerge 0.85s cubic-bezier(0.16, 1, 0.3, 1) 5.2s both',
+          }}
+        >
           {/* Live Verification Badge (Unpacked from Relocation Box after pause) */}
           <div className="text-center sm:text-left">
             <div
-              className="anim-hero-item inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 mb-6 shadow-sm"
+              className="anim-hero-item inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 mb-4 shadow-sm"
               style={{
                 animation: 'heroUnpackEmerge 0.85s cubic-bezier(0.16, 1, 0.3, 1) 5.4s both',
               }}
@@ -504,7 +521,7 @@ export default function HeroSection() {
 
           {/* Clean Confident Headline (Unpacked from Relocation Box) */}
           <h1
-            className="anim-hero-item text-2xl sm:text-4xl lg:text-[2.65rem] xl:text-[3.1rem] font-display font-extrabold leading-[1.18] sm:leading-[1.14] mb-4 sm:mb-5 tracking-tight text-white text-center sm:text-left"
+            className="anim-hero-item text-2xl sm:text-4xl lg:text-[2.65rem] xl:text-[3.1rem] font-display font-extrabold leading-[1.18] sm:leading-[1.14] mb-3 sm:mb-4 tracking-tight text-white text-center sm:text-left"
             style={{
               animation: 'heroUnpackEmerge 0.95s cubic-bezier(0.16, 1, 0.3, 1) 5.65s both',
             }}
@@ -516,7 +533,7 @@ export default function HeroSection() {
 
           {/* Subtext (Unpacked from Relocation Box) */}
           <p
-            className="anim-hero-item text-sm sm:text-base text-white/80 font-normal leading-relaxed mb-6 sm:mb-8 max-w-lg text-center sm:text-left"
+            className="anim-hero-item text-sm sm:text-base text-white/80 font-normal leading-relaxed mb-5 sm:mb-6 max-w-xl text-center sm:text-left"
             style={{
               animation: 'heroUnpackEmerge 0.9s cubic-bezier(0.16, 1, 0.3, 1) 5.9s both',
             }}
@@ -526,7 +543,7 @@ export default function HeroSection() {
 
           {/* Primary & Secondary Action CTAs (Unpacked Together in Harmony) */}
           <div
-            className="anim-hero-item flex flex-col sm:flex-row gap-3.5 items-stretch sm:items-center"
+            className="anim-hero-item flex flex-wrap sm:flex-nowrap gap-3 items-stretch sm:items-center"
             style={{
               animation: 'heroUnpackEmerge 0.85s cubic-bezier(0.16, 1, 0.3, 1) 6.1s both',
             }}
@@ -534,11 +551,11 @@ export default function HeroSection() {
             {/* Primary Quote CTA */}
             <button
               onClick={() => handleScrollTo('quote')}
-              className="relative inline-flex items-center justify-center gap-2 bg-[#E53935] hover:bg-[#c62828] text-white font-semibold px-5 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-sm sm:text-[15px] overflow-hidden group"
+              className="relative inline-flex items-center justify-center gap-2 bg-[#E53935] hover:bg-[#c62828] text-white font-semibold px-4.5 py-3 sm:px-5 sm:py-3.5 rounded-2xl shadow-xl hover:shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-xs sm:text-sm whitespace-nowrap overflow-hidden group shrink-0"
             >
-              <span>Get Free Moving Quote</span>
+              <span className="whitespace-nowrap">Get Free Moving Quote</span>
               <svg
-                className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth={2.5}
@@ -551,21 +568,21 @@ export default function HeroSection() {
             {/* Dial / Phone CTA */}
             <a
               href="tel:+919123046504"
-              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-4 py-3.5 rounded-2xl shadow-md transition-all duration-200 text-sm sm:text-[15px] group"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-3.5 py-3 sm:px-4 sm:py-3.5 rounded-2xl shadow-md transition-all duration-200 text-xs sm:text-sm whitespace-nowrap group shrink-0"
             >
               <span className="w-5 h-5 rounded-full bg-[#F28A32] text-white flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
                 </svg>
               </span>
-              <span className="tracking-normal text-white">Call Now</span>
+              <span className="tracking-normal text-white whitespace-nowrap">Call Now</span>
             </a>
             {/* WhatsApp CTA */}
             <a
               href="https://api.whatsapp.com/send/?phone=919123046504&text=Hi%2C+I+need+a+quote+for+my+relocation+with+Bharat+Relocators.&type=phone_number&app_absent=0"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#059669] hover:bg-[#128C7E] border border-[#25D366]/40 text-white font-semibold px-4 py-3.5 rounded-2xl shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-sm sm:text-[15px] group"
+              className="inline-flex items-center justify-center gap-2 bg-[#059669] hover:bg-[#128C7E] border border-[#25D366]/40 text-white font-semibold px-3.5 py-3 sm:px-4 sm:py-3.5 rounded-2xl shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 text-xs sm:text-sm whitespace-nowrap group shrink-0"
             >
               <span className="w-5 h-5 text-white flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-200">
                 <svg
@@ -577,7 +594,7 @@ export default function HeroSection() {
                   <path d="M12.04 2C6.51 2 2 6.51 2 12.04c0 1.77.46 3.49 1.33 5.01L2 22l5.08-1.31a10 10 0 0 0 4.96 1.35h.01C17.57 22.04 22 17.53 22 12.04 22 6.51 17.57 2 12.04 2Zm0 18.35h-.01a8.34 8.34 0 0 1-4.25-1.17l-.3-.18-3.02.78.81-2.94-.2-.3a8.32 8.32 0 1 1 6.97 3.81Zm4.57-6.24c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.57.13-.17.25-.65.81-.8.98-.15.17-.3.19-.55.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.7-.14-.25-.01-.39.11-.52.11-.11.25-.3.38-.45.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.57-1.37-.78-1.88-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.45.06-.68.32-.23.25-.89.87-.89 2.12s.91 2.46 1.04 2.63c.13.17 1.79 2.73 4.34 3.83.61.26 1.09.42 1.46.54.61.19 1.16.16 1.6.1.49-.07 1.48-.61 1.69-1.2.21-.59.21-1.09.15-1.2-.06-.11-.23-.17-.48-.3Z" />
                 </svg>
               </span>
-              <span className="tracking-normal text-white">WhatsApp</span>
+              <span className="tracking-normal text-white whitespace-nowrap">WhatsApp</span>
             </a>
           </div>
         </div>
