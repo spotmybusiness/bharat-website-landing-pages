@@ -259,8 +259,8 @@ export class AllcargoAdapter {
       deliveryDestination: this.formatCity(item.deliveryStation),
       deliveryDate: deliveryDateFormatted,
       receiversName: this.formatCity(item.ReceiversName || item.consigneeName),
-      remark: item.ReceiversRemarks || 'Delivered',
-      gaRemark: item.GARemarks || item.ReceiversRemarks || 'Delivered',
+      remark: item.ReceiversRemarks || 'In Transit',
+      gaRemark: item.GARemarks || item.ReceiversRemarks || 'In Transit',
       timeline
     };
   }

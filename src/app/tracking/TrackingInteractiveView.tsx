@@ -340,33 +340,15 @@ function LiveTrackingDetailsView({
   onCopy: () => void;
   whatsappSupportUrl: string;
 }) {
-  const isDelivered =
-    (data.remark && data.remark.toLowerCase().includes('deliver')) ||
-    (data.timeline && data.timeline.length > 0 && data.timeline[0].status.toLowerCase().includes('deliver'));
-
   return (
     <div className="space-y-6">
-      {/* 1. Header Card: Carrier, Docket Number, Status Badge & Action Buttons */}
+      {/* 1. Header Card: Carrier, Docket Number & Action Buttons */}
       <div className="rounded-2xl bg-[#071A2B] border border-white/10 p-5 sm:p-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               <span className="px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider bg-white/10 text-white border border-white/15">
                 Bharat Relocators
-              </span>
-              <span
-                className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-bold tracking-wide uppercase ${
-                  isDelivered
-                    ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                    : 'bg-[#F28A32]/20 text-[#F28A32] border border-[#F28A32]/30'
-                }`}
-              >
-                <span
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    isDelivered ? 'bg-emerald-400' : 'bg-[#F28A32] animate-pulse'
-                  }`}
-                />
-                {isDelivered ? 'Delivered' : data.remark || 'In Transit'}
               </span>
             </div>
 
@@ -473,13 +455,13 @@ function LiveTrackingDetailsView({
             <div>
               <div className="text-xs text-slate-400 font-medium">Remark</div>
               <div className="text-white font-semibold mt-0.5 uppercase tracking-wider text-xs">
-                {data.remark || 'Delivered'}
+                {data.remark || 'In Transit'}
               </div>
             </div>
             <div>
               <div className="text-xs text-slate-400 font-medium">GA Remark</div>
               <div className="text-slate-300 mt-0.5 uppercase tracking-wider text-xs">
-                {data.gaRemark || data.remark || 'Normal Delivery'}
+                {data.gaRemark || data.remark || 'In Transit'}
               </div>
             </div>
           </div>
