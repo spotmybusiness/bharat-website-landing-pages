@@ -40,6 +40,28 @@ export interface TrackingLookupResult {
   data?: LiveShipmentData;
   message?: string;
   portalFallbackUrl: string;
+  carrierFallbackUrl?: string;
+}
+
+/**
+ * Returns the best direct tracking portal link based on consignment format:
+ * - 1847xxxxxx (10 digits) -> DP World Express India Live Portal
+ * - 8-10 digits -> Allcargo Gati Tracking Portal
+ * - 4 letters + 7 digits -> DP World Container Tracking
+ * - Default -> Bharat Relocators Tracking Portal
+ */
+export function getTrackingPortalUrl(trackingId: string): string {
+  const clean = trackingId.trim().toUpperCase();
+  if (/^1847\d{6}$/.test(clean)) {
+    return `https://www.logistics.dpworld.com/tracking/in/express?shipment=${encodeURIComponent(clean)}`;
+  }
+  if (/^\d{8,10}$/.test(clean)) {
+    return `https://www.allcargologistics.com/tracking?docket_no=${encodeURIComponent(clean)}`;
+  }
+  if (/^[A-Z]{4}\d{7}$/.test(clean)) {
+    return `https://www.logistics.dpworld.com/container-tracking?booking=${encodeURIComponent(clean)}`;
+  }
+  return `${BUSINESS.tracking.portalUrl}?nums=${encodeURIComponent(clean)}`;
 }
 
 /**
@@ -84,7 +106,7 @@ export function validateTrackingId(id: string): { valid: boolean; error?: string
  */
 export async function lookupShipment(rawId: string, carrier?: string): Promise<TrackingLookupResult> {
   const cleaned = cleanTrackingId(rawId);
-  const portalFallbackUrl = BUSINESS.tracking.portalUrl;
+  const portalFallbackUrl = getTrackingPortalUrl(cleaned);
 
   try {
     const res = await fetch('/api/track', {

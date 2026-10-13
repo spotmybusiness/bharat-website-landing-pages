@@ -272,7 +272,13 @@ export default function TrackingInteractiveView({ compact = false }: TrackingInt
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#E53935] to-[#c62828] hover:from-[#c62828] hover:to-[#b71c1c] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"
                     >
-                      <span>Check on Tracking Portal</span>
+                      <span>
+                        {lookupResult.searchedId && /^1847\d{6}$/.test(lookupResult.searchedId)
+                          ? 'Open Live DP World Express Portal'
+                          : lookupResult.searchedId && /^\d{8,10}$/.test(lookupResult.searchedId)
+                          ? 'Open Live Allcargo Gati Portal'
+                          : 'Check on Live Tracking Portal'}
+                      </span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path
                           strokeLinecap="round"

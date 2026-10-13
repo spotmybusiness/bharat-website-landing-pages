@@ -22,10 +22,11 @@ export async function POST(req: NextRequest) {
     }
 
     const cleanNumber = trackingNumber.trim();
+    const isDpWorldExpress = /^1847\d{6}$/.test(cleanNumber);
     const isNumericDocket = /^\d{7,11}$/.test(cleanNumber);
 
-    let primaryAdapter = isNumericDocket ? allcargoAdapter : dpWorldAdapter;
-    let fallbackAdapter = isNumericDocket ? dpWorldAdapter : allcargoAdapter;
+    let primaryAdapter = isDpWorldExpress ? dpWorldAdapter : isNumericDocket ? allcargoAdapter : dpWorldAdapter;
+    let fallbackAdapter = isDpWorldExpress ? allcargoAdapter : isNumericDocket ? dpWorldAdapter : allcargoAdapter;
 
     if (carrier === 'dpworld') {
       primaryAdapter = dpWorldAdapter;
@@ -47,11 +48,15 @@ export async function POST(req: NextRequest) {
     }
 
     if (!result.success) {
+      const notFoundMsg = isDpWorldExpress
+        ? `Consignment "${cleanNumber}" is registered in DP World Express India network. Click below to view live telematics directly on the DP World portal.`
+        : result.message || `No active shipment records found for "${cleanNumber}".`;
+
       return NextResponse.json(
         {
           success: false,
           code: result.code || 'NOT_FOUND',
-          message: result.message || `No active shipment records found for "${cleanNumber}".`,
+          message: notFoundMsg,
           searchedId: cleanNumber
         },
         { status: 200 }
@@ -93,10 +98,11 @@ export async function GET(req: NextRequest) {
   }
 
   const cleanNumber = trackingNumber.trim();
+  const isDpWorldExpress = /^1847\d{6}$/.test(cleanNumber);
   const isNumericDocket = /^\d{7,11}$/.test(cleanNumber);
 
-  let primaryAdapter = isNumericDocket ? allcargoAdapter : dpWorldAdapter;
-  let fallbackAdapter = isNumericDocket ? dpWorldAdapter : allcargoAdapter;
+  let primaryAdapter = isDpWorldExpress ? dpWorldAdapter : isNumericDocket ? allcargoAdapter : dpWorldAdapter;
+  let fallbackAdapter = isDpWorldExpress ? allcargoAdapter : isNumericDocket ? dpWorldAdapter : allcargoAdapter;
 
   if (carrier === 'dpworld') {
     primaryAdapter = dpWorldAdapter;
@@ -116,11 +122,15 @@ export async function GET(req: NextRequest) {
   }
 
   if (!result.success) {
+    const notFoundMsg = isDpWorldExpress
+      ? `Consignment "${cleanNumber}" is registered in DP World Express India network. Click below to view live telematics directly on the DP World portal.`
+      : result.message || `No active shipment records found for "${cleanNumber}".`;
+
     return NextResponse.json(
       {
         success: false,
         code: result.code || 'NOT_FOUND',
-        message: result.message || `No active shipment records found for "${cleanNumber}".`,
+        message: notFoundMsg,
         searchedId: cleanNumber
       },
       { status: 200 }
