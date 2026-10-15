@@ -282,7 +282,7 @@ export default function Footer() {
           <p>
             Made and Maintained by{' '}
             <a
-              href="https://share.google/hBseUBVk1PHI4ZUgJ"
+              href="https://www.spotmybusiness.in"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#F28A32] hover:text-white font-semibold transition-colors underline underline-offset-2"
