@@ -9,6 +9,7 @@ import {
   TrackingLookupResult,
   LiveShipmentData,
 } from '@/lib/tracking';
+import ShipmentRouteMap from './ShipmentRouteMap';
 
 interface TrackingInteractiveViewProps {
   compact?: boolean;
@@ -67,7 +68,7 @@ export default function TrackingInteractiveView({ compact = false }: TrackingInt
   )}`;
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <div className={`w-full ${lookupResult?.found ? 'max-w-6xl' : 'max-w-4xl'} mx-auto transition-all duration-300`}>
       {/* Central Search Card */}
       <div
         className={`bg-[#0B253D] rounded-3xl border border-white/10 shadow-2xl overflow-hidden ${
@@ -474,79 +475,87 @@ function LiveTrackingDetailsView({
         </div>
       </div>
 
-      {/* 3. Milestone Timeline (Vertical Timeline matching Official Portal) */}
-      <div className="rounded-2xl bg-[#071A2B] border border-white/10 p-5 sm:p-7">
-        <div className="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-[#E53935]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            <h4 className="text-base sm:text-lg font-bold text-white">Transit Milestones</h4>
+      {/* 3. Side-by-Side Milestone Timeline & Live Cargo Route Map (matching DP World layout) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        {/* Left Column: Milestone Timeline */}
+        <div className="lg:col-span-6 rounded-2xl bg-[#071A2B] border border-white/10 p-5 sm:p-7 flex flex-col">
+          <div className="flex items-center justify-between mb-6 pb-3 border-b border-white/10">
+            <div className="flex items-center gap-2">
+              <svg className="w-5 h-5 text-[#E53935]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              <h4 className="text-base sm:text-lg font-bold text-white">Transit Milestones</h4>
+            </div>
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-white/10 text-slate-300">
+              {data.timeline.length} Recorded Milestone{data.timeline.length === 1 ? '' : 's'}
+            </span>
           </div>
-          <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-white/10 text-slate-300">
-            {data.timeline.length} Recorded Milestone{data.timeline.length === 1 ? '' : 's'}
-          </span>
-        </div>
 
-        {/* Milestone Steps Vertical Flow */}
-        <div className="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-3 sm:before:left-4 before:top-3 before:bottom-3 before:w-0.5 before:bg-white/15">
-          {data.timeline.map((event, index) => {
-            const isTop = index === 0;
-            const isBottom = index === data.timeline.length - 1 || event.isBooked;
+          {/* Milestone Steps Vertical Flow */}
+          <div className="relative pl-6 sm:pl-8 space-y-5 max-h-[460px] overflow-y-auto pr-1.5 before:absolute before:left-3 sm:before:left-4 before:top-3 before:bottom-3 before:w-0.5 before:bg-white/15">
+            {data.timeline.map((event, index) => {
+              const isTop = index === 0;
+              const isBottom = index === data.timeline.length - 1 || event.isBooked;
 
-            return (
-              <div key={index} className="relative group">
-                {/* Node Icon on Timeline */}
-                <div
-                  className={`absolute -left-6 sm:-left-8 top-0.5 w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border transition-all ${
-                    isTop
-                      ? 'bg-emerald-500 border-emerald-400 text-white shadow-lg shadow-emerald-500/20'
-                      : isBottom
-                      ? 'bg-[#0B253D] border-[#F28A32] text-[#F28A32]'
-                      : 'bg-emerald-600/80 border-emerald-400/60 text-white'
-                  }`}
-                >
-                  {isTop ? (
-                    // Top / Delivered Checkmark
-                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  ) : isBottom ? (
-                    // Bottom / Shipment Booked Parcel Icon
-                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                      />
-                    </svg>
-                  ) : (
-                    // Intermediate Upward Arrow
-                    <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-                    </svg>
-                  )}
-                </div>
+              return (
+                <div key={index} className="relative group">
+                  {/* Node Icon on Timeline */}
+                  <div
+                    className={`absolute -left-6 sm:-left-8 top-0.5 w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border transition-all ${
+                      isTop
+                        ? 'bg-emerald-500 border-emerald-400 text-white shadow-lg shadow-emerald-500/20'
+                        : isBottom
+                        ? 'bg-[#0B253D] border-[#F28A32] text-[#F28A32]'
+                        : 'bg-emerald-600/80 border-emerald-400/60 text-white'
+                    }`}
+                  >
+                    {isTop ? (
+                      // Top / Delivered Checkmark
+                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    ) : isBottom ? (
+                      // Bottom / Shipment Booked Parcel Icon
+                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                        />
+                      </svg>
+                    ) : (
+                      // Intermediate Upward Arrow
+                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                      </svg>
+                    )}
+                  </div>
 
-                {/* Milestone Content */}
-                <div className="bg-[#0B253D] rounded-xl p-3.5 sm:p-4 border border-white/5 hover:border-white/15 transition-colors">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
-                    <h5
-                      className={`text-sm sm:text-base font-bold ${
-                        isTop ? 'text-emerald-400' : isBottom ? 'text-[#F28A32]' : 'text-white'
-                      }`}
-                    >
-                      {event.status}
-                    </h5>
-                    <time className="text-xs sm:text-sm font-mono text-slate-300 whitespace-nowrap">
-                      {event.date}
-                    </time>
+                  {/* Milestone Content */}
+                  <div className="bg-[#0B253D] rounded-xl p-3.5 sm:p-4 border border-white/5 hover:border-white/15 transition-colors">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+                      <h5
+                        className={`text-sm sm:text-base font-bold ${
+                          isTop ? 'text-emerald-400' : isBottom ? 'text-[#F28A32]' : 'text-white'
+                        }`}
+                      >
+                        {event.status}
+                      </h5>
+                      <time className="text-xs sm:text-sm font-mono text-slate-300 whitespace-nowrap">
+                        {event.date}
+                      </time>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right Column: Live Cargo Route Map */}
+        <div className="lg:col-span-6 flex flex-col">
+          <ShipmentRouteMap data={data} />
         </div>
       </div>
 

@@ -2,17 +2,22 @@
  * DP World / CARGOES Live Tracking Adapter
  * 
  * Directly queries the live DP World / CARGOES production tracking services:
- * - Primary: https://api-fr.cargoes.com/track/v5 (standard JSON without X-Encoded-Payload)
- * - Fallback: https://api-fr.cargoes.com/track/v4
+ * - Primary: https://api-fr.cargoes.com/track/v3/{id} (with transportMode=express, container/ocean, cold_chain failsafes)
+ * - Fallback: https://api-fr.cargoes.com/track/v5 & /track/v4
  * - Authenticated: https://tracking.searates.com (if DP_WORLD_API_KEY is configured)
  * 
  * Strict live data only - no mock or synthetic data.
  */
 
+import { RoutePoint, resolveIndianCityCoords } from '../tracking';
+
 export interface DPWorldTimelineEvent {
   status: string;
   date: string;
   rawDate?: number;
+  location?: string;
+  lat?: number;
+  lng?: number;
 }
 
 export interface DPWorldTrackingData {
@@ -23,6 +28,12 @@ export interface DPWorldTrackingData {
   deliveryDestination?: string;
   deliveryDate?: string;
   currentLocation?: string;
+  currentCoordinates?: {
+    lat: number;
+    lng: number;
+    label?: string;
+  };
+  routePoints?: RoutePoint[];
   packagesCount?: number | string;
   vessel?: string;
   containerType?: string;
@@ -95,127 +106,107 @@ export class DPWorldAdapter {
 
   /**
    * Live production query via DP World's cloud tracking infrastructure.
+   * Uses a multi-step failsafe chain across DP World's live endpoints so that
+   * if any single mode or version fails (400/404/500/timeout), subsequent endpoints are tried automatically.
    */
   private async _trackLiveProduction(trackingNumber: string): Promise<DPWorldTrackResult> {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), this.timeout);
+    const isIsoContainer = /^[A-Z]{4}\d{7}$/.test(trackingNumber);
+    const encodedId = encodeURIComponent(trackingNumber);
 
-    try {
-      // 1. Try primary track/v5 endpoint (without X-Encoded-Payload to receive standard JSON)
-      const v5Url = `https://api-fr.cargoes.com/track/v5?trackingId=${encodeURIComponent(trackingNumber)}`;
-      const response = await fetch(v5Url, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Origin': 'https://www.logistics.dpworld.com',
-          'Referer': 'https://www.logistics.dpworld.com/container-tracking',
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-        },
-        signal: controller.signal
-      });
+    // Ordered failsafe trials:
+    // 1. /track/v3 direct live endpoints (no client-side reCAPTCHA required)
+    const v3Trials = isIsoContainer
+      ? [
+          `${this.baseUrl}/track/v3/${encodedId}`,
+          `${this.baseUrl}/track/v3/${encodedId}?transportMode=express`,
+          `${this.baseUrl}/track/v3/${encodedId}?transportMode=cold_chain`,
+        ]
+      : [
+          `${this.baseUrl}/track/v3/${encodedId}?transportMode=express`,
+          `${this.baseUrl}/track/v3/${encodedId}`,
+          `${this.baseUrl}/track/v3/${encodedId}?transportMode=cold_chain`,
+        ];
 
-      clearTimeout(timeoutId);
+    // 2. /track/v5 and /track/v4 secondary fallback endpoints
+    const legacyTrials = [
+      `${this.baseUrl}/track/v5?trackingId=${encodedId}&transportMode=express`,
+      `${this.baseUrl}/track/v5?trackingId=${encodedId}`,
+      `${this.baseUrl}/track/v4?trackingId=${encodedId}&transportMode=express`,
+      `${this.baseUrl}/track/v4?trackingId=${encodedId}`,
+    ];
 
-      if (response.ok) {
-        const json = await response.json();
+    const allTrialUrls = [...v3Trials, ...legacyTrials];
+    let hadNetworkReachability = false;
 
-        // Check if trackings array is returned and has content
-        if (json.data && Array.isArray(json.data.trackings) && json.data.trackings.length > 0) {
-          const rawTracking = json.data.trackings[0];
-          const normalized = this.normalizeResponse(trackingNumber, rawTracking);
-          if (normalized) {
-            return {
-              success: true,
-              data: normalized,
-              message: 'Tracking details retrieved successfully.'
-            };
-          }
-        }
+    for (const trialUrl of allTrialUrls) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
 
-        // Standard "not found" response format:
-        // { status: 'success', message: 'No bookings found in the last 6 months', code: '40417' }
-        if (json.code === '40417' || (typeof json.message === 'string' && json.message.toLowerCase().includes('no bookings found'))) {
-          return {
-            success: false,
-            code: 'NOT_FOUND',
-            message: `No active shipments or container bookings found for: ${trackingNumber}.`
-          };
-        }
-      }
-
-      // 2. Try fallback track/v4 endpoint
-      const v4Controller = new AbortController();
-      const v4TimeoutId = setTimeout(() => v4Controller.abort(), 8000);
       try {
-        const v4Url = `https://api-fr.cargoes.com/track/v4?trackingId=${encodeURIComponent(trackingNumber)}`;
-        const v4Res = await fetch(v4Url, {
+        const response = await fetch(trialUrl, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',
             'Origin': 'https://www.logistics.dpworld.com',
-            'Referer': 'https://www.logistics.dpworld.com/',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            'Referer': 'https://www.logistics.dpworld.com/tracking/in/express',
+            'User-Agent':
+              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
           },
-          signal: v4Controller.signal
+          cache: 'no-store',
+          signal: controller.signal,
         });
-        clearTimeout(v4TimeoutId);
 
-        if (v4Res.ok) {
-          const v4Json = await v4Res.json();
-          if (v4Json.data && Array.isArray(v4Json.data.trackings) && v4Json.data.trackings.length > 0) {
-            const normalized = this.normalizeResponse(trackingNumber, v4Json.data.trackings[0]);
-            if (normalized) {
-              return {
-                success: true,
-                data: normalized,
-                message: 'Tracking details retrieved successfully.'
-              };
-            }
-          }
+        clearTimeout(timeoutId);
+        hadNetworkReachability = true;
 
-          if (v4Json.data && Array.isArray(v4Json.data.failedTrackings) && v4Json.data.failedTrackings.includes(trackingNumber)) {
+        if (!response.ok) {
+          // Continue to next failsafe trial on 400 / 404 / 500
+          continue;
+        }
+
+        const json = await response.json();
+
+        // Case A: /track/v4 or /track/v5 wrapped format ({ data: { trackings: [...] } })
+        if (json?.data && Array.isArray(json.data.trackings) && json.data.trackings.length > 0) {
+          const normalized = this.normalizeResponse(trackingNumber, json.data.trackings[0]);
+          if (normalized) {
             return {
-              success: false,
-              code: 'NOT_FOUND',
-              message: `No shipment records found for: ${trackingNumber}.`
+              success: true,
+              data: normalized,
+              message: 'Tracking details retrieved successfully.',
             };
           }
         }
+
+        // Case B: /track/v3 direct shipment format ({ containersTrackingEvents, shippingDetails, ... })
+        const rawPayload = json?.data && !Array.isArray(json.data.trackings) ? json.data : json;
+        const normalized = this.normalizeResponse(trackingNumber, rawPayload);
+        if (normalized) {
+          return {
+            success: true,
+            data: normalized,
+            message: 'Tracking details retrieved successfully.',
+          };
+        }
       } catch {
-        // Fallback error ignored
+        clearTimeout(timeoutId);
+        // Continue to next trial in failsafe chain without throwing
       }
+    }
 
-      // Check verified active consignments catalog for DP World Express series
-      const verifiedExpressRecord = this._getVerifiedExpressRecord(trackingNumber);
-      if (verifiedExpressRecord) {
-        return {
-          success: true,
-          data: verifiedExpressRecord,
-          message: 'Tracking details retrieved successfully.'
-        };
-      }
-
-      return {
-        success: false,
-        code: 'NOT_FOUND',
-        message: `No shipment records found for tracking number: ${trackingNumber}.`
-      };
-    } catch (error: unknown) {
-      const isAbort = error instanceof Error && error.name === 'AbortError';
-      if (isAbort) {
-        return {
-          success: false,
-          code: 'TIMEOUT',
-          message: 'Tracking request timed out. Please try again.'
-        };
-      }
-      const msg = error instanceof Error ? error.message : String(error);
+    if (!hadNetworkReachability) {
       return {
         success: false,
         code: 'NETWORK_ERROR',
-        message: `Failed to connect to tracking service: ${msg}`
+        message: 'Failed to connect to DP World tracking service. Please try again.',
       };
     }
+
+    return {
+      success: false,
+      code: 'NOT_FOUND',
+      message: `No shipment records found for tracking number: ${trackingNumber}.`,
+    };
   }
 
   /**
@@ -236,6 +227,7 @@ export class DPWorldAdapter {
           'x-api-key': this.apiKey,
           'Authorization': `Bearer ${this.apiKey}`
         },
+        cache: 'no-store',
         signal: controller.signal
       });
 
@@ -293,9 +285,9 @@ export class DPWorldAdapter {
 
   /**
    * Format ISO date string into readable format.
-   * e.g. 2026-09-17T11:14:30 -> 17 Sep 2026, 11:14
+   * e.g. 2026-09-17T11:14:30 -> 17 Sep 2026, 11:14 (or 17 Sep 2026 when includeTime is false)
    */
-  private _formatDate(dateStr?: string): string {
+  private _formatDate(dateStr?: string, includeTime: boolean = true): string {
     if (!dateStr) return '';
     try {
       const d = new Date(dateStr);
@@ -304,6 +296,9 @@ export class DPWorldAdapter {
       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
       const month = months[d.getMonth()];
       const year = d.getFullYear();
+      if (!includeTime) {
+        return `${day} ${month} ${year}`;
+      }
       const hours = String(d.getHours()).padStart(2, '0');
       const mins = String(d.getMinutes()).padStart(2, '0');
       return `${day} ${month} ${year}, ${hours}:${mins}`;
@@ -317,38 +312,38 @@ export class DPWorldAdapter {
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   normalizeResponse(trackingNumber: string, raw: any): DPWorldTrackingData | null {
-    if (!raw) return null;
+    if (!raw || typeof raw !== 'object') return null;
 
     const result: DPWorldTrackingData = {
       carrier: 'Bharat Relocators',
-      trackingNumber: raw.identifier?.identifierValue || trackingNumber,
+      trackingNumber: raw.identifier?.identifierValue || raw.shippingDetails?.id || trackingNumber,
       timeline: []
     };
 
     // Shipping details (origin, destination, ETA, packages)
     const shipping = raw.shippingDetails || {};
 
-    // Origin
+    // Origin (prefer city for clean display matching DP World Express portal, fallback to name/code)
     if (shipping.origin) {
-      const parts: string[] = [];
-      if (shipping.origin.name) parts.push(shipping.origin.name);
-      if (shipping.origin.city) parts.push(shipping.origin.city);
-      if (shipping.origin.pincode) parts.push(`(${shipping.origin.pincode})`);
-      result.pickupLocation = parts.join(', ') || shipping.origin.code;
+      result.pickupLocation =
+        shipping.origin.city ||
+        shipping.origin.name ||
+        shipping.origin.code ||
+        undefined;
     }
 
-    // Destination
+    // Destination (prefer city, fallback to name/code)
     if (shipping.destination) {
-      const parts: string[] = [];
-      if (shipping.destination.name) parts.push(shipping.destination.name);
-      if (shipping.destination.city) parts.push(shipping.destination.city);
-      if (shipping.destination.pincode) parts.push(`(${shipping.destination.pincode})`);
-      result.deliveryDestination = parts.join(', ') || shipping.destination.code;
+      result.deliveryDestination =
+        shipping.destination.city ||
+        shipping.destination.name ||
+        shipping.destination.code ||
+        undefined;
     }
 
     // ETA or Delivery Date
     if (shipping.placeOfDestinationEta || raw.eta) {
-      result.deliveryDate = this._formatDate(shipping.placeOfDestinationEta || raw.eta);
+      result.deliveryDate = this._formatDate(shipping.placeOfDestinationEta || raw.eta, false);
     }
 
     // Total Packages
@@ -399,20 +394,31 @@ export class DPWorldAdapter {
 
     // Events and Timeline
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const rawEvents: any[] = [];
+    const rawEvents: { evt: any; isParentMilestone?: boolean }[] = [];
+    let latestTopLevelStatus: string | undefined;
 
     // Check containersTrackingEvents first
-    if (raw.containersTrackingEvents) {
+    if (raw.containersTrackingEvents && typeof raw.containersTrackingEvents === 'object') {
       const keys = Object.keys(raw.containersTrackingEvents);
       if (keys.length > 0 && Array.isArray(raw.containersTrackingEvents[keys[0]])) {
         const cList = raw.containersTrackingEvents[keys[0]];
         for (const item of cList) {
+          // Record the top-level milestone itself (e.g., "In Transit, GURGAON Hub" or "Received, Kolkata Taratala")
+          rawEvents.push({ evt: item, isParentMilestone: true });
+
+          const itemStatus = item.event_desc || item.status || item.description;
+          const itemLoc = item.event_location?.name || item.event_location?.city || '';
+          if (itemStatus) {
+            latestTopLevelStatus = itemLoc && !itemStatus.toLowerCase().includes(itemLoc.toLowerCase())
+              ? `${itemStatus}, ${itemLoc}`
+              : itemStatus;
+          }
+
+          // Also include detailed hub transit sub_events if present
           if (Array.isArray(item.sub_events) && item.sub_events.length > 0) {
             for (const sub of item.sub_events) {
-              rawEvents.push(sub);
+              rawEvents.push({ evt: sub, isParentMilestone: false });
             }
-          } else {
-            rawEvents.push(item);
           }
         }
       }
@@ -421,26 +427,52 @@ export class DPWorldAdapter {
     // Check bookingTrackingEvents
     if (Array.isArray(raw.bookingTrackingEvents)) {
       for (const item of raw.bookingTrackingEvents) {
-        rawEvents.push(item);
+        rawEvents.push({ evt: item, isParentMilestone: true });
       }
     }
 
     // Check generic events
     if (Array.isArray(raw.events)) {
       for (const item of raw.events) {
-        rawEvents.push(item);
+        rawEvents.push({ evt: item, isParentMilestone: true });
       }
     }
 
     // Format and deduplicate timeline
-    const timeline: { status: string; date: string; rawDate: number }[] = [];
+    const timeline: {
+      status: string;
+      date: string;
+      rawDate: number;
+      isParentMilestone: boolean;
+      location?: string;
+      city?: string;
+      lat?: number;
+      lng?: number;
+    }[] = [];
     const seen = new Set<string>();
 
-    for (const evt of rawEvents) {
+    for (const { evt, isParentMilestone } of rawEvents) {
       const statusText = evt.event_desc || evt.status || evt.description || evt.name || evt.event_code;
       const rawDate = evt.event_time || evt.event_datetime || evt.event_date || evt.date || evt.timestamp || evt.ata;
       const formattedDate = this._formatDate(rawDate);
       const locText = evt.event_location?.name || evt.event_location?.city || evt.event_location?.rawDescription || evt.location || '';
+      const cityText = evt.event_location?.city || locText;
+
+      const rawLat = evt.event_location?.latitude ?? evt.latitude;
+      const rawLng = evt.event_location?.longitude ?? evt.longitude;
+      let lat = typeof rawLat === 'number' ? rawLat : rawLat ? Number(rawLat) : undefined;
+      let lng = typeof rawLng === 'number' ? rawLng : rawLng ? Number(rawLng) : undefined;
+
+      if (lat === undefined || lng === undefined || isNaN(lat) || isNaN(lng)) {
+        const fallback = resolveIndianCityCoords(cityText) || resolveIndianCityCoords(locText) || resolveIndianCityCoords(statusText);
+        if (fallback) {
+          lat = fallback.lat;
+          lng = fallback.lng;
+        } else {
+          lat = undefined;
+          lng = undefined;
+        }
+      }
 
       if (statusText) {
         const key = `${statusText}_${rawDate}_${locText}`;
@@ -448,96 +480,163 @@ export class DPWorldAdapter {
           seen.add(key);
           let displayStatus = statusText;
           if (locText && !statusText.toLowerCase().includes(locText.toLowerCase())) {
-            displayStatus = `${statusText} - ${locText}`;
+            displayStatus = isParentMilestone ? `${statusText}, ${locText}` : `${statusText} - ${locText}`;
           }
           timeline.push({
             status: displayStatus,
             date: formattedDate || 'Completed',
-            rawDate: rawDate ? new Date(rawDate).getTime() : 0
+            rawDate: rawDate ? new Date(rawDate).getTime() : 0,
+            isParentMilestone: Boolean(isParentMilestone),
+            location: locText || undefined,
+            city: cityText || undefined,
+            lat,
+            lng,
           });
         }
       }
     }
 
-    // Sort timeline so latest is first (descending)
-    timeline.sort((a, b) => b.rawDate - a.rawDate);
+    // Sort timeline so latest is first (descending); if timestamps tie, place parent milestone above its sub-event
+    timeline.sort((a, b) => {
+      if (b.rawDate !== a.rawDate) return b.rawDate - a.rawDate;
+      if (a.isParentMilestone !== b.isParentMilestone) return a.isParentMilestone ? -1 : 1;
+      return 0;
+    });
 
-    result.timeline = timeline.map(t => ({ status: t.status, date: t.date }));
+    result.timeline = timeline.map(t => ({
+      status: t.status,
+      date: t.date,
+      location: t.location,
+      lat: t.lat,
+      lng: t.lng,
+    }));
+
+    // Build chronological routePoints for the live cargo map
+    const chronological = [...timeline].reverse();
+    const routePoints: RoutePoint[] = [];
+
+    const pushUniqueRoutePoint = (pt: RoutePoint) => {
+      const prev = routePoints[routePoints.length - 1];
+      if (
+        prev &&
+        Math.abs(prev.lat - pt.lat) < 0.03 &&
+        Math.abs(prev.lng - pt.lng) < 0.03
+      ) {
+        // Update status/date on existing hub pin to the latest milestone at this hub
+        if (pt.status) prev.status = pt.status;
+        if (pt.date) prev.date = pt.date;
+        if (pt.name && prev.type !== 'origin') prev.name = pt.name;
+        return;
+      }
+      routePoints.push(pt);
+    };
+
+    // 1. Seed Origin if available
+    const originLat = shipping.origin?.latitude ? Number(shipping.origin.latitude) : undefined;
+    const originLng = shipping.origin?.longitude ? Number(shipping.origin.longitude) : undefined;
+    const originFallback = resolveIndianCityCoords(result.pickupLocation);
+    const finalOriginLat = originLat && !isNaN(originLat) ? originLat : originFallback?.lat;
+    const finalOriginLng = originLng && !isNaN(originLng) ? originLng : originFallback?.lng;
+
+    if (finalOriginLat !== undefined && finalOriginLng !== undefined && result.pickupLocation) {
+      pushUniqueRoutePoint({
+        name: result.pickupLocation,
+        city: shipping.origin?.city || result.pickupLocation,
+        status: 'Origin Hub',
+        date: chronological[0]?.date,
+        lat: finalOriginLat,
+        lng: finalOriginLng,
+        type: 'origin',
+      });
+    }
+
+    // 2. Add chronological scan hubs
+    for (const item of chronological) {
+      if (item.lat !== undefined && item.lng !== undefined) {
+        pushUniqueRoutePoint({
+          name: item.location || item.city || item.status,
+          city: item.city,
+          status: item.status,
+          date: item.date,
+          lat: item.lat,
+          lng: item.lng,
+          type: 'transit',
+        });
+      }
+    }
+
+    // Mark the first point as origin and latest reached point as current
+    if (routePoints.length > 0) {
+      routePoints[0].type = 'origin';
+      const currentIdx = routePoints.length - 1;
+      routePoints[currentIdx].type = 'current';
+      const curr = routePoints[currentIdx];
+      result.currentCoordinates = {
+        lat: curr.lat,
+        lng: curr.lng,
+        label: curr.name,
+      };
+      if (!result.currentLocation) {
+        result.currentLocation = curr.name;
+      }
+    }
+
+    // 3. Append Destination point if shipment has not yet reached destination
+    if (result.deliveryDestination) {
+      const destLat = shipping.destination?.latitude ? Number(shipping.destination.latitude) : undefined;
+      const destLng = shipping.destination?.longitude ? Number(shipping.destination.longitude) : undefined;
+      const destFallback = resolveIndianCityCoords(result.deliveryDestination);
+      const finalDestLat = destLat && !isNaN(destLat) ? destLat : destFallback?.lat;
+      const finalDestLng = destLng && !isNaN(destLng) ? destLng : destFallback?.lng;
+
+      const isDelivered = (result.remark || '').toLowerCase().includes('delivered');
+      if (finalDestLat !== undefined && finalDestLng !== undefined && !isDelivered) {
+        const lastPt = routePoints[routePoints.length - 1];
+        if (
+          !lastPt ||
+          Math.abs(lastPt.lat - finalDestLat) >= 0.05 ||
+          Math.abs(lastPt.lng - finalDestLng) >= 0.05
+        ) {
+          routePoints.push({
+            name: result.deliveryDestination,
+            city: result.deliveryDestination,
+            status: result.deliveryDate ? `Destination (ETA: ${result.deliveryDate})` : 'Delivery Destination',
+            date: result.deliveryDate,
+            lat: finalDestLat,
+            lng: finalDestLng,
+            type: 'destination',
+          });
+        }
+      }
+    }
+
+    if (routePoints.length > 0) {
+      result.routePoints = routePoints;
+    }
+
+    // Reject empty/unrecognized responses that contain neither events nor route details
+    if (result.timeline.length === 0 && !result.pickupLocation && !result.deliveryDestination) {
+      return null;
+    }
 
     // Pickup Date (earliest event)
     if (timeline.length > 0) {
       result.pickupDate = timeline[timeline.length - 1].date;
     }
 
-    // Current Status / Remark
-    if (raw.containerDetails?.status) {
-      const s = raw.containerDetails.status;
-      result.remark = s.charAt(0).toUpperCase() + s.slice(1);
+    // Current Status / Remark (prefer latest top-level milestone like "In Transit, GURGAON Hub")
+    if (latestTopLevelStatus) {
+      result.remark = latestTopLevelStatus;
     } else if (timeline.length > 0) {
       result.remark = timeline[0].status;
+    } else if (raw.containerDetails?.status) {
+      const s = raw.containerDetails.status;
+      result.remark = s.charAt(0).toUpperCase() + s.slice(1);
     } else if (raw.status) {
       result.remark = raw.status;
     }
 
     return result;
-  }
-
-  /**
-   * Verified active consignment lookup for DP World Express India consignments.
-   * Provides verified live consignment telematics when cloud firewall enforces client-side reCAPTCHA tokens.
-   */
-  private _getVerifiedExpressRecord(trackingNumber: string): DPWorldTrackingData | null {
-    // 1. Direct record for consignment 1847005072
-    if (trackingNumber === '1847005072') {
-      return {
-        carrier: 'Bharat Relocators',
-        trackingNumber: '1847005072',
-        pickupLocation: 'Kolkata',
-        pickupDate: '12 Oct 2026, 22:59',
-        deliveryDestination: 'Ghaziabad',
-        deliveryDate: '19 Oct 2026',
-        currentLocation: 'Kolkata Taratala',
-        packagesCount: 1,
-        remark: 'Received, Kolkata Taratala',
-        timeline: [
-          {
-            status: 'Received, Kolkata Taratala',
-            date: '12 Oct 2026, 22:59'
-          },
-          {
-            status: 'Shipment Booked - M/S. BHARAT RELOCATORS',
-            date: '12 Oct 2026, 20:30'
-          }
-        ]
-      };
-    }
-
-    // 2. Generic fallback parser for 1847 series (DP World Express India dockets)
-    if (/^1847\d{6}$/.test(trackingNumber)) {
-      return {
-        carrier: 'Bharat Relocators',
-        trackingNumber,
-        pickupLocation: 'Kolkata Hub',
-        pickupDate: '12 Oct 2026',
-        deliveryDestination: 'Destination Logistics Center',
-        deliveryDate: '19 Oct 2026',
-        currentLocation: 'Hub In-Scan Processed',
-        packagesCount: 1,
-        remark: 'In Transit - Express Route Active',
-        timeline: [
-          {
-            status: 'Consignment Scanned at Origin Hub',
-            date: '12 Oct 2026, 22:59'
-          },
-          {
-            status: 'Shipment Booked - Bharat Relocators Express Logistics',
-            date: '12 Oct 2026, 20:30'
-          }
-        ]
-      };
-    }
-
-    return null;
   }
 }
 

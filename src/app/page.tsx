@@ -75,7 +75,7 @@ export default function HomePage() {
           id="track-us"
           className="relative z-20 py-8 sm:py-10 bg-[#071A2B] border-b border-white/10"
         >
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <TrackingInteractiveView compact />
           </div>
         </section>

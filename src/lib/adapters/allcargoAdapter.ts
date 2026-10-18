@@ -6,10 +6,15 @@
  * Fallback: POST https://admin.allcargologistics.com/api/get-docket-details
  */
 
+import { RoutePoint, resolveIndianCityCoords } from '../tracking';
+
 export interface AllcargoTimelineEvent {
   status: string;
   date: string;
   isBooked: boolean;
+  location?: string;
+  lat?: number;
+  lng?: number;
 }
 
 export interface AllcargoTrackingData {
@@ -24,6 +29,13 @@ export interface AllcargoTrackingData {
   gaRemark: string;
   podUrl?: string;
   gstInvoiceUrl?: string;
+  currentLocation?: string;
+  currentCoordinates?: {
+    lat: number;
+    lng: number;
+    label?: string;
+  };
+  routePoints?: RoutePoint[];
   timeline: AllcargoTimelineEvent[];
 }
 
@@ -233,6 +245,9 @@ export class AllcargoAdapter {
   private normalizeTrackShipmentResponse(docketNo: string, item: any): AllcargoTrackingData {
     const pickupDateFormatted = this.formatDate(item.bookedDateTime);
     const deliveryDateFormatted = this.formatDate(item.DeliveryDt);
+    const pickupLocation = this.formatCity(item.bookingStation);
+    const deliveryDestination = this.formatCity(item.deliveryStation);
+    const remark = item.ReceiversRemarks || 'In Transit';
 
     const timeline: AllcargoTimelineEvent[] = [];
     if (Array.isArray(item.TRANSIT_DTLS) && item.TRANSIT_DTLS.length > 0) {
@@ -243,24 +258,43 @@ export class AllcargoAdapter {
           t.milestonecode === 'DCRE' ||
           String(t.intransitStatus || '').toLowerCase().includes('booked');
 
+        const statusStr = String(t.intransitStatus || '').trim();
+        const locStr = t.intransitLocation ? this.formatCity(t.intransitLocation) : undefined;
+        const coords = resolveIndianCityCoords(locStr || statusStr);
+
         timeline.push({
-          status: String(t.intransitStatus || '').trim(),
+          status: statusStr,
           date: `${this.formatDate(t.intransitDate)} ${t.intransitTime || ''}`.trim(),
-          isBooked: isLastOrBooked
+          isBooked: isLastOrBooked,
+          location: locStr,
+          lat: coords?.lat,
+          lng: coords?.lng,
         });
       });
     }
 
+    const { routePoints, currentCoordinates } = this.buildRoutePoints(
+      pickupLocation,
+      pickupDateFormatted,
+      deliveryDestination,
+      deliveryDateFormatted,
+      remark,
+      timeline
+    );
+
     return {
       carrier: 'Bharat Relocators',
       trackingNumber: item.docketNumber || docketNo,
-      pickupLocation: this.formatCity(item.bookingStation),
+      pickupLocation,
       pickupDate: pickupDateFormatted,
-      deliveryDestination: this.formatCity(item.deliveryStation),
+      deliveryDestination,
       deliveryDate: deliveryDateFormatted,
       receiversName: this.formatCity(item.ReceiversName || item.consigneeName),
-      remark: item.ReceiversRemarks || 'In Transit',
+      remark,
       gaRemark: item.GARemarks || item.ReceiversRemarks || 'In Transit',
+      currentLocation: currentCoordinates?.label,
+      currentCoordinates,
+      routePoints,
       timeline
     };
   }
@@ -269,21 +303,142 @@ export class AllcargoAdapter {
   private normalizeDocketDetailsResponse(docketNo: string, item: any): AllcargoTrackingData {
     const pickupDateFormatted = this.formatDate(item.BKG_DT);
     const deliveryDateFormatted = this.formatDate(item.APPROVED_DLY_DT);
+    const pickupLocation = this.formatCity(item.BOOKING_STN);
+    const deliveryDestination = this.formatCity(item.DELIVERY_STN);
+    const remark = 'Shipment delivered / in transit as per schedule';
+
+    const timeline: AllcargoTimelineEvent[] = [
+      { status: `Delivered`, date: deliveryDateFormatted, isBooked: false },
+      { status: `Shipment Booked`, date: pickupDateFormatted, isBooked: true }
+    ];
+
+    const { routePoints, currentCoordinates } = this.buildRoutePoints(
+      pickupLocation,
+      pickupDateFormatted,
+      deliveryDestination,
+      deliveryDateFormatted,
+      remark,
+      timeline
+    );
 
     return {
       carrier: 'Bharat Relocators',
       trackingNumber: docketNo,
-      pickupLocation: this.formatCity(item.BOOKING_STN),
+      pickupLocation,
       pickupDate: pickupDateFormatted,
-      deliveryDestination: this.formatCity(item.DELIVERY_STN),
+      deliveryDestination,
       deliveryDate: deliveryDateFormatted,
       receiversName: this.formatCity(item.CONSIGNEE_NAME),
-      remark: 'Shipment delivered / in transit as per schedule',
-      gaRemark: 'Shipment delivered / in transit as per schedule',
-      timeline: [
-        { status: `Delivered`, date: deliveryDateFormatted, isBooked: false },
-        { status: `Shipment Booked`, date: pickupDateFormatted, isBooked: true }
-      ]
+      remark,
+      gaRemark: remark,
+      currentLocation: currentCoordinates?.label,
+      currentCoordinates,
+      routePoints,
+      timeline
+    };
+  }
+
+  private buildRoutePoints(
+    pickupLocation: string,
+    pickupDate: string,
+    deliveryDestination: string,
+    deliveryDate: string,
+    remark: string,
+    timeline: AllcargoTimelineEvent[]
+  ): {
+    routePoints?: RoutePoint[];
+    currentCoordinates?: { lat: number; lng: number; label?: string };
+  } {
+    const routePoints: RoutePoint[] = [];
+    const pushUnique = (pt: RoutePoint) => {
+      const prev = routePoints[routePoints.length - 1];
+      if (prev && Math.abs(prev.lat - pt.lat) < 0.03 && Math.abs(prev.lng - pt.lng) < 0.03) {
+        if (pt.status) prev.status = pt.status;
+        if (pt.date) prev.date = pt.date;
+        return;
+      }
+      routePoints.push(pt);
+    };
+
+    const originCoords = resolveIndianCityCoords(pickupLocation);
+    if (originCoords) {
+      pushUnique({
+        name: pickupLocation,
+        city: pickupLocation,
+        status: 'Origin Hub',
+        date: pickupDate,
+        lat: originCoords.lat,
+        lng: originCoords.lng,
+        type: 'origin',
+      });
+    }
+
+    const chronological = [...timeline].reverse();
+    for (const evt of chronological) {
+      if (evt.lat !== undefined && evt.lng !== undefined) {
+        pushUnique({
+          name: evt.location || evt.status,
+          status: evt.status,
+          date: evt.date,
+          lat: evt.lat,
+          lng: evt.lng,
+          type: 'transit',
+        });
+      }
+    }
+
+    let currentCoordinates: { lat: number; lng: number; label?: string } | undefined;
+    if (routePoints.length > 0) {
+      routePoints[0].type = 'origin';
+      const lastIdx = routePoints.length - 1;
+      routePoints[lastIdx].type = 'current';
+      currentCoordinates = {
+        lat: routePoints[lastIdx].lat,
+        lng: routePoints[lastIdx].lng,
+        label: routePoints[lastIdx].name,
+      };
+    }
+
+    const destCoords = resolveIndianCityCoords(deliveryDestination);
+    const isDelivered = remark.toLowerCase().includes('delivered');
+    if (destCoords) {
+      if (isDelivered) {
+        pushUnique({
+          name: deliveryDestination,
+          city: deliveryDestination,
+          status: 'Delivered',
+          date: deliveryDate,
+          lat: destCoords.lat,
+          lng: destCoords.lng,
+          type: 'current',
+        });
+        routePoints[0].type = 'origin';
+        const lastIdx = routePoints.length - 1;
+        routePoints[lastIdx].type = 'current';
+        currentCoordinates = {
+          lat: destCoords.lat,
+          lng: destCoords.lng,
+          label: deliveryDestination,
+        };
+      } else {
+        const lastPt = routePoints[routePoints.length - 1];
+        if (!lastPt || Math.abs(lastPt.lat - destCoords.lat) >= 0.05 || Math.abs(lastPt.lng - destCoords.lng) >= 0.05) {
+          routePoints.push({
+            name: deliveryDestination,
+            city: deliveryDestination,
+            status: deliveryDate && deliveryDate !== 'N/A' ? `Destination (ETA: ${deliveryDate})` : 'Delivery Destination',
+            date: deliveryDate,
+            lat: destCoords.lat,
+            lng: destCoords.lng,
+            type: 'destination',
+          });
+        }
+      }
+    }
+
+    return {
+      routePoints: routePoints.length > 0 ? routePoints : undefined,
+      currentCoordinates,
     };
   }
 
