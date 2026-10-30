@@ -80,6 +80,7 @@ export const mainNavLinks: NavItem[] = [
   { label: 'Services', href: '/services', children: serviceNavLinks },
   { label: 'Track Us', href: '/tracking' },
   { label: 'Gallery', href: '/gallery' },
+  { label: 'Blogs', href: '/blogs' },
   { label: 'Moving Guides', href: '/moving-guides' },
   { label: 'Process', href: '/process' },
   { label: 'About Us', href: '/about' },
@@ -116,6 +117,7 @@ export const footerServiceLinks: FooterLink[] = [
  */
 export const footerCompanyLinks: FooterLink[] = [
   { label: 'About Us', href: '/about' },
+  { label: 'Moving Blogs & Rates', href: '/blogs' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Customer Reviews', href: '/testimonials' },
   { label: 'Frequently Asked Questions', href: '/faqs' },
@@ -130,6 +132,7 @@ export const footerCompanyLinks: FooterLink[] = [
  */
 export const footerResourceLinks: FooterLink[] = [
   { label: 'Moving Guides Hub', href: '/moving-guides' },
+  { label: 'Moving Blogs & 2026 Rate Card', href: '/blogs' },
   { label: 'Home Moving Checklist', href: '/moving-checklist' },
   { label: 'Vehicle Transportation Guide', href: '/vehicle-transportation-guide' },
   { label: 'Intercity Moving Guide', href: '/intercity-moving-guide' },
@@ -142,10 +145,9 @@ export const footerResourceLinks: FooterLink[] = [
  */
 export const footerBottomLinks: FooterLink[] = [
   { label: 'Free Estimate', href: '/get-a-quote' },
+  { label: 'Blogs', href: '/blogs' },
   { label: 'About Us', href: '/about' },
   { label: 'Moving Guides', href: '/moving-guides' },
   { label: 'FAQ', href: '/faqs' },
   { label: 'Track Shipment', href: '/tracking' },
 ];
-
-
