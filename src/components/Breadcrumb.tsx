@@ -49,6 +49,8 @@ const CANONICAL_PAGE_PATHS: Record<string, string> = {
   'Why Choose Us': '/why-us',
   'Reviews': '/testimonials',
   'Customer Reviews': '/testimonials',
+  'Blogs': '/blogs',
+  'Blog': '/blogs',
 };
 
 function resolveBreadcrumbItemUrl(item: BreadcrumbItem, siteUrl: string): string | undefined {
@@ -79,9 +81,10 @@ export default function Breadcrumb({
 }: BreadcrumbProps) {
   const siteUrl = getSiteUrl();
 
+  const filteredItems = items.filter((item) => item.label.trim().toLowerCase() !== 'home');
   const allItems: BreadcrumbItem[] = [
     { label: 'Home', href: '/' },
-    ...items,
+    ...filteredItems,
   ];
 
   const jsonLdData = {

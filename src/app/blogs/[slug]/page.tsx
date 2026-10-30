@@ -133,7 +133,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Blogs',
+        name: 'Blog',
         item: `${siteUrl}/blogs`,
       },
       {
@@ -160,8 +160,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         title={post.h1}
         subtitle="A transparent, data-backed pricing guide for home shifting in Kolkata. Check verified 1BHK, 2BHK, 3BHK corridor rates, lift vs staircase bills, narrow-lane tempo fees, and GST tax rules."
         breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Blogs', href: '/blogs' },
+          { label: 'Blog', href: '/blogs' },
           { label: 'Kolkata Moving Charges', href: `/blogs/${post.slug}` },
         ]}
         actions={

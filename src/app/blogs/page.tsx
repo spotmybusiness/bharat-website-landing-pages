@@ -94,7 +94,7 @@ export default function BlogsPage() {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Blogs',
+            name: 'Blog',
             item: `${siteUrl}/blogs`,
           },
         ],
@@ -112,8 +112,7 @@ export default function BlogsPage() {
         title="Moving Knowledge & Pricing Hub"
         subtitle="Explore transparent shifting rate cards, expert moving checklists, corridor pricing benchmarks, and practical relocation guides for Kolkata and PAN India."
         breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Blogs', href: '/blogs' },
+          { label: 'Blog', href: '/blogs' },
         ]}
         actions={
           <div className="flex flex-wrap items-center gap-3">
