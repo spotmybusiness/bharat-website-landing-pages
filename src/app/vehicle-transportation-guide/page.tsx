@@ -118,7 +118,7 @@ export default function VehicleTransportationGuidePage() {
         }
         subtitle="A practical guide by Bharat Relocators to shipping two-wheelers and four-wheelers from Kolkata across India — covering document checklists, carrier safety, and delivery protocols."
         breadcrumbs={[
-          { label: 'Blogs & Rate Cards', href: '/blogs' },
+          { label: 'Blogs', href: '/blogs' },
           { label: 'Vehicle Transportation Guide' },
         ]}
         image={

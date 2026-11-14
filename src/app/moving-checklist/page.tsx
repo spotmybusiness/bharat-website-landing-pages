@@ -234,7 +234,7 @@ export default function MovingChecklistPage() {
         }
         subtitle="Bharat Relocators provides a structured, week-by-week timeline to help you plan, organize, and execute a seamless household relocation in Kolkata and across India."
         breadcrumbs={[
-          { label: 'Blogs & Rate Cards', href: '/blogs' },
+          { label: 'Blogs', href: '/blogs' },
           { label: 'Moving Checklist' },
         ]}
         image={

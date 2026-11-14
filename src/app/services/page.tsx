@@ -536,7 +536,7 @@ export default function ServicesPage() {
             {[
               { label: 'Our Services', desc: '6 Service Offerings', href: '/services', current: true },
               { label: 'Moving Process', desc: '5-Step Procedure', href: '/process' },
-              { label: 'Blogs & Rate Cards', desc: 'Guides & 2026 Rates', href: '/blogs' },
+              { label: 'Blogs', desc: 'Guides & 2026 Rates', href: '/blogs' },
               { label: 'Customer Reviews', desc: 'Verified Feedback', href: '/testimonials' },
               { label: 'Moving FAQs', desc: 'Common Questions', href: '/faqs' },
               { label: 'Free Quote', desc: 'Instant Pricing', href: '/get-a-quote' },

@@ -12,7 +12,7 @@ const serviceLinks = [
 
 const companyLinks = [
   { name: 'About Us', href: '/about' },
-  { name: 'Blogs & Rate Cards', href: '/blogs' },
+  { name: 'Blogs', href: '/blogs' },
   { name: 'Why Choose Us', href: '/why-us' },
   { name: 'How It Works', href: '/process' },
   { name: 'Customer Reviews', href: '/testimonials' },
@@ -273,7 +273,7 @@ export default function Footer() {
           </p>
           <nav aria-label="Footer Quick Links" className="flex gap-6">
             <Link href="/get-a-quote" className="transition-colors hover:text-white">Free Estimate</Link>
-            <Link href="/blogs" className="transition-colors hover:text-white">Blogs & Rate Cards</Link>
+            <Link href="/blogs" className="transition-colors hover:text-white">Blogs</Link>
             <Link href="/about" className="transition-colors hover:text-white">About Us</Link>
             <Link href="/faqs" className="transition-colors hover:text-white">FAQ</Link>
           </nav>

@@ -122,7 +122,7 @@ export default function IntercityMovingGuidePage() {
         }
         subtitle="A comprehensive guide by Bharat Relocators to planning, packing, and executing long-distance household and vehicle relocations across India."
         breadcrumbs={[
-          { label: 'Blogs & Rate Cards', href: '/blogs' },
+          { label: 'Blogs', href: '/blogs' },
           { label: 'Intercity Moving Guide' },
         ]}
         image={

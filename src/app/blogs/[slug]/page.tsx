@@ -147,7 +147,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Blogs & Rate Cards',
+        name: 'Blogs',
         item: `${siteUrl}/blogs`,
       },
       {
@@ -197,7 +197,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         title={post.h1}
         subtitle={post.excerpt}
         breadcrumbs={[
-          { label: 'Blogs & Rate Cards', href: '/blogs' },
+          { label: 'Blogs', href: '/blogs' },
           { label: post.category, href: `/blogs/${post.slug}` },
         ]}
         image={
@@ -1107,7 +1107,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               href="/blogs"
               className="text-xs sm:text-sm font-bold text-[#082F52] hover:text-[#E53935] transition-colors"
             >
-              Back to Blogs &amp; Rate Cards Hub →
+              Back to Blogs →
             </Link>
           </div>
 

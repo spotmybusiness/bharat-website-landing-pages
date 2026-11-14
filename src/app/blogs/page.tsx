@@ -94,7 +94,7 @@ export default function BlogsPage() {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Blogs & Rate Cards',
+            name: 'Blogs',
             item: `${siteUrl}/blogs`,
           },
         ],
@@ -109,10 +109,10 @@ export default function BlogsPage() {
       {/* Hero Section */}
       <PageHero
         label="Relocation Insights & 2026 Rate Cards"
-        title="Blogs & Rate Cards: Moving Knowledge Hub"
-        subtitle="Explore 12 data-backed shifting rate cards, pinned cornerstone moving checklists, corridor pricing benchmarks, and practical relocation guides for Kolkata and PAN India."
+        title="Blogs: Moving Knowledge Hub & Rate Cards"
+        subtitle="Explore verified shifting rate cards, pinned cornerstone moving checklists, corridor pricing benchmarks, and practical relocation guides for Kolkata and PAN India."
         breadcrumbs={[
-          { label: 'Blogs & Rate Cards', href: '/blogs' },
+          { label: 'Blogs', href: '/blogs' },
         ]}
         image={
           <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
