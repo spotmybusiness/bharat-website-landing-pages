@@ -39,8 +39,8 @@ const CANONICAL_PAGE_PATHS: Record<string, string> = {
   'Parcel & Cargo Shifting': '/parcel-shifting',
   'International Moving': '/international-moving',
   'Office Relocation': '/office-relocation',
-  'Moving Guides': '/moving-guides',
-  'Relocation & Moving Guides': '/moving-guides',
+  'Moving Guides': '/blogs',
+  'Relocation & Moving Guides': '/blogs',
   'Moving Checklist': '/moving-checklist',
   'Vehicle Transportation Guide': '/vehicle-transportation-guide',
   'Intercity Moving Guide': '/intercity-moving-guide',
@@ -51,6 +51,7 @@ const CANONICAL_PAGE_PATHS: Record<string, string> = {
   'Customer Reviews': '/testimonials',
   'Blogs': '/blogs',
   'Blog': '/blogs',
+  'Blogs & Rate Cards': '/blogs',
 };
 
 function resolveBreadcrumbItemUrl(item: BreadcrumbItem, siteUrl: string): string | undefined {

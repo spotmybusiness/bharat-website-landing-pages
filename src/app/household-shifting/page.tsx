@@ -392,8 +392,34 @@ export default function HouseholdShiftingPage() {
             <p>
               Quotes are typically confirmed within a few hours of the initial inquiry.
               For large or complex moves, an in-person pre-move survey gives the most
-              accurate assessment. If you have unusual items or special requirements,
-              mention them upfront so we can account for them in the scope.
+              accurate assessment. All invoices comply with{' '}
+              <a
+                href="https://cbic-gst.gov.in/gst-goods-services-rates.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                CBIC GST SAC 9965 / 9987 Rules
+              </a>{' '}
+              (verify our GSTIN <code className="text-xs font-mono bg-white px-1.5 py-0.5 rounded border border-slate-200">19AAWFB0500G1ZL</code> on the{' '}
+              <a
+                href="https://services.gst.gov.in/services/searchtp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                Official GST Portal
+              </a>
+              ), and container dispatch windows are scheduled around{' '}
+              <a
+                href="https://kolkatatrafficpolice.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                Kolkata Traffic Police No-Entry Timings
+              </a>
+              .
             </p>
           </div>
 

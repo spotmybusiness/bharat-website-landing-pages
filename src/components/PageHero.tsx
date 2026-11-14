@@ -417,7 +417,7 @@ export default function PageHero({
             {children}
           </div>
 
-          {/* Right Column: Visual Media / Icon Placeholder Slot */}
+          {/* Right Column: Visual Media / Icon Badge Slot */}
           {showPlaceholder && (
             <div className="hidden lg:flex lg:col-span-5 xl:col-span-5 justify-center lg:justify-end">
               {hasValidImage ? (
@@ -426,6 +426,7 @@ export default function PageHero({
                     ? image
                     : image &&
                       React.cloneElement(image, {
+                        fetchPriority: 'high',
                         className: `max-w-full max-h-[360px] xl:max-h-[400px] w-auto h-auto object-contain transition-transform duration-300 hover:scale-[1.02] drop-shadow-2xl ${image.props.className || ''}`,
                       })}
                 </div>
@@ -437,36 +438,26 @@ export default function PageHero({
                   <div className="absolute -top-12 -right-12 w-36 h-36 bg-[#F28A32]/15 rounded-full blur-2xl pointer-events-none group-hover:bg-[#F28A32]/25 transition-all duration-500" />
                   <div className="absolute -bottom-12 -left-12 w-36 h-36 bg-[#E53935]/15 rounded-full blur-2xl pointer-events-none group-hover:bg-[#E53935]/25 transition-all duration-500" />
 
-                  {/* Dashed Media Frame (Designated Drop-in Slot) */}
-                  <div className="relative w-full aspect-[4/3] rounded-2xl border-2 border-dashed border-white/20 group-hover:border-[#F28A32]/50 transition-all duration-300 flex flex-col items-center justify-center p-6 bg-white/[0.02]">
-                    {/* Corner Framing Brackets */}
-                    <span className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-white/40 group-hover:border-[#F28A32] transition-colors" />
-                    <span className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-white/40 group-hover:border-[#F28A32] transition-colors" />
-                    <span className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-white/40 group-hover:border-[#F28A32] transition-colors" />
-                    <span className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-white/40 group-hover:border-[#F28A32] transition-colors" />
-
-                    {/* Center Icon Aura */}
+                  <div className="relative w-full aspect-[4/3] rounded-2xl border border-white/15 group-hover:border-[#F28A32]/50 transition-all duration-300 flex flex-col items-center justify-center p-6 bg-white/[0.03]">
                     <div className="w-20 h-20 xl:w-24 xl:h-24 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/15 flex items-center justify-center shadow-xl text-[#F28A32] group-hover:scale-105 group-hover:text-white transition-all duration-300 mb-3.5">
                       {resolvedIcon}
                     </div>
 
-                    {/* Placeholder Labels */}
                     <span className="text-xs sm:text-sm font-bold text-white tracking-wide uppercase text-center px-2 line-clamp-1">
                       {resolvedLabel}
                     </span>
-                    <span className="text-[11px] text-slate-400 mt-1 text-center font-medium">
-                      Images or icons to be added
+                    <span className="text-[11px] text-slate-300 mt-1 text-center font-medium">
+                      Bharat Relocators · Kolkata &amp; PAN India
                     </span>
                   </div>
 
-                  {/* Bottom Status / Guidance Bar */}
-                  <div className="mt-4 flex items-center justify-between text-[11px] text-slate-400 px-1 pt-1 border-t border-white/10">
+                  <div className="mt-4 flex items-center justify-between text-[11px] text-slate-300 px-1 pt-2 border-t border-white/10">
                     <span className="inline-flex items-center gap-1.5 font-medium">
-                      <span className="w-2 h-2 rounded-full bg-[#E53935] animate-pulse" />
-                      Visual Placeholder
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      ISO 9001:2015 Certified
                     </span>
-                    <span className="font-mono text-[10px] text-slate-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">
-                      Slot Size: 4:3
+                    <span className="font-semibold text-[10px] text-[#F28A32] bg-white/5 px-2.5 py-0.5 rounded border border-white/10">
+                      4.9★ (306+ Reviews)
                     </span>
                   </div>
                 </div>

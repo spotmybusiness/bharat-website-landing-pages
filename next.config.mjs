@@ -9,6 +9,25 @@ const nextConfig = {
     minimumCacheTTL: 60,
     qualities: [75, 85, 100],
   },
+  async redirects() {
+    return [
+      {
+        source: '/moving-guides',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/blog',
+        destination: '/blogs',
+        permanent: true,
+      },
+      {
+        source: '/blogs/packers-and-movers-kolkata-charges',
+        destination: '/blogs/packers-and-movers-kolkata-charges-rate-card',
+        permanent: true,
+      },
+    ];
+  },
   webpack(
     config,
     {

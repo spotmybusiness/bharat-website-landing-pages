@@ -458,7 +458,32 @@ export default function BikeShiftingPage() {
               >
                 Kolkata Intercity Relocation Guide
               </Link>{' '}
-              for complete highway transport planning.
+              for complete highway transport planning, verify your two-wheeler RC &amp; NOC status on the{' '}
+              <a
+                href="https://vahan.parivahan.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                Parivahan Sewa Portal
+              </a>
+              , or compare door-to-door crated road carriers against{' '}
+              <a
+                href="https://parcel.indianrail.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                Indian Railways Parcel Rules
+              </a>{' '}
+              in our{' '}
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="text-[#E53935] font-semibold hover:underline"
+              >
+                2026 Kolkata Packers &amp; Movers Rate Card
+              </Link>
+              .
             </p>
           </div>
 

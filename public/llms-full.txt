@@ -58,9 +58,9 @@
 
 ## 3. Relocation Guides & Planning Resources
 
-### Moving Guides Resource Hub
-- **URL**: https://bharatrelocators.com/moving-guides
-- **Summary**: The moving guides portal is Bharat Relocators' educational resource center for individuals and businesses preparing to relocate. It provides actionable advice on budgeting, timing, vendor selection, legal vehicle paperwork, and highway transport regulations. Each guide focuses on practical steps to help customers avoid common moving pitfalls and plan relocations efficiently.
+### Blogs & Rate Cards Resource Hub
+- **URL**: https://bharatrelocators.com/blogs
+- **Summary**: The Blogs & Rate Cards portal is Bharat Relocators' canonical educational resource center and pricing hub for individuals and businesses preparing to relocate. It provides actionable advice on 2026 shifting rate cards, budgeting, timing, vendor selection, legal vehicle paperwork, and highway transport regulations. Each guide focuses on practical steps to help customers avoid common moving pitfalls and plan relocations efficiently.
 
 ### Home Shifting Checklist
 - **URL**: https://bharatrelocators.com/moving-checklist

@@ -153,10 +153,10 @@ export default function TestimonialsSection() {
   const [isLiveGmb, setIsLiveGmb] = useState<boolean>(false);
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const [sectionRevealed, setSectionRevealed] = useState(false);
-  const [isMarqueePaused, setIsMarqueePaused] = useState(false);
+  const [settledAnnouncement, setSettledAnnouncement] = useState('');
 
-  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const pendingTargetRef = useRef<number | null>(null);
 
   // Sync real Google reviews from /api/google-reviews endpoint (advances every Saturday at 23:59 IST)
   useEffect(() => {
@@ -169,7 +169,6 @@ export default function TestimonialsSection() {
         if (!res.ok) return;
         const data = await res.json();
         if (isMounted && data.success && Array.isArray(data.reviews) && data.reviews.length > 0) {
-          // Strictly filter for reviews with rating >= 4 stars and limit to latest 6
           const filtered = data.reviews
             .filter((r: GoogleReviewItem) => r.rating >= 4)
             .slice(0, 6);
@@ -186,10 +185,8 @@ export default function TestimonialsSection() {
             setIsLiveGmb(true);
           }
 
-          // Schedule auto-refresh if user has the page open through Saturday 23:59 IST
           if (typeof data.secondsUntilNextSync === 'number' && data.secondsUntilNextSync > 0) {
             const delayMs = (data.secondsUntilNextSync + 2) * 1000;
-            // Cap to 24 hours for reliable browser timer execution
             const safeDelay = Math.min(delayMs, 24 * 60 * 60 * 1000);
             syncTimer = setTimeout(syncReviewsFromGmb, safeDelay);
           }
@@ -206,70 +203,104 @@ export default function TestimonialsSection() {
     };
   }, []);
 
+  // Track horizontal scroll position on mobile scroll-snap container without cloning DOM nodes
   useEffect(() => {
-    const element = sectionRef.current;
+    const track = trackRef.current;
+    if (!track || reviews.length === 0) return;
 
-    if (!element) return;
+    let rafId = 0;
+    let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+    let lastSettled = 0;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setSectionRevealed(true);
-          observer.disconnect();
+    const getNearestSlideIndex = () => {
+      const children = Array.from(track.children) as HTMLElement[];
+      if (children.length === 0) return 0;
+      const trackCenter = track.scrollLeft + track.clientWidth / 2;
+      let bestIdx = 0;
+      let bestDist = Infinity;
+      children.forEach((child, idx) => {
+        const childCenter = child.offsetLeft + child.offsetWidth / 2;
+        const dist = Math.abs(childCenter - trackCenter);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIdx = idx;
         }
-      },
-      { threshold: 0.1 }
-    );
+      });
+      return bestIdx;
+    };
 
-    observer.observe(element);
+    const onSettle = () => {
+      pendingTargetRef.current = null;
+      const idx = getNearestSlideIndex();
+      setActiveIndex((prev) => (prev === idx ? prev : idx));
+      if (idx !== lastSettled) {
+        lastSettled = idx;
+        setSettledAnnouncement(`Slide ${idx + 1} of ${reviews.length}`);
+      }
+    };
 
-    return () => observer.disconnect();
-  }, []);
+    const onScroll = () => {
+      if (pendingTargetRef.current === null && !rafId) {
+        rafId = window.requestAnimationFrame(() => {
+          rafId = 0;
+          const idx = getNearestSlideIndex();
+          setActiveIndex((prev) => (prev === idx ? prev : idx));
+        });
+      }
+      if (!('onscrollend' in window)) {
+        if (debounceTimer) clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(onSettle, 150);
+      }
+    };
 
-  useEffect(() => {
-    if (reviews.length === 0) return;
-    const interval = window.setInterval(() => {
-      setActiveIndex((previous) => (previous + 1) % reviews.length);
-    }, 5000);
+    track.addEventListener('scroll', onScroll, { passive: true });
+    if ('onscrollend' in window) {
+      track.addEventListener('scrollend', onSettle as EventListener);
+    }
 
-    return () => window.clearInterval(interval);
+    return () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      if (debounceTimer) clearTimeout(debounceTimer);
+      track.removeEventListener('scroll', onScroll);
+      if ('onscrollend' in window) {
+        track.removeEventListener('scrollend', onSettle as EventListener);
+      }
+    };
   }, [reviews.length]);
 
-  const handleIndicatorKeyDown = (
-    event: React.KeyboardEvent<HTMLButtonElement>,
-    index: number
-  ) => {
-    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-      event.preventDefault();
-      setActiveIndex((index + 1) % reviews.length);
-    }
+  const scrollToSlide = (targetIdx: number) => {
+    const normalized = (targetIdx + reviews.length) % reviews.length;
+    pendingTargetRef.current = normalized;
+    setActiveIndex(normalized);
 
-    if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setActiveIndex(
-        (index - 1 + reviews.length) % reviews.length
-      );
-    }
+    const track = trackRef.current;
+    if (!track) return;
+    const child = track.children[normalized] as HTMLElement | undefined;
+    if (!child) return;
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const offset =
+      child.offsetLeft + child.offsetWidth / 2 - (track.scrollLeft + track.clientWidth / 2);
+
+    track.scrollBy({
+      left: offset,
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    });
   };
 
   return (
     <section
       id="reviews"
-      ref={sectionRef}
       aria-labelledby="testimonials-heading"
+      aria-roledescription="carousel"
       className="py-24 bg-slate-50/70 dot-pattern relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div
-          className="text-center mb-16 transition-all duration-700"
-          style={{
-            opacity: sectionRevealed ? 1 : 0,
-            transform: sectionRevealed
-              ? 'translateY(0)'
-              : 'translateY(20px)',
-          }}
-        >
+        <div className="text-center mb-14">
           <span className="inline-block bg-red-50 text-[#E53935] text-xs font-semibold uppercase tracking-[0.08em] px-4 py-1.5 rounded-full mb-4 border border-red-200">
             Customer Testimonials
           </span>
@@ -302,33 +333,56 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Desktop Reviews Grid */}
+        {/* Mobile Previous/Next Controls (Placed before track in DOM order) */}
+        <div className="flex md:hidden items-center justify-end gap-2 mb-4">
+          <button
+            type="button"
+            onClick={() => scrollToSlide((pendingTargetRef.current ?? activeIndex) - 1)}
+            aria-label="Previous testimonial slide"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-slate-200 text-[#082F52] hover:border-[#E53935] hover:text-[#E53935] shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E53935] touch-manipulation"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollToSlide((pendingTargetRef.current ?? activeIndex) + 1)}
+            aria-label="Next testimonial slide"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white border border-slate-200 text-[#082F52] hover:border-[#E53935] hover:text-[#E53935] shadow-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E53935] touch-manipulation"
+          >
+            →
+          </button>
+        </div>
+
+        {/* Single Canonical Review List: Mobile Scroll-Snap Track & Desktop 3-Column Grid (Zero Duplicate DOM Clones) */}
         <div
-          className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          aria-label="Customer reviews"
+          ref={trackRef}
+          tabIndex={0}
+          role="group"
+          aria-label="Customer testimonial slides"
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-4 md:pb-0 touch-manipulation motion-safe:scroll-smooth"
         >
           {reviews.map((review, index) => (
             <div
               key={`${review.name}-${index}`}
-              className="transition-all duration-700"
-              style={{
-                opacity: sectionRevealed ? 1 : 0,
-                transform: sectionRevealed
-                  ? 'translateY(0)'
-                  : 'translateY(24px)',
-                transitionDelay: `${index * 70}ms`,
-              }}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${index + 1} of ${reviews.length}`}
+              className="w-[85%] sm:w-[330px] md:w-auto shrink-0 md:shrink snap-center"
             >
               <ReviewCard review={review} />
             </div>
           ))}
         </div>
 
-        {/* Accessible Testimonial Controls */}
-        <div
-          className="hidden md:flex items-center justify-center gap-2 mt-10"
-          role="group"
-          aria-label="Choose highlighted testimonial"
+        {/* Polite Status Announcement for Screen Readers */}
+        <p className="sr-only" role="status" aria-live="polite">
+          {settledAnnouncement}
+        </p>
+
+        {/* Accessible Testimonial Markers */}
+        <nav
+          className="flex items-center justify-center gap-2 mt-8"
+          aria-label="Choose a testimonial slide"
         >
           {reviews.map((review, index) => {
             const isActive = index === activeIndex;
@@ -337,13 +391,10 @@ export default function TestimonialsSection() {
               <button
                 key={`indicator-${review.name}-${index}`}
                 type="button"
-                onClick={() => setActiveIndex(index)}
-                onKeyDown={(event) =>
-                  handleIndicatorKeyDown(event, index)
-                }
-                aria-label={`Select testimonial ${index + 1} from ${review.name}`}
+                onClick={() => scrollToSlide(index)}
+                aria-label={`Go to testimonial ${index + 1} from ${review.name}`}
                 aria-current={isActive ? 'true' : undefined}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E53935] focus-visible:ring-offset-2"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full cursor-pointer touch-manipulation focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E53935] focus-visible:ring-offset-2"
               >
                 <span
                   aria-hidden="true"
@@ -356,61 +407,7 @@ export default function TestimonialsSection() {
               </button>
             );
           })}
-        </div>
-      </div>
-
-      {/* Mobile Reviews Marquee */}
-      <div
-        className="block md:hidden w-full overflow-hidden relative mt-8 py-2"
-        style={{
-          opacity: sectionRevealed ? 1 : 0,
-          transform: sectionRevealed
-            ? 'translateY(0)'
-            : 'translateY(24px)',
-          transition: 'opacity 0.6s ease 100ms, transform 0.6s ease 100ms',
-        }}
-        onTouchStart={() => setIsMarqueePaused(true)}
-        onTouchEnd={() => setIsMarqueePaused(false)}
-        onTouchCancel={() => setIsMarqueePaused(false)}
-        onMouseEnter={() => setIsMarqueePaused(true)}
-        onMouseLeave={() => setIsMarqueePaused(false)}
-        onPointerDown={() => setIsMarqueePaused(true)}
-        onPointerUp={() => setIsMarqueePaused(false)}
-      >
-        <div className="overflow-hidden w-full relative">
-          <div
-            className="flex w-max animate-marquee-right hover:[animation-play-state:paused] active:[animation-play-state:paused]"
-            style={{
-              animationPlayState: isMarqueePaused ? 'paused' : 'running',
-            }}
-          >
-            <div className="flex items-stretch gap-4 pr-4 shrink-0">
-              {reviews.map((review, index) => (
-                <div
-                  key={`mobile-primary-${review.name}-${index}`}
-                  className="w-[285px] sm:w-[320px] shrink-0"
-                >
-                  <ReviewCard review={review} />
-                </div>
-              ))}
-            </div>
-
-            <div
-              className="flex items-stretch gap-4 pr-4 shrink-0"
-              aria-hidden="true"
-              inert
-            >
-              {reviews.map((review, index) => (
-                <div
-                  key={`mobile-duplicate-${review.name}-${index}`}
-                  className="w-[285px] sm:w-[320px] shrink-0"
-                >
-                  <ReviewCard review={review} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        </nav>
       </div>
     </section>
   );

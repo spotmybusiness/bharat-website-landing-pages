@@ -24,6 +24,9 @@ const articleSchema = buildGraphSchema([
     description:
       'Comprehensive step-by-step moving checklist and timeline for home shifting in Kolkata & PAN India. Practical tips for packing, decluttering, utilities, and move-day preparation.',
     path: '/moving-checklist',
+    image: '/images/packaging.png',
+    imageAlt:
+      'Sealed 5-layer corrugated packing cartons and wrapped furniture prepared for household relocation in Kolkata',
   }),
 ]);
 
@@ -231,14 +234,17 @@ export default function MovingChecklistPage() {
         }
         subtitle="Bharat Relocators provides a structured, week-by-week timeline to help you plan, organize, and execute a seamless household relocation in Kolkata and across India."
         breadcrumbs={[
+          { label: 'Blogs & Rate Cards', href: '/blogs' },
           { label: 'Moving Checklist' },
         ]}
-        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
-          <img
-            src="/images/Moving_guides.png"
-            alt="Home Shifting Checklist and Moving Guide - Bharat Relocators"
-          />
+          <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
+            <img
+              src="/images/Moving_guides.png"
+              alt="Home Shifting Checklist and 5-Layer Packing Guide by Bharat Relocators Kolkata"
+              fetchPriority="high"
+            />
+          </div>
         }
         actions={
           <>
@@ -434,6 +440,37 @@ export default function MovingChecklistPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-8 p-5 rounded-2xl bg-white border border-red-200 text-xs text-slate-700 leading-relaxed max-w-4xl mx-auto">
+            <strong className="text-[#082F52]">Official Regulatory &amp; Compliance Portals:</strong> For interstate vehicle NOC and RC verification, consult{' '}
+            <a
+              href="https://vahan.parivahan.gov.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+            >
+              Parivahan Sewa (vahan.parivahan.gov.in)
+            </a>
+            ; for household relocation tax invoice rules under SAC/HSN 9965 &amp; 9968, refer to the{' '}
+            <a
+              href="https://cbic-gst.gov.in/gst-goods-services-rates.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+            >
+              CBIC GST Rate Schedule
+            </a>
+            ; and for commercial highway carrier safety standards, visit the{' '}
+            <a
+              href="https://nhai.gov.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+            >
+              National Highways Authority of India (NHAI)
+            </a>
+            .
           </div>
         </div>
       </section>

@@ -20,6 +20,8 @@ export interface ArticleSchemaOptions {
   headline: string;
   description: string;
   path: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface WebPageSchemaOptions {
@@ -214,6 +216,8 @@ export function getArticleSchema({
   headline,
   description,
   path,
+  image,
+  imageAlt,
 }: ArticleSchemaOptions): Record<string, unknown> {
   const siteUrl = getSiteUrl();
 
@@ -222,6 +226,15 @@ export function getArticleSchema({
     headline,
     description,
     url: `${siteUrl}${path}`,
+    ...(image
+      ? {
+          image: {
+            '@type': 'ImageObject',
+            url: image.startsWith('http') ? image : `${siteUrl}${image}`,
+            ...(imageAlt ? { caption: imageAlt, description: imageAlt } : {}),
+          },
+        }
+      : {}),
     publisher: {
       '@id': getOrganizationId(),
     },

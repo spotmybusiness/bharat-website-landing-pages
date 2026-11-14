@@ -13,9 +13,9 @@ import { BUSINESS, getSiteUrl, getTelUrl, getWhatsAppUrl } from '@/lib/business'
 import { getOrganizationId } from '@/lib/schema';
 
 export const metadata: Metadata = generatePageMetadata({
-  title: 'Packers and Movers Kolkata Blog & 2026 Moving Guides',
+  title: 'Packers and Movers Kolkata Blog & 2026 Moving Rate Cards',
   description:
-    'Read verified moving guides and rate cards from Bharat Relocators Kolkata. Explore 1BHK to 3BHK shifting costs, corridor rates, packing checklists, and relocation advice.',
+    'Read verified 2026 moving rate cards and relocation guides from Bharat Relocators Kolkata. Explore 1BHK to 3BHK shifting costs, bike & car carrier rates, GST claim bills, and corridor guides.',
   path: '/blogs',
 });
 
@@ -63,9 +63,9 @@ export default function BlogsPage() {
       {
         '@type': 'Blog',
         '@id': `${siteUrl}/blogs#blog`,
-        name: 'Bharat Relocators Moving Knowledge Hub & Rate Cards',
+        name: 'Bharat Relocators Moving Knowledge Hub & 2026 Rate Cards',
         description:
-          'Expert relocation insights, verified pricing rate cards, and comprehensive packing guides from Kolkata trusted movers.',
+          'Expert relocation insights, verified 2026 pricing rate cards, and comprehensive packing guides from Kolkata trusted movers.',
         url: `${siteUrl}/blogs`,
         publisher: {
           '@id': getOrganizationId(),
@@ -94,7 +94,7 @@ export default function BlogsPage() {
           {
             '@type': 'ListItem',
             position: 2,
-            name: 'Blog',
+            name: 'Blogs & Rate Cards',
             item: `${siteUrl}/blogs`,
           },
         ],
@@ -108,12 +108,21 @@ export default function BlogsPage() {
 
       {/* Hero Section */}
       <PageHero
-        label="Relocation Insights & Rate Cards"
-        title="Moving Knowledge & Pricing Hub"
-        subtitle="Explore transparent shifting rate cards, expert moving checklists, corridor pricing benchmarks, and practical relocation guides for Kolkata and PAN India."
+        label="Relocation Insights & 2026 Rate Cards"
+        title="Blogs & Rate Cards: Moving Knowledge Hub"
+        subtitle="Explore 12 data-backed shifting rate cards, pinned cornerstone moving checklists, corridor pricing benchmarks, and practical relocation guides for Kolkata and PAN India."
         breadcrumbs={[
-          { label: 'Blog', href: '/blogs' },
+          { label: 'Blogs & Rate Cards', href: '/blogs' },
         ]}
+        image={
+          <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
+            <img
+              src="/images/Moving_guides.png"
+              alt="Bharat Relocators Blogs, 2026 Moving Rate Cards, and Relocation Guides Hub in Kolkata"
+              fetchPriority="high"
+            />
+          </div>
+        }
         actions={
           <div className="flex flex-wrap items-center gap-3">
             <Link
@@ -143,10 +152,10 @@ export default function BlogsPage() {
           <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-200">
             <div>
               <span className="text-xs uppercase font-bold text-[#E53935] tracking-wider block">
-                Featured 2026 Guide
+                Featured Pillar Rate Card ({featuredPost.publishWeek})
               </span>
               <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
-                Latest High-Demand Relocation Guide
+                Flagship 2026 Kolkata Relocation Rate Card
               </h2>
             </div>
             <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
@@ -202,7 +211,7 @@ export default function BlogsPage() {
                   <span className="bg-slate-100 px-2.5 py-1 rounded-md font-medium">✓ Quick Answer Cost Box</span>
                   <span className="bg-slate-100 px-2.5 py-1 rounded-md font-medium">✓ Corridor Pricing Table</span>
                   <span className="bg-slate-100 px-2.5 py-1 rounded-md font-medium">✓ Lift vs Staircase Sample Bill</span>
-                  <span className="bg-slate-100 px-2.5 py-1 rounded-md font-medium">✓ Narrow-Lane Shuttle & 18% GST</span>
+                  <span className="bg-slate-100 px-2.5 py-1 rounded-md font-medium">✓ Narrow-Lane Shuttle &amp; 18% GST</span>
                 </div>
 
                 <div className="pt-3 flex flex-wrap items-center gap-4">
@@ -246,40 +255,119 @@ export default function BlogsPage() {
         </div>
       </section>
 
-      {/* Interactive Cost Calculator Section */}
-      <section className="py-12 bg-slate-50 border-y border-slate-200/80">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            label="Instant Estimator"
-            title="Calculate Your Estimated Kolkata Moving Charges"
-            subtitle="Get an instant transparent cost projection for your move based on home volume, corridor distance, and lift availability."
-          />
-          <CostCalculator />
-        </div>
-      </section>
+      {/* Additional Published Blog Articles Grid (Renders as Week 2..12 Posts Go Live) */}
+      {posts.length > 1 && (
+        <section className="py-14 lg:py-20 bg-slate-50 border-t border-slate-200/80">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionHeader
+              label="Editorial Library"
+              title="All 2026 Kolkata Relocation Rate Cards & Deep-Dive Guides"
+              subtitle="Every guide includes a Quick Answer summary table, route-wise pricing matrix, side-by-side bill comparison, official government portal links, and expert FAQs."
+            />
 
-      {/* Grid of Related Pillar Moving Guides */}
-      <section className="py-16 bg-white">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {posts.map((post, idx) => (
+                <article
+                  key={post.slug}
+                  className="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-lg hover:border-[#082F52]/30 transition-all flex flex-col justify-between overflow-hidden"
+                >
+                  <div>
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 border-b border-slate-100">
+                      <img
+                        src={post.featuredImage}
+                        alt={post.featuredImageAlt}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                        <span className="bg-[#082F52]/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-full backdrop-blur-xs">
+                          #{idx + 1} · {post.publishWeek}
+                        </span>
+                        <span className="bg-[#E53935] text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+                          {post.category}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6 space-y-3">
+                      <div className="flex items-center justify-between text-xs text-slate-500">
+                        <span className="font-semibold text-[#1478B5]">{post.contentFormat}</span>
+                        <span>{post.readTime}</span>
+                      </div>
+
+                      <h3 className="font-display font-bold text-[#082F52] text-lg leading-snug hover:text-[#E53935] transition-colors">
+                        <Link href={`/blogs/${post.slug}`}>
+                          {post.h1}
+                        </Link>
+                      </h3>
+
+                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
+                        {post.excerpt}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {post.targetKeywords.slice(0, 2).map((kw) => (
+                          <span
+                            key={kw}
+                            className="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium"
+                          >
+                            {kw}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="px-6 py-4 bg-slate-50/70 border-t border-slate-100 flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 text-[11px] text-slate-500">
+                      <span className="font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                        {post.externalLinks.length} Gov Links
+                      </span>
+                      {post.internalLinks[0] && (
+                        <Link
+                          href={post.internalLinks[0].href}
+                          className="text-[#082F52] hover:underline font-medium truncate max-w-[130px]"
+                        >
+                          {post.internalLinks[0].href}
+                        </Link>
+                      )}
+                    </div>
+                    <Link
+                      href={`/blogs/${post.slug}`}
+                      className="text-xs font-bold text-[#E53935] hover:text-[#082F52] transition-colors shrink-0"
+                    >
+                      Read Guide →
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Pinned Cornerstone Relocation Guides */}
+      <section className="py-14 bg-white border-y border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            label="Essential Reading"
-            title="Comprehensive Relocation & Moving Guides"
-            subtitle="Step-by-step checklists, vehicle carrier advice, and interstate highway relocation strategies."
+            label="Pinned Cornerstone Guides"
+            title="Foundational Relocation & Moving Guides"
+            subtitle="Step-by-step home shifting checklists, RTO vehicle carrier compliance, and interstate highway relocation strategies consolidated inside our canonical knowledge hub."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {secondaryGuides.map((guide) => (
               <div
                 key={guide.title}
-                className="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between hover:border-[#F28A32] transition-colors"
+                className="bg-slate-50 rounded-2xl p-6 border-2 border-[#082F52]/15 shadow-sm flex flex-col justify-between hover:border-[#E53935] hover:shadow-md transition-all"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
                     <span className="text-xs font-bold text-[#E53935] uppercase tracking-wider">
                       {guide.category}
                     </span>
-                    <span className="text-[11px] bg-slate-200/80 text-slate-700 px-2 py-0.5 rounded font-medium">
-                      {guide.readTime}
+                    <span className="text-[11px] bg-red-50 text-[#E53935] border border-red-200 px-2.5 py-0.5 rounded-full font-semibold">
+                      📌 {guide.badge}
                     </span>
                   </div>
                   <h3 className="font-display font-bold text-[#082F52] text-lg mb-2 leading-snug">
@@ -292,18 +380,30 @@ export default function BlogsPage() {
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
-                  <span className="text-xs font-semibold text-slate-500">{guide.tag}</span>
+                <div className="pt-4 border-t border-slate-200/80 flex items-center justify-between">
+                  <span className="text-xs font-semibold text-slate-500">{guide.readTime} · {guide.tag}</span>
                   <Link
                     href={guide.href}
                     className="text-xs font-bold text-[#082F52] hover:text-[#E53935] flex items-center gap-1 transition-colors"
                   >
-                    Read Guide →
+                    Read Cornerstone Guide →
                   </Link>
                 </div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Interactive Cost Calculator Section */}
+      <section className="py-14 bg-slate-50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            label="Instant Estimator"
+            title="Calculate Your Estimated Kolkata Moving Charges"
+            subtitle="Get an instant transparent cost projection for your move based on home volume, corridor distance, and lift availability."
+          />
+          <CostCalculator />
         </div>
       </section>
 

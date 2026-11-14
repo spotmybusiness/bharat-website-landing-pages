@@ -427,7 +427,25 @@ export default function InternationalMovingPage() {
 
           {/* Regulatory Advisory Callout */}
           <div className="p-5 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 leading-relaxed text-center">
-            💡 <strong>Regulatory &amp; Customs Advisory:</strong> Import regulations, quarantine requirements, duty exemptions (including Transfer of Residence rules), and restricted cargo lists vary by destination country. Customers should independently confirm destination customs guidelines prior to dispatch. Our move coordinators assist with Indian origin export documentation and freight waybill management.
+            💡 <strong>Regulatory &amp; Customs Advisory:</strong> Import regulations, quarantine requirements, duty exemptions (including Transfer of Residence rules under{' '}
+            <a
+              href="https://www.cbic.gov.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#082F52] font-bold underline hover:text-[#E53935]"
+            >
+              CBIC Indian Customs Baggage Rules
+            </a>{' '}
+            and{' '}
+            <a
+              href="https://www.dgft.gov.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#082F52] font-bold underline hover:text-[#E53935]"
+            >
+              DGFT Export Guidelines
+            </a>
+            ), and restricted cargo lists vary by destination country. Customers should independently confirm destination customs guidelines prior to dispatch. Our move coordinators assist with Indian origin export documentation and freight waybill management.
           </div>
 
           {/* Navigation Links */}

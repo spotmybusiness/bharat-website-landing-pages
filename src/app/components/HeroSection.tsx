@@ -183,6 +183,7 @@ export default function HeroSection() {
         <img
           src="/images/hero_banner.png"
           alt="Night City Skyline & Moon - Bharat Relocators"
+          fetchPriority="high"
           className="w-full h-full object-cover object-bottom"
         />
         {/* Soft atmospheric gradient: slightly darker on the left for text contrast, open on the right for moon & city */}

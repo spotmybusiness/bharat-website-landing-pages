@@ -24,6 +24,9 @@ const articleSchema = buildGraphSchema([
     description:
       'Comprehensive guide to interstate moving from Kolkata across India. Understand long-distance packing, highway container transport, documentation, and major national corridors.',
     path: '/intercity-moving-guide',
+    image: '/images/cargo_shifting.jpeg',
+    imageAlt:
+      'Bharat Relocators closed container truck and 5-layer wrapped household consignment prepared for interstate highway transit from Kolkata',
   }),
 ]);
 
@@ -119,8 +122,18 @@ export default function IntercityMovingGuidePage() {
         }
         subtitle="A comprehensive guide by Bharat Relocators to planning, packing, and executing long-distance household and vehicle relocations across India."
         breadcrumbs={[
+          { label: 'Blogs & Rate Cards', href: '/blogs' },
           { label: 'Intercity Moving Guide' },
         ]}
+        image={
+          <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
+            <img
+              src="/images/cargo_shifting.jpeg"
+              alt="Bharat Relocators closed container truck loading 5-layer packed household goods for intercity highway relocation from Kolkata"
+              fetchPriority="high"
+            />
+          </div>
+        }
         actions={
           <>
             <Link
@@ -174,14 +187,65 @@ export default function IntercityMovingGuidePage() {
             <div className="lg:col-span-5">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
-                  src="/images/cargo_shifting.jpeg"
-                  alt="Intercity container truck and cargo parcels being prepared for highway transit across India"
+                  src="/images/gallery/g9.jpeg"
+                  alt="Bharat Relocators crew applying 5-layer corrugated and bubble sofa wrapping for long-distance intercity transit"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>
             </div>
+          </div>
+
+          {/* Authentic Fleet & Packaging Visual Showcase (4:3) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-10 border-t border-slate-100">
+            <figure className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-xs">
+              <div className="relative aspect-[4/3]">
+                <AppImage
+                  src="/images/gallery/g9.jpeg"
+                  alt="5-layer sofa and wooden furniture wrapping with corrugated sheets and stretch film in Kolkata"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+              <figcaption className="p-4 text-xs text-slate-600 font-medium">
+                <strong className="text-[#082F52] block mb-0.5">5-Layer Sofa &amp; Furniture Wrapping</strong>
+                Corrugated edge guards, bubble wrap, and waterproof stretch film for interstate protection.
+              </figcaption>
+            </figure>
+
+            <figure className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-xs">
+              <div className="relative aspect-[4/3]">
+                <AppImage
+                  src="/images/car_relocation.png"
+                  alt="Closed vehicle carrier loading with wheel chocks and hydraulic ramp for interstate car shifting"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+              <figcaption className="p-4 text-xs text-slate-600 font-medium">
+                <strong className="text-[#082F52] block mb-0.5">Closed Vehicle Carrier Loading</strong>
+                Weatherproof enclosed steel containers with four-wheel chock locks for highway transit.
+              </figcaption>
+            </figure>
+
+            <figure className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-xs">
+              <div className="relative aspect-[4/3]">
+                <AppImage
+                  src="/images/bike_transportation.jpeg"
+                  alt="Custom wooden bike crate and multi-layer foam wrapping for two-wheeler intercity shipping"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
+              <figcaption className="p-4 text-xs text-slate-600 font-medium">
+                <strong className="text-[#082F52] block mb-0.5">Custom Wooden Bike Crating</strong>
+                Scratch-free foam cushioning and heavy-duty wooden framing for zero-damage bike shipping.
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -248,8 +312,40 @@ export default function IntercityMovingGuidePage() {
             ))}
           </div>
 
-          <div className="mt-8 p-4 rounded-xl bg-slate-100 border border-slate-200 text-xs text-slate-700 leading-relaxed text-center max-w-3xl mx-auto">
-            <em>Transit schedules and road routes may vary based on weather, highway checkposts, container type, and seasonal road conditions. Your move coordinator will provide realistic transit estimates upon booking.</em>
+          <div className="mt-8 p-5 rounded-2xl bg-slate-100 border border-slate-200 text-xs text-slate-700 leading-relaxed max-w-4xl mx-auto space-y-2">
+            <p className="text-center">
+              <em>Transit schedules and road routes may vary based on weather, highway checkposts, container type, and seasonal road conditions. Your move coordinator will provide realistic transit estimates upon booking.</em>
+            </p>
+            <p className="text-center pt-2 border-t border-slate-200/80">
+              <strong>Official Highway &amp; Regulatory Resources:</strong> Check live national corridor maintenance on the{' '}
+              <a
+                href="https://nhai.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                National Highways Authority of India (NHAI) Portal
+              </a>
+              , electronic tolling rules at{' '}
+              <a
+                href="https://ihmcl.co.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                IHMCL / NETC FASTag Guidelines
+              </a>
+              , and interstate vehicle NOC compliance on{' '}
+              <a
+                href="https://vahan.parivahan.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                Parivahan Sewa (MoRTH)
+              </a>
+              .
+            </p>
           </div>
         </div>
       </section>
@@ -346,7 +442,29 @@ export default function IntercityMovingGuidePage() {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-10 p-5 rounded-2xl bg-blue-50/60 border border-blue-200 text-xs text-slate-700 leading-relaxed">
+            <strong className="text-[#082F52]">Verify GST &amp; Transport Tax Compliance:</strong> Before booking any interstate mover, verify their active GST registration on the{' '}
+            <a
+              href="https://services.gst.gov.in/services/searchtp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+            >
+              Official GST Portal Taxpayer Search
+            </a>{' '}
+            and review applicable SAC/HSN 9965 &amp; 9968 transport and packing tax schedules on the{' '}
+            <a
+              href="https://cbic-gst.gov.in/gst-goods-services-rates.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+            >
+              CBIC GST Goods &amp; Services Rate Portal
+            </a>
+            .
+          </div>
+
+          <div className="mt-10 text-center">
             <p className="text-slate-600 text-sm mb-4">
               Moving outside India? We also provide global overseas relocation solutions.
             </p>

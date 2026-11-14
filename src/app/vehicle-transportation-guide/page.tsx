@@ -24,6 +24,9 @@ const articleSchema = buildGraphSchema([
     description:
       'Complete guide to two-wheeler and car shipping from Kolkata across India. Learn about essential paperwork, vehicle preparation, enclosed carriers, and handover inspection.',
     path: '/vehicle-transportation-guide',
+    image: '/images/car_relocation_2.png',
+    imageAlt:
+      'Closed vehicle carrier container and custom wooden bike crate loading by Bharat Relocators Kolkata',
   }),
 ]);
 
@@ -115,14 +118,17 @@ export default function VehicleTransportationGuidePage() {
         }
         subtitle="A practical guide by Bharat Relocators to shipping two-wheelers and four-wheelers from Kolkata across India — covering document checklists, carrier safety, and delivery protocols."
         breadcrumbs={[
+          { label: 'Blogs & Rate Cards', href: '/blogs' },
           { label: 'Vehicle Transportation Guide' },
         ]}
-        /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
-          <img
-            src=""
-            alt="Vehicle Transportation Safety Guide - Bharat Relocators"
-          />
+          <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
+            <img
+              src="/images/car_relocation_2.png"
+              alt="Closed vehicle carrier loading and custom wooden bike crate shipping by Bharat Relocators Kolkata"
+              fetchPriority="high"
+            />
+          </div>
         }
         actions={
           <>
@@ -186,6 +192,41 @@ export default function VehicleTransportationGuidePage() {
               </div>
             </div>
           </div>
+
+          {/* 4:3 Fleet Gallery: Car Carrier & Custom Wooden Bike Crate */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 pt-10 border-t border-slate-100">
+            <figure className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-xs">
+              <div className="relative aspect-[4/3]">
+                <AppImage
+                  src="/images/car_relocation_2.png"
+                  alt="Dedicated enclosed car carrier container with hydraulic tail-lift ramp loading in Kolkata"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <figcaption className="p-4 text-xs text-slate-600 font-medium">
+                <strong className="text-[#082F52] block mb-0.5">Enclosed Four-Wheeler Carrier Container</strong>
+                Low-angle hydraulic ramps and four-point wheel chock strapping protect sedans and SUVs on national highways.
+              </figcaption>
+            </figure>
+
+            <figure className="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-xs">
+              <div className="relative aspect-[4/3]">
+                <AppImage
+                  src="/images/bike_transportation.jpeg"
+                  alt="Custom wooden bike crate and 5-layer foam protection for interstate motorcycle shipping from Kolkata"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <figcaption className="p-4 text-xs text-slate-600 font-medium">
+                <strong className="text-[#082F52] block mb-0.5">Custom Wooden Bike Crate &amp; Foam Wrapping</strong>
+                Multi-layer bubble cushioning, handlebar protection, and outer wooden crating prevent mirror or tank damage.
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -228,8 +269,49 @@ export default function VehicleTransportationGuidePage() {
             ))}
           </div>
 
-          <div className="mt-8 p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 leading-relaxed">
-            <strong>Note:</strong> Exact documentation requirements may vary based on route state border rules, commercial tax checkpoints, and whether the move is temporary or permanent. Always consult your coordinator for route-specific guidance.
+          <div className="mt-8 p-5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-950 leading-relaxed space-y-2">
+            <p>
+              <strong>Regulatory Note:</strong> Exact documentation requirements may vary based on route state border rules, commercial tax checkpoints, and whether the move is temporary or permanent. Always consult your coordinator for route-specific guidance.
+            </p>
+            <p className="pt-2 border-t border-amber-200/80">
+              <strong>Official Government Verification Portals:</strong> You can verify your vehicle Registration Certificate (RC) and apply for an interstate RTO No Objection Certificate (NOC) via{' '}
+              <a
+                href="https://vahan.parivahan.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-bold underline hover:text-[#E53935]"
+              >
+                Parivahan Sewa (vahan.parivahan.gov.in)
+              </a>
+              , download digital emission certificates on the{' '}
+              <a
+                href="https://puc.parivahan.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-bold underline hover:text-[#E53935]"
+              >
+                Parivahan PUC Portal
+              </a>
+              , manage electronic toll tags via{' '}
+              <a
+                href="https://ihmcl.co.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-bold underline hover:text-[#E53935]"
+              >
+                IHMCL / NPCI FASTag Guidelines
+              </a>
+              , or compare private enclosed carrier rules against the{' '}
+              <a
+                href="https://parcel.indianrail.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-bold underline hover:text-[#E53935]"
+              >
+                Indian Railways Official Parcel Portal
+              </a>
+              .
+            </p>
           </div>
         </div>
       </section>

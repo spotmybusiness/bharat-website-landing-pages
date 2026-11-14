@@ -52,7 +52,7 @@ export const BUSINESS = {
     mapsEmbedUrl:
       'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.9844344294384!2d88.38285461078684!3d22.504767179454774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027bee00518db7%3A0x84b05f269470ad0!2sBharat%20Relocators%20%7C%20Best%20Packers%20and%20Movers%20in%20Kolkata%2C%20India%20%7C%20Car%20%26%20Bike%20Transportation%20Service%20in%20Kolkata%2C%20India!5e0!3m2!1sen!2sin!4v1789879475320!5m2!1sen!2sin',
     rating: 4.9,
-    reviewCount: 305,
+    reviewCount: 306,
   },
 
   tracking: {
@@ -109,7 +109,7 @@ export const BUSINESS = {
       phoneFormatted: '+91 91230 46504',
       google: {
         rating: 4.9,
-        reviewCount: 305,
+        reviewCount: 306,
         shareUrl: 'https://share.google/we740rfLrkkJ43G4t',
         mapsShortlink: 'https://g.page/r/CdAKR2nyBUsIEBM',
         mapsEmbedUrl:

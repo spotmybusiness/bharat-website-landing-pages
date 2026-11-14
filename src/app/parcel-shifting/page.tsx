@@ -362,7 +362,32 @@ export default function ParcelShiftingPage() {
               >
                 Kolkata Intercity Relocation Guide
               </Link>{' '}
-              for complete household transport options.
+              or check our{' '}
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="text-[#E53935] font-semibold hover:underline"
+              >
+                2026 Kolkata Moving Charges &amp; Rate Card
+              </Link>
+              . All interstate part-load consignments follow{' '}
+              <a
+                href="https://morth.nic.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                MoRTH Road Freight Regulations
+              </a>{' '}
+              and{' '}
+              <a
+                href="https://ewaybillgst.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                GST E-Way Bill Declaration Rules
+              </a>
+              .
             </p>
           </div>
 

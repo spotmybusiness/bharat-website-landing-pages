@@ -18,9 +18,16 @@ interface PageProps {
 
 export async function generateStaticParams() {
   const posts = getAllBlogPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  const slugs: { slug: string }[] = [];
+  for (const post of posts) {
+    slugs.push({ slug: post.slug });
+    if (post.legacySlugs) {
+      for (const legacy of post.legacySlugs) {
+        slugs.push({ slug: legacy });
+      }
+    }
+  }
+  return slugs;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -80,6 +87,8 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
+  const allPosts = getAllBlogPosts();
+  const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 6);
   const siteUrl = getSiteUrl();
   const canonicalUrl = `${siteUrl}/blogs/${post.slug}`;
 
@@ -103,9 +112,14 @@ export default async function BlogPostPage({ params }: PageProps) {
     publisher: {
       '@id': getOrganizationId(),
     },
-    image: `${siteUrl}${post.featuredImage}`,
+    image: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}${post.featuredImage}`,
+      caption: post.featuredImageAlt,
+    },
     keywords: post.targetKeywords.join(', '),
     articleSection: post.category,
+    citation: post.externalLinks.map((ext) => ext.url),
   };
 
   const faqSchema = {
@@ -133,7 +147,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Blog',
+        name: 'Blogs & Rate Cards',
         item: `${siteUrl}/blogs`,
       },
       {
@@ -150,19 +164,51 @@ export default async function BlogPostPage({ params }: PageProps) {
     '@graph': [articleSchema, faqSchema, breadcrumbSchema],
   };
 
+  const qaHeaders = post.quickAnswer.columnHeaders ?? {
+    col1: 'House Size',
+    col2: 'Local Shifting Cost',
+    col3: 'Intercity Shifting (500+ km)',
+    col4: 'Truck Type',
+    col5: 'Crew Size',
+  };
+
+  const corridorMeta = post.corridorTableMeta ?? {
+    badge: 'Kolkata Route Benchmarks',
+    heading: 'Corridor Pricing Table: Local Kolkata Route Rates',
+    subtitle:
+      'Average shifting charges across major residential corridors in Kolkata, including bridge crossings, toll routes, and traffic bypasses.',
+    headers: {
+      col1: 'Moving Corridor (Route)',
+      col2: 'Distance',
+      col3: '1 BHK Cost',
+      col4: '2 BHK Cost',
+      col5: '3 BHK Cost',
+      col6: 'Est. Time',
+    },
+  };
+
   return (
     <PageLayout>
       <JsonLd data={graphData} />
 
       {/* Hero Header */}
       <PageHero
-        label="Verified 2026 Rate Card"
+        label={`${post.category} · ${post.publishWeek}`}
         title={post.h1}
-        subtitle="A transparent, data-backed pricing guide for home shifting in Kolkata. Check verified 1BHK, 2BHK, 3BHK corridor rates, lift vs staircase bills, narrow-lane tempo fees, and GST tax rules."
+        subtitle={post.excerpt}
         breadcrumbs={[
-          { label: 'Blog', href: '/blogs' },
-          { label: 'Kolkata Moving Charges', href: `/blogs/${post.slug}` },
+          { label: 'Blogs & Rate Cards', href: '/blogs' },
+          { label: post.category, href: `/blogs/${post.slug}` },
         ]}
+        image={
+          <div className="rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-3 shadow-[0_4px_24px_rgba(0,0,0,0.25)]">
+            <img
+              src={post.featuredImage}
+              alt={post.featuredImageAlt}
+              fetchPriority="high"
+            />
+          </div>
+        }
         actions={
           <div className="flex flex-wrap items-center gap-3">
             <Link
@@ -175,7 +221,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </svg>
             </Link>
             <a
-              href={getWhatsAppUrl(`Hi Bharat Relocators, I am checking your 2026 Rate Card for Kolkata shifting. Please provide an exact quote for my move!`)}
+              href={getWhatsAppUrl(`Hi Bharat Relocators, I am reading "${post.title}" and would like an exact quote for my move!`)}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm px-5 py-3.5 rounded-xl border border-emerald-400 transition-colors shadow-md"
@@ -206,14 +252,14 @@ export default async function BlogPostPage({ params }: PageProps) {
               <svg className="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Verified Rate Card
+              Verified 2026 Guide
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <span className="text-slate-400">Published by:</span>
             <span className="font-semibold text-[#082F52]">{post.author.organization}</span>
-            <span className="bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded text-[11px]">★ 4.9 (305+ Reviews)</span>
+            <span className="bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded text-[11px]">★ 4.9 (306+ Reviews)</span>
           </div>
         </div>
       </div>
@@ -226,12 +272,18 @@ export default async function BlogPostPage({ params }: PageProps) {
             <div className="lg:col-span-8 space-y-12">
               {/* Introduction */}
               <div className="space-y-5 text-slate-700 leading-relaxed text-base sm:text-lg">
-                <p>
-                  Relocating a home in Kolkata—whether moving from an old traditional para in Haltu or Behala to a modern high-rise in New Town or Salt Lake—comes with unique logistical considerations. Between narrow historical lanes, varying floor heights without elevators, and bridge toll crossings, understanding realistic <strong>packers and movers Kolkata charges</strong> is essential before hiring a moving service.
-                </p>
-                <p>
-                  At <strong>Bharat Relocators</strong>, we believe in complete pricing transparency. This verified <strong>2026 Rate Card</strong> provides an exact breakdown of local and intercity shifting costs for 1BHK, 2BHK, and 3BHK homes, real corridor pricing tables, sample staircase bills, narrow-lane shuttle tempo fees, and mandatory GST requirements.
-                </p>
+                {post.introParagraphs && post.introParagraphs.length > 0 ? (
+                  post.introParagraphs.map((para, i) => <p key={i}>{para}</p>)
+                ) : (
+                  <>
+                    <p>
+                      Relocating a home in Kolkata—whether moving from an old traditional para in Haltu or Behala to a modern high-rise in New Town or Salt Lake—comes with unique logistical considerations. Between narrow historical lanes, varying floor heights without elevators, and bridge toll crossings, understanding realistic <strong>packers and movers Kolkata charges</strong> is essential before hiring a moving service.
+                    </p>
+                    <p>
+                      At <strong>Bharat Relocators</strong>, we believe in complete pricing transparency. This verified <strong>2026 Rate Card</strong> provides an exact breakdown of local and intercity shifting costs for 1BHK, 2BHK, and 3BHK homes, real corridor pricing tables, sample staircase bills, narrow-lane shuttle tempo fees, and mandatory GST requirements.
+                    </p>
+                  </>
+                )}
               </div>
 
               {/* ─────────────────────────────────────────────────────────────
@@ -243,7 +295,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     Quick Answer
                   </span>
                   <span className="text-xs font-semibold text-slate-500">
-                    Kolkata Moving Cost Summary (2026)
+                    2026 Verified Summary
                   </span>
                 </div>
 
@@ -260,23 +312,23 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <table className="w-full text-left text-sm">
                     <thead className="bg-[#082F52] text-white font-display text-xs uppercase tracking-wider">
                       <tr>
-                        <th className="py-3.5 px-4 font-semibold">House Size</th>
-                        <th className="py-3.5 px-4 font-semibold">Local Shifting Cost</th>
-                        <th className="py-3.5 px-4 font-semibold">Intercity Shifting (500+ km)</th>
-                        <th className="py-3.5 px-4 font-semibold hidden md:table-cell">Truck Type</th>
-                        <th className="py-3.5 px-4 font-semibold hidden sm:table-cell">Crew Size</th>
+                        <th className="py-3.5 px-4 font-semibold">{qaHeaders.col1}</th>
+                        <th className="py-3.5 px-4 font-semibold">{qaHeaders.col2}</th>
+                        <th className="py-3.5 px-4 font-semibold">{qaHeaders.col3}</th>
+                        <th className="py-3.5 px-4 font-semibold hidden md:table-cell">{qaHeaders.col4}</th>
+                        <th className="py-3.5 px-4 font-semibold hidden sm:table-cell">{qaHeaders.col5}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-200">
                       {post.quickAnswer.rates.map((rate, idx) => (
                         <tr key={rate.homeSize} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/70'}>
-                          <td className="py-3.5 px-4 font-bold text-[#082F52] whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-bold text-[#082F52]">
                             {rate.homeSize}
                           </td>
-                          <td className="py-3.5 px-4 font-bold text-[#E53935] whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-bold text-[#E53935]">
                             {rate.localCost}
                           </td>
-                          <td className="py-3.5 px-4 font-semibold text-slate-800 whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-semibold text-slate-800">
                             {rate.intercityCost}
                           </td>
                           <td className="py-3.5 px-4 text-slate-600 hidden md:table-cell text-xs">
@@ -294,7 +346,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                 {/* Key Inclusions Bullet Box */}
                 <div className="mt-5 pt-4 border-t border-slate-200/80">
                   <h4 className="text-xs uppercase font-bold text-[#082F52] tracking-wider mb-2.5">
-                    Standard Rate Card Inclusions:
+                    Key Highlights &amp; Inclusions:
                   </h4>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
                     {post.quickAnswer.inclusionsSummary.map((item) => (
@@ -307,107 +359,291 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
 
                 <div className="mt-6 flex flex-wrap items-center gap-3">
-                  <Link
-                    href="/household-shifting"
-                    className="text-xs font-bold text-[#E53935] hover:underline flex items-center gap-1"
-                  >
-                    Explore Household Shifting Services →
-                  </Link>
-                  <span className="text-slate-300">|</span>
-                  <Link
-                    href="/get-a-quote"
-                    className="text-xs font-bold text-[#082F52] hover:underline flex items-center gap-1"
-                  >
-                    Request An Itemized Free Quote →
-                  </Link>
+                  {post.internalLinks.map((link, i) => (
+                    <React.Fragment key={link.href}>
+                      {i > 0 && <span className="text-slate-300">|</span>}
+                      <Link
+                        href={link.href}
+                        className="text-xs font-bold text-[#E53935] hover:underline flex items-center gap-1"
+                      >
+                        {link.label} →
+                      </Link>
+                    </React.Fragment>
+                  ))}
                 </div>
               </section>
 
               {/* ─────────────────────────────────────────────────────────────
-                  INTERACTIVE CALCULATOR WIDGET
+                  INTERACTIVE CALCULATOR WIDGET (For Pricing Posts)
                  ───────────────────────────────────────────────────────────── */}
-              <section id="calculator">
-                <CostCalculator />
-              </section>
+              {post.showCostCalculator && (
+                <section id="calculator">
+                  <CostCalculator />
+                </section>
+              )}
 
               {/* ─────────────────────────────────────────────────────────────
-                  DETAILED SECTION 1: 1BHK Moving Cost in Kolkata
+                  TOPIC-SPECIFIC DEEP DIVE SECTIONS (OR DEFAULT 1BHK/2BHK/3BHK SECTIONS)
                  ───────────────────────────────────────────────────────────── */}
-              <section id="1bhk-moving-cost" className="space-y-4">
-                <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
-                  1BHK Moving Cost in Kolkata: What Does It Include?
-                </h2>
-                <div className="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
-                  <p>
-                    For tenants and young couples shifting a single bedroom apartment, the <strong>1bhk moving cost kolkata</strong> standardly ranges between <strong>₹4,500 and ₹8,500</strong> for local relocations within 25 kilometers.
-                  </p>
-                  <p>
-                    A standard 1 BHK inventory typically includes one double or queen bed, a wardrobe, refrigerator, washing machine, television unit, sofa set or futon, and approximately 10 to 18 packed cartons of kitchenware, clothing, and personal items.
-                  </p>
-                </div>
+              {post.articleSections && post.articleSections.length > 0 ? (
+                post.articleSections.map((sec) => (
+                  <section key={sec.id} id={sec.id} className="space-y-4 pt-4 border-t border-slate-100">
+                    <div>
+                      <span className="text-xs uppercase font-bold text-[#E53935] tracking-wider block mb-1">
+                        {sec.badge}
+                      </span>
+                      <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
+                        {sec.heading}
+                      </h2>
+                    </div>
+                    <div className="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
+                      {sec.paragraphs.map((p, i) => (
+                        <p key={i}>{p}</p>
+                      ))}
+                    </div>
+                    {sec.bullets && sec.bullets.length > 0 && (
+                      <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-2.5">
+                        <h3 className="text-xs uppercase font-bold text-[#082F52] tracking-wider">
+                          Actionable Checklist &amp; Operational Standards:
+                        </h3>
+                        <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
+                          {sec.bullets.map((b) => (
+                            <li key={b} className="flex items-start gap-2.5">
+                              <span className="text-[#E53935] font-bold shrink-0">▸</span>
+                              <span>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </section>
+                ))
+              ) : (
+                <>
+                  {/* DETAILED SECTION 1: 1BHK Moving Cost in Kolkata */}
+                  <section id="1bhk-moving-cost" className="space-y-4">
+                    <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
+                      1BHK Moving Cost in Kolkata: What Does It Include?
+                    </h2>
+                    <div className="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
+                      <p>
+                        For tenants and young couples shifting a single bedroom apartment, the <strong>1bhk moving cost kolkata</strong> standardly ranges between <strong>₹4,500 and ₹8,500</strong> for local relocations within 25 kilometers.
+                      </p>
+                      <p>
+                        A standard 1 BHK inventory typically includes one double or queen bed, a wardrobe, refrigerator, washing machine, television unit, sofa set or futon, and approximately 10 to 18 packed cartons of kitchenware, clothing, and personal items.
+                      </p>
+                    </div>
 
-                {/* Cost Breakdown Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200">
-                    <span className="text-xs font-bold text-[#E53935] uppercase">Component 1</span>
-                    <h3 className="font-bold text-[#082F52] text-sm mt-1">Packaging Materials</h3>
-                    <p className="text-xs text-slate-600 mt-1">₹1,500 – ₹2,500 (Bubble wrap, 5-ply cartons, stretch film & tape)</p>
-                  </div>
-                  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200">
-                    <span className="text-xs font-bold text-[#E53935] uppercase">Component 2</span>
-                    <h3 className="font-bold text-[#082F52] text-sm mt-1">Dedicated Transport</h3>
-                    <p className="text-xs text-slate-600 mt-1">₹1,800 – ₹3,200 (Tata Ace / Mahindra Bolero Pickup + fuel)</p>
-                  </div>
-                  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200">
-                    <span className="text-xs font-bold text-[#E53935] uppercase">Component 3</span>
-                    <h3 className="font-bold text-[#082F52] text-sm mt-1">Loading & Assembly Crew</h3>
-                    <p className="text-xs text-slate-600 mt-1">₹1,200 – ₹2,500 (2 to 3 trained handlers for loading & placement)</p>
-                  </div>
-                </div>
+                    {/* Cost Breakdown Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                        <span className="text-xs font-bold text-[#E53935] uppercase">Component 1</span>
+                        <h3 className="font-bold text-[#082F52] text-sm mt-1">Packaging Materials</h3>
+                        <p className="text-xs text-slate-600 mt-1">₹1,500 – ₹2,500 (Bubble wrap, 5-ply cartons, stretch film &amp; tape)</p>
+                      </div>
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                        <span className="text-xs font-bold text-[#E53935] uppercase">Component 2</span>
+                        <h3 className="font-bold text-[#082F52] text-sm mt-1">Dedicated Transport</h3>
+                        <p className="text-xs text-slate-600 mt-1">₹1,800 – ₹3,200 (Tata Ace / Mahindra Bolero Pickup + fuel)</p>
+                      </div>
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                        <span className="text-xs font-bold text-[#E53935] uppercase">Component 3</span>
+                        <h3 className="font-bold text-[#082F52] text-sm mt-1">Loading &amp; Assembly Crew</h3>
+                        <p className="text-xs text-slate-600 mt-1">₹1,200 – ₹2,500 (2 to 3 trained handlers for loading &amp; placement)</p>
+                      </div>
+                    </div>
 
-                <p className="text-xs text-slate-500 italic mt-2">
-                  💡 Pro-tip: Check our comprehensive <Link href="/moving-checklist" className="text-[#E53935] font-semibold hover:underline">Home Moving Checklist</Link> to declutter before packing day and cut down 1 BHK volume costs.
-                </p>
-              </section>
+                    <p className="text-xs text-slate-500 italic mt-2">
+                      💡 Pro-tip: Check our comprehensive <Link href="/moving-checklist" className="text-[#E53935] font-semibold hover:underline">Home Moving Checklist</Link> to declutter before packing day and cut down 1 BHK volume costs.
+                    </p>
+                  </section>
+
+                  {/* DETAILED SECTION 2: 2BHK & 3BHK House Shifting Cost in Kolkata */}
+                  <section id="2bhk-3bhk-cost" className="space-y-4 pt-4 border-t border-slate-100">
+                    <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
+                      2BHK and 3BHK House Shifting Cost in Kolkata
+                    </h2>
+                    <div className="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
+                      <p>
+                        When calculating <strong>house shifting cost in kolkata</strong> for 2BHK and 3BHK apartments, the logistical complexity scales. Family moves involve heavy solid wood furniture (such as multi-door almirahs, dining tables with glass tops, and modular beds), delicate crockery, multiple air conditioners, and 25 to 50+ cartons.
+                      </p>
+                      <ul className="list-disc pl-5 space-y-2 text-slate-700">
+                        <li>
+                          <strong>2 BHK Moving Charges (₹7,500 – ₹13,500):</strong> Allocated with a 14ft closed container truck and 3 to 4 moving specialists. Includes complete carpentry dismantling and reassembly of modular furniture.
+                        </li>
+                        <li>
+                          <strong>3 BHK Moving Charges (₹11,000 – ₹19,500):</strong> Allocated with a 17ft or 19ft large container truck and 4 to 5 seasoned moving specialists. Accommodates two king/queen beds, large modular wardrobes, 30+ cartons, and living room suites.
+                        </li>
+                      </ul>
+                      <p>
+                        Explore our dedicated <Link href="/household-shifting" className="text-[#E53935] font-semibold hover:underline">Household Shifting Services</Link> for detailed step-by-step moving protocols, custom wooden crating for televisions, and transit insurance options.
+                      </p>
+                    </div>
+                  </section>
+                </>
+              )}
 
               {/* ─────────────────────────────────────────────────────────────
-                  DETAILED SECTION 2: 2BHK & 3BHK House Shifting Cost in Kolkata
+                  DISTANCE × HOME SIZE MATRIX TABLE (When Available)
                  ───────────────────────────────────────────────────────────── */}
-              <section id="2bhk-3bhk-cost" className="space-y-4 pt-4 border-t border-slate-100">
-                <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
-                  2BHK and 3BHK House Shifting Cost in Kolkata
-                </h2>
-                <div className="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed">
-                  <p>
-                    When calculating <strong>house shifting cost in kolkata</strong> for 2BHK and 3BHK apartments, the logistical complexity scales. Family moves involve heavy solid wood furniture (such as multi-door almirahs, dining tables with glass tops, and modular beds), delicate crockery, multiple air conditioners, and 25 to 50+ cartons.
-                  </p>
-                  <ul className="list-disc pl-5 space-y-2 text-slate-700">
-                    <li>
-                      <strong>2 BHK Moving Charges (₹7,500 – ₹13,500):</strong> Allocated with a 14ft closed container truck and 3 to 4 moving specialists. Includes complete carpentry dismantling and reassembly of modular furniture.
-                    </li>
-                    <li>
-                      <strong>3 BHK Moving Charges (₹11,000 – ₹19,500):</strong> Allocated with a 17ft or 19ft large container truck and 4 to 5 seasoned moving specialists. Accommodates two king/queen beds, large modular wardrobes, 30+ cartons, and living room suites.
-                    </li>
-                  </ul>
-                  <p>
-                    Explore our dedicated <Link href="/household-shifting" className="text-[#E53935] font-semibold hover:underline">Household Shifting Services</Link> for detailed step-by-step moving protocols, custom wooden crating for televisions, and transit insurance options.
-                  </p>
-                </div>
-              </section>
+              {post.distanceMatrix && post.distanceMatrix.length > 0 && (
+                <section id="distance-matrix" className="space-y-5 pt-4 border-t border-slate-100">
+                  <div>
+                    <span className="text-xs uppercase font-bold text-[#1478B5] tracking-wider block mb-1">
+                      Distance × Home Size Matrix (2026)
+                    </span>
+                    <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
+                      Kolkata Moving Charges by Distance Slab (Local, West Bengal &amp; Intercity)
+                    </h2>
+                    <p className="text-slate-600 text-sm mt-1">
+                      Compare how packers and movers charges scale from intra-neighborhood Kolkata moves (under 15 km) to South/North Bengal towns and long-haul PAN-India metro corridors.
+                    </p>
+                  </div>
+
+                  <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
+                    <table className="w-full text-left text-sm">
+                      <thead className="bg-[#082F52] text-white font-display text-xs uppercase tracking-wider">
+                        <tr>
+                          <th className="py-3.5 px-4 font-semibold">Distance Slab</th>
+                          <th className="py-3.5 px-4 font-semibold hidden md:table-cell">Example Routes from Kolkata</th>
+                          <th className="py-3.5 px-4 font-semibold">1 BHK Cost</th>
+                          <th className="py-3.5 px-4 font-semibold">2 BHK Cost</th>
+                          <th className="py-3.5 px-4 font-semibold">3 BHK Cost</th>
+                          <th className="py-3.5 px-4 font-semibold hidden sm:table-cell">Transit Window</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-200">
+                        {post.distanceMatrix.map((row, idx) => (
+                          <tr key={row.distanceSlab} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/70'}>
+                            <td className="py-3.5 px-4 font-bold text-[#082F52]">
+                              {row.distanceSlab}
+                            </td>
+                            <td className="py-3.5 px-4 text-slate-600 hidden md:table-cell text-xs">
+                              {row.exampleRoutes}
+                            </td>
+                            <td className="py-3.5 px-4 font-semibold text-slate-800 whitespace-nowrap">
+                              {row.oneBhk}
+                            </td>
+                            <td className="py-3.5 px-4 font-bold text-[#082F52] whitespace-nowrap">
+                              {row.twoBhk}
+                            </td>
+                            <td className="py-3.5 px-4 font-bold text-[#E53935] whitespace-nowrap">
+                              {row.threeBhk}
+                            </td>
+                            <td className="py-3.5 px-4 text-slate-500 hidden sm:table-cell text-xs whitespace-nowrap">
+                              {row.transitTime}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              )}
 
               {/* ─────────────────────────────────────────────────────────────
-                  2. CORRIDOR PRICING TABLE (Explicit Blueprint Item)
+                  PACKING MATERIALS & LABOUR BREAKDOWN TABLE (When Available)
+                 ───────────────────────────────────────────────────────────── */}
+              {post.packingLabourMatrix && post.packingLabourMatrix.length > 0 && (
+                <section id="packing-labour-breakdown" className="space-y-5 pt-4 border-t border-slate-100">
+                  <div>
+                    <span className="text-xs uppercase font-bold text-[#E53935] tracking-wider block mb-1">
+                      Component-Wise Cost Transparency
+                    </span>
+                    <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
+                      Carton Count, 5-Layer Packing Material &amp; Labour Cost Breakdown
+                    </h2>
+                    <p className="text-slate-600 text-sm mt-1">
+                      See how much of your total moving bill goes toward 5-ply corrugated boxes, bubble/foam wrap, trained handling crew, carpentry, and closed container allocation.
+                    </p>
+                  </div>
+
+                  <div className="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
+                    <table className="w-full text-left text-sm">
+                      <thead className="bg-[#082F52] text-white font-display text-xs uppercase tracking-wider">
+                        <tr>
+                          <th className="py-3.5 px-4 font-semibold">Home Size</th>
+                          <th className="py-3.5 px-4 font-semibold">Avg. Carton Count</th>
+                          <th className="py-3.5 px-4 font-semibold">5-Layer Packing Material</th>
+                          <th className="py-3.5 px-4 font-semibold">Labour &amp; Carpentry</th>
+                          <th className="py-3.5 px-4 font-semibold hidden md:table-cell">Recommended Vehicle</th>
+                          <th className="py-3.5 px-4 font-semibold">Total Local Range</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-200">
+                        {post.packingLabourMatrix.map((row, idx) => (
+                          <tr key={row.homeType} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/70'}>
+                            <td className="py-3.5 px-4 font-bold text-[#082F52]">
+                              {row.homeType}
+                            </td>
+                            <td className="py-3.5 px-4 text-slate-700 font-medium text-xs">
+                              {row.avgCartons}
+                            </td>
+                            <td className="py-3.5 px-4 font-semibold text-slate-800 whitespace-nowrap">
+                              {row.packingMaterialCost}
+                            </td>
+                            <td className="py-3.5 px-4 text-slate-700 text-xs">
+                              {row.labourAndCarpentryCost}
+                            </td>
+                            <td className="py-3.5 px-4 text-slate-600 hidden md:table-cell text-xs">
+                              {row.recommendedTruck}
+                            </td>
+                            <td className="py-3.5 px-4 font-bold text-[#E53935] whitespace-nowrap">
+                              {row.totalLocalRange}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* 4:3 Fleet & Packing Visual Showcase */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 pt-2">
+                    <figure className="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-xs">
+                      <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                        <img
+                          src="/images/packaging.png"
+                          alt="5-layer corrugated, bubble wrap, and stretch film household packing in Kolkata by Bharat Relocators"
+                          loading="lazy"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <figcaption className="p-3.5 text-xs text-slate-600 leading-relaxed">
+                        <strong className="text-[#082F52] block">5-Layer Fragile &amp; Furniture Protection</strong>
+                        EPE foam sheet, 10mm air-bubble wrap, 5-ply cartons, edge guards, and waterproof LLDPE stretch film.
+                      </figcaption>
+                    </figure>
+                    <figure className="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-xs">
+                      <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100">
+                        <img
+                          src="/images/g9.jpeg"
+                          alt="Bharat Relocators closed-body container truck loading household goods in Kolkata"
+                          loading="lazy"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <figcaption className="p-3.5 text-xs text-slate-600 leading-relaxed">
+                        <strong className="text-[#082F52] block">Weatherproof Closed Container Fleet</strong>
+                        Dedicated 14ft, 17ft, and 19ft steel-roof containers operating out of our Haltu (700078) and Behala (700061) hubs.
+                      </figcaption>
+                    </figure>
+                  </div>
+                </section>
+              )}
+
+              {/* ─────────────────────────────────────────────────────────────
+                  2. CORRIDOR PRICING / MATRIX TABLE
                  ───────────────────────────────────────────────────────────── */}
               <section id="corridor-pricing" className="space-y-5 pt-4 border-t border-slate-100">
                 <div>
                   <span className="text-xs uppercase font-bold text-[#E53935] tracking-wider block mb-1">
-                    Kolkata Route Benchmarks
+                    {corridorMeta.badge}
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
-                    Corridor Pricing Table: Local Kolkata Route Rates
+                    {corridorMeta.heading}
                   </h2>
                   <p className="text-slate-600 text-sm mt-1">
-                    Average shifting charges across major residential corridors in Kolkata, including bridge crossings, toll routes, and traffic bypasses.
+                    {corridorMeta.subtitle}
                   </p>
                 </div>
 
@@ -415,12 +651,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <table className="w-full text-left text-sm">
                     <thead className="bg-[#082F52] text-white font-display text-xs uppercase tracking-wider">
                       <tr>
-                        <th className="py-3.5 px-4 font-semibold">Moving Corridor (Route)</th>
-                        <th className="py-3.5 px-4 font-semibold">Distance</th>
-                        <th className="py-3.5 px-4 font-semibold">1 BHK Cost</th>
-                        <th className="py-3.5 px-4 font-semibold">2 BHK Cost</th>
-                        <th className="py-3.5 px-4 font-semibold">3 BHK Cost</th>
-                        <th className="py-3.5 px-4 font-semibold hidden sm:table-cell">Est. Time</th>
+                        <th className="py-3.5 px-4 font-semibold">{corridorMeta.headers.col1}</th>
+                        <th className="py-3.5 px-4 font-semibold">{corridorMeta.headers.col2}</th>
+                        <th className="py-3.5 px-4 font-semibold">{corridorMeta.headers.col3}</th>
+                        <th className="py-3.5 px-4 font-semibold">{corridorMeta.headers.col4}</th>
+                        <th className="py-3.5 px-4 font-semibold">{corridorMeta.headers.col5}</th>
+                        <th className="py-3.5 px-4 font-semibold hidden sm:table-cell">{corridorMeta.headers.col6}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-200">
@@ -429,19 +665,19 @@ export default async function BlogPostPage({ params }: PageProps) {
                           <td className="py-3.5 px-4 font-bold text-[#082F52]">
                             {corridor.corridor}
                           </td>
-                          <td className="py-3.5 px-4 text-slate-600 whitespace-nowrap text-xs">
+                          <td className="py-3.5 px-4 text-slate-600 text-xs">
                             {corridor.distanceKm}
                           </td>
-                          <td className="py-3.5 px-4 font-semibold text-slate-800 whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-semibold text-slate-800">
                             {corridor.oneBhk}
                           </td>
-                          <td className="py-3.5 px-4 font-bold text-[#082F52] whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-bold text-[#082F52]">
                             {corridor.twoBhk}
                           </td>
-                          <td className="py-3.5 px-4 font-bold text-[#E53935] whitespace-nowrap">
+                          <td className="py-3.5 px-4 font-bold text-[#E53935]">
                             {corridor.threeBhk}
                           </td>
-                          <td className="py-3.5 px-4 text-slate-500 whitespace-nowrap hidden sm:table-cell text-xs">
+                          <td className="py-3.5 px-4 text-slate-500 hidden sm:table-cell text-xs">
                             {corridor.duration}
                           </td>
                         </tr>
@@ -449,22 +685,18 @@ export default async function BlogPostPage({ params }: PageProps) {
                     </tbody>
                   </table>
                 </div>
-
-                <p className="text-xs text-slate-500">
-                  * Note: Actual route costs may vary slightly based on specific origin-to-destination floor accessibility, narrow-lane entry conditions, and exact packing material customizations.
-                </p>
               </section>
 
               {/* ─────────────────────────────────────────────────────────────
-                  3. SAMPLE BILL: WITH LIFT VS. WITHOUT LIFT (Explicit Blueprint Item)
+                  3. SIDE-BY-SIDE COMPARISON / SAMPLE BILL TABLE
                  ───────────────────────────────────────────────────────────── */}
               <section id="lift-comparison" className="space-y-6 pt-4 border-t border-slate-100">
                 <div>
                   <span className="text-xs uppercase font-bold text-[#1478B5] tracking-wider block mb-1">
-                    Staircase vs. Elevator Analysis
+                    {post.liftComparison.badge ?? 'Staircase vs. Elevator Analysis'}
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
-                    Sample Bill Comparing: With Lift vs. Without Lift
+                    {post.liftComparison.scenarioTitle}
                   </h2>
                   <p className="text-slate-600 text-sm mt-1">
                     {post.liftComparison.scenarioDesc}
@@ -476,10 +708,14 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <table className="w-full text-left text-sm">
                     <thead className="bg-[#082F52] text-white font-display text-xs uppercase tracking-wider">
                       <tr>
-                        <th className="py-3.5 px-4 font-semibold">Bill Component</th>
-                        <th className="py-3.5 px-4 font-semibold bg-[#0A3D6B]">With Service Lift</th>
-                        <th className="py-3.5 px-4 font-semibold bg-red-950/80">Without Lift (3rd Floor)</th>
-                        <th className="py-3.5 px-4 font-semibold hidden md:table-cell">Billing Notes</th>
+                        <th className="py-3.5 px-4 font-semibold">Comparison Component</th>
+                        <th className="py-3.5 px-4 font-semibold bg-[#0A3D6B]">
+                          {post.liftComparison.colWithLiftHeader ?? 'With Service Lift'}
+                        </th>
+                        <th className="py-3.5 px-4 font-semibold bg-red-950/80">
+                          {post.liftComparison.colWithoutLiftHeader ?? 'Without Lift (3rd Floor)'}
+                        </th>
+                        <th className="py-3.5 px-4 font-semibold hidden md:table-cell">Operational Notes</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-200">
@@ -488,10 +724,10 @@ export default async function BlogPostPage({ params }: PageProps) {
                           <td className="py-3.5 px-4 font-medium text-[#082F52]">
                             {item.component}
                           </td>
-                          <td className="py-3.5 px-4 font-semibold text-slate-800 whitespace-nowrap bg-blue-50/20">
+                          <td className="py-3.5 px-4 font-semibold text-slate-800 bg-blue-50/20">
                             {item.withLift}
                           </td>
-                          <td className="py-3.5 px-4 font-semibold text-[#E53935] whitespace-nowrap bg-red-50/20">
+                          <td className="py-3.5 px-4 font-semibold text-[#E53935] bg-red-50/20">
                             {item.withoutLift}
                           </td>
                           <td className="py-3.5 px-4 text-slate-500 hidden md:table-cell text-xs">
@@ -500,7 +736,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                         </tr>
                       ))}
                       <tr className="bg-slate-100 font-bold text-base">
-                        <td className="py-4 px-4 text-[#082F52]">Total Estimated Moving Bill</td>
+                        <td className="py-4 px-4 text-[#082F52]">Bottom-Line Summary</td>
                         <td className="py-4 px-4 text-[#082F52] bg-blue-100/50">
                           {post.liftComparison.withLiftTotal}
                         </td>
@@ -508,17 +744,17 @@ export default async function BlogPostPage({ params }: PageProps) {
                           {post.liftComparison.withoutLiftTotal}
                         </td>
                         <td className="py-4 px-4 text-xs text-slate-600 hidden md:table-cell">
-                          Difference of ₹2,000 for staircase physical carry
+                          {post.liftComparison.differenceNote ?? 'Difference of ₹2,000 for staircase physical carry'}
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
 
-                {/* Floor-by-Floor Staircase Rules Card */}
+                {/* 4-Card Operational Rules Box */}
                 <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
                   <h3 className="font-display font-bold text-[#082F52] text-base">
-                    Kolkata Staircase Carry Surcharge Structure (Per Floor)
+                    {post.liftComparison.staircaseRulesTitle ?? 'Kolkata Staircase Carry Surcharge Structure (Per Floor)'}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {post.liftComparison.staircaseRules.map((rule) => (
@@ -529,26 +765,23 @@ export default async function BlogPostPage({ params }: PageProps) {
                       </div>
                     ))}
                   </div>
-                  <p className="text-xs text-slate-600">
-                    Why do staircase charges exist? Hauling solid wood wardrobes, large refrigerators, and king-size mattresses down multiple flights of stairs increases manpower requirements, takes double the physical loading time, and requires extra caution to prevent wall scuffs and staircase impact.
-                  </p>
                 </div>
               </section>
 
               {/* ─────────────────────────────────────────────────────────────
-                  4. NARROW-LANE SHUTTLE TEMPO FEES & 18% GST (Explicit Blueprint Item)
+                  4. SHUTTLE / LOGISTICS & 18% GST BREAKDOWN
                  ───────────────────────────────────────────────────────────── */}
               <section id="shuttle-tempo-gst" className="space-y-6 pt-4 border-t border-slate-100">
                 <div>
                   <span className="text-xs uppercase font-bold text-[#F28A32] tracking-wider block mb-1">
-                    Specialized Logistics
+                    Specialized Logistics &amp; Tax Compliance
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
-                    Narrow-Lane Shuttle Tempo Fees and 18% GST Breakdown
+                    {post.shuttleAndGst.sectionTitle ?? 'Narrow-Lane Shuttle Tempo Fees and 18% GST Breakdown'}
                   </h2>
                 </div>
 
-                {/* Narrow Lane Section */}
+                {/* Narrow Lane / Feeder Section */}
                 <div className="space-y-3">
                   <h3 className="text-lg font-display font-bold text-[#082F52]">
                     {post.shuttleAndGst.shuttleHeadline}
@@ -560,17 +793,17 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
                     {post.shuttleAndGst.shuttleRates.map((shuttle) => (
                       <div key={shuttle.vehicle} className="p-5 bg-amber-50/50 rounded-2xl border border-amber-200">
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between gap-2">
                           <h4 className="font-bold text-[#082F52] text-sm">{shuttle.vehicle}</h4>
-                          <span className="text-xs font-bold text-[#E53935] bg-white px-2 py-0.5 rounded border border-amber-200">
+                          <span className="text-xs font-bold text-[#E53935] bg-white px-2 py-0.5 rounded border border-amber-200 shrink-0">
                             {shuttle.chargePerTrip}
                           </span>
                         </div>
                         <p className="text-xs text-slate-600 mt-2">
-                          <strong>Capacity:</strong> {shuttle.capacity}
+                          <strong>Scope:</strong> {shuttle.capacity}
                         </p>
                         <p className="text-xs text-slate-600 mt-1">
-                          <strong>Applicable Areas:</strong> {shuttle.applicableZones}
+                          <strong>Applicable Zones:</strong> {shuttle.applicableZones}
                         </p>
                       </div>
                     ))}
@@ -589,9 +822,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-3">
                     {post.shuttleAndGst.gstTypes.map((gst) => (
                       <div key={gst.rate} className="p-5 bg-blue-50/50 rounded-2xl border border-blue-200">
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between gap-2">
                           <h4 className="font-bold text-[#082F52] text-sm">{gst.rate}</h4>
-                          <span className="text-xs font-mono font-bold text-[#1478B5] bg-white px-2 py-0.5 rounded border border-blue-200">
+                          <span className="text-xs font-mono font-bold text-[#1478B5] bg-white px-2 py-0.5 rounded border border-blue-200 shrink-0">
                             {gst.sacCode}
                           </span>
                         </div>
@@ -604,18 +837,58 @@ export default async function BlogPostPage({ params }: PageProps) {
                       </div>
                     ))}
                   </div>
-
-                  <div className="p-4 bg-emerald-50 rounded-xl border border-emerald-200 flex items-start gap-3 mt-3">
-                    <span className="text-emerald-700 font-bold text-lg leading-none">✓</span>
-                    <p className="text-xs text-emerald-900 leading-relaxed">
-                      <strong>100% Tax Compliant & Claimable:</strong> Bharat Relocators provides official GST-registered tax invoices, consignment notes (LR), and money receipts suitable for corporate claims, defense relocations, and government transfer allowances.
-                    </p>
-                  </div>
                 </div>
               </section>
 
               {/* ─────────────────────────────────────────────────────────────
-                  5. MID-PAGE HIGH-CONVERTING CTA BANNER
+                  5. OFFICIAL GOVERNMENT & REGULATORY PORTALS REFERENCED (Outbound Authority Links)
+                 ───────────────────────────────────────────────────────────── */}
+              <section id="official-references" className="bg-emerald-50/70 rounded-3xl p-6 sm:p-8 border border-emerald-200 space-y-4">
+                <div className="flex items-center justify-between flex-wrap gap-2">
+                  <div>
+                    <span className="text-xs uppercase font-bold text-emerald-800 tracking-wider block">
+                      Verified Regulatory Citations
+                    </span>
+                    <h2 className="text-lg sm:text-xl font-display font-bold text-[#082F52]">
+                      Official Government &amp; Transport Portals Referenced in This Guide
+                    </h2>
+                  </div>
+                  <span className="text-[11px] font-mono bg-white text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-md font-bold">
+                    GSTIN: 19AAWFB0500G1ZL
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {post.externalLinks.map((ext) => (
+                    <a
+                      key={ext.url}
+                      href={ext.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-4 bg-white rounded-2xl border border-emerald-200 hover:border-[#082F52] shadow-xs transition-all flex flex-col justify-between group"
+                    >
+                      <div>
+                        <span className="text-[11px] font-bold text-emerald-700 uppercase tracking-wider block mb-1">
+                          {ext.authority}
+                        </span>
+                        <h3 className="font-bold text-[#082F52] group-hover:text-[#E53935] text-sm transition-colors flex items-center justify-between gap-2">
+                          <span>{ext.label}</span>
+                          <span aria-hidden="true" className="text-xs shrink-0">↗</span>
+                        </h3>
+                        <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                          {ext.description}
+                        </p>
+                      </div>
+                      <span className="text-[11px] font-mono text-slate-400 mt-3 truncate block">
+                        {ext.url}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </section>
+
+              {/* ─────────────────────────────────────────────────────────────
+                  6. MID-PAGE HIGH-CONVERTING CTA BANNER
                  ───────────────────────────────────────────────────────────── */}
               <section className="bg-gradient-to-r from-[#082F52] to-[#1478B5] rounded-3xl p-8 sm:p-10 text-white shadow-xl relative overflow-hidden">
                 <div className="relative z-10 space-y-4 max-w-2xl">
@@ -649,7 +922,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               </section>
 
               {/* ─────────────────────────────────────────────────────────────
-                  6. FREQUENTLY ASKED QUESTIONS (FAQPage Schema Synced)
+                  7. FREQUENTLY ASKED QUESTIONS (FAQPage Schema Synced)
                  ───────────────────────────────────────────────────────────── */}
               <section id="faqs" className="space-y-6 pt-4 border-t border-slate-100">
                 <div>
@@ -657,7 +930,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     Helpful Answers
                   </span>
                   <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
-                    Frequently Asked Questions About Kolkata Moving Charges
+                    Frequently Asked Questions
                   </h2>
                 </div>
 
@@ -696,7 +969,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     </span>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    Published by the operations desk at Bharat Relocators Kolkata. Operating two primary hubs in Haltu (South Kolkata) and Behala (West Kolkata) with 4.9★ Google rating over 305+ verified local moves.
+                    Published by the operations desk at Bharat Relocators Kolkata (GSTIN: 19AAWFB0500G1ZL). Operating two primary hubs in Haltu (South Kolkata 700078) and Behala (West Kolkata 700061) with a 4.9★ Google rating over 306+ verified moves.
                   </p>
                   <div className="pt-2 flex flex-wrap gap-3 text-xs text-[#082F52] font-semibold justify-center sm:justify-start">
                     <span>📍 Haltu Office: Ramlal Bazar Rd</span>
@@ -713,8 +986,8 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             {/* Right Sidebar Column (4 cols) */}
             <aside className="lg:col-span-4 space-y-8">
-              {/* Quick Jump Table of Contents */}
               <div className="sticky top-24 space-y-6">
+                {/* Quick Jump Table of Contents */}
                 <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
                   <h3 className="text-xs uppercase font-bold text-[#082F52] tracking-wider mb-3">
                     Table of Contents
@@ -723,28 +996,50 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <a href="#quick-answer" className="block hover:text-[#E53935] transition-colors py-1">
                       1. Quick Answer Cost Summary
                     </a>
-                    <a href="#calculator" className="block hover:text-[#E53935] transition-colors py-1">
-                      2. Interactive 2026 Cost Estimator
-                    </a>
-                    <a href="#1bhk-moving-cost" className="block hover:text-[#E53935] transition-colors py-1">
-                      3. 1BHK Moving Cost in Kolkata
-                    </a>
-                    <a href="#2bhk-3bhk-cost" className="block hover:text-[#E53935] transition-colors py-1">
-                      4. 2BHK & 3BHK Shifting Charges
-                    </a>
+                    {post.showCostCalculator && (
+                      <a href="#calculator" className="block hover:text-[#E53935] transition-colors py-1">
+                        2. Interactive 2026 Cost Estimator
+                      </a>
+                    )}
                     <a href="#corridor-pricing" className="block hover:text-[#E53935] transition-colors py-1">
-                      5. Kolkata Corridor Rate Table
+                      3. {corridorMeta.heading}
                     </a>
                     <a href="#lift-comparison" className="block hover:text-[#E53935] transition-colors py-1">
-                      6. With Lift vs. Without Lift Sample Bill
+                      4. {post.liftComparison.scenarioTitle}
                     </a>
                     <a href="#shuttle-tempo-gst" className="block hover:text-[#E53935] transition-colors py-1">
-                      7. Narrow-Lane Shuttle & 18% GST
+                      5. Logistics &amp; GST Compliance
+                    </a>
+                    <a href="#official-references" className="block hover:text-[#E53935] transition-colors py-1">
+                      6. Official Government Portals
                     </a>
                     <a href="#faqs" className="block hover:text-[#E53935] transition-colors py-1">
-                      8. Frequently Asked Questions
+                      7. Frequently Asked Questions
                     </a>
                   </nav>
+                </div>
+
+                {/* Recommended Internal Service Links for This Post */}
+                <div className="bg-white rounded-2xl p-6 border-2 border-[#082F52]/15 space-y-3 shadow-xs">
+                  <h4 className="text-xs uppercase font-bold text-[#E53935] tracking-wider">
+                    Recommended Services for This Move
+                  </h4>
+                  <div className="space-y-3">
+                    {post.internalLinks.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block p-3.5 rounded-xl bg-slate-50 hover:bg-red-50/40 border border-slate-200 hover:border-[#E53935] transition-all"
+                      >
+                        <span className="font-bold text-[#082F52] text-xs block">
+                          {item.label} →
+                        </span>
+                        <span className="text-[11px] text-slate-600 mt-1 block leading-snug">
+                          {item.description}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Free Instant Estimate Card */}
@@ -768,67 +1063,13 @@ export default async function BlogPostPage({ params }: PageProps) {
                     Open Free Quote Form →
                   </Link>
                   <a
-                    href={getWhatsAppUrl(`Hi, I would like to book a moving quote in Kolkata based on your 2026 Rate Card.`)}
+                    href={getWhatsAppUrl(`Hi, I would like to book a moving quote in Kolkata after reading ${post.title}.`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs py-3 px-4 rounded-xl transition-colors shadow-sm"
                   >
                     WhatsApp Move Specialist
                   </a>
-                </div>
-
-                {/* Related Internal Service Links */}
-                <div className="bg-white rounded-2xl p-6 border border-slate-200 space-y-3">
-                  <h4 className="text-xs uppercase font-bold text-[#082F52] tracking-wider mb-2">
-                    Related Moving Services
-                  </h4>
-                  <ul className="space-y-2 text-xs">
-                    <li>
-                      <Link
-                        href="/household-shifting"
-                        className="text-slate-700 hover:text-[#E53935] font-semibold flex items-center justify-between py-1 border-b border-slate-100"
-                      >
-                        <span>Household Shifting Kolkata</span>
-                        <span className="text-slate-400">→</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/car-shifting"
-                        className="text-slate-700 hover:text-[#E53935] font-semibold flex items-center justify-between py-1 border-b border-slate-100"
-                      >
-                        <span>Car Carrier Transportation</span>
-                        <span className="text-slate-400">→</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/bike-shifting"
-                        className="text-slate-700 hover:text-[#E53935] font-semibold flex items-center justify-between py-1 border-b border-slate-100"
-                      >
-                        <span>Two-Wheeler / Bike Transport</span>
-                        <span className="text-slate-400">→</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/intercity-moving-guide"
-                        className="text-slate-700 hover:text-[#E53935] font-semibold flex items-center justify-between py-1 border-b border-slate-100"
-                      >
-                        <span>Intercity Moving Guide</span>
-                        <span className="text-slate-400">→</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/moving-checklist"
-                        className="text-slate-700 hover:text-[#E53935] font-semibold flex items-center justify-between py-1"
-                      >
-                        <span>4-Week Moving Checklist</span>
-                        <span className="text-slate-400">→</span>
-                      </Link>
-                    </li>
-                  </ul>
                 </div>
 
                 {/* Direct Hotline */}
@@ -849,6 +1090,115 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
         </div>
       </article>
+
+      {/* Related Cornerstone Guides & Rate Cards Cross-Linking Section */}
+      <section className="py-14 bg-slate-50 border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div>
+              <span className="text-xs uppercase font-bold text-[#E53935] tracking-wider block">
+                Continue Reading
+              </span>
+              <h2 className="text-2xl font-display font-bold text-[#082F52]">
+                Foundational Kolkata Relocation Checklists &amp; Guides
+              </h2>
+            </div>
+            <Link
+              href="/blogs"
+              className="text-xs sm:text-sm font-bold text-[#082F52] hover:text-[#E53935] transition-colors"
+            >
+              Back to Blogs &amp; Rate Cards Hub →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {relatedPosts.length > 0 ? (
+              relatedPosts.map((rel) => (
+                <div
+                  key={rel.slug}
+                  className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs hover:border-[#082F52]/40 transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 text-xs mb-2.5">
+                      <span className="font-bold text-[#E53935] uppercase">{rel.category}</span>
+                      <span className="text-slate-400">{rel.readTime}</span>
+                    </div>
+                    <h3 className="font-display font-bold text-[#082F52] text-base mb-2 leading-snug hover:text-[#E53935] transition-colors">
+                      <Link href={`/blogs/${rel.slug}`}>{rel.h1}</Link>
+                    </h3>
+                    <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                      {rel.excerpt}
+                    </p>
+                  </div>
+                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span className="text-slate-400 font-medium">{rel.publishWeek}</span>
+                    <Link
+                      href={`/blogs/${rel.slug}`}
+                      className="font-bold text-[#082F52] hover:text-[#E53935]"
+                    >
+                      Read Rate Card →
+                    </Link>
+                  </div>
+                </div>
+              ))
+            ) : (
+              [
+                {
+                  title: 'Comprehensive Home Moving Checklist: 4-Week Timeline',
+                  category: 'Relocation Planning',
+                  excerpt:
+                    'A structured 4-week preparation framework covering room-by-room inventory decluttering, utility transfers, essential packing supplies, and moving-day coordination.',
+                  readTime: '6 min read',
+                  href: '/moving-checklist',
+                },
+                {
+                  title: 'Vehicle Transportation & Safety Guide: Cars & Bikes',
+                  category: 'Automotive Logistics',
+                  excerpt:
+                    'Complete operational guide for transporting cars and two-wheelers across India. Details required RTO documentation, enclosed carrier mechanics, and condition reports.',
+                  readTime: '7 min read',
+                  href: '/vehicle-transportation-guide',
+                },
+                {
+                  title: 'Intercity Moving from Kolkata: Interstate Highways & Corridors',
+                  category: 'Interstate Moving',
+                  excerpt:
+                    'Understand national highway container transit from Kolkata to Bangalore, Delhi NCR, Mumbai, and Hyderabad with verified consignment waybills and insurance.',
+                  readTime: '9 min read',
+                  href: '/intercity-moving-guide',
+                },
+              ].map((guide) => (
+                <div
+                  key={guide.href}
+                  className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs hover:border-[#082F52]/40 transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 text-xs mb-2.5">
+                      <span className="font-bold text-[#E53935] uppercase">{guide.category}</span>
+                      <span className="text-slate-400">{guide.readTime}</span>
+                    </div>
+                    <h3 className="font-display font-bold text-[#082F52] text-base mb-2 leading-snug hover:text-[#E53935] transition-colors">
+                      <Link href={guide.href}>{guide.title}</Link>
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {guide.excerpt}
+                    </p>
+                  </div>
+                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
+                    <span className="text-slate-400 font-medium">📌 Cornerstone Guide</span>
+                    <Link
+                      href={guide.href}
+                      className="font-bold text-[#082F52] hover:text-[#E53935]"
+                    >
+                      Read Full Guide →
+                    </Link>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
     </PageLayout>
   );
 }

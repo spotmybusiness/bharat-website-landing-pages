@@ -458,7 +458,34 @@ export default function CarShiftingPage() {
               >
                 Kolkata Intercity Relocation Guide
               </Link>{' '}
-              for complete corridor logistics insights.
+              for complete corridor logistics insights. Prior to dispatch, you can also verify your vehicle RC status on{' '}
+              <a
+                href="https://vahan.parivahan.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                Parivahan Sewa
+              </a>
+              , confirm active emission certificates via{' '}
+              <a
+                href="https://puc.parivahan.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                PUC Parivahan
+              </a>
+              , and review highway toll corridor rules via{' '}
+              <a
+                href="https://ihmcl.co.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                IHMCL FASTag
+              </a>
+              .
             </p>
           </div>
 

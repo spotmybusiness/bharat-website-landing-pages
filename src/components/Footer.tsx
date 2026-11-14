@@ -140,7 +140,7 @@ export default function Footer() {
                 ))}
               </div>
               <span className="text-xs text-white/90">
-                <strong className="font-semibold text-white">4.9/5.0</strong> · 305 Google Reviews
+                <strong className="font-semibold text-white">4.9/5.0</strong> · 306+ Google Reviews
               </span>
             </div>
           </section>

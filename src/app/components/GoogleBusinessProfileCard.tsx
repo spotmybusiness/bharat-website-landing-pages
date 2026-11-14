@@ -87,12 +87,12 @@ export default function GoogleBusinessProfileCard() {
             className="absolute rounded-full cursor-pointer hover:bg-white/15 active:bg-white/25 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />
 
-          {/* 3. Rating & Review Count Link "(305)" */}
+          {/* 3. Rating & Review Count Link "(306)" */}
           <a
             href="#reviews"
             onClick={(e) => handleScrollTo('reviews', e)}
-            aria-label="View 305+ Verified Customer Reviews"
-            title="View 305+ Verified Customer Reviews"
+            aria-label="View 306+ Verified Customer Reviews"
+            title="View 306+ Verified Customer Reviews"
             style={{ top: '22.0%', left: '13.5%', width: '12.5%', height: '3.0%' }}
             className="absolute rounded-md cursor-pointer hover:bg-[#8AB4F8]/20 active:bg-[#8AB4F8]/30 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
           />

@@ -455,7 +455,34 @@ export default function OfficeRelocationPage() {
               >
                 Kolkata Intercity Relocation Guide
               </Link>{' '}
-              for interstate highway logistics planning.
+              for interstate highway logistics planning. Our commercial dispatch team coordinates directly with{' '}
+              <a
+                href="https://ndita.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                NDITA (Salt Lake Sector V)
+              </a>{' '}
+              and{' '}
+              <a
+                href="https://www.nkdamar.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                NKDA (New Town Action Areas)
+              </a>{' '}
+              facility protocols and generates compliant{' '}
+              <a
+                href="https://ewaybillgst.gov.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                GST E-Way Bills
+              </a>{' '}
+              for IT server and commercial asset movement.
             </p>
           </div>
 

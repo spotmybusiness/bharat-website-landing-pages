@@ -189,7 +189,7 @@ export default function WhyChooseSection() {
                 4.9 on Google
               </div>
               <div className="text-[11px] text-slate-500 font-medium">
-                305+ Verified Reviews
+                306+ Verified Reviews
               </div>
             </div>
           </div>

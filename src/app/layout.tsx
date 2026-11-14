@@ -31,14 +31,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: 'Bharat Relocators — Premium Packers & Movers in Kolkata',
   description:
-    'Bharat Relocators offers trusted packers & movers services in Kolkata — home shifting, car & bike transport, PAN India delivery. 4.9★ rated, 305+ reviews.',
+    'Bharat Relocators offers trusted packers & movers services in Kolkata — home shifting, car & bike transport, PAN India delivery. 4.9★ rated, 306+ reviews.',
   alternates: {
     canonical: getSiteUrl(),
   },
   openGraph: {
     title: 'Bharat Relocators — Premium Packers & Movers in Kolkata',
     description:
-      'Bharat Relocators offers trusted packers & movers services in Kolkata — home shifting, car & bike transport, PAN India delivery. 4.9★ rated, 305+ reviews.',
+      'Bharat Relocators offers trusted packers & movers services in Kolkata — home shifting, car & bike transport, PAN India delivery. 4.9★ rated, 306+ reviews.',
     url: getSiteUrl(),
     siteName: 'Bharat Relocators',
     locale: 'en_IN',
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Bharat Relocators — Premium Packers & Movers in Kolkata',
     description:
-      'Bharat Relocators offers trusted packers & movers services in Kolkata — home shifting, car & bike transport, PAN India delivery. 4.9★ rated, 305+ reviews.',
+      'Bharat Relocators offers trusted packers & movers services in Kolkata — home shifting, car & bike transport, PAN India delivery. 4.9★ rated, 306+ reviews.',
     images: ['/images/packaging.png'],
   },
 };
