@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import AppImage from '@/components/ui/AppImage';
+import { BUSINESS } from '@/lib/business';
 
 const features = [
   {
@@ -22,7 +23,7 @@ const features = [
   },
   {
     title: 'Real-Time Online Tracking',
-    desc: 'Track your shipment live from Kolkata to anywhere across India with SMS and WhatsApp milestone updates.',
+    desc: 'Track your consignment live from Kolkata across India with stamped LR/Bilty updates and direct SMS & WhatsApp check-ins.',
     icon: (
       <svg
         className="w-5 h-5"
@@ -41,7 +42,7 @@ const features = [
   },
   {
     title: 'Insurance & Safety Coverage',
-    desc: 'Comprehensive transit insurance coverage for complete peace of mind. Zero hidden clauses or fine print.',
+    desc: 'Declared-value transit insurance backed by numbered packing lists, stamped LR/Bilty receipts, and written policy terms.',
     icon: (
       <svg
         className="w-5 h-5"
@@ -167,10 +168,10 @@ export default function WhyChooseSection() {
                 </div>
                 <div>
                   <div className="text-base font-bold text-[#082F52] font-display">
-                    ISO Certified
+                    GST Registered
                   </div>
-                  <div className="text-xs text-slate-500 font-medium">
-                    9001:2015 & 3900:2012
+                  <div className="text-xs text-slate-500 font-medium font-mono">
+                    {BUSINESS.gstin}
                   </div>
                 </div>
               </div>

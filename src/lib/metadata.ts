@@ -52,7 +52,7 @@ export function generatePageMetadata({
   ogImage,
   noIndex = false,
 }: PageMetadataOptions): Metadata {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getSiteUrl().replace(/\/+$/, '');
   const canonicalUrl = `${siteUrl}${path === '/' ? '' : path}`;
   // Centralized branding: Ensure exactly one ' — Bharat Relocators' brand suffix
   const brandSuffix = ' — Bharat Relocators';
@@ -65,9 +65,16 @@ export function generatePageMetadata({
         : `${cleanTitle}${brandSuffix}`;
 
   // Resolve OG image: page-specific override takes precedence, else use site default
-  const resolvedOgImage = ogImage
-    ? { url: ogImage, width: 1200, height: 630, alt: fullTitle }
-    : { ...DEFAULT_OG_IMAGE, url: `${siteUrl}${DEFAULT_OG_IMAGE.url}` };
+  const cleanOgImage = ogImage?.trim();
+  const resolvedOgImageUrl = cleanOgImage
+    ? /^https?:\/\//i.test(cleanOgImage)
+      ? cleanOgImage
+      : `${siteUrl}/${cleanOgImage.replace(/^\/+/, '')}`
+    : `${siteUrl}${DEFAULT_OG_IMAGE.url}`;
+
+  const resolvedOgImage = cleanOgImage
+    ? { url: resolvedOgImageUrl, width: 1200, height: 630, alt: fullTitle }
+    : { ...DEFAULT_OG_IMAGE, url: resolvedOgImageUrl };
 
   return {
     title: fullTitle,
@@ -82,14 +89,12 @@ export function generatePageMetadata({
       siteName: 'Bharat Relocators',
       locale: 'en_IN',
       type: 'website',
-      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
       images: [resolvedOgImage],
     },
     twitter: {
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      ...(ogImage ? { images: [ogImage] } : {}),
       images: [resolvedOgImage.url],
     },
     ...(noIndex ? { robots: { index: false, follow: true } } : {}),

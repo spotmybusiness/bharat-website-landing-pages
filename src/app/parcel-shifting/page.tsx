@@ -10,6 +10,7 @@ import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
 import JsonLd from '@/components/JsonLd';
 import ServiceFAQSection from '@/components/ServiceFAQSection';
+import MandatoryDocumentsBlock from '@/components/MandatoryDocumentsBlock';
 import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
 import { getServiceFaqs } from '@/data/serviceFaqs';
 
@@ -18,6 +19,7 @@ export const metadata: Metadata = generatePageMetadata({
   description:
     'Express parcel shipping, luggage moving, and cargo courier services from Kolkata to 230+ cities across India. Doorstep pickup, barcoded labeling, and real-time tracking.',
   path: '/parcel-shifting',
+  ogImage: '/images/cargo_shifting.jpeg',
 });
 
 const faqs = getServiceFaqs('parcel-shifting');
@@ -50,23 +52,23 @@ const parcelSteps = [
   },
   {
     step: '04',
-    title: 'Milestone Tracking & Delivery',
-    desc: 'Track your consignment online via our tracking portal until scheduled doorstep handover at your destination address.',
+    title: 'Consignment Tracking & Doorstep Delivery',
+    desc: 'Track your consignment online via our /tracking portal with your LR number until scheduled doorstep handover at your destination address.',
   },
 ];
 
 const parcelInclusions = [
   {
     title: 'Doorstep Pickup & Handover',
-    desc: 'Direct pickup from your residence or office in Kolkata with signed receipt and digital booking confirmation.',
+    desc: 'Direct pickup from your residence, hostel, or office in Kolkata with signed Consignment Note (LR) and written weight confirmation.',
   },
   {
     title: 'Heavy-Duty Corrugated Boxing',
-    desc: 'Strong multi-ply export-grade boxes designed specifically for multi-hub parcel logistics transit.',
+    desc: 'Strong 5-ply export-grade cartons, bubble cushioning, and 23-micron stretch film taped for multi-hub parcel transit.',
   },
   {
     title: 'Real-Time Tracking Access',
-    desc: 'Instant online tracking capability via our consignment portal with SMS milestone alerts.',
+    desc: 'Online consignment tracking via our /tracking portal with LR number updates from our Haltu and Behala dispatch desks.',
   },
   {
     title: 'PAN India 230+ City Network',
@@ -150,7 +152,7 @@ export default function ParcelShiftingPage() {
             Parcel & Cargo Shifting <span className="text-[#F28A32]">Services</span>
           </>
         }
-        subtitle="Bharat Relocators provides express parcel, luggage courier, and part-load cargo shipping from Kolkata across 230+ cities in India with doorstep pickup and milestone tracking."
+        subtitle="Bharat Relocators provides express parcel, luggage courier, and part-load cargo shipping from Kolkata across 230+ cities in India with doorstep pickup and LR-numbered consignment tracking."
         breadcrumbs={[
           { label: 'Services' },
           { label: 'Parcel & Cargo Shifting' },
@@ -197,13 +199,13 @@ export default function ParcelShiftingPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Bharat Relocators provides express parcel, luggage courier, and part-load cargo shipping services from Kolkata across 230+ cities in India, offering cost-effective solutions for student baggage, personal boxes, and commercial consignments.
+                  Dispatched from our Haltu (700078) and Behala (700061) hubs, Bharat Relocators handles student hostel/PG pickups across Jadavpur, Salt Lake, New Town, Rajarhat, and Ballygunge as well as commercial box consignments across 230+ Indian cities.
                 </p>
                 <p>
-                  With scheduled line-haul departures, barcoded package handling, and convenient doorstep pickup, your parcels are transported securely without requiring an entire dedicated truck. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get a parcel shipping estimate today</Link>.
+                  Cartons are packed in 5-ply export corrugated boxes, weighed on calibrated scales with L×W×H dimensions recorded transparently on-site, and consolidated on scheduled line-haul vans without paying for a dedicated full truck. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get a parcel shipping estimate today</Link>.
                 </p>
                 <p>
-                  Every parcel is assigned a digital consignment tracking number, allowing you to monitor shipping progress directly through our online tracking system.
+                  Every shipment receives a barcoded Consignment Note (LR / Bilty) so you can check dispatch and hub status directly on our online tracking portal.
                 </p>
               </div>
 
@@ -391,6 +393,36 @@ export default function ParcelShiftingPage() {
             </p>
           </div>
 
+          {/* 2026 Verified Cost & Planning Guide Callout */}
+          <div className="mt-6 p-5 bg-white rounded-2xl border-2 border-[#082F52]/15">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#E53935] mb-1.5">
+              2026 Verified Cost &amp; Planning Guide
+            </p>
+            <p className="text-sm text-slate-700 leading-relaxed mb-3">
+              Compare 2026 Kolkata per-box and part-load parcel charges, carton packing checklists, and highway transit rules before booking pickup:
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold">
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="text-[#E53935] hover:underline"
+              >
+                2026 Kolkata Shifting &amp; Parcel Rate Card →
+              </Link>
+              <Link
+                href="/moving-checklist"
+                className="text-[#082F52] hover:underline"
+              >
+                Moving &amp; Packing Checklist →
+              </Link>
+              <Link
+                href="/intercity-moving-guide"
+                className="text-[#082F52] hover:underline"
+              >
+                Intercity Moving Guide →
+              </Link>
+            </div>
+          </div>
+
           <div className="mt-6 text-center">
             <Link
               href="/get-a-quote"
@@ -485,7 +517,7 @@ export default function ParcelShiftingPage() {
                 Already Shipped a Consignment with Us?
               </h4>
               <p className="text-white/80 text-xs mt-1">
-                Enter your LR number on our official tracking page for real-time milestone updates.
+                Enter your LR number on our official tracking page for live dispatch and delivery status.
               </p>
             </div>
             <Link
@@ -495,6 +527,16 @@ export default function ParcelShiftingPage() {
               Track Parcel Status →
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ── 4 Mandatory Documents ─────────────────────────────────────── */}
+      <section className="py-16 sm:py-20 bg-white border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <MandatoryDocumentsBlock
+            serviceContext="Issued at hostel, PG, residence, or office doorstep pickup across Kolkata before barcoded line-haul dispatch."
+            highlightNote="Locks actual weight (kg) and box L×W×H dimensions on your Written Quote, issues a trackable Consignment Note (LR / Bilty) for /tracking, and provides a GST Tax Invoice (19AAWFB0500G1ZL) for corporate or relocation reimbursement."
+          />
         </div>
       </section>
 

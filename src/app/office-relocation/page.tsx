@@ -10,6 +10,7 @@ import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
 import JsonLd from '@/components/JsonLd';
 import ServiceFAQSection from '@/components/ServiceFAQSection';
+import MandatoryDocumentsBlock from '@/components/MandatoryDocumentsBlock';
 import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
 import { getServiceFaqs } from '@/data/serviceFaqs';
 
@@ -18,6 +19,7 @@ export const metadata: Metadata = generatePageMetadata({
   description:
     'Structured corporate and office relocation in Kolkata. Weekend shifts, IT server packing, modular workstation assembly, and minimal business downtime logistics.',
   path: '/office-relocation',
+  ogImage: '/images/office_relocation.png',
 });
 
 const faqs = getServiceFaqs('office-relocation');
@@ -46,7 +48,7 @@ const officeSteps = [
   {
     step: '03',
     title: 'Weekend & After-Hours Shifting',
-    desc: 'Moving is executed during weekends or overnight shifts to ensure zero disruption to daily business operations and client workflows.',
+    desc: 'Moving is scheduled over Friday nights, weekends, or public holidays so office operations and client workflows resume uninterrupted.',
   },
   {
     step: '04',
@@ -162,7 +164,7 @@ const officeScopeFactors = [
 const itBoundaryGuidelines = {
   physicalScope: [
     'Anti-static bubble wrapping and foam cushioning for monitors, PCs, and peripherals',
-    'Careful physical handling and padded crating of server rack units and network hardware',
+    'ESD-safe crating and foam-cushioned rigging of server rack units and network hardware',
     'Secure, cushioned transport in closed container vehicles',
     'Room and desk-level physical placement according to your destination floor plan blueprint',
   ],
@@ -227,20 +229,20 @@ export default function OfficeRelocationPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6">
               <span className="inline-block bg-red-50 text-[#E53935] text-xs font-semibold uppercase tracking-[0.08em] px-4 py-1.5 rounded-full mb-4 border border-red-200">
-                Seamless Commercial Moves
+                Kolkata Commercial Logistics
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-[#082F52] mb-5 leading-tight">
                 Minimize Business Downtime with Planned Corporate Shifting
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Bharat Relocators delivers structured office relocation and corporate shifting services in Kolkata and across India, designed to safeguard company assets and eliminate operational downtime.
+                  Dispatched from our Haltu (700078) and Behala (700061) commercial desks, Bharat Relocators manages office shifts across Salt Lake Sector V (NDITA), New Town Action Areas I–III (NKDA), and central Kolkata corridors around Park Street, Dalhousie, and Camac Street.
                 </p>
                 <p>
-                  From modular workstation dismantling and secure file-archive transfers to anti-static IT server handling, our trained commercial crews execute moves over weekends or overnight schedules so your employees walk into a fully operational workspace on Monday morning. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Reach out for a custom corporate quote</Link>.
+                  Crews apply color-coded department and seat crate tags, wrap rack servers and monitors in anti-static ESD bubble sheets, and dismantle modular workstations over Friday-night and weekend freight-lift slots so teams resume work on Monday morning. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Request a facility walk-through</Link>.
                 </p>
                 <p>
-                  By planning and executing moves over weekends or overnight schedules, we ensure your employees walk into a fully assembled, operational office on Monday morning.
+                  Every commercial move includes GST E-Way Bill coordination for IT and office assets along with a compliant B2B Input Tax Credit (ITC) Tax Invoice under GSTIN <code className="text-xs font-mono bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">19AAWFB0500G1ZL</code> (SAC 9965 / 9987).
                 </p>
               </div>
 
@@ -277,7 +279,7 @@ export default function OfficeRelocationPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-xl sm:text-2xl font-display font-bold text-emerald-900 mb-2">Planning an office move? Let&apos;s discuss logistics.</h3>
-            <p className="text-emerald-700 text-sm sm:text-base">Get a customized corporate relocation strategy that guarantees zero downtime.</p>
+            <p className="text-emerald-700 text-sm sm:text-base">Get a weekend or after-hours relocation plan tailored to your freight-lift and IT downtime window.</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 shrink-0">
             <a href="tel:+919123046504" className="bg-[#082F52] hover:bg-[#0b3b60] text-white px-6 py-3 rounded-xl font-semibold shadow-md transition-colors flex items-center justify-center gap-2 text-sm">
@@ -296,7 +298,7 @@ export default function OfficeRelocationPage() {
           <SectionHeader
             label="Corporate Execution"
             title="Our 4-Step Commercial Relocation Protocol"
-            subtitle="Engineered to transition your team smoothly with zero unnecessary work hours lost."
+            subtitle="Structured to shift workstations, IT racks, and records over weekend windows without disrupting weekday operations."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -443,9 +445,10 @@ export default function OfficeRelocationPage() {
             <p>
               <strong className="text-[#082F52]">How corporate proposals work:</strong>{' '}
               Commercial moves are quoted following a structured scope assessment or an
-              on-site facility walk-through. We provide detailed written proposals with
-              transparent breakdowns for packing materials, carpentry labor, transit
-              insurance, and vehicle logistics with zero hidden surcharges.
+              on-site facility walk-through. We provide written proposals with itemized
+              breakdowns for packing materials, carpentry labor, transit insurance, and
+              vehicle logistics locked into a signed pre-move scope—no undocumented weekend
+              overtime or freight-lift add-ons.
             </p>
             <p>
               Relocating corporate assets or an office branch to another state? Read our{' '}
@@ -486,6 +489,36 @@ export default function OfficeRelocationPage() {
             </p>
           </div>
 
+          {/* 2026 Verified Cost & Planning Guide Callout */}
+          <div className="mt-6 p-5 bg-[#082F52]/5 rounded-2xl border border-[#082F52]/15">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#E53935] mb-1.5">
+              2026 Verified Cost &amp; Planning Guide
+            </p>
+            <p className="text-sm text-slate-700 leading-relaxed mb-3">
+              Review 2026 Kolkata relocation rate structures, SAC 9965 / 9987 B2B ITC billing guidelines, and pre-move facility checklists:
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold">
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="text-[#E53935] hover:underline"
+              >
+                2026 Kolkata Rate Card &amp; GST Billing Guide →
+              </Link>
+              <Link
+                href="/intercity-moving-guide"
+                className="text-[#082F52] hover:underline"
+              >
+                Intercity Moving Guide →
+              </Link>
+              <Link
+                href="/moving-checklist"
+                className="text-[#082F52] hover:underline"
+              >
+                Pre-Move Timeline &amp; Checklist →
+              </Link>
+            </div>
+          </div>
+
           <div className="mt-6 text-center">
             <Link
               href="/get-a-quote"
@@ -503,7 +536,7 @@ export default function OfficeRelocationPage() {
           <SectionHeader
             label="Facility Readiness"
             title="Corporate Readiness Checklist & IT Responsibility Division"
-            subtitle="A seamless corporate transition depends on early facility coordination and a clear division between physical moving logistics and internal IT technical management."
+            subtitle="An on-schedule corporate transition depends on early facility coordination and a clear division between physical moving logistics and internal IT technical management."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -582,6 +615,16 @@ export default function OfficeRelocationPage() {
               <span aria-hidden="true">→</span>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ── 4 Mandatory Documents ─────────────────────────────────────── */}
+      <section className="py-16 sm:py-20 bg-white border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <MandatoryDocumentsBlock
+            serviceContext="Corporate & B2B ITC Compliance: Every office shift includes a GST Tax Invoice (19AAWFB0500G1ZL · SAC 9965 / 9987) eligible for company Input Tax Credit (ITC), plus GST E-Way Bill coordination for IT and commercial assets."
+            highlightNote="Backed by an itemized workstation/carpentry survey quote, seat-coded carbon-copy inventory, and stamped Consignment Note (LR / Bilty) for accounts-payable sign-off."
+          />
         </div>
       </section>
 

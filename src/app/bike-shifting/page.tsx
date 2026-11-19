@@ -10,6 +10,7 @@ import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
 import JsonLd from '@/components/JsonLd';
 import ServiceFAQSection from '@/components/ServiceFAQSection';
+import MandatoryDocumentsBlock from '@/components/MandatoryDocumentsBlock';
 import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
 import { getServiceFaqs } from '@/data/serviceFaqs';
 
@@ -18,6 +19,7 @@ export const metadata: Metadata = generatePageMetadata({
   description:
     'Secure bike transport and two-wheeler shipping from Kolkata to PAN India. Custom wooden crating, bubble packaging, cushioned protective transit, and showroom pickup.',
   path: '/bike-shifting',
+  ogImage: '/images/bike_transportation.jpeg',
 });
 
 const faqs = getServiceFaqs('bike-shifting');
@@ -77,8 +79,8 @@ const inclusions = [
     desc: 'All-weather closed container trucks shielding your bike from rain, dust, road debris, and highway weather elements.',
   },
   {
-    title: 'Milestone Tracking & Coordinator Support',
-    desc: 'Direct coordinator assistance and dispatch updates until your vehicle safely arrives at the destination.',
+    title: 'LR-Tracked Dispatch & Coordinator Desk',
+    desc: 'Direct Haltu/Behala dispatch coordination with LR tracking ID and driver contact until destination handover.',
   },
 ];
 
@@ -257,13 +259,13 @@ export default function BikeShiftingPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Bharat Relocators provides specialized two-wheeler and motorcycle transportation services from Kolkata to destinations across India, utilizing multi-layer protective packaging and dedicated vehicle carrier slots.
+                  Dispatched from our Haltu (700078) and Behala (700061) hubs, Bharat Relocators handles doorstep and dealership/showroom bike pickups across Kolkata, wrapping every scooter, commuter bike, or cruiser in 4mm EPE foam, heavy bubble wrap, corrugated guards, and 23-micron stretch film.
                 </p>
                 <p>
-                  Whether moving a lightweight commuter scooter, sports motorbike, or high-end cruiser, our team deploys multi-layered shock-absorbing packaging, optional custom wooden crating, and heavy-duty strapping inside closed container trucks. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get an instant quote for your bike model</Link>.
+                  Fuel is verified under the 2-litre reserve threshold, mirrors and fragile visors are padded separately, and premium motorcycles can be enclosed in custom pinewood crating before wheel-chock and nylon strap anchoring inside closed steel containers along NH 16, NH 19, and NH 53. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get an instant quote for your bike model</Link>.
                 </p>
                 <p>
-                  With comprehensive Goods Receipt (GR) tracking and dedicated transit insurance, we ensure your vehicle arrives in the exact condition it was handed over.
+                  Backed by a joint two-wheeler Vehicle Condition Report (VCR), stamped Consignment Note (LR / Bilty) tracking, and transit insurance, your motorcycle arrives in the exact condition logged at pickup.
                 </p>
               </div>
 
@@ -446,8 +448,7 @@ export default function BikeShiftingPage() {
             <p>
               <strong className="text-[#082F52]">How two-wheeler quotes work:</strong>{' '}
               Pricing is calculated based on vehicle displacement, pickup address in
-              Kolkata, destination city, and packaging choices. We provide written,
-              all-inclusive quotes with zero hidden fees.
+              Kolkata, destination city, and packaging choices—itemizing crating grade, pickup feeder, and transit insurance in writing before collection.
             </p>
             <p>
               Planning an interstate relocation involving both your two-wheeler and household
@@ -485,6 +486,36 @@ export default function BikeShiftingPage() {
               </Link>
               .
             </p>
+          </div>
+
+          {/* 2026 Verified Cost & Planning Guide Callout */}
+          <div className="mt-6 p-5 bg-white rounded-2xl border-2 border-[#082F52]/15">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#E53935] mb-1.5">
+              2026 Verified Cost &amp; Planning Guide
+            </p>
+            <p className="text-sm text-slate-700 leading-relaxed mb-3">
+              Compare 2026 Kolkata two-wheeler shifting rate cards, pinewood crating options, and Howrah/Sealdah rail-parcel trade-offs:
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold">
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="text-[#E53935] hover:underline"
+              >
+                2026 Kolkata Packers &amp; Movers Rate Card →
+              </Link>
+              <Link
+                href="/vehicle-transportation-guide"
+                className="text-[#082F52] hover:underline"
+              >
+                Vehicle Transportation Guide →
+              </Link>
+              <Link
+                href="/intercity-moving-guide"
+                className="text-[#082F52] hover:underline"
+              >
+                Intercity Moving Guide →
+              </Link>
+            </div>
           </div>
 
           <div className="mt-6 text-center">
@@ -594,6 +625,16 @@ export default function BikeShiftingPage() {
         </div>
       </section>
 
+      {/* ── 4 Mandatory Documents ─────────────────────────────────────── */}
+      <section className="py-16 sm:py-20 bg-white border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <MandatoryDocumentsBlock
+            serviceContext="Issued at Kolkata home or motorcycle showroom pickup before foam wrapping and optional custom pinewood crating."
+            highlightNote="Document 02 pairs with our two-wheeler Vehicle Condition Report (VCR) recording odometer reading, mirror/visor packing, and <2L reserve fuel check—backed by a stamped LR/Bilty and SAC 9965 / 9987 GST Tax Invoice (19AAWFB0500G1ZL)."
+          />
+        </div>
+      </section>
+
       {/* Service FAQs */}
       <ServiceFAQSection heading="Bike Transportation FAQs" faqs={faqs} />
 
@@ -643,7 +684,7 @@ export default function BikeShiftingPage() {
       <section className="py-20 bg-[#082F52] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <span className="inline-block bg-white/10 text-[#F28A32] text-xs font-semibold uppercase tracking-[0.08em] px-4 py-1.5 rounded-full mb-4 border border-white/20">
-            Transparent Pricing
+            Written Route Quotes
           </span>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold mb-4 text-white">
             Ready to Transport Your Bike Safely?

@@ -6,6 +6,7 @@ import PageHero from '@/components/PageHero';
 import SectionHeader from '@/components/ui/SectionHeader';
 import FAQAccordion from '@/components/FAQAccordion';
 import JsonLd from '@/components/JsonLd';
+import MandatoryDocumentsBlock from '@/components/MandatoryDocumentsBlock';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getTelUrl, getWhatsAppUrl } from '@/lib/business';
 import { getFAQSchema, buildGraphSchema } from '@/lib/schema';
@@ -29,7 +30,7 @@ const overviewCards = [
   },
   {
     title: 'Packed for the Type of Item',
-    desc: 'From high-density bubble cushioning for fragile crockery to custom crating for electronics, materials match item vulnerability.',
+    desc: '5-ply dish-barrel cartons, 4mm EPE foam sheets, 23-micron waterproof stretch film, and ISPM-15 pinewood crating matched to item fragility.',
     icon: (
       <svg className="w-5 h-5 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -38,7 +39,7 @@ const overviewCards = [
   },
   {
     title: 'Monitored During Transit',
-    desc: 'Transported in dedicated, closed container vehicles driven by verified highway drivers with proactive milestone updates.',
+    desc: 'Transported in dedicated 14ft, 17ft, or 19ft steel-roof closed containers with stamped LR/Bilty dispatch IDs and scheduled highway check-ins.',
     icon: (
       <svg className="w-5 h-5 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -59,63 +60,24 @@ const overviewCards = [
 
 const behindTheScenesCards = [
   {
-    title: 'Careful Coordination',
-    desc: 'Behind the scenes, our coordinators verify building permissions, lift availability, society timing rules, and road clearance so there are no surprises on moving day.',
+    title: 'Society & Lane Coordination',
+    desc: 'Our Haltu and Behala coordinators verify MyGate, NKDA (New Town), and NDITA (Salt Lake Sector V) service-lift permits, 8-ft para-lane Tata Ace shuttles, and Kolkata Traffic Police No-Entry windows.',
     tag: 'Pre-Move Planning',
   },
   {
-    title: 'Organized Packing',
-    desc: 'Packing crews categorize items room by room, apply sequential numbering, and document item conditions to make unpacking and setup structured at destination.',
+    title: 'Sequential Carbon-Copy Inventory',
+    desc: 'Packing crews categorize cartons room by room, apply sequential numbering, and log remarks on your Numbered Carbon-Copy Packing List (and VCR sheet for cars/bikes) before loading.',
     tag: 'Inventory Protocol',
   },
   {
-    title: 'Safer Loading',
-    desc: 'Heavier goods are positioned over vehicle axles, shock-absorbing pads line the floor, and cargo tie-downs secure all cartons against road vibration.',
+    title: 'Balanced Container Lashing',
+    desc: 'Heavier appliances sit over truck axles inside 14ft, 17ft, or 19ft steel-roof closed containers, lined with floor padding and anchored by nylon ratchet straps.',
     tag: 'Transit Engineering',
   },
   {
-    title: 'Clear Communication',
-    desc: 'You have a dedicated point of contact who shares departure confirmations, highway progress checkpoints, and destination arrival notices throughout the move.',
-    tag: 'Milestone Tracking',
-  },
-];
-
-const serviceSpecificCards = [
-  {
-    title: 'Household Shifting',
-    category: 'Residential Relocation',
-    desc: 'Complete home relocations with multi-layer bubble packing for crockery, modular furniture dismantling, room-wise labeling, and doorstep reassembly.',
-    href: '/household-shifting',
-  },
-  {
-    title: 'Car Transportation',
-    category: 'Automotive Logistics',
-    desc: 'Pre-transit vehicle condition inspection, hydraulic ramp loading, internal wheel-chocks, closed carrier trucks, and specialized transit insurance.',
-    href: '/car-shifting',
-  },
-  {
-    title: 'Bike Transport',
-    category: 'Two-Wheeler Express',
-    desc: 'Protective handlebar/mirror detachment, custom wooden crating, bubble wrapping of painted body panels, and secure two-wheeler bay lashing.',
-    href: '/bike-shifting',
-  },
-  {
-    title: 'Parcel & Cargo',
-    category: 'Express Intercity',
-    desc: 'Doorstep pickup for part-loads and luggage, volumetric weight optimization, protective crating, and scheduled delivery across 230+ cities.',
-    href: '/parcel-shifting',
-  },
-  {
-    title: 'Office Relocation',
-    category: 'Commercial & Corporate',
-    desc: 'Phased corporate shifting, anti-static IT server protection, labeled employee workstation bins, and weekend moves to prevent business downtime.',
-    href: '/office-relocation',
-  },
-  {
-    title: 'International Moving',
-    category: 'Global Freight',
-    desc: 'Air and ocean container coordination, international export crating standards, customs documentation guidance, and port-to-door delivery assistance.',
-    href: '/international-moving',
+    title: 'LR / Bilty & Direct Check-Ins',
+    desc: 'You receive a Stamped Consignment Note (LR/Bilty) at dispatch plus direct coordinator phone and WhatsApp check-ins at highway toll points and prior to arrival.',
+    tag: 'LR / Bilty Tracking',
   },
 ];
 
@@ -130,15 +92,15 @@ const processFaqs = [
   },
   {
     q: 'How are fragile items, glassware, and electronics protected?',
-    a: 'Fragile items receive multi-layer protection including high-density bubble wrap, tissue paper, corrugated dividers, and reinforced outer cartons. Flat-screen televisions and sensitive electronics are packed with custom foam corner guards and dedicated wooden crates where necessary.',
+    a: 'Fragile items receive multi-layer protection including 4mm EPE foam sheets, 5-ply dish-barrel cartons with corrugated dividers, and 23-micron waterproof stretch film. Flat-screen LED TVs, marble idols, and glass tops receive custom ISPM-15 pinewood crating where needed.',
   },
   {
     q: 'How is my shipment handled and monitored during transit?',
-    a: 'Shipments travel in closed container trucks equipped with internal cargo tie-downs and shock-absorbing base padding. You receive direct coordinator contact details and milestone updates at departure, key highway points, and destination arrival.',
+    a: 'Shipments travel in 14ft, 17ft, or 19ft closed steel containers equipped with internal cargo tie-downs and shock-absorbing base padding. You receive your stamped LR/Bilty number, direct coordinator contact, and dispatch plus highway checkpoint updates.',
   },
   {
     q: 'What happens when the shipment reaches the destination?',
-    a: 'Our crew unloads all items into their respective designated rooms as directed by you. We reassemble dismantled beds and modular furniture, assist with opening primary essential boxes, cross-check the inventory manifest, and remove packing debris.',
+    a: 'Our crew unloads all items into their respective designated rooms, reassembles dismantled beds and modular furniture, reconciles carton counts against your carbon-copy packing list, clears used wrapping debris, and hands over your GST Tax Invoice.',
   },
 ];
 
@@ -147,30 +109,30 @@ const pageSchema = buildGraphSchema([
     '@type': 'HowTo',
     name: 'How Bharat Relocators Handles Your Move',
     description:
-      'A step-by-step moving process from survey and planning to multi-layer packing, secure transit, and final destination handover.',
+      'A step-by-step moving process from pre-move CFT survey and 5-layer packing to closed-container transit, 4-document handover, and room setup.',
     step: [
       {
         '@type': 'HowToStep',
         name: 'Survey, Planning & Custom Quote',
-        text: 'Inventory assessment, route evaluation, scheduling, and transparent written quote preparation.',
+        text: 'CFT volume audit, Kolkata No-Entry and society lift slot planning, shuttle assessment, and itemized written survey quote.',
         position: 1,
       },
       {
         '@type': 'HowToStep',
         name: 'Professional Packing & Preparation',
-        text: 'Multi-layer bubble cushioning, 5-layer corrugated boxing, modular furniture dismantling, and itemized labeling.',
+        text: '5-ply dish-barrels, 4mm EPE foam sheets, 23-micron stretch film, pinewood crating, furniture dismantling, and numbered packing list tagging.',
         position: 2,
       },
       {
         '@type': 'HowToStep',
         name: 'Secure Loading & Monitored Transit',
-        text: 'Organized container loading, shock-absorption padding, verified highway drivers, and milestone transit tracking.',
+        text: 'Organized loading inside 14ft/17ft/19ft closed steel containers, Tata Ace para-lane shuttles, stamped LR/Bilty dispatch, and highway checkpoint calls.',
         position: 3,
       },
       {
         '@type': 'HowToStep',
         name: 'Delivery, Unpacking & Final Handover',
-        text: 'Safe destination unloading, room-specific placement, furniture reassembly, debris removal, and final customer sign-off.',
+        text: 'Room-wise placement, furniture reassembly, carbon-copy packing list sign-off, debris removal, and GSTIN 19AAWFB0500G1ZL tax invoice delivery.',
         position: 4,
       },
     ],
@@ -308,7 +270,7 @@ export default function ProcessPage() {
                   Survey, Planning & Custom Quote
                 </h3>
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                  Every reliable move starts with clear assessment. We take the time to understand your moving schedule, origin and destination locations, goods volume, elevator access, and any specialized assets before preparing an all-inclusive transparent quote.
+                  Every reliable move begins with a physical or video CFT inventory audit coordinated from our Haltu (700078) or Behala (700061) office. We lock stair/lift rules, narrow-lane shuttle requirements, and route timing before issuing your itemized written survey quote.
                 </p>
 
                 <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/70">
@@ -318,23 +280,23 @@ export default function ProcessPage() {
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-sm text-slate-700">
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Comprehensive inventory assessment
+                      Room-wise CFT volume &amp; fragile-item audit
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Route evaluation & transit schedule
+                      Kolkata No-Entry slot planning (EM Bypass, Vidyasagar Setu, D.H. Road)
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Vehicle sizing & crew allocation
+                      Container sizing (14ft/17ft/19ft) &amp; 8-ft para-lane Tata Ace check
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Transparent written quote with zero hidden charges
+                      Itemized Written Survey Quote (CFT, floor &amp; shuttle locked upfront)
                     </li>
                     <li className="flex items-center gap-2 sm:col-span-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Clarifying building rules and society access passes
+                      MyGate / NKDA / NDITA service-lift booking &amp; society gate-pass clearance
                     </li>
                   </ul>
                 </div>
@@ -348,13 +310,13 @@ export default function ProcessPage() {
               </div>
               <div className="flex-1 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                 <span className="inline-block text-[#F28A32] text-xs font-bold uppercase tracking-wider mb-2">
-                  Stage 2 · Material Protection & Packing
+                  Stage 2 · Material Protection &amp; Packing
                 </span>
                 <h3 className="text-2xl sm:text-2xl font-bold font-display text-[#082F52] mb-4">
-                  Professional Packing & Preparation
+                  Professional Packing &amp; Preparation
                 </h3>
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                  On packing day, our trained packing crew arrives equipped with multi-layer packaging supplies. Each item is sorted, cushioned according to fragility, and labeled room by room to make destination setup effortless.
+                  On packing morning, our crew arrives with fresh 5-ply cartons, EPE foam rolls, waterproof stretch film, and crating timber. Every box is numbered sequentially on your Carbon-Copy Packing List for fast room-wise unpacking.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -363,10 +325,10 @@ export default function ProcessPage() {
                       Packaging Materials:
                     </h4>
                     <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700">
-                      <li>• 5-layer heavy corrugated cartons</li>
-                      <li>• High-density bubble wrap & film</li>
-                      <li>• Reinforced edge & corner protectors</li>
-                      <li>• Waterproof protective transit covers</li>
+                      <li>• 5-ply dish-barrel &amp; double-wall cartons</li>
+                      <li>• 4mm EPE foam sheets &amp; 23-micron stretch film</li>
+                      <li>• Corrugated corner guards &amp; edge boards</li>
+                      <li>• ISPM-15 pinewood crating for LED TVs &amp; idols</li>
                     </ul>
                   </div>
                   <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/70">
@@ -374,10 +336,10 @@ export default function ProcessPage() {
                       Preparation Work:
                     </h4>
                     <ul className="space-y-1.5 text-xs sm:text-sm text-slate-700">
-                      <li>• Modular bed & furniture dismantling</li>
-                      <li>• Crockery & glassware shock separation</li>
-                      <li>• Electronics custom cushioning</li>
-                      <li>• Room-by-room box labeling</li>
+                      <li>• Modular bed &amp; wardrobe dismantling</li>
+                      <li>• Partitioned crockery &amp; glassware wrapping</li>
+                      <li>• Anti-static electronics &amp; appliance prep</li>
+                      <li>• Numbered Carbon-Copy Packing List &amp; room tags</li>
                     </ul>
                   </div>
                 </div>
@@ -391,13 +353,13 @@ export default function ProcessPage() {
               </div>
               <div className="flex-1 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                 <span className="inline-block text-[#F28A32] text-xs font-bold uppercase tracking-wider mb-2">
-                  Stage 3 · Vehicle Loading & Transit
+                  Stage 3 · Vehicle Loading &amp; Transit
                 </span>
                 <h3 className="text-2xl sm:text-2xl font-bold font-display text-[#082F52] mb-4">
-                  Secure Loading & Monitored Transit
+                  Secure Loading &amp; Monitored Transit
                 </h3>
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                  Loading is an engineering exercise. Heavy furniture and appliances are positioned over the truck axles for balance, secured with industrial tie-down straps, and cushioned with shock-absorbent pads inside dedicated closed container trucks.
+                  Where narrow 8-ft Kolkata <em>para</em> lanes restrict heavy rigs, our crew performs a supervised <em>Tata Ace</em> shuttle transfer to our 14ft, 17ft, or 19ft steel-roof closed container. Heavy appliances sit over truck axles and are secured with nylon ratchet straps.
                 </p>
 
                 <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/70">
@@ -407,23 +369,23 @@ export default function ProcessPage() {
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-sm text-slate-700">
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Closed container trucks protecting from rain & dust
+                      14ft/17ft/19ft steel-roof closed containers (rain &amp; dust sealed)
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Internal lashing belts & shock-absorbing padding
+                      Nylon ratchet lashing belts &amp; floor padding
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Verified interstate highway drivers
+                      8-ft para-lane Tata Ace shuttle transfers where needed
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Milestone tracking updates via phone & WhatsApp
+                      Stamped Consignment Note (LR / Bilty) &amp; WhatsApp check-ins
                     </li>
                     <li className="flex items-center gap-2 sm:col-span-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Comprehensive transit insurance coverage active throughout
+                      Declared-value transit insurance coverage active throughout
                     </li>
                   </ul>
                 </div>
@@ -437,13 +399,13 @@ export default function ProcessPage() {
               </div>
               <div className="flex-1 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                 <span className="inline-block text-[#F28A32] text-xs font-bold uppercase tracking-wider mb-2">
-                  Stage 4 · Arrival & Destination Setup
+                  Stage 4 · Arrival &amp; Destination Setup
                 </span>
                 <h3 className="text-2xl sm:text-2xl font-bold font-display text-[#082F52] mb-4">
-                  Delivery, Unpacking & Final Handover
+                  Delivery, Unpacking &amp; Final Handover
                 </h3>
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                  Our responsibility does not end when the vehicle arrives. We handle safe unloading, carry boxes into their designated rooms, reassemble beds and modular furniture, and clear away packing debris so your new home is ready to live in.
+                  Destination handover follows the same checklist discipline as origin packing: room-tagged unloading, bed and wardrobe reassembly, carbon-copy packing list reconciliation, debris sweep, and GST Tax Invoice delivery.
                 </p>
 
                 <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200/70">
@@ -453,7 +415,7 @@ export default function ProcessPage() {
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-sm text-slate-700">
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Careful unloading and entryway protection
+                      Careful unloading &amp; hallway/lift protection
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
@@ -461,15 +423,15 @@ export default function ProcessPage() {
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Bed & modular furniture reassembly
+                      Bed &amp; modular wardrobe reassembly
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Collection & removal of packing materials
+                      Collection &amp; removal of used stretch film &amp; cartons
                     </li>
                     <li className="flex items-center gap-2 sm:col-span-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E53935]" />
-                      Physical inventory cross-check & customer sign-off
+                      Signed Carbon-Copy Packing List check &amp; GST Tax Invoice ({BUSINESS.gstin})
                     </li>
                   </ul>
                 </div>
@@ -479,20 +441,29 @@ export default function ProcessPage() {
         </div>
       </section>
 
+      {/* 3.5 Mandatory Move Documentation */}
+      <section className="py-16 sm:py-20 bg-white border-y border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <MandatoryDocumentsBlock
+            serviceContext="Issued on every Kolkata local and PAN-India relocation — from Written Survey Quote at Stage 1 to SAC 9965 / 9987 GST Tax Invoice at Stage 4."
+          />
+        </div>
+      </section>
+
       {/* 4. What Happens Behind the Scenes */}
-      <section className="py-20 sm:py-24 bg-white border-b border-slate-100">
+      <section className="py-20 sm:py-24 bg-slate-50 border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             label="Operational Rigor"
             title="What Makes the Process Work"
-            subtitle="Reliable relocations are built on thorough backend coordination. Here is the operational thinking that keeps every move proceeding according to schedule."
+            subtitle="Reliable relocations are built on verifiable backend dispatch. Here is how our Haltu and Behala coordinators keep moving day on schedule."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {behindTheScenesCards.map((card) => (
               <div
                 key={card.title}
-                className="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 flex flex-col justify-between"
+                className="bg-white p-6 rounded-2xl border border-slate-200/80 flex flex-col justify-between"
               >
                 <div>
                   <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#F28A32] mb-3">
@@ -511,41 +482,63 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      {/* 5. Service-Specific Handling */}
-      <section className="py-20 sm:py-24 bg-slate-50">
+      {/* 5. Service-Specific Handling Protocols */}
+      <section className="py-14 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            label="Specialized Protocols"
-            title="Every Move Has Different Requirements"
-            subtitle="While our core discipline remains consistent, specific cargo types demand distinct handling protocols, specialized equipment, and custom logistics."
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {serviceSpecificCards.map((service) => (
-              <div
-                key={service.title}
-                className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-[#F28A32]/40 transition-all duration-200 flex flex-col justify-between group"
+          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs text-center">
+            <span className="inline-block bg-red-50 text-[#E53935] text-xs font-semibold uppercase tracking-[0.08em] px-4 py-1.5 rounded-full mb-3 border border-red-200">
+              Specialized Protocols
+            </span>
+            <h2 className="text-xl sm:text-2xl font-display font-bold text-[#082F52] mb-2">
+              Service-Specific Handling &amp; Cost Guides
+            </h2>
+            <p className="text-slate-600 text-sm max-w-2xl mx-auto mb-6">
+              Each cargo division follows tailored packing grades, closed-carrier loading rules, and transit timelines.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <Link
+                href="/household-shifting"
+                className="bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
               >
-                <div>
-                  <span className="inline-block text-[11px] font-bold uppercase tracking-wider text-[#F28A32] mb-2">
-                    {service.category}
-                  </span>
-                  <h3 className="font-bold text-[#082F52] text-xl font-display mb-3 group-hover:text-[#E53935] transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                    {service.desc}
-                  </p>
-                </div>
-                <Link
-                  href={service.href}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#E53935] group-hover:text-[#c62828] transition-colors"
-                >
-                  Explore Service
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
-            ))}
+                Household Shifting
+              </Link>
+              <Link
+                href="/car-shifting"
+                className="bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+              >
+                Car Transportation
+              </Link>
+              <Link
+                href="/bike-shifting"
+                className="bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+              >
+                Bike Transport
+              </Link>
+              <Link
+                href="/parcel-shifting"
+                className="bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+              >
+                Parcel &amp; Cargo
+              </Link>
+              <Link
+                href="/office-relocation"
+                className="bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+              >
+                Office Relocation
+              </Link>
+              <Link
+                href="/international-moving"
+                className="bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+              >
+                International Moving
+              </Link>
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="bg-red-50 hover:bg-[#E53935] text-[#E53935] hover:text-white border border-red-200 text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-colors"
+              >
+                2026 Kolkata Rate Card →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -565,24 +558,24 @@ export default function ProcessPage() {
               Stay Informed While Your Move Is Underway
             </h2>
             <p className="text-white/80 text-sm sm:text-base leading-relaxed">
-              Moving shouldn’t be stressful. We ensure you are kept informed at every stage with clear milestone checkpoints, schedule clarity, and responsive coordinator support.
+              From origin loading to destination handover, you stay updated through documented LR/Bilty dispatch checkpoints, schedule clarity, and direct branch support.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <div className="text-2xl font-bold font-display text-[#F28A32] mb-2">01</div>
-              <h3 className="font-bold text-white text-base mb-2">Dedicated Move Coordinator</h3>
+              <h3 className="font-bold text-white text-base mb-2">Haltu &amp; Behala Desks</h3>
               <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
-                A single point of contact who understands your move requirements and coordinates crews and vehicles.
+                Direct coordinator lines at Haltu HQ ({BUSINESS.locations.main.phoneFormatted}) and Behala Branch ({BUSINESS.locations.secondary.phoneFormatted}).
               </p>
             </div>
 
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
               <div className="text-2xl font-bold font-display text-[#F28A32] mb-2">02</div>
-              <h3 className="font-bold text-white text-base mb-2">Milestone Notifications</h3>
+              <h3 className="font-bold text-white text-base mb-2">LR / Bilty &amp; Checkpoint Alerts</h3>
               <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
-                Updates shared upon departure, highway checkpoints, and destination arrival via WhatsApp and phone.
+                Stamped consignment number shared at departure, followed by toll-plaza and arrival updates via WhatsApp and phone.
               </p>
             </div>
 
@@ -590,7 +583,7 @@ export default function ProcessPage() {
               <div className="text-2xl font-bold font-display text-[#F28A32] mb-2">03</div>
               <h3 className="font-bold text-white text-base mb-2">Proactive Check-Ins</h3>
               <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
-                Scheduled check-ins during long-distance intercity transit so you always know where your shipment stands.
+                Scheduled check-ins during long-distance NH-19 and NH-16 transit so you always know where your container stands.
               </p>
             </div>
 
@@ -598,7 +591,7 @@ export default function ProcessPage() {
               <div className="text-2xl font-bold font-display text-[#F28A32] mb-2">04</div>
               <h3 className="font-bold text-white text-base mb-2">Realistic Schedules</h3>
               <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
-                Realistic delivery estimates calculated around highway conditions rather than speculative promises.
+                Delivery windows calculated around highway corridor transit hours and city No-Entry rules rather than guesswork.
               </p>
             </div>
           </div>
@@ -610,8 +603,8 @@ export default function ProcessPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             label="Destination Completion"
-            title="The Move Isn't Finished Until the Handover Is Complete"
-            subtitle="Our work continues until your belongings are safely positioned in your new home, furniture is reassembled, and packing debris is cleared away."
+            title="Room Placement, Carpentry Reassembly & GST Handover"
+            subtitle="Our crew stays until cartons are placed in tagged rooms, beds and wardrobes are reassembled, used wrapping is swept clear, and your manifest is signed off."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -629,7 +622,7 @@ export default function ProcessPage() {
               <span className="w-8 h-8 rounded-full bg-[#082F52] text-white text-xs font-bold flex items-center justify-center mb-4">
                 B
               </span>
-              <h3 className="font-bold text-[#082F52] text-base mb-2">Assembly & Setup</h3>
+              <h3 className="font-bold text-[#082F52] text-base mb-2">Assembly &amp; Setup</h3>
               <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
                 Beds, wardrobes, and dining tables disassembled at origin are reconstructed securely by our trained carpentry crew.
               </p>
@@ -639,9 +632,9 @@ export default function ProcessPage() {
               <span className="w-8 h-8 rounded-full bg-[#082F52] text-white text-xs font-bold flex items-center justify-center mb-4">
                 C
               </span>
-              <h3 className="font-bold text-[#082F52] text-base mb-2">Manifest Verification & Cleanup</h3>
+              <h3 className="font-bold text-[#082F52] text-base mb-2">Manifest Sign-Off &amp; GST Invoice</h3>
               <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                Carton counts are verified against your booking manifest, and used packing materials are collected and removed from your premises.
+                Carton counts are tallied against your Numbered Carbon-Copy Packing List, used wrap is cleared, and your GST Tax Invoice ({BUSINESS.gstin}, {BUSINESS.sacCodes}) is issued.
               </p>
             </div>
           </div>

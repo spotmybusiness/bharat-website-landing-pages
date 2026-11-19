@@ -10,6 +10,7 @@ import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
 import JsonLd from '@/components/JsonLd';
 import ServiceFAQSection from '@/components/ServiceFAQSection';
+import MandatoryDocumentsBlock from '@/components/MandatoryDocumentsBlock';
 import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
 import { getServiceFaqs } from '@/data/serviceFaqs';
 
@@ -18,6 +19,7 @@ export const metadata: Metadata = generatePageMetadata({
   description:
     'Reliable international relocation from Kolkata. Export-grade seaworthy packing, customs documentation guidance, air and sea freight coordination, and global destination delivery.',
   path: '/international-moving',
+  ogImage: '/images/international.jpeg',
 });
 
 const faqs = getServiceFaqs('international-moving');
@@ -46,7 +48,7 @@ const internationalSteps = [
   {
     step: '03',
     title: 'Documentation & Customs Support',
-    desc: 'Assistance in drafting the comprehensive itemized packing list, customs declaration forms, and insurance declaration papers.',
+    desc: 'Assistance in drafting the box-by-box bilingual itemized packing inventory, CBIC baggage declaration forms, and marine/air insurance papers.',
   },
   {
     step: '04',
@@ -142,7 +144,7 @@ const internationalMoveStages = [
   {
     stage: '04',
     title: 'International Freight Transit',
-    desc: 'Ocean shipping or air cargo transit along international routes with consignment waybill and milestone tracking.',
+    desc: 'Ocean shipping or air cargo transit along international routes under a registered Bill of Lading (sea) or Air Waybill (AWB) with port-dispatch checkpoints.',
   },
   {
     stage: '05',
@@ -216,13 +218,13 @@ export default function InternationalMovingPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Bharat Relocators provides international moving and overseas relocation services originating from Kolkata, managing cross-border household transitions with export-grade seaworthy packaging, customs clearance assistance, and air and ocean freight logistics.
+                  Coordinated from our Haltu (700078) and Behala (700061) export desks, Bharat Relocators prepares overseas household consignments from Kolkata starting with an on-site CFT volume survey to select 20ft FCL containers, consolidated LCL lift-vans, or priority air cargo.
                 </p>
                 <p>
-                  Whether moving abroad for corporate transfer, study, or permanent residency, our team deploys moisture-barrier wrapping, export-standard wooden lift-van fabrication, and end-to-end port logistics. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Speak with a relocation expert</Link>.
+                  Export crews pack belongings in 5-ply seaworthy cartons, multi-layer moisture-barrier foil, silica gel desiccants, and ISPM-15 heat-treated custom wooden lift-vans built for Netaji Subhas Dock (Kolkata Port), Haldia sea freight, and NSCBI Airport air-cargo dispatch. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Speak with an international coordinator</Link>.
                 </p>
                 <p>
-                  We coordinate with reputable global maritime and air freight lines to ensure your household goods and personal effects arrive securely at your new international destination.
+                  Every shipment is accompanied by a box-by-box bilingual itemized inventory, CBIC Transfer of Residence (TR) / baggage declaration documentation, and a registered Bill of Lading or Air Waybill through destination port clearance.
                 </p>
               </div>
 
@@ -242,7 +244,7 @@ export default function InternationalMovingPage() {
             <div className="lg:col-span-6">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
-                  src="https://images.unsplash.com/photo-1528259105746-48a73c688cd2"
+                  src="/images/international.jpeg"
                   alt="International air and sea freight cargo container being prepared for export dispatch"
                   fill
                   className="object-cover"
@@ -448,24 +450,51 @@ export default function InternationalMovingPage() {
             ), and restricted cargo lists vary by destination country. Customers should independently confirm destination customs guidelines prior to dispatch. Our move coordinators assist with Indian origin export documentation and freight waybill management.
           </div>
 
-          {/* Navigation Links */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
-            <Link
-              href="/moving-checklist"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#E53935] hover:underline"
-            >
-              <span>View Full Moving Checklist &amp; Timeline Guide</span>
-              <span aria-hidden="true">→</span>
-            </Link>
-            <span className="hidden sm:inline text-slate-300">·</span>
-            <Link
-              href="/household-shifting"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#082F52] hover:underline"
-            >
-              <span>Planning Domestic Relocation in India?</span>
-              <span aria-hidden="true">→</span>
-            </Link>
+          {/* 2026 Verified Cost & Planning Guide Callout */}
+          <div className="mt-8 p-5 sm:p-6 bg-white rounded-2xl border-2 border-[#082F52]/15 shadow-xs">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#E53935] mb-1.5">
+              2026 Verified Cost &amp; Planning Guide
+            </p>
+            <p className="text-sm text-slate-700 leading-relaxed mb-3">
+              Review 2026 Kolkata packing, ISPM-15 crating, and domestic origin-to-port logistics benchmarks alongside our export preparation checklists:
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold">
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="text-[#E53935] hover:underline"
+              >
+                2026 Kolkata Shifting &amp; Crating Rate Card →
+              </Link>
+              <Link
+                href="/moving-checklist"
+                className="text-[#082F52] hover:underline"
+              >
+                Pre-Move Timeline &amp; Export Checklist →
+              </Link>
+              <Link
+                href="/intercity-moving-guide"
+                className="text-[#082F52] hover:underline"
+              >
+                Domestic Port-Leg &amp; GST Guide →
+              </Link>
+              <Link
+                href="/household-shifting"
+                className="text-slate-600 hover:text-[#082F52] hover:underline"
+              >
+                Domestic Household Shifting →
+              </Link>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── 4 Mandatory Documents ─────────────────────────────────────── */}
+      <section className="py-16 sm:py-20 bg-white border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <MandatoryDocumentsBlock
+            serviceContext="Export & Customs Handover: Alongside your CBIC Customs Baggage Declaration and box-by-box bilingual itemized packing inventory, every Kolkata pickup is backed by our 4 origin dispatch documents."
+            highlightNote="Covers the origin Written Survey Quote, numbered lift-van/carton inventory, stamped LR/Bilty for the Kolkata-to-port/airport domestic leg, and GST Tax Invoice (19AAWFB0500G1ZL · SAC 9965 / 9987)."
+          />
         </div>
       </section>
 

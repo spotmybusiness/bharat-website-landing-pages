@@ -129,7 +129,7 @@ const services: ServiceItem[] = [
     title: 'International Moving',
     category: 'Global Freight & Customs',
     desc: 'Cross-border relocation with documentation assistance, air/sea cargo packing, customs clearance support, and global destination network.',
-    img: 'https://images.unsplash.com/photo-1528259105746-48a73c688cd2',
+    img: '/images/international.jpeg',
     alt: 'Cargo containers at international shipping port',
     features: ['Customs Documentation', 'Air & Sea Freight', 'Door Delivery Worldwide'],
     href: '/international-moving',

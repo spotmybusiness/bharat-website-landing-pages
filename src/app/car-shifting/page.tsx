@@ -10,14 +10,16 @@ import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
 import JsonLd from '@/components/JsonLd';
 import ServiceFAQSection from '@/components/ServiceFAQSection';
+import MandatoryDocumentsBlock from '@/components/MandatoryDocumentsBlock';
 import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
 import { getServiceFaqs } from '@/data/serviceFaqs';
 
 export const metadata: Metadata = generatePageMetadata({
   title: 'Car Transportation Services in Kolkata',
   description:
-    'Dedicated closed carrier car transportation from Kolkata to PAN India. Hydraulic ramp loading, comprehensive transit insurance, vehicle condition report, and GPS milestone tracking.',
+    'Dedicated closed carrier car transportation from Kolkata to PAN India. Hydraulic ramp loading, comprehensive transit insurance, joint Vehicle Condition Report (VCR), and LR-tracked dispatch.',
   path: '/car-shifting',
+  ogImage: '/images/car_relocation_2.png',
 });
 
 const faqs = getServiceFaqs('car-shifting');
@@ -25,7 +27,7 @@ const pageSchema = buildGraphSchema([
   getServiceSchema({
     name: 'Car Transportation Services in Kolkata',
     description:
-      'Dedicated closed carrier car transportation from Kolkata to PAN India. Hydraulic ramp loading, comprehensive transit insurance, vehicle condition report, and GPS milestone tracking.',
+      'Dedicated closed carrier car transportation from Kolkata to PAN India. Hydraulic ramp loading, comprehensive transit insurance, joint Vehicle Condition Report (VCR), and LR-tracked dispatch.',
     path: '/car-shifting',
     serviceType: 'Car Transportation',
   }),
@@ -77,8 +79,8 @@ const inclusions = [
     desc: 'Four-wheel locking system keeping your car stationary and shock-buffered throughout the journey.',
   },
   {
-    title: 'Milestone Tracking & Driver Coordination',
-    desc: 'Direct dispatch communication and milestone updates until safe doorstep or hub delivery.',
+    title: 'LR-Tracked Dispatch & Hub Coordination',
+    desc: 'Direct Haltu/Behala dispatch desk updates with carrier registration and Consignment Note (LR) tracking until destination unloading.',
   },
 ];
 
@@ -257,13 +259,13 @@ export default function CarShiftingPage() {
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Bharat Relocators provides dedicated car transportation services from Kolkata across India, utilizing enclosed carrier containers equipped with hydraulic loading ramps and wheel-locking chocks to prevent transit damage.
+                  Dispatched from our Haltu (700078) and Behala (700061) desks, Bharat Relocators moves hatchbacks, sedans, SUVs, and EVs from Kolkata across India in dedicated enclosed multi-car carriers staged at Dankuni and Kona Expressway yards along NH 19, NH 16, and NH 53.
                 </p>
                 <p>
-                  From compact hatchbacks and executive sedans to luxury SUVs, our dedicated closed-container car carriers are equipped with low-angle hydraulic loading ramps and wheel-locking chocks to ensure scrape-free transport. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get an instant quote for your vehicle</Link>.
+                  Where narrow South or Central Kolkata lanes restrict full-length carrier entry, a local flatbed feeder collects your car for transfer onto low-angle hydraulic loading ramps. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Get an instant quote for your vehicle</Link>.
                 </p>
                 <p>
-                  Every relocation begins with a joint physical inspection and pre-move condition report, followed by low-incline hydraulic ramp loading and multi-point wheel chock anchoring.
+                  Before the car rolls onto the deck, our coordinator completes a joint Vehicle Condition Report (VCR) recording odometer reading, 1/4 reserve fuel level, and exterior panels before securing all four tyres with wheel-locking chocks and ratchet lashing straps.
                 </p>
               </div>
 
@@ -283,7 +285,7 @@ export default function CarShiftingPage() {
             <div className="lg:col-span-6">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] border border-slate-200">
                 <AppImage
-                  src="/images/car.png"
+                  src="/images/car_relocation_2.png"
                   alt="Passenger sedan locked into wheel chocks inside an enclosed car transport carrier"
                   fill
                   className="object-cover"
@@ -447,7 +449,7 @@ export default function CarShiftingPage() {
               <strong className="text-[#082F52]">How vehicle estimates work:</strong>{' '}
               Car carrier pricing is determined individually based on your car model,
               pickup locality in Kolkata, destination city, and preferred schedule. We
-              provide written, all-inclusive quotations with zero hidden surprises.
+              issue written quotes locking carrier bay type, feeder pickup, and transit insurance before dispatch.
             </p>
             <p>
               Planning an interstate relocation involving both your vehicle and household
@@ -487,6 +489,36 @@ export default function CarShiftingPage() {
               </a>
               .
             </p>
+          </div>
+
+          {/* 2026 Verified Cost & Planning Guide Callout */}
+          <div className="mt-6 p-5 bg-white rounded-2xl border-2 border-[#082F52]/15">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#E53935] mb-1.5">
+              2026 Verified Cost &amp; Planning Guide
+            </p>
+            <p className="text-sm text-slate-700 leading-relaxed mb-3">
+              Review 2026 Kolkata car carrier rate slabs, VCR inspection checklists, and highway transit documents before handing over your keys:
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold">
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="text-[#E53935] hover:underline"
+              >
+                2026 Kolkata Shifting &amp; Car Carrier Rate Card →
+              </Link>
+              <Link
+                href="/vehicle-transportation-guide"
+                className="text-[#082F52] hover:underline"
+              >
+                Vehicle Transportation Guide →
+              </Link>
+              <Link
+                href="/intercity-moving-guide"
+                className="text-[#082F52] hover:underline"
+              >
+                Intercity Moving Guide →
+              </Link>
+            </div>
           </div>
 
           <div className="mt-6 text-center">
@@ -583,6 +615,16 @@ export default function CarShiftingPage() {
               <span aria-hidden="true">→</span>
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ── 4 Mandatory Documents ─────────────────────────────────────── */}
+      <section className="py-16 sm:py-20 bg-white border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <MandatoryDocumentsBlock
+            serviceContext="Issued before your vehicle rolls onto the hydraulic ramp—protecting hatchbacks, sedans, SUVs, and EVs on closed car carriers."
+            highlightNote="Document 02 includes our joint Vehicle Condition Report (VCR) recording exact odometer reading, 1/4 reserve fuel level, windshield/alloy state, and exterior marks alongside your stamped LR/Bilty and GST Tax Invoice (19AAWFB0500G1ZL)."
+          />
         </div>
       </section>
 

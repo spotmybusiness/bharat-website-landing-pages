@@ -48,8 +48,8 @@ const intercityPhases = [
   },
   {
     phase: '04',
-    title: 'Highway Transit & Milestone Monitoring',
-    desc: 'Your shipment travels via national highway corridors driven by experienced long-haul drivers, with periodic milestone updates provided by your dedicated move coordinator.',
+    title: 'Highway Transit & LR Dispatch Updates',
+    desc: 'Your shipment travels along NH 16, NH 19, and NH 53 corridors with experienced long-haul drivers, backed by LR/docket tracking and direct Haltu or Behala coordinator phone support.',
   },
   {
     phase: '05',
@@ -92,9 +92,9 @@ const evaluationCriteria = [
       'Verify that the company maintains a physical office address, verifiable GST registration, and responsive contact channels rather than operating solely as an anonymous online broker.',
   },
   {
-    factor: 'Transparent, Written All-Inclusive Quotes',
+    factor: 'Written Itemized Quotations',
     advice:
-      'Insist on an all-inclusive written quotation that clearly specifies packing supplies, loading, highway toll transit, unloading, and unpacking with zero hidden surcharges.',
+      'Insist on a written quotation itemizing packing supplies, loading, shuttle transport, highway tolls, GST, and unloading upfront before moving day.',
   },
   {
     factor: 'Transit Insurance Coverage',
@@ -174,10 +174,14 @@ export default function IntercityMovingGuidePage() {
                   Before starting your packing, consult our step-by-step{' '}
                   <Link href="/moving-checklist" className="text-[#E53935] font-semibold hover:underline">
                     Home Shifting Checklist
-                  </Link>{' '}
-                  or review our dedicated{' '}
+                  </Link>
+                  , review our dedicated{' '}
                   <Link href="/household-shifting" className="text-[#082F52] font-semibold hover:underline">
                     Household Shifting Services
+                  </Link>
+                  , or check corridor-wise pricing slabs in our{' '}
+                  <Link href="/blogs/packers-and-movers-kolkata-charges-rate-card" className="text-[#E53935] font-semibold hover:underline">
+                    2026 Kolkata Packers &amp; Movers Rate Card
                   </Link>
                   .
                 </p>
@@ -442,26 +446,39 @@ export default function IntercityMovingGuidePage() {
             ))}
           </div>
 
-          <div className="mt-10 p-5 rounded-2xl bg-blue-50/60 border border-blue-200 text-xs text-slate-700 leading-relaxed">
-            <strong className="text-[#082F52]">Verify GST &amp; Transport Tax Compliance:</strong> Before booking any interstate mover, verify their active GST registration on the{' '}
-            <a
-              href="https://services.gst.gov.in/services/searchtp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
-            >
-              Official GST Portal Taxpayer Search
-            </a>{' '}
-            and review applicable SAC/HSN 9965 &amp; 9968 transport and packing tax schedules on the{' '}
-            <a
-              href="https://cbic-gst.gov.in/gst-goods-services-rates.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
-            >
-              CBIC GST Goods &amp; Services Rate Portal
-            </a>
-            .
+          <div className="mt-10 p-5 rounded-2xl bg-blue-50/60 border border-blue-200 text-xs text-slate-700 leading-relaxed space-y-2">
+            <p>
+              <strong className="text-[#082F52]">Verify GST &amp; Transport Tax Compliance:</strong> Before booking any interstate mover, verify active GST registration (Bharat Relocators GSTIN:{' '}
+              <code className="font-mono bg-white px-1.5 py-0.5 rounded border border-blue-200">{BUSINESS.gstin}</code>
+              ) on the{' '}
+              <a
+                href={BUSINESS.gstPortalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                Official GST Portal Taxpayer Search
+              </a>{' '}
+              and review applicable {BUSINESS.sacCodes} transport and composite packing tax schedules on the{' '}
+              <a
+                href="https://cbic-gst.gov.in/gst-goods-services-rates.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+              >
+                CBIC GST Goods &amp; Services Rate Portal
+              </a>
+              .
+            </p>
+            <p>
+              For 2026 distance slabs, 18% GST billing breakdowns, and 10 intercity corridor benchmarks from Kolkata, read our{' '}
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="text-[#E53935] font-semibold underline"
+              >
+                2026 Kolkata Packers &amp; Movers Charges Rate Card →
+              </Link>
+            </p>
           </div>
 
           <div className="mt-10 text-center">
@@ -485,7 +502,7 @@ export default function IntercityMovingGuidePage() {
           <SectionHeader
             label="Get Started"
             title="Planning an Interstate Move from Kolkata?"
-            subtitle="Request a transparent, all-inclusive estimate for your intercity household and vehicle relocation."
+            subtitle="Request a written, itemized estimate for your intercity household and vehicle relocation."
           />
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
@@ -500,6 +517,48 @@ export default function IntercityMovingGuidePage() {
             >
               Call Coordinator: {BUSINESS.phone.primaryFormatted}
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Operations Desk Author & Dual-Branch Verification Footer */}
+      <section className="py-12 sm:py-14 bg-white border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-center sm:items-start gap-4">
+            <div className="w-16 h-16 rounded-2xl bg-[#082F52] text-white flex items-center justify-center font-bold text-xl shrink-0 font-display">
+              BR
+            </div>
+            <div className="space-y-1.5 text-center sm:text-left">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <h3 className="font-display font-bold text-[#082F52] text-base">
+                  Operations Desk — Bharat Relocators
+                </h3>
+                <span className="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded font-medium">
+                  Verified Interstate Dispatch &amp; GST Billing ({BUSINESS.sacCodes})
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Prepared by the intercity dispatch desk at Bharat Relocators Kolkata (GSTIN:{' '}
+                <a
+                  href={BUSINESS.gstPortalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+                >
+                  {BUSINESS.gstin}
+                </a>
+                , {BUSINESS.sacCodes}). Operating dual Kolkata branches in Haltu (700078) and Behala (700061) with a {BUSINESS.locations.main.google.rating.toFixed(1)}★ Google rating across {BUSINESS.locations.main.google.reviewCount}+ verified moves.
+              </p>
+              <div className="pt-2 flex flex-wrap gap-3 text-xs text-[#082F52] font-semibold justify-center sm:justify-start">
+                <span>📍 Haltu HQ: {BUSINESS.locations.main.address.short}</span>
+                <span>•</span>
+                <span>📍 Behala Branch: {BUSINESS.locations.secondary.address.short}</span>
+                <span>•</span>
+                <a href={getTelUrl()} className="text-[#E53935] hover:underline">
+                  📞 {BUSINESS.phone.primaryFormatted}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -161,9 +161,9 @@ export default function QuoteSection() {
             </h2>
 
             <p className="text-white/80 leading-relaxed mb-8 text-sm sm:text-base">
-              Transparent written quotations with zero hidden surcharges.
-              Our logistics specialists evaluate your specific volume, access conditions,
-              and destination to deliver an accurate relocation plan.
+              Itemized written quotations with CFT volume, floor access, and shuttle scope locked upfront.
+              Our Haltu and Behala move coordinators evaluate your inventory and lane approach to issue
+              a fixed GST-compliant estimate ({BUSINESS.gstin}).
             </p>
 
             {/* Customized Quote Evaluation Box */}
@@ -175,21 +175,21 @@ export default function QuoteSection() {
               <div className="text-xs sm:text-sm text-white/90 space-y-2">
                 <div className="flex items-start gap-2">
                   <span className="text-[#F28A32] mt-0.5 font-bold">✓</span>
-                  <span><strong>Move Volume:</strong> Exact item count and specialty packing requirements</span>
+                  <span><strong>Move Volume:</strong> Exact CFT count, 5-ply cartons, EPE foam &amp; pinewood crating</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-[#F28A32] mt-0.5 font-bold">✓</span>
-                  <span><strong>Site Access:</strong> Floor level, lift availability, and vehicle approach</span>
+                  <span><strong>Site Access:</strong> Floor level, society lift slot &amp; 8-ft para-lane Tata Ace shuttle</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-[#F28A32] mt-0.5 font-bold">✓</span>
-                  <span><strong>Route &amp; Logistics:</strong> Dedicated carrier or direct door-to-door transit</span>
+                  <span><strong>Carrier &amp; Route:</strong> 14ft/17ft/19ft closed container or direct door-to-door linehaul</span>
                 </div>
               </div>
 
               <div className="text-xs text-white/70 mt-3 pt-3 border-t border-white/10 flex items-center gap-1.5 font-normal">
                 <span>
-                  Includes multi-layer packing, trained labor, transit &amp; documentation
+                  Includes Written Quote, Packing List, Stamped LR/Bilty &amp; GST Invoice ({BUSINESS.gstin})
                 </span>
               </div>
             </div>
@@ -474,7 +474,7 @@ export default function QuoteSection() {
                             setErrors((prev) => ({ ...prev, originCity: undefined }));
                           }
                         }}
-                        placeholder="Kolkata (Behala, Salt Lake, etc.)"
+                        placeholder="Kolkata (Haltu, Behala, Salt Lake, etc.)"
                         className={`w-full bg-[#f8fafc] border rounded-xl px-4 py-3 text-base sm:text-sm text-foreground focus:outline-none focus:ring-2 transition-colors ${
                           errors.originCity
                             ? 'border-red-500 focus:border-red-500 focus:ring-red-200'
@@ -655,7 +655,7 @@ export default function QuoteSection() {
                   </button>
 
                   <p className="text-center text-xs text-muted-foreground pt-1">
-                    Direct coordinator response · Zero hidden surcharges · Strict privacy
+                    Direct Haltu &amp; Behala coordinator response · GSTIN {BUSINESS.gstin} · Itemized written quote
                   </p>
                 </form>
               )}

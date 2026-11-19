@@ -1,19 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
-import { galleryImages } from '@/data/gallery';
+import { featuredGalleryImages } from '@/data/gallery';
 
 // Fallback placeholder tiles when no images are added yet
 const PLACEHOLDER_COUNT = 12;
 
 export default function GalleryScrollSection() {
-  const hasImages = galleryImages.length > 0;
+  const hasImages = featuredGalleryImages.length > 0;
 
-  // Duplicate images for seamless infinite loop (need at least 2 copies)
-  const displayItems = hasImages
-    ? [...galleryImages, ...galleryImages, ...galleryImages]
-    : Array.from({ length: PLACEHOLDER_COUNT * 3 }, (_, i) => ({
+  const primaryItems = hasImages
+    ? featuredGalleryImages
+    : Array.from({ length: PLACEHOLDER_COUNT }, (_, i) => ({
         src: '',
-        alt: `Gallery preview ${(i % PLACEHOLDER_COUNT) + 1}`,
+        alt: `Gallery preview ${i + 1}`,
       }));
 
   return (
@@ -46,27 +45,37 @@ export default function GalleryScrollSection() {
       <Link href="/gallery" className="block group cursor-pointer overflow-hidden w-full" aria-label="Open gallery">
         {/* Single Row — scrolls left at a calm, smooth pace */}
         <div className="relative overflow-hidden marquee-mask py-2 w-full max-w-full">
-          <div className="flex w-max gap-4 sm:gap-6 animate-marquee-left group-hover:[animation-play-state:paused] hover:[animation-play-state:paused]">
-            {displayItems.map((img, i) => (
+          <div className="flex w-max animate-marquee-left group-hover:[animation-play-state:paused] hover:[animation-play-state:paused]">
+            {[false, true].map((isDuplicate) => (
               <div
-                key={i}
-                className="relative w-64 h-44 sm:w-80 sm:h-56 md:w-96 md:h-64 shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-white/5 group-hover:border-white/25 shadow-xl shadow-black/25 transition-all duration-300"
+                key={isDuplicate ? 'duplicate-track' : 'primary-track'}
+                aria-hidden={isDuplicate || undefined}
+                className="flex shrink-0 gap-4 sm:gap-6 pr-4 sm:pr-6"
               >
-                {img.src ? (
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                ) : (
-                  /* Placeholder shimmer */
-                  <div className="w-full h-full bg-gradient-to-br from-white/5 to-white/[0.02] flex items-center justify-center">
-                    <svg className="w-12 h-12 text-white/20" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M13.5 12h.008v.008H13.5V12z" />
-                    </svg>
+                {primaryItems.map((img, i) => (
+                  <div
+                    key={`${isDuplicate ? 'dup' : 'primary'}-${i}-${img.src}`}
+                    aria-hidden={isDuplicate || undefined}
+                    className="relative w-64 h-44 sm:w-80 sm:h-56 md:w-96 md:h-64 shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-white/5 group-hover:border-white/25 shadow-xl shadow-black/25 transition-all duration-300"
+                  >
+                    {img.src ? (
+                      <img
+                        src={img.src}
+                        alt={isDuplicate ? '' : img.alt}
+                        aria-hidden={isDuplicate || undefined}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    ) : (
+                      /* Placeholder shimmer */
+                      <div className="w-full h-full bg-gradient-to-br from-white/5 to-white/[0.02] flex items-center justify-center">
+                        <svg className="w-12 h-12 text-white/20" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M13.5 12h.008v.008H13.5V12z" />
+                        </svg>
+                      </div>
+                    )}
                   </div>
-                )}
+                ))}
               </div>
             ))}
           </div>

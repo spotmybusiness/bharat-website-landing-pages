@@ -471,6 +471,7 @@
   }
   .animate-truck-drive,
   .animate-road-motion,
+  .animate-marquee-left,
   .animate-marquee-right {
     animation: none !important;
   }

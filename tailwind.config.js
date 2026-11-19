@@ -49,13 +49,13 @@ module.exports = {
         display: ['var(--font-display)', 'var(--font-sans)', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
       },
       animation: {
-        'marquee-left':  'marquee-left 150s linear infinite',
+        'marquee-left':  'marquee-left 36s linear infinite',
         'marquee-right': 'marquee-right 38s linear infinite',
       },
       keyframes: {
         'marquee-left': {
           '0%':   { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-33.333%)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
         'marquee-right': {
           '0%':   { transform: 'translateX(-33.333%)' },

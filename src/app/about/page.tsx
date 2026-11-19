@@ -6,6 +6,7 @@ import PageHero from '@/components/PageHero';
 import AppImage from '@/components/ui/AppImage';
 import SectionHeader from '@/components/ui/SectionHeader';
 import JsonLd from '@/components/JsonLd';
+import VerifiedCredentialsBlock from '@/components/VerifiedCredentialsBlock';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getTelUrl, getWhatsAppUrl } from '@/lib/business';
 import { getOrganizationId } from '@/lib/schema';
@@ -27,85 +28,6 @@ const aboutSchema = {
     '@id': getOrganizationId(),
   },
 };
-
-// 6 Canonical Services
-const servicesList = [
-  {
-    title: 'Household Shifting',
-    category: 'Residential Moves',
-    description:
-      'Complete home relocation with 5-layer packing, modular furniture dismantling, room-by-room labeling, and placement at your new home.',
-    href: '/household-shifting',
-    icon: (
-      <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Car Transportation',
-    category: 'Automotive Logistics',
-    description:
-      'Safe intercity car hauling in closed container trailers with wheel-locking clamps, hydraulic ramp loading, and scratch-free transit.',
-    href: '/car-shifting',
-    icon: (
-      <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10l1 1h1m8-1h1l1-1v-3.65a1 1 0 00-.22-.624l-3.48-4.35A1 1 0 0011.52 6H10" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Bike Transport',
-    category: 'Two-Wheeler Express',
-    description:
-      'Dedicated motorcycle and scooter transit using heavy-duty wooden crating, bubble wrapping, mirror removal, and tied-down wheel slots.',
-    href: '/bike-shifting',
-    icon: (
-      <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <circle cx="5.5" cy="17.5" r="3.5" />
-        <circle cx="18.5" cy="17.5" r="3.5" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 6a1 1 0 100-2 1 1 0 000 2zm-3 11.5V14l-3-3 4-3 2 3h4" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Parcel & Cargo',
-    category: 'Express Intercity',
-    description:
-      'Fast doorstep parcel pickup, student luggage delivery, and partial household consignments connecting Kolkata with 230+ cities.',
-    href: '/parcel-shifting',
-    icon: (
-      <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Office Relocation',
-    category: 'Commercial & Corporate',
-    description:
-      'Phased corporate workplace shifting with anti-static IT server packing, numbered workstation crates, and weekend execution to avoid downtime.',
-    href: '/office-relocation',
-    icon: (
-      <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-      </svg>
-    ),
-  },
-  {
-    title: 'International Moving',
-    category: 'Global Freight',
-    description:
-      'End-to-end overseas relocation logistics with export-grade sea/air packing, customs paperwork guidance, and trusted overseas destination partners.',
-    href: '/international-moving',
-    icon: (
-      <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-  },
-];
 
 // 5 Approach Stages: PLAN -> PREPARE -> PROTECT -> MOVE -> DELIVER
 const approachSteps = [
@@ -187,7 +109,7 @@ const handlingCategories = [
   {
     title: 'Personal Vehicles',
     items: 'Hatchbacks, sedans, luxury SUVs, commuter bikes, premium motorcycles',
-    method: 'Wheel-locked inside enclosed auto-carriers, hydraulic ramp loading, and continuous milestone tracking.',
+    method: 'Wheel-locked inside enclosed auto-carriers, hydraulic ramp loading, signed Vehicle Condition Report (VCR), and GPS-linked dispatch check-ins.',
     icon: (
       <svg className="w-5 h-5 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M8 17a2 2 0 100-4 2 2 0 000 4zm8 0a2 2 0 100-4 2 2 0 000 4z" />
@@ -240,7 +162,7 @@ const valuesList = [
   },
   {
     title: 'Clear Communication',
-    desc: 'A move has enough uncertainty without wondering what happens next. From initial survey to final delivery, we keep you informed with straightforward pricing, confirmed timelines, and direct coordinator contact.',
+    desc: 'Your Haltu or Behala coordinator issues an itemized written survey quote upfront, shares your stamped LR/Bilty number at dispatch, and stays reachable directly by phone or WhatsApp until delivery.',
     icon: (
       <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -267,7 +189,7 @@ const valuesList = [
   },
   {
     title: 'Customer-Focused Service',
-    desc: 'Relocation is a personal milestone. Our packing teams and coordinators are polite, respectful of family routines, attentive to specific requests, and committed to leaving your home tidy and settled.',
+    desc: 'Crews arrive on schedule, protect hallway floors and society service lifts during loading, reassemble furniture carefully, and clear used wrap and cartons before signed manifest handover.',
     icon: (
       <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -291,7 +213,7 @@ const customerJourney = [
   {
     step: '03',
     title: 'Plan the Relocation',
-    desc: 'Receive a transparent, all-inclusive written quote with zero hidden surcharges, a confirmed timeline, and practical guidance on pre-move prep.',
+    desc: 'Receive an itemized written survey quote locking CFT volume, staircase or lift scope, narrow-lane shuttle plan, and GST breakdown before packing day.',
   },
   {
     step: '04',
@@ -401,13 +323,13 @@ export default function AboutPage() {
 
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed mb-8">
                 <p>
-                  Bharat Relocators is a Kolkata-based relocation and transportation business dedicated to making moving organized, predictable, and careful. We serve residential households, corporate workplaces, and individual consignments across the city and on scheduled long-distance routes throughout India.
+                  Bharat Relocators is a Kolkata packers and movers company registered under West Bengal GSTIN <strong className="font-mono text-[#082F52]">{BUSINESS.gstin}</strong> ({BUSINESS.sacCodes}). We handle residential households, vehicles, corporate offices, and parcel consignments locally across Kolkata and across 230+ Indian cities.
                 </p>
                 <p>
-                  To give our customers direct, accessible service across Kolkata, Bharat Relocators maintains two local business locations: our main facility in <strong>Haltu</strong> (South Kolkata) and our secondary branch in <strong>Behala</strong>. Both locations operate under one unified standard of operational care, transparent quoting, and reliable customer communication.
+                  We operate from two physical Kolkata offices: our Haltu Main Office at <strong>{mainLoc.address.short}</strong> and our Behala Branch at <strong>{secLoc.address.short}</strong>. Having teams stationed on both sides of South Kolkata lets us complete pre-move CFT surveys quickly, arrange 8-ft <em>para</em> lane <em>Tata Ace</em> shuttles where 14ft/17ft containers cannot park, and coordinate Kolkata Traffic Police No-Entry loading slots.
                 </p>
                 <p>
-                  Every relocation involves belongings with personal meaning and real value. From fine crockery wrapped in honeycomb paper to modular wardrobes dismantled systematically with numbered pouches, our teams treat every carton with the specific protection it needs.
+                  Crews pack with 5-ply dish-barrel cartons, 4mm EPE foam sheets, 23-micron waterproof stretch film, and ISPM-15 pinewood crating for high-risk items—backed by our 4-document handover (Written Survey Quote, Numbered Carbon-Copy Packing List, Stamped LR/Bilty, and GST Tax Invoice).
                 </p>
               </div>
 
@@ -447,6 +369,8 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
+
+          <VerifiedCredentialsBlock className="mt-12" />
         </div>
       </section>
 
@@ -488,7 +412,7 @@ export default function AboutPage() {
                 <div className="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 mb-6">
                   <div className="flex text-[#F28A32] text-sm">★★★★★</div>
                   <span className="text-xs font-bold text-[#082F52]">
-                    {mainLoc.google.rating} / 5.0
+                    {mainLoc.google.rating.toFixed(1)} / 5.0
                   </span>
                   <span className="text-xs text-slate-500">
                     · {mainLoc.google.reviewCount} Google Reviews
@@ -598,7 +522,7 @@ export default function AboutPage() {
                 <div className="inline-flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 mb-6">
                   <div className="flex text-[#F28A32] text-sm">★★★★★</div>
                   <span className="text-xs font-bold text-[#082F52]">
-                    {secLoc.google.rating} / 5.0
+                    {secLoc.google.rating.toFixed(1)} / 5.0
                   </span>
                   <span className="text-xs text-slate-500">
                     · {secLoc.google.reviewCount} Google Reviews
@@ -685,55 +609,69 @@ export default function AboutPage() {
 
 
 
-      {/* 5. What We Do & Our Services */}
-      <section className="py-20 sm:py-24 bg-slate-50 border-t border-slate-200">
+      {/* 5. Specialized Divisions */}
+      <section className="py-14 sm:py-16 bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            label="What We Do"
-            title="Relocation Services Built Around Your Move"
-            subtitle="Whether moving an apartment locally, transporting a personal car or bike, or coordinating a multi-workstation office move, we provide dedicated logistical teams for each requirement."
-          />
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {servicesList.map((service) => (
-              <div
-                key={service.title}
-                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs hover:shadow-lg hover:border-[#1478B5]/40 transition-all duration-200 flex flex-col justify-between group"
+          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs text-center">
+            <span className="inline-block bg-red-50 text-[#E53935] text-xs font-semibold uppercase tracking-[0.08em] px-4 py-1.5 rounded-full mb-3 border border-red-200">
+              Specialized Divisions
+            </span>
+            <h2 className="text-xl sm:text-2xl font-display font-bold text-[#082F52] mb-2">
+              Explore Our Dedicated Relocation Services
+            </h2>
+            <p className="text-slate-600 text-sm max-w-2xl mx-auto mb-6">
+              Select a specialized division below for packing specs, carrier sizes, route transit times, and transparent pricing guides.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="/household-shifting"
+                className="inline-flex items-center gap-2 bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full transition-colors"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center group-hover:scale-105 transition-transform">
-                      {service.icon}
-                    </div>
-                    <span className="text-[11px] font-semibold text-[#F28A32] uppercase tracking-wider bg-orange-50 px-2.5 py-1 rounded-md border border-orange-100">
-                      {service.category}
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-bold font-display text-[#082F52] mb-2 group-hover:text-[#E53935] transition-colors">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-                </div>
-
-                <Link
-                  href={service.href}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#082F52] group-hover:text-[#E53935] transition-colors pt-4 border-t border-slate-100"
-                >
-                  <span>Explore Service</span>
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
-            ))}
+                Household Shifting
+              </Link>
+              <Link
+                href="/car-shifting"
+                className="inline-flex items-center gap-2 bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full transition-colors"
+              >
+                Car Transportation
+              </Link>
+              <Link
+                href="/bike-shifting"
+                className="inline-flex items-center gap-2 bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full transition-colors"
+              >
+                Bike Transport
+              </Link>
+              <Link
+                href="/parcel-shifting"
+                className="inline-flex items-center gap-2 bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full transition-colors"
+              >
+                Parcel &amp; Cargo
+              </Link>
+              <Link
+                href="/office-relocation"
+                className="inline-flex items-center gap-2 bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full transition-colors"
+              >
+                Office Relocation
+              </Link>
+              <Link
+                href="/international-moving"
+                className="inline-flex items-center gap-2 bg-white hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full transition-colors"
+              >
+                International Moving
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-1.5 bg-red-50 hover:bg-[#E53935] text-[#E53935] hover:text-white border border-red-200 text-xs sm:text-sm font-bold px-4 py-2.5 rounded-full transition-colors"
+              >
+                Compare All Services →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 6. Our Approach to Relocation */}
-      <section className="py-20 sm:py-24 bg-white border-t border-slate-200">
+      <section className="py-20 sm:py-24 bg-slate-50 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             label="Our Approach"
@@ -790,12 +728,12 @@ export default function AboutPage() {
       </section>
 
       {/* 7. What We Handle */}
-      <section className="py-20 sm:py-24 bg-slate-50 border-t border-slate-200">
+      <section className="py-20 sm:py-24 bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             label="What We Handle"
             title="Tailored Care for Every Category of Belonging"
-            subtitle="Different items have unique physical properties and vulnerabilities. Handling techniques adapt to what is inside rather than applying a generic method."
+            subtitle="Partitioned 5-ply dish-barrels for kitchenware, ISPM-15 pinewood crating for two-wheelers, and anti-static foam sleeves for IT workstations keep each item protected with the right material."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -829,7 +767,7 @@ export default function AboutPage() {
       </section>
 
       {/* 8. What Matters to Us */}
-      <section className="py-20 sm:py-24 bg-white border-t border-slate-200">
+      <section className="py-20 sm:py-24 bg-slate-50 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             label="What Matters to Us"
@@ -994,7 +932,7 @@ export default function AboutPage() {
                   Real Feedback. Verified Standards.
                 </h2>
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                  We build our reputation move by move, through punctual arrivals, careful cargo protection, and clear quotes without hidden last-minute surcharges. Both our Haltu and Behala branches reflect strong community feedback on Google.
+                  We build our reputation move by move—through punctual arrivals, moisture-sealed cargo protection, and written pre-move estimates backed by GSTIN <span className="font-mono font-semibold text-[#082F52]">{BUSINESS.gstin}</span> tax invoices and stamped LR/Bilty receipts. Both our Haltu and Behala branches reflect verified customer feedback on Google.
                 </p>
 
                 <div className="flex flex-wrap gap-4 items-center">
@@ -1022,7 +960,7 @@ export default function AboutPage() {
               <div className="lg:col-span-5 grid grid-cols-2 gap-4">
                 <div className="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200 text-center">
                   <div className="text-2xl sm:text-3xl font-extrabold text-[#082F52] font-display mb-1">
-                    {mainLoc.google.rating} ★
+                    {mainLoc.google.rating.toFixed(1)} ★
                   </div>
                   <div className="text-xs text-slate-500 font-medium">
                     Haltu Main Location
@@ -1034,7 +972,7 @@ export default function AboutPage() {
 
                 <div className="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200 text-center">
                   <div className="text-2xl sm:text-3xl font-extrabold text-[#082F52] font-display mb-1">
-                    {secLoc.google.rating} ★
+                    {secLoc.google.rating.toFixed(1)} ★
                   </div>
                   <div className="text-xs text-slate-500 font-medium">
                     Behala Branch
@@ -1064,7 +1002,7 @@ export default function AboutPage() {
                     Written Estimates
                   </div>
                   <div className="text-[11px] text-slate-400 font-medium">
-                    No Hidden Charges
+                    Pre-Move Fixed Scope
                   </div>
                 </div>
               </div>

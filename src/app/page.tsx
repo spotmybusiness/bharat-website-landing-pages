@@ -11,6 +11,7 @@ import AboutSection from '@/app/components/AboutSection';
 import WhyChooseSection from '@/app/components/WhyChooseSection';
 import HowItWorksSection from '@/app/components/HowItWorksSection';
 import TestimonialsSection from '@/app/components/TestimonialsSection';
+import MovingGuidesSection from '@/app/components/MovingGuidesSection';
 import FAQSection from '@/app/components/FAQSection';
 import QuoteSection from '@/app/components/QuoteSection';
 import GalleryScrollSection from '@/app/components/GalleryScrollSection';
@@ -100,6 +101,9 @@ export default function HomePage() {
 
         {/* Verified Customer Testimonials Carousel */}
         <TestimonialsSection />
+
+        {/* 2026 Kolkata Moving Cost Guides & Checklists */}
+        <MovingGuidesSection />
 
         {/* Transparent FAQ Knowledge Base */}
         <FAQSection />

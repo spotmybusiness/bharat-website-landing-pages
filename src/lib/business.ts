@@ -28,6 +28,10 @@ export const BUSINESS = {
     primary: 'contact@bharatrelocators.com',
   },
 
+  gstin: '19AAWFB0500G1ZL',
+  sacCodes: 'SAC 9965 / 9987',
+  gstPortalUrl: 'https://services.gst.gov.in/services/searchtp',
+
   address: {
     street: '17, Ramlal Bazar Rd',
     locality: 'Ramlal Bazar, Haltu',
@@ -156,8 +160,8 @@ export const UNVERIFIED = {
   ga4MeasurementId: 'G-5RGEEXWNMT',
   /** GTM container ID — unknown; needs client input */
   gtmContainerId: null as string | null,
-  /** ISO certifications (e.g. ISO 9001:2015, ISO 3900:2012) — unverified; needs client certificate proof */
-  isoCertifications: ['ISO 9001:2015', 'ISO 3900:2012'] as const,
+  /** ISO certifications (e.g. ISO 9001:2015, ISO 39001:2012) — unverified; needs client certificate proof */
+  isoCertifications: ['ISO 9001:2015', 'ISO 39001:2012'] as const,
   /** ISO certificate numbers and issuing body — unknown; needs client input */
   isoCertificateDetails: 'Pending client input',
 } as const;

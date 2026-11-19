@@ -170,10 +170,14 @@ export default function VehicleTransportationGuidePage() {
                   For dedicated service specifications, explore our{' '}
                   <Link href="/car-shifting" className="text-[#E53935] font-semibold hover:underline">
                     Car Transportation Services
-                  </Link>{' '}
-                  and{' '}
+                  </Link>
+                  ,{' '}
                   <Link href="/bike-shifting" className="text-[#082F52] font-semibold hover:underline">
                     Bike Transport Solutions
+                  </Link>
+                  , or review benchmark carrier charges in our{' '}
+                  <Link href="/blogs/packers-and-movers-kolkata-charges-rate-card" className="text-[#E53935] font-semibold hover:underline">
+                    2026 Kolkata Shifting &amp; Vehicle Rate Card
                   </Link>
                   .
                 </p>
@@ -459,11 +463,59 @@ export default function VehicleTransportationGuidePage() {
               <span>Read Vehicle Shipping FAQs</span>
             </Link>
             <Link
+              href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+              className="inline-flex items-center gap-2 bg-white hover:bg-slate-100 text-[#082F52] border border-slate-300 font-semibold text-xs sm:text-sm px-5 py-3 rounded-xl transition-colors"
+            >
+              <span>2026 Kolkata Rate Card</span>
+            </Link>
+            <Link
               href="/get-a-quote"
               className="inline-flex items-center gap-2 bg-[#E53935] hover:bg-[#c62828] text-white font-semibold text-xs sm:text-sm px-5 py-3 rounded-xl transition-colors"
             >
               <span>Get Free Quote</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Operations Desk Author & Dual-Branch Verification Footer */}
+      <section className="py-12 sm:py-14 bg-white border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-center sm:items-start gap-4">
+            <div className="w-16 h-16 rounded-2xl bg-[#082F52] text-white flex items-center justify-center font-bold text-xl shrink-0 font-display">
+              BR
+            </div>
+            <div className="space-y-1.5 text-center sm:text-left">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <h3 className="font-display font-bold text-[#082F52] text-base">
+                  Operations Desk — Bharat Relocators
+                </h3>
+                <span className="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded font-medium">
+                  Verified Vehicle Carrier &amp; GST Billing ({BUSINESS.sacCodes})
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Prepared by the automotive logistics desk at Bharat Relocators Kolkata (GSTIN:{' '}
+                <a
+                  href={BUSINESS.gstPortalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+                >
+                  {BUSINESS.gstin}
+                </a>
+                , {BUSINESS.sacCodes}). Operating dual Kolkata branches in Haltu (700078) and Behala (700061) with a {BUSINESS.locations.main.google.rating.toFixed(1)}★ Google rating across {BUSINESS.locations.main.google.reviewCount}+ verified moves.
+              </p>
+              <div className="pt-2 flex flex-wrap gap-3 text-xs text-[#082F52] font-semibold justify-center sm:justify-start">
+                <span>📍 Haltu HQ: {BUSINESS.locations.main.address.short}</span>
+                <span>•</span>
+                <span>📍 Behala Branch: {BUSINESS.locations.secondary.address.short}</span>
+                <span>•</span>
+                <a href={getTelUrl()} className="text-[#E53935] hover:underline">
+                  📞 {BUSINESS.phone.primaryFormatted}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

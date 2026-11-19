@@ -10,6 +10,7 @@ import { BUSINESS, getWhatsAppUrl } from '@/lib/business';
 import { getRelatedServices } from '@/data/services';
 import JsonLd from '@/components/JsonLd';
 import ServiceFAQSection from '@/components/ServiceFAQSection';
+import MandatoryDocumentsBlock from '@/components/MandatoryDocumentsBlock';
 import { getServiceSchema, getFAQSchema, buildGraphSchema } from '@/lib/schema';
 import { getServiceFaqs } from '@/data/serviceFaqs';
 
@@ -18,6 +19,7 @@ export const metadata: Metadata = generatePageMetadata({
   description:
     'Reliable household shifting and home relocation in Kolkata & PAN India. 5-layer packing, trained carpenters for furniture assembly, and dedicated transit safety.',
   path: '/household-shifting',
+  ogImage: '/images/household_shifting.png',
 });
 
 const faqs = getServiceFaqs('household-shifting');
@@ -35,50 +37,50 @@ const pageSchema = buildGraphSchema([
 const processSteps = [
   {
     step: '01',
-    title: 'Survey & Transparent Quote',
-    desc: 'Share your home inventory online or via call. Our move coordinators evaluate your move volume and site conditions to provide an all-inclusive transparent written quotation with zero hidden surcharges.',
+    title: 'Written Survey & Itemized Quote',
+    desc: 'Share your room list via phone, WhatsApp video, or an in-person Haltu/Behala survey. We issue a written quote specifying CFT volume, 5-ply packing grades, floor-carry or Tata Ace shuttle scope, and GST before loading day.',
   },
   {
     step: '02',
-    title: '5-Layer Packing & Care',
-    desc: 'Our packing team arrives with premium 5-layer corrugated boxes, heavy-duty bubble wrap, corner edge protectors, and custom wooden crating for fragile items and electronics.',
+    title: '5-Layer Packing & Carpentry',
+    desc: 'Our crew arrives with 5-ply dish-barrels, 4mm EPE foam sheets, 23-micron stretch film, corner guards, and custom pinewood crating for LED TVs, marble tops, and fragile glassware.',
   },
   {
     step: '03',
     title: 'Container Loading & Transit',
-    desc: 'Goods are securely loaded into dedicated container trucks with shock-absorption padding and full transit insurance coverage driven by verified highway drivers.',
+    desc: 'Goods move via 8-ft para-lane Tata Ace shuttles where needed into sealed 14ft, 17ft, or 19ft steel container trucks lined with shock-absorbing blankets and insured for highway transit.',
   },
   {
     step: '04',
     title: 'Unpacking & Furniture Assembly',
-    desc: 'At your new home, our crew unloads, unpacks, reassembles your beds and modular wardrobes, places items room-wise, and removes packing debris.',
+    desc: 'At your destination home, our crew unloads under the numbered carton list, reassembles beds and modular wardrobes, places furniture room-wise, and clears used packing cartons.',
   },
 ];
 
 const inclusions = [
   {
-    title: 'Complete Packing Materials',
-    desc: '5-layer corrugated cartons, wardrobe boxes, LED TV wooden cases, stretch film, bubble wraps, and transit covers.',
+    title: '5-Layer Packing Materials',
+    desc: '5-ply corrugated dish-barrels, wardrobe cartons, 4mm EPE foam, 23-micron stretch film, bubble wrap, and LED TV wooden cases.',
   },
   {
     title: 'Furniture Dismantling & Assembly',
-    desc: 'Carpentry support for double beds, modular wardrobes, dining tables, and wall fittings at no extra hidden cost.',
+    desc: 'Carpentry support for double beds, modular wardrobes, dining tables, and wall fittings included as standard in your itemized move scope.',
   },
   {
     title: 'Fragile & Glassware Protection',
-    desc: 'Specialized handling and cushioning for delicate crockery, mirrors, chandeliers, and high-value decorative items.',
+    desc: 'Partitioned dish-barrels and foam-lined cushioning for crockery, mandirs, mirrors, chandeliers, and home appliances.',
   },
   {
     title: 'Goods Transit Insurance',
-    desc: 'Comprehensive transit insurance coverage providing financial protection against unforeseen road transit incidents.',
+    desc: 'Transit insurance coverage against declared inventory value protecting against highway accidents or weather damage.',
   },
   {
     title: 'Door-to-Door Delivery',
-    desc: 'Direct transport from your current residence straight to your new rooms, whether moving within Kolkata or intercity.',
+    desc: 'Direct transport from your Kolkata residence straight to your destination rooms, timed around service-lift and No-Entry slots.',
   },
   {
-    title: 'Dedicated Move Coordinator',
-    desc: 'A single point of contact providing milestone updates and coordination from pickup until handover.',
+    title: 'Haltu & Behala Dispatch Coordinator',
+    desc: 'A single Haltu or Behala dispatch coordinator issuing your LR number, truck registration, and confirmed destination unloading slot.',
   },
 ];
 
@@ -216,17 +218,17 @@ export default function HouseholdShiftingPage() {
                 Safe Home Moving
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-[#082F52] mb-5 leading-tight">
-                Stress-Free Home Relocation for Apartments, Villas & Townhomes
+                Home Relocation for Kolkata Flats, Walk-Ups &amp; Independent Houses
               </h2>
               <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
                 <p>
-                  Bharat Relocators provides comprehensive household shifting services in Kolkata and across India, managing residential moves with multi-layer packing, secure vehicle transit, and room-by-room setup.
+                  Dispatched from our Haltu Main Office (700078) and Behala Branch (700061), Bharat Relocators handles local Kolkata and PAN-India home shifts using 5-ply dish-barrels, 4mm EPE foam sheets, and 23-micron stretch film tailored for humid Bengal weather and multi-day highway runs.
                 </p>
                 <p>
-                  Whether shifting a 1 BHK apartment locally within Kolkata or relocating a multi-storey villa across India, our trained moving crews ensure structured care for personal belongings, modular furniture, sensitive electronics, and delicate glassware from initial <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">pre-move survey</Link> to final room placement.
+                  For 8-ft <em>para</em> lanes across Haltu, Behala, Jadavpur, and Ballygunge, we stage <em>Tata Ace</em> feeder shuttles to transfer packed cartons into 14ft, 17ft, or 19ft closed steel containers parked on wider arterial roads—scheduled around Kolkata Traffic Police No-Entry windows. <Link href="/contact" className="text-[#E53935] font-semibold hover:underline">Book a Haltu or Behala pre-move survey</Link>.
                 </p>
                 <p>
-                  Operating with structured quality standards, we utilize dedicated closed-body container trucks with shock-absorption padding, ensuring your home goods arrive on time and in intact condition.
+                  In gated Salt Lake Sector I–V and New Town complexes, our supervisors coordinate MyGate society clearances and NKDA/NDITA service-lift slots in advance while our carpenters dismantle and reassemble beds, modular wardrobes, and appliances under a numbered carbon-copy packing list.
                 </p>
               </div>
 
@@ -319,7 +321,7 @@ export default function HouseholdShiftingPage() {
           <SectionHeader
             label="Comprehensive Scope"
             title="What is Included in Our Home Shifting Service"
-            subtitle="All-inclusive residential moving with no hidden charges or unexpected surprise fees."
+            subtitle="Itemized residential moving with packing grades, carpentry, and container allocation specified upfront."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -343,13 +345,23 @@ export default function HouseholdShiftingPage() {
         </div>
       </section>
 
+      {/* ── 4 Mandatory Documents ─────────────────────────────────────── */}
+      <section className="py-16 sm:py-20 bg-slate-50 border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <MandatoryDocumentsBlock
+            serviceContext="Issued for every Kolkata local and intercity home move from our Haltu (700078) and Behala (700061) dispatch desks."
+            highlightNote="Includes room-wise numbered carton counts, Tata Ace shuttle & floor-carry breakdown on the Written Quote, and SAC 9965 / 9987 GST Tax Invoice (19AAWFB0500G1ZL) for bank, PSU, and corporate reimbursement."
+          />
+        </div>
+      </section>
+
       {/* ── Cost Factors ─────────────────────────────────────────────── */}
       <section className="py-20 bg-white border-t border-slate-200/80">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             label="Cost Guidance"
             title="What Affects Your Home Shifting Cost"
-            subtitle="Every home move is different. Understanding these factors helps you plan your budget and have a more informed conversation with our coordinator."
+            subtitle="Home shifting quotes depend on inventory volume, floor access, and highway distance. Review these factors before speaking with our Haltu or Behala estimator."
           />
 
           <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-xs">
@@ -385,14 +397,14 @@ export default function HouseholdShiftingPage() {
           <div className="mt-8 p-5 bg-slate-50 rounded-2xl border border-slate-200 text-sm text-slate-700 leading-relaxed space-y-2">
             <p>
               <strong className="text-[#082F52]">How the estimate process works:</strong>{' '}
-              Our move coordinator reviews your inventory — either via a brief call or a
-              virtual survey — and provides a written, all-inclusive quotation. There are
-              no surprise charges on the day of the move.
+              Our Haltu or Behala move coordinator reviews your inventory — either via a brief call or a
+              virtual video survey — and issues a written, itemized quotation with every floor-carry,
+              shuttle, and crating line item locked on paper before loading day.
             </p>
             <p>
               Quotes are typically confirmed within a few hours of the initial inquiry.
-              For large or complex moves, an in-person pre-move survey gives the most
-              accurate assessment. All invoices comply with{' '}
+              For 3 BHK+ flats or independent houses, an in-person pre-move survey gives the most
+              accurate CFT assessment. All invoices comply with{' '}
               <a
                 href="https://cbic-gst.gov.in/gst-goods-services-rates.html"
                 target="_blank"
@@ -423,6 +435,36 @@ export default function HouseholdShiftingPage() {
             </p>
           </div>
 
+          {/* 2026 Verified Cost & Planning Guide Callout */}
+          <div className="mt-6 p-5 bg-[#082F52]/5 rounded-2xl border border-[#082F52]/15">
+            <p className="text-xs font-bold uppercase tracking-wider text-[#E53935] mb-1.5">
+              2026 Verified Cost &amp; Planning Guide
+            </p>
+            <p className="text-sm text-slate-700 leading-relaxed mb-3">
+              Compare 1 BHK–3 BHK local Kolkata &amp; intercity pricing slabs, packing material grades, and society lift-slot timelines before booking:
+            </p>
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold">
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="text-[#E53935] hover:underline"
+              >
+                2026 Kolkata Packers &amp; Movers Charges Rate Card →
+              </Link>
+              <Link
+                href="/moving-checklist"
+                className="text-[#082F52] hover:underline"
+              >
+                4-Week Moving Checklist →
+              </Link>
+              <Link
+                href="/intercity-moving-guide"
+                className="text-[#082F52] hover:underline"
+              >
+                Intercity Moving Guide →
+              </Link>
+            </div>
+          </div>
+
           <div className="mt-6 text-center">
             <Link
               href="/get-a-quote"
@@ -440,7 +482,7 @@ export default function HouseholdShiftingPage() {
           <SectionHeader
             label="Local Access Planning"
             title="Home Shifting Across Kolkata's Neighbourhoods"
-            subtitle="Different parts of Kolkata present different logistics challenges. Here is what our coordinators plan for when your move originates from or arrives at different areas of the city."
+            subtitle="Each Kolkata belt presents distinct street widths, society rules, and loading hours. Here is how our Haltu and Behala teams plan local dispatch."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

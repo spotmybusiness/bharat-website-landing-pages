@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
 import PageHero from '@/components/PageHero';
 import JsonLd from '@/components/JsonLd';
+import VerifiedCredentialsBlock from '@/components/VerifiedCredentialsBlock';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getSiteUrl, getTelUrl, getWhatsAppUrl } from '@/lib/business';
 import { getOrganizationId } from '@/lib/schema';
@@ -11,7 +12,7 @@ import { getOrganizationId } from '@/lib/schema';
 export const metadata: Metadata = generatePageMetadata({
   title: 'Contact Us',
   description:
-    'Contact Bharat Relocators for home shifting, vehicle transportation, and intercity moving in Kolkata. Call +91 91230 46504 or visit our Haltu office.',
+    'Contact Bharat Relocators in Kolkata at Haltu HQ (17, Ramlal Bazar Rd, 700078 · +91 91230 46504) or Behala Branch (217, Parui Kacha Rd, 700061 · +91 84201 22693). GSTIN: 19AAWFB0500G1ZL.',
   path: '/contact',
 });
 
@@ -20,7 +21,7 @@ const contactSchema = {
   '@type': 'ContactPage',
   name: 'Contact Bharat Relocators',
   description:
-    'Contact Bharat Relocators for home shifting, vehicle transportation, and intercity moving in Kolkata. Call +91 91230 46504 or visit our Haltu office.',
+    'Contact Bharat Relocators at our Haltu Main Office (17, Ramlal Bazar Road, Kolkata 700078 · +91 91230 46504) or Behala Branch (217, Parui Kacha Road, Kolkata 700061 · +91 84201 22693). GSTIN: 19AAWFB0500G1ZL.',
   url: `${getSiteUrl()}/contact`,
   mainEntity: {
     '@id': getOrganizationId(),
@@ -60,6 +61,9 @@ function ClockIcon() {
 }
 
 export default function ContactPage() {
+  const mainLoc = BUSINESS.locations.main;
+  const secLoc = BUSINESS.locations.secondary;
+
   return (
     <PageLayout>
       <JsonLd data={contactSchema} />
@@ -67,10 +71,10 @@ export default function ContactPage() {
         label="Get in Touch"
         title={
           <>
-            Contact Our <span className="text-[#F28A32]">Relocation Office</span>
+            Contact Our <span className="text-[#F28A32]">Kolkata Offices</span>
           </>
         }
-        subtitle="Contact the Bharat Relocators coordination team in Kolkata for household shifting, vehicle transport, and intercity moving assistance across West Bengal and PAN India."
+        subtitle="Connect directly with our Haltu Main Office (700078) or Behala Branch (700061) for pre-move CFT surveys, household shifting, vehicle transport, and PAN-India relocation."
         breadcrumbs={[{ label: 'Contact Us' }]}
         /* Hero Visual Image: Drop your image in /public/images/ and set src="/images/your-image.png" */
         image={
@@ -103,40 +107,144 @@ export default function ContactPage() {
       />
 
       {/* Main Contact Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Left: Contact Info Cards */}
-            <div className="lg:col-span-5 space-y-6">
-              <div>
-                <span className="inline-block bg-red-50 text-[#E53935] text-xs font-semibold uppercase tracking-[0.08em] px-4 py-1.5 rounded-full mb-3 border border-red-200">
-                  Head Office
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52] mb-3">
-                  {BUSINESS.name}
-                </h2>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Serving Kolkata, West Bengal, and delivering PAN India household and vehicle transport.
-                </p>
-              </div>
+          {/* Side-by-Side Verified Kolkata Branches */}
+          <div className="mb-12">
+            <div className="mb-6">
+              <span className="inline-block bg-red-50 text-[#E53935] text-xs font-semibold uppercase tracking-[0.08em] px-4 py-1.5 rounded-full mb-3 border border-red-200">
+                Two Physical Branches
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
+                Verified Kolkata Dispatch Offices
+              </h2>
+              <p className="text-slate-600 text-sm mt-1.5 max-w-2xl">
+                Visit or call either branch for an in-person inventory survey, written estimate, and GST-registered billing ({BUSINESS.gstin}).
+              </p>
+            </div>
 
-              {/* Address Card */}
-              <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80">
-                <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0">
-                    <PinIcon />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Haltu Main Office */}
+              <div className="bg-slate-50 rounded-3xl p-6 sm:p-7 border-2 border-[#1478B5]/30 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <span className="inline-flex items-center gap-1.5 bg-[#082F52] text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                      <span className="w-2 h-2 rounded-full bg-[#36c27a] animate-pulse" />
+                      {mainLoc.badge} · Haltu HQ
+                    </span>
+                    <span className="inline-flex items-center gap-1 bg-white border border-slate-200 text-xs font-bold text-[#082F52] px-3 py-1 rounded-full">
+                      <span className="text-[#F28A32]">★</span>
+                      {mainLoc.google.rating.toFixed(1)} · {mainLoc.google.reviewCount}+ Reviews
+                    </span>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-[#082F52] text-sm font-display mb-1">
-                      Office Address
-                    </h3>
-                    <p className="text-slate-700 text-sm leading-relaxed">
-                      {BUSINESS.address.full}
-                    </p>
+
+                  <h3 className="text-xl font-display font-bold text-[#082F52] mb-1">
+                    {mainLoc.name}
+                  </h3>
+                  <div className="text-xs font-semibold text-[#F28A32] uppercase tracking-wider mb-4">
+                    {mainLoc.locality} · {mainLoc.category}
                   </div>
+
+                  <div className="space-y-3 text-sm text-slate-700 border-t border-slate-200/80 pt-4 mb-5">
+                    <div className="flex items-start gap-2.5">
+                      <PinIcon />
+                      <span className="leading-relaxed text-xs sm:text-sm">
+                        {mainLoc.address.full}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <PhoneIcon />
+                      <a
+                        href={getTelUrl(mainLoc.phone)}
+                        className="font-bold text-[#082F52] hover:text-[#E53935] transition-colors"
+                      >
+                        {mainLoc.phoneFormatted}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-slate-200/80">
+                  <a
+                    href={mainLoc.google.mapsShortlink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 bg-[#082F52] hover:bg-[#071A2B] text-white text-xs sm:text-sm font-semibold px-4 py-3 rounded-xl transition-colors"
+                  >
+                    Get Haltu Directions →
+                  </a>
+                  <a
+                    href={getTelUrl(mainLoc.phone)}
+                    className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-[#082F52] text-xs sm:text-sm font-semibold px-4 py-3 rounded-xl border border-slate-200 transition-colors"
+                  >
+                    Call Haltu HQ
+                  </a>
                 </div>
               </div>
 
+              {/* Behala Branch */}
+              <div className="bg-slate-50 rounded-3xl p-6 sm:p-7 border-2 border-slate-200 shadow-xs flex flex-col justify-between">
+                <div>
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <span className="inline-flex items-center gap-1.5 bg-orange-100 text-[#d36814] border border-orange-200 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                      <span className="w-2 h-2 rounded-full bg-[#F28A32]" />
+                      {secLoc.badge} · Behala Branch
+                    </span>
+                    <span className="inline-flex items-center gap-1 bg-white border border-slate-200 text-xs font-bold text-[#082F52] px-3 py-1 rounded-full">
+                      <span className="text-[#F28A32]">★</span>
+                      {secLoc.google.rating.toFixed(1)} · {secLoc.google.reviewCount} Reviews
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-display font-bold text-[#082F52] mb-1">
+                    {secLoc.name}
+                  </h3>
+                  <div className="text-xs font-semibold text-[#F28A32] uppercase tracking-wider mb-4">
+                    {secLoc.locality} · {secLoc.category}
+                  </div>
+
+                  <div className="space-y-3 text-sm text-slate-700 border-t border-slate-200/80 pt-4 mb-5">
+                    <div className="flex items-start gap-2.5">
+                      <PinIcon />
+                      <span className="leading-relaxed text-xs sm:text-sm">
+                        {secLoc.address.full}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <PhoneIcon />
+                      <a
+                        href={getTelUrl(secLoc.phone)}
+                        className="font-bold text-[#082F52] hover:text-[#E53935] transition-colors"
+                      >
+                        {secLoc.phoneFormatted}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-slate-200/80">
+                  <a
+                    href={secLoc.google.shareUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 bg-[#082F52] hover:bg-[#071A2B] text-white text-xs sm:text-sm font-semibold px-4 py-3 rounded-xl transition-colors"
+                  >
+                    Get Behala Directions →
+                  </a>
+                  <a
+                    href={getTelUrl(secLoc.phone)}
+                    className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-[#082F52] text-xs sm:text-sm font-semibold px-4 py-3 rounded-xl border border-slate-200 transition-colors"
+                  >
+                    Call Behala Branch
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            {/* Left: Contact Info Cards */}
+            <div className="lg:col-span-5 space-y-5">
               {/* Phone Contacts */}
               <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200/80">
                 <div className="flex items-start gap-3.5">
@@ -145,14 +253,22 @@ export default function ContactPage() {
                   </div>
                   <div className="space-y-1.5">
                     <h3 className="font-bold text-[#082F52] text-sm font-display mb-1">
-                      Phone Numbers
+                      Direct Phone Lines
                     </h3>
                     <div>
                       <a
-                        href={getTelUrl(BUSINESS.phone.primary)}
+                        href={getTelUrl(mainLoc.phone)}
                         className="text-slate-800 font-semibold text-sm hover:text-[#E53935] transition-colors block"
                       >
-                        {BUSINESS.phone.primaryFormatted} (Primary)
+                        {mainLoc.phoneFormatted} (Haltu HQ · Primary)
+                      </a>
+                    </div>
+                    <div>
+                      <a
+                        href={getTelUrl(secLoc.phone)}
+                        className="text-slate-800 font-semibold text-sm hover:text-[#E53935] transition-colors block"
+                      >
+                        {secLoc.phoneFormatted} (Behala Branch)
                       </a>
                     </div>
                     <div>
@@ -160,7 +276,7 @@ export default function ContactPage() {
                         href={getTelUrl(BUSINESS.phone.secondary)}
                         className="text-slate-700 font-medium text-sm hover:text-[#E53935] transition-colors block"
                       >
-                        {BUSINESS.phone.secondaryFormatted} (Secondary)
+                        {BUSINESS.phone.secondaryFormatted} (Operations Desk)
                       </a>
                     </div>
                   </div>
@@ -212,7 +328,7 @@ export default function ContactPage() {
                       {BUSINESS.hours.display}
                     </time>
                     <p className="text-slate-500 text-xs mt-1">
-                      Operations, shifting support & bookings are active round-the-clock, 7 days a week.
+                      Operations, shifting support &amp; bookings are active round-the-clock, 7 days a week.
                     </p>
                   </div>
                 </div>
@@ -224,7 +340,7 @@ export default function ContactPage() {
                   Need a Relocation Estimate?
                 </h3>
                 <p className="text-white/80 text-xs sm:text-sm leading-relaxed mb-4">
-                  Share your move route and inventory requirements to receive an exact, all-inclusive quotation.
+                  Share your route, room count, and floor access to receive an itemized written survey quote.
                 </p>
                 <Link
                   href="/get-a-quote"
@@ -235,33 +351,45 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Right: Map Embed */}
+            {/* Right: Haltu Map Embed */}
             <div className="lg:col-span-7">
               <div className="bg-slate-50 p-4 rounded-3xl border border-slate-200/80 shadow-xs">
                 <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
                   <iframe
-                    title="Bharat Relocators office location on Google Maps"
+                    title="Bharat Relocators Haltu office location on Google Maps"
                     src={BUSINESS.google.mapsEmbedUrl}
-                    className="block h-[450px] lg:h-[540px] w-full"
+                    className="block h-[420px] lg:h-[500px] w-full"
                     loading="lazy"
                     allowFullScreen
                     referrerPolicy="strict-origin-when-cross-origin"
                   />
                 </div>
                 <div className="p-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
-                  <span>📍 {BUSINESS.address.short}</span>
-                  <a
-                    href={BUSINESS.google.mapsShortlink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#E53935] font-semibold hover:underline"
-                  >
-                    View on Google Maps →
-                  </a>
+                  <span>📍 Haltu HQ: {mainLoc.address.short}</span>
+                  <div className="flex items-center gap-4">
+                    <a
+                      href={mainLoc.google.mapsShortlink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#E53935] font-semibold hover:underline"
+                    >
+                      Haltu Maps →
+                    </a>
+                    <a
+                      href={secLoc.google.shareUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#1478B5] font-semibold hover:underline"
+                    >
+                      Behala Maps →
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <VerifiedCredentialsBlock className="mt-12" />
         </div>
       </section>
     </PageLayout>

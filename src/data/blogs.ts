@@ -667,6 +667,7 @@ export const BLOG_POSTS: BlogPost[] = [
   // ============================================================================
   {
     slug: 'bike-transport-kolkata-charges-wooden-crating-guide',
+    isPublished: false,
     publishWeek: 'Week 2',
     sprintSchedule: 'Week 1 (Post 2)',
     contentFormat: 'Service Cost Guide + Packing Comparison Table',
@@ -996,6 +997,7 @@ export const BLOG_POSTS: BlogPost[] = [
   // ============================================================================
   {
     slug: 'car-transport-from-kolkata-cost-carrier-guide',
+    isPublished: false,
     publishWeek: 'Week 3',
     sprintSchedule: 'Week 2 (Post 3)',
     contentFormat: 'Cost Breakdown + Carrier Comparison + Pre-Move Checklist',
@@ -1325,6 +1327,7 @@ export const BLOG_POSTS: BlogPost[] = [
   // ============================================================================
   {
     slug: 'train-parcel-vs-packers-and-movers-bike-shifting-kolkata',
+    isPublished: false,
     publishWeek: 'Week 4',
     sprintSchedule: 'Week 2 (Post 4)',
     contentFormat: 'Head-to-Head Comparison (Pros, Cons, Hidden Costs)',
@@ -1648,6 +1651,7 @@ export const BLOG_POSTS: BlogPost[] = [
   // ============================================================================
   {
     slug: 'kolkata-to-bangalore-hyderabad-relocation-cost-corridor-guide',
+    isPublished: false,
     publishWeek: 'Week 5',
     sprintSchedule: 'Week 3 (Post 5)',
     contentFormat: 'Intercity Corridor Deep-Dive + Rate Matrix',
@@ -1675,7 +1679,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: 'NH-16 Southern Corridor Coordinator',
       organization: 'Bharat Relocators Kolkata',
     },
-    featuredImage: '/images/g9.jpeg',
+    featuredImage: '/images/gallery/g9.jpeg',
     featuredImageAlt:
       'Bharat Relocators closed container truck ready for interstate highway transit from Kolkata to Bangalore and Hyderabad',
     targetKeywords: [
@@ -1976,6 +1980,7 @@ export const BLOG_POSTS: BlogPost[] = [
   // ============================================================================
   {
     slug: 'avoid-fake-packers-and-movers-scams-kolkata-gst-verification',
+    isPublished: false,
     publishWeek: 'Week 6',
     sprintSchedule: 'Week 3 (Post 6)',
     contentFormat: 'Trust & Consumer Protection Guide + Verification Checklist',
@@ -2065,7 +2070,7 @@ export const BLOG_POSTS: BlogPost[] = [
       ],
       inclusionsSummary: [
         'Verify Bharat Relocators Official GSTIN: 19AAWFB0500G1ZL on the Government GST Portal',
-        'Two physical walk-in offices in Kolkata: Ramlal Bazar Road (Haltu 700078) & Diamond Harbour Road (Behala 700061)',
+        'Two physical walk-in offices in Kolkata: 17, Ramlal Bazar Road, Haltu, Kolkata 700078 & 217, Parui Kacha Road, Behala, Kolkata 700061',
         '306+ verified Google Business Profile reviews with 4.9★ rating from real Kolkata families',
         'Payments accepted strictly into registered company banking channels—never random personal UPI accounts',
       ],
@@ -2195,7 +2200,7 @@ export const BLOG_POSTS: BlogPost[] = [
         {
           floor: '2. Walk-In Kolkata Branches',
           typicalCharge: 'Haltu & Behala Hubs',
-          details: 'Real physical offices at Ramlal Bazar Rd (700078) and D.H. Road (700061).',
+          details: 'Real physical offices at 17, Ramlal Bazar Road, Haltu, Kolkata 700078 and 217, Parui Kacha Road, Behala, Kolkata 700061.',
         },
         {
           floor: '3. Written All-In Quotation',
@@ -2293,7 +2298,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         question: 'Can I visit Bharat Relocators’ office in Kolkata before booking?',
         answer:
-          'Absolutely! We welcome customers at our main office at 264 Ramlal Bazar Road, Haltu, Kolkata 700078 and our branch office at 542 Diamond Harbour Road, Behala, Kolkata 700061.',
+          'Absolutely! We welcome customers at our main office at 17, Ramlal Bazar Road, Haltu, Kolkata 700078 and our branch office at 217, Parui Kacha Road, Behala, Kolkata 700061.',
       },
     ],
   },
@@ -2303,6 +2308,7 @@ export const BLOG_POSTS: BlogPost[] = [
   // ============================================================================
   {
     slug: 'south-kolkata-behala-haltu-to-new-town-rajarhat-shifting-guide',
+    isPublished: false,
     publishWeek: 'Week 7',
     sprintSchedule: 'Week 4 (Post 7)',
     contentFormat: 'Hyper-Local Neighborhood Corridor Guide',
@@ -2330,7 +2336,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: 'Haltu & Behala Dispatch Coordinator',
       organization: 'Bharat Relocators Kolkata',
     },
-    featuredImage: '/images/g9.jpeg',
+    featuredImage: '/images/gallery/g9.jpeg',
     featuredImageAlt:
       'Bharat Relocators container vehicle operating between South Kolkata and New Town Rajarhat high-rise apartments',
     targetKeywords: [
@@ -2391,7 +2397,7 @@ export const BLOG_POSTS: BlogPost[] = [
         },
       ],
       inclusionsSummary: [
-        'Immediate 20-minute crew dispatch from our Ramlal Bazar (Haltu) and D.H. Road (Behala) hubs',
+        'Immediate 20-minute crew dispatch from our 17, Ramlal Bazar Road (Haltu) and 217, Parui Kacha Road (Behala) hubs',
         'Expert dismantling of older South Kolkata Burma-teak almirahs and cot beds',
         'Tata Ace feeder tempo staging for narrow 8-foot para lanes in Behala, Garfa & Jadavpur',
         'Coordinated afternoon unloading aligned with New Town high-rise service elevator windows',
@@ -2516,13 +2522,13 @@ export const BLOG_POSTS: BlogPost[] = [
       staircaseRules: [
         {
           floor: '1. Haltu HQ (PIN 700078)',
-          typicalCharge: '264 Ramlal Bazar Rd',
+          typicalCharge: '17, Ramlal Bazar Road, Haltu, Kolkata 700078',
           details: '5 minutes from Ruby Hospital, Kasba, Garfa, Jadavpur, and Kalikapur.',
         },
         {
           floor: '2. Behala Hub (PIN 700061)',
-          typicalCharge: '542 D.H. Road',
-          details: 'Right on Diamond Harbour Road serving Behala, Parnasree, Sakherbazar & Joka.',
+          typicalCharge: '217, Parui Kacha Road, Behala, Kolkata 700061',
+          details: 'On Parui Kacha Road (near Diamond Harbour Road) serving Behala, Parnasree, Sakherbazar & Joka.',
         },
         {
           floor: '3. Free On-Site Survey',
@@ -2610,7 +2616,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         question: 'What if a 14ft truck cannot enter my narrow lane in Haltu, Jadavpur, or Behala?',
         answer:
-          'Because our offices are located right in Haltu (Ramlal Bazar) and Behala (D.H. Road), we know almost every para lane width by heart. For very narrow lanes, we either deploy two smaller Tata Ace / Bolero pickups directly to your door or use a short shuttle transfer to the main road.',
+          'Because our offices are located right at 17, Ramlal Bazar Road, Haltu, Kolkata 700078 and 217, Parui Kacha Road, Behala, Kolkata 700061, we know almost every para lane width by heart. For very narrow lanes, we either deploy two smaller Tata Ace / Bolero pickups directly to your door or use a short shuttle transfer to the main road.',
       },
       {
         question: 'Do you dismantle and reassemble modular beds and wardrobes during local moves?',
@@ -2625,6 +2631,7 @@ export const BLOG_POSTS: BlogPost[] = [
   // ============================================================================
   {
     slug: 'shared-part-load-vs-dedicated-container-truck-moving-kolkata',
+    isPublished: false,
     publishWeek: 'Week 8',
     sprintSchedule: 'Week 4 (Post 8)',
     contentFormat: 'Decision Matrix + Cubic Feet (CFT) Calculator Guide',
@@ -2941,6 +2948,7 @@ export const BLOG_POSTS: BlogPost[] = [
   // ============================================================================
   {
     slug: 'iba-approved-bill-format-bank-corporate-reimbursement-guide',
+    isPublished: false,
     publishWeek: 'Week 9',
     sprintSchedule: 'Week 5 (Post 9)',
     contentFormat: 'Documentation & Corporate Reimbursement Guide',
@@ -3263,6 +3271,7 @@ export const BLOG_POSTS: BlogPost[] = [
   // ============================================================================
   {
     slug: 'monsoon-house-shifting-kolkata-waterproof-packing-tips',
+    isPublished: false,
     publishWeek: 'Week 10',
     sprintSchedule: 'Week 5 (Post 10)',
     contentFormat: 'Seasonal Weather Guide + Visual Material Breakdown',
@@ -3590,6 +3599,7 @@ export const BLOG_POSTS: BlogPost[] = [
   // ============================================================================
   {
     slug: 'weekend-office-it-server-relocation-salt-lake-sector-v-new-town',
+    isPublished: false,
     publishWeek: 'Week 11',
     sprintSchedule: 'Week 6 (Post 11)',
     contentFormat: 'B2B Commercial Checklist + Timeline Blueprint',
@@ -3617,7 +3627,7 @@ export const BLOG_POSTS: BlogPost[] = [
       role: 'Corporate & IT Facility Move Director',
       organization: 'Bharat Relocators Kolkata',
     },
-    featuredImage: '/images/g9.jpeg',
+    featuredImage: '/images/gallery/g9.jpeg',
     featuredImageAlt:
       'Bharat Relocators commercial container fleet executing weekend office relocation in Salt Lake Sector V Kolkata',
     targetKeywords: [
@@ -3912,6 +3922,7 @@ export const BLOG_POSTS: BlogPost[] = [
   // ============================================================================
   {
     slug: 'how-to-pack-fragile-temple-idols-bone-china-antiques-kolkata',
+    isPublished: false,
     publishWeek: 'Week 12',
     sprintSchedule: 'Week 6 (Post 12)',
     contentFormat: 'Cultural & High-Touch Specialty Packing Guide',

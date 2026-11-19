@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import AppImage from '@/components/ui/AppImage';
+import { BUSINESS } from '@/lib/business';
 
 const keyPillars = [
   {
@@ -44,7 +45,7 @@ const keyPillars = [
   },
   {
     title: 'Transparent Communication',
-    desc: 'Clear upfront pricing with zero hidden surcharges and continuous milestone updates.',
+    desc: 'Written pre-move survey quotes locking CFT volume & shuttle scope, with direct WhatsApp & SMS transit updates.',
     icon: (
       <svg
         className="w-5 h-5 text-[#E53935]"
@@ -154,25 +155,29 @@ export default function AboutSection() {
 
             <div className="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed mb-8">
               <p>
-                Bharat Relocators is a professional packers and movers service based in Behala,
-                Kolkata, helping individuals, families and businesses move their belongings safely
-                from one place to another.
+                Bharat Relocators operates from two verified Kolkata offices—our Haltu Main
+                Office ({BUSINESS.locations.main.address.short}) and our Behala Branch
+                ({BUSINESS.locations.secondary.address.short})—serving households, vehicle owners,
+                and commercial offices across West Bengal and PAN India.
               </p>
               <p>
-                From household shifting and office relocation to car, bike and parcel
-                transportation, our focus is on careful handling, organized packing, dependable
-                transportation and clear communication throughout the moving process.
+                Every local and intercity dispatch is planned around real Kolkata site conditions:
+                8-ft <em>para</em> lane <em>Tata Ace</em> shuttle transfers, society service-lift
+                clearances, Kolkata Traffic Police No-Entry slots, and 14ft/17ft closed steel
+                containers for highway linehaul.
               </p>
               <p>
-                With ISO 9001:2015 and ISO 3900:2012 certified processes, our verified team uses
-                specialized multi-layer packing materials and dedicated carrier vehicles to ensure
-                complete safety from doorstep pickup to final delivery.
+                Registered under active West Bengal GSTIN{' '}
+                <span className="font-mono font-semibold text-[#082F52]">{BUSINESS.gstin}</span>{' '}
+                ({BUSINESS.sacCodes}), our crew packs with 5-ply dish-barrel cartons, 4mm EPE foam
+                sheets, and 23-micron waterproof stretch film—and issues a written quote, numbered
+                packing list, stamped LR/Bilty, and GST tax invoice on every move.
               </p>
             </div>
 
             {/* Trust-to-action CTA */}
             <div className="bg-emerald-50 border border-emerald-100 p-5 rounded-2xl mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-              <p className="text-sm text-emerald-800 font-medium m-0">Ready to experience a stress-free relocation with our certified team?</p>
+              <p className="text-sm text-emerald-800 font-medium m-0">Ready to schedule a pre-move survey with our Haltu or Behala crew?</p>
               <a href="/contact" className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors shrink-0 shadow-sm flex items-center gap-2">
                 Contact Us Today <span aria-hidden="true">&rarr;</span>
               </a>

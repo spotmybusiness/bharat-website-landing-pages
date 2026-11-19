@@ -139,7 +139,7 @@ const timelineSteps = [
       {
         task: 'Collect your Consignment Note (LR copy)',
         detail:
-          'Receive the signed Consignment Note and tracking number from the team supervisor for in-transit milestone monitoring.',
+          'Receive the signed Consignment Note and tracking number from the team supervisor for consignment status tracking.',
       },
     ],
   },
@@ -232,7 +232,7 @@ export default function MovingChecklistPage() {
             The Ultimate <span className="text-[#F28A32]">Home Shifting Checklist</span> & Pre-Move Guide
           </>
         }
-        subtitle="Bharat Relocators provides a structured, week-by-week timeline to help you plan, organize, and execute a seamless household relocation in Kolkata and across India."
+        subtitle="Bharat Relocators provides a structured, week-by-week timeline to help you plan, organize, and execute a structured, organized household relocation in Kolkata and across India."
         breadcrumbs={[
           { label: 'Blogs', href: '/blogs' },
           { label: 'Moving Checklist' },
@@ -291,11 +291,15 @@ export default function MovingChecklistPage() {
                   <Link href="/intercity-moving-guide" className="text-[#E53935] font-semibold hover:underline">
                     Intercity Moving Guide
                   </Link>
-                  , or check our{' '}
+                  , check our{' '}
+                  <Link href="/blogs/packers-and-movers-kolkata-charges-rate-card" className="text-[#E53935] font-semibold hover:underline">
+                    2026 Kolkata Shifting Charges &amp; Rate Card
+                  </Link>
+                  , or read our{' '}
                   <Link href="/faqs" className="text-[#082F52] font-semibold hover:underline">
                     Frequently Asked Questions
                   </Link>{' '}
-                  for pricing and transit details.
+                  for packing grades and transit details.
                 </p>
               </div>
             </div>
@@ -452,7 +456,8 @@ export default function MovingChecklistPage() {
             >
               Parivahan Sewa (vahan.parivahan.gov.in)
             </a>
-            ; for household relocation tax invoice rules under SAC/HSN 9965 &amp; 9968, refer to the{' '}
+            ; for household relocation tax invoice rules under {BUSINESS.sacCodes} (Bharat Relocators GSTIN:{' '}
+            <code className="font-mono bg-slate-100 px-1 py-0.5 rounded">{BUSINESS.gstin}</code>), refer to the{' '}
             <a
               href="https://cbic-gst.gov.in/gst-goods-services-rates.html"
               target="_blank"
@@ -482,7 +487,7 @@ export default function MovingChecklistPage() {
             Already Booked Your Move with Us?
           </h2>
           <p className="text-slate-600 text-sm mb-6 max-w-xl mx-auto">
-            Once your consignment is dispatched, you can monitor live milestone checkpoints directly through our online portal.
+            Once your consignment is dispatched, you can monitor consignment dispatch and transit checkpoints directly through our online portal.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
@@ -491,6 +496,12 @@ export default function MovingChecklistPage() {
             >
               <span>Go to Shipment Tracking</span>
               <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+              className="inline-flex items-center gap-2 bg-red-50 hover:bg-red-100 text-[#E53935] border border-red-200 font-semibold text-xs sm:text-sm px-5 py-3 rounded-xl transition-colors"
+            >
+              <span>2026 Kolkata Rate Card</span>
             </Link>
             <Link
               href="/faqs"
@@ -507,8 +518,8 @@ export default function MovingChecklistPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <SectionHeader
             label="Plan Your Move"
-            title="Ready for a Structured, Stress-Free Relocation?"
-            subtitle="Share your moving inventory with our Kolkata coordinators for an all-inclusive, transparent estimate."
+            title="Ready for an Organized Kolkata Relocation?"
+            subtitle="Share your moving inventory with our Kolkata coordinators for a written, itemized estimate."
           />
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
@@ -523,6 +534,48 @@ export default function MovingChecklistPage() {
             >
               Call Coordinator: {BUSINESS.phone.primaryFormatted}
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Operations Desk Author & Dual-Branch Verification Footer */}
+      <section className="py-12 sm:py-14 bg-white border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-center sm:items-start gap-4">
+            <div className="w-16 h-16 rounded-2xl bg-[#082F52] text-white flex items-center justify-center font-bold text-xl shrink-0 font-display">
+              BR
+            </div>
+            <div className="space-y-1.5 text-center sm:text-left">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <h3 className="font-display font-bold text-[#082F52] text-base">
+                  Operations Desk — Bharat Relocators
+                </h3>
+                <span className="text-xs bg-slate-200 text-slate-700 px-2 py-0.5 rounded font-medium">
+                  Verified Kolkata Dispatch &amp; GST Billing ({BUSINESS.sacCodes})
+                </span>
+              </div>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Prepared by the relocation planning desk at Bharat Relocators Kolkata (GSTIN:{' '}
+                <a
+                  href={BUSINESS.gstPortalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#082F52] font-semibold underline hover:text-[#E53935]"
+                >
+                  {BUSINESS.gstin}
+                </a>
+                , {BUSINESS.sacCodes}). Operating dual Kolkata branches in Haltu (700078) and Behala (700061) with a {BUSINESS.locations.main.google.rating.toFixed(1)}★ Google rating across {BUSINESS.locations.main.google.reviewCount}+ verified moves.
+              </p>
+              <div className="pt-2 flex flex-wrap gap-3 text-xs text-[#082F52] font-semibold justify-center sm:justify-start">
+                <span>📍 Haltu HQ: {BUSINESS.locations.main.address.short}</span>
+                <span>•</span>
+                <span>📍 Behala Branch: {BUSINESS.locations.secondary.address.short}</span>
+                <span>•</span>
+                <a href={getTelUrl()} className="text-[#E53935] hover:underline">
+                  📞 {BUSINESS.phone.primaryFormatted}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

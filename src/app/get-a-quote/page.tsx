@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
 import PageHero from '@/components/PageHero';
 import QuoteSection from '@/app/components/QuoteSection';
+import VerifiedCredentialsBlock from '@/components/VerifiedCredentialsBlock';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getTelUrl, getWhatsAppUrl } from '@/lib/business';
 import JsonLd from '@/components/JsonLd';
@@ -66,6 +67,16 @@ export default function GetAQuotePage() {
 
       {/* Embedded Quote Estimation Suite */}
       <QuoteSection />
+
+      {/* Verified Legal & Dual-Branch Credentials */}
+      <section className="py-12 sm:py-16 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <VerifiedCredentialsBlock
+            compact
+            heading="Verified GST Registration & Dual Kolkata Dispatch Offices"
+          />
+        </div>
+      </section>
     </PageLayout>
   );
 }

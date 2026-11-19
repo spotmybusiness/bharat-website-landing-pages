@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { BUSINESS } from '@/lib/business';
 
 const serviceLinks = [
   { name: 'Household Shifting', href: '/household-shifting' },
@@ -126,9 +127,9 @@ export default function Footer() {
             </Link>
 
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-white/75">
-              ISO 9001:2015 & ISO 3900:2012 certified packers and movers in Kolkata.
-              Providing dependable household shifting, vehicle transportation, and
-              intercity relocation across India.
+              GST Registered ({BUSINESS.gstin} · {BUSINESS.sacCodes}) packers and movers in Kolkata.
+              Providing household shifting, vehicle transportation, and
+              intercity relocation from our Haltu &amp; Behala hubs across India.
             </p>
 
             <div className="inline-flex max-w-full flex-wrap items-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-3.5">
@@ -207,12 +208,15 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-white/80">
               <li className="flex items-start gap-2.5">
                 <PinIcon />
-                <span itemProp="address">17, Ramlal Bazar Rd, Haltu, Kolkata 700078</span>
+                <div>
+                  <span className="text-[11px] uppercase tracking-wider text-[#F28A32] font-semibold block">Haltu Main Office</span>
+                  <span itemProp="address">17, Ramlal Bazar Rd, Haltu, Kolkata 700078</span>
+                </div>
               </li>
               <li>
                 <a href="tel:+919123046504" className="flex items-center gap-2 transition-colors hover:text-[#F28A32]">
                   <PhoneIcon />
-                  <span>+91 91230 46504</span>
+                  <span>+91 91230 46504 (Haltu HQ)</span>
                 </a>
               </li>
               <li>
@@ -221,11 +225,27 @@ export default function Footer() {
                   <span>+91 83358 21414</span>
                 </a>
               </li>
+              <li className="flex items-start gap-2.5 pt-2 border-t border-white/10">
+                <PinIcon />
+                <div>
+                  <span className="text-[11px] uppercase tracking-wider text-[#F28A32] font-semibold block">Behala Branch</span>
+                  <span>217, Parui Kacha Road, Behala, Kolkata 700061</span>
+                  <a href="tel:+918420122693" className="mt-1 flex items-center gap-1.5 text-white/90 hover:text-[#F28A32] transition-colors">
+                    <PhoneIcon />
+                    <span>+91 84201 22693 (Behala)</span>
+                  </a>
+                </div>
+              </li>
               <li>
                 <a href="mailto:contact@bharatrelocators.com" className="flex items-start gap-2 transition-colors hover:text-[#F28A32]">
                   <MailIcon />
                   <span className="break-all" itemProp="email">contact@bharatrelocators.com</span>
                 </a>
+              </li>
+              <li className="text-xs text-white/75 pt-1">
+                <span className="text-white/55">GSTIN:</span>{' '}
+                <span className="font-mono font-semibold text-white">{BUSINESS.gstin}</span>{' '}
+                <span className="text-white/55">({BUSINESS.sacCodes})</span>
               </li>
               <li className="flex items-start gap-2.5 pt-2 border-t border-white/10 mt-2">
                 <ClockIcon />
@@ -269,7 +289,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between gap-4 pt-8 text-xs text-white/60 sm:flex-row">
           <p className="text-center sm:text-left">
-            © 2026 Bharat Relocators. All rights reserved. ISO 9001:2015 & ISO 3900:2012 Certified.
+            © 2026 Bharat Relocators. All rights reserved. GST Registered ({BUSINESS.gstin}) · {BUSINESS.sacCodes}.
           </p>
           <nav aria-label="Footer Quick Links" className="flex gap-6">
             <Link href="/get-a-quote" className="transition-colors hover:text-white">Free Estimate</Link>

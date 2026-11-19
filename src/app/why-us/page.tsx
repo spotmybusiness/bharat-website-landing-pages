@@ -6,6 +6,8 @@ import PageHero from '@/components/PageHero';
 import SectionHeader from '@/components/ui/SectionHeader';
 import FAQAccordion from '@/components/FAQAccordion';
 import JsonLd from '@/components/JsonLd';
+import MandatoryDocumentsBlock from '@/components/MandatoryDocumentsBlock';
+import VerifiedCredentialsBlock from '@/components/VerifiedCredentialsBlock';
 import { generatePageMetadata } from '@/lib/metadata';
 import { BUSINESS, getSiteUrl, getTelUrl, getWhatsAppUrl } from '@/lib/business';
 import { getOrganizationId, getFAQSchema, buildGraphSchema } from '@/lib/schema';
@@ -14,7 +16,7 @@ import { VERIFIED_REVIEWS } from '@/data/reviews';
 export const metadata: Metadata = generatePageMetadata({
   title: 'Why Choose Bharat Relocators | Packers and Movers in Kolkata',
   description:
-    'Discover how Bharat Relocators approaches household, vehicle, office and other relocation services through organized planning, careful handling, transit coordination and customer support.',
+    'Why Kolkata households and offices choose Bharat Relocators: 5-ply dish-barrels, 4mm EPE foam, 8-ft para-lane Tata Ace shuttles, dual Haltu & Behala hubs, and GSTIN 19AAWFB0500G1ZL billing.',
   path: '/why-us',
 });
 
@@ -22,8 +24,8 @@ export const metadata: Metadata = generatePageMetadata({
 const coreReasons = [
   {
     num: '01',
-    title: 'Structured Planning',
-    desc: 'We understand your requirements before moving day begins. Cargo volume, stairwell or elevator permissions, vehicle parking clearances, and transit schedules are mapped out in advance to prevent unexpected delays.',
+    title: 'Structured Pre-Move Planning',
+    desc: 'Before move day, our coordinators measure CFT cargo volume, reserve MyGate/NKDA/NDITA service-lift slots, verify 8-ft para-lane Tata Ace shuttle access, and align dispatch with Kolkata Traffic Police No-Entry windows along EM Bypass, Vidyasagar Setu, and D.H. Road.',
     icon: (
       <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
@@ -32,8 +34,8 @@ const coreReasons = [
   },
   {
     num: '02',
-    title: 'Careful Packing & Preparation',
-    desc: 'Different belongings require different packaging techniques. From high-grade 5-layer corrugated boxes and bubble cushioning to custom wooden crating, materials are chosen based on the specific fragility of your items.',
+    title: '5-Layer Packing & Crating',
+    desc: 'Every load uses 5-ply dish-barrel cartons, 4mm EPE foam sheets, 23-micron waterproof stretch film, corrugated edge guards, and ISPM-15 pinewood crating for LED TVs, marble idols, glassware, and glass dining tops.',
     icon: (
       <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -42,8 +44,8 @@ const coreReasons = [
   },
   {
     num: '03',
-    title: 'Service-Specific Handling',
-    desc: 'A family home, an executive sedan, a motorcycle, a corporate office, and international freight do not follow the same approach. We operate specialized divisions and distinct loading procedures for each move type.',
+    title: 'Service-Specific Divisions',
+    desc: 'We assign specialized rigs and teams by cargo type: 14ft/17ft/19ft steel-roof closed containers for homes, hydraulic-ramp car carriers with wheel chocks, pinewood-crated bike bays, and anti-static ESD server crates for Salt Lake Sector V & New Town offices.',
     icon: (
       <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
@@ -52,8 +54,8 @@ const coreReasons = [
   },
   {
     num: '04',
-    title: 'Organized Transit',
-    desc: 'Your belongings travel in weather-tight closed container vehicles equipped with interior cargo lashing to prevent shift damage, operated by verified highway drivers adhering to strict road safety guidelines.',
+    title: 'Sealed Container Linehaul',
+    desc: 'Goods travel inside weather-sealed 14ft, 17ft, or 19ft closed steel containers fitted with nylon ratchet lashing belts and moisture-barrier tarpaulins along NH-19 and NH-16 intercity corridors.',
     icon: (
       <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -63,8 +65,8 @@ const coreReasons = [
   },
   {
     num: '05',
-    title: 'Clear Communication',
-    desc: 'A move has enough uncertainty without wondering what happens next. You are paired with a dedicated move coordinator providing transparent pricing with zero hidden surcharges and milestone updates during transit.',
+    title: 'Dual-Branch Dispatch & Billing',
+    desc: 'Your Haltu (700078) or Behala (700061) coordinator issues an itemized written survey quote upfront, shares your Stamped Consignment Note (LR/Bilty) at loading, and sends scheduled highway checkpoint calls until delivery.',
     icon: (
       <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -73,8 +75,8 @@ const coreReasons = [
   },
   {
     num: '06',
-    title: 'Support Through Handover',
-    desc: 'Our work doesn&apos;t end when the vehicle arrives. We unload into designated rooms, reassemble beds and tables, review the itemized inventory together, and clear packing debris so you can settle in comfortably.',
+    title: 'Signed Manifest & GST Handover',
+    desc: 'Crews unload cartons into room-tagged zones, reassemble hydraulic beds and modular wardrobes, tally each box against your numbered carbon-copy packing list, clear used film and cartons, and hand over your GSTIN 19AAWFB0500G1ZL Tax Invoice.',
     icon: (
       <svg className="w-6 h-6 text-[#E53935]" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -87,92 +89,52 @@ const coreReasons = [
 const comparisonRows = [
   {
     aspect: 'Scope of Service',
-    basic: 'Vehicle-focused; customer handles preparation and delivery logistics',
-    structured: 'Complete end-to-end relocation: survey, packing, loading, transit, placement',
+    basic: 'Truck-only hire; customer manages packing, stairs, and unloading',
+    structured: 'Written CFT survey, 5-layer packing, Tata Ace shuttle, linehaul, and room setup',
   },
   {
     aspect: 'Packing & Materials',
-    basic: 'Customer arranges cartons; minimal or uncoordinated protection',
-    structured: 'Coordinated multi-layer packing: 5-ply cartons, bubble cushioning, edge guards',
+    basic: 'Recycled thin cartons with minimal tape or water protection',
+    structured: '5-ply dish-barrel cartons, 4mm EPE foam, 23-micron stretch film, pinewood crates',
   },
   {
     aspect: 'Item Vulnerability',
-    basic: 'Uniform loading without special crating for fragile items or electronics',
-    structured: 'Category-specific protocols: custom wood crates, anti-static wraps, furniture pads',
+    basic: 'Uniform stacking without crating for glass, TVs, or two-wheelers',
+    structured: 'ISPM-15 pinewood crating, anti-static ESD sleeves, and wheel-chocked auto bays',
   },
   {
     aspect: 'Transit Visibility',
-    basic: 'Irregular driver phone calls with little or no advance scheduling notice',
-    structured: 'Dedicated move coordinator with proactive milestone updates and tracking support',
+    basic: 'Irregular driver calls with no formal consignment note',
+    structured: 'Stamped LR/Bilty tracking ID, Haltu/Behala coordinator check-ins, and 2-hour pre-arrival call',
   },
   {
     aspect: 'Destination Handover',
-    basic: 'Curbside or tailgate unloading; customer arranges heavy room carrying',
-    structured: 'Room-by-room placement, furniture reassembly, inventory sign-off, debris clearance',
+    basic: 'Curbside unloading with no carpentry reassembly or GST bill',
+    structured: 'Room-wise placement, bed/wardrobe reassembly, carbon-copy manifest sign-off & SAC 9965/9987 GST invoice',
   },
 ];
 
 // Practical customer benefits
 const customerBenefits = [
   {
-    title: 'Less Guesswork',
-    desc: 'Requirements, timelines, and vehicle sizing are evaluated and confirmed prior to moving day, eliminating unexpected surprises.',
+    title: 'Locked CFT & Access Scope',
+    desc: 'Volume, floor level, MyGate/NKDA/NDITA lift timing, and 8-ft para-lane shuttle requirements are itemized in writing before crew arrival.',
   },
   {
-    title: 'Better Preparation',
-    desc: 'Belongings are categorized and wrapped according to their specific fragility, shape, and transit distance.',
+    title: 'Monsoon-Ready Waterproofing',
+    desc: '23-micron stretch film, 4mm EPE foam, and steel-roof closed containers protect furniture and electronics during heavy Kolkata rains.',
   },
   {
-    title: 'Clearer Coordination',
-    desc: 'You always know what stage your relocation is in, with direct phone and WhatsApp contact to your coordinator.',
+    title: 'Direct Haltu & Behala Desks',
+    desc: 'Speak directly with our Haltu HQ (+91 91230 46504) or Behala Branch (+91 84201 22693) rather than an outsourced call center.',
   },
   {
-    title: 'One Structured Journey',
-    desc: 'Pre-move planning, packing, loading, highway transit, and handover are treated as interconnected, accountable phases.',
+    title: '4-Document Accountability',
+    desc: 'Receive your Written Survey Quote, Numbered Carbon-Copy Packing List (or VCR), Stamped LR/Bilty, and GSTIN 19AAWFB0500G1ZL Tax Invoice.',
   },
   {
-    title: 'Support When You Need It',
-    desc: 'A dedicated team is ready to address special requests, access constraints, or schedule adjustments promptly.',
-  },
-];
-
-// 6 Service Cards
-const serviceExpertise = [
-  {
-    title: 'Household Shifting',
-    desc: 'Furniture, home appliances, delicate chinaware, and personal wardrobes each require distinct packaging layers and room-specific placement.',
-    href: '/household-shifting',
-    badge: 'Residential Moves',
-  },
-  {
-    title: 'Car Transportation',
-    desc: 'Vehicle haulage requires specialized enclosed carrier trailers, wheel chocks, hydraulic ramps, and scratch-free highway transit coordination.',
-    href: '/car-shifting',
-    badge: 'Automotive Logistics',
-  },
-  {
-    title: 'Bike Transport',
-    desc: 'Two-wheelers need custom wooden crating, mirror removal, bubble cushioning, and secure wheel clamping inside dedicated carrier slots.',
-    href: '/bike-shifting',
-    badge: 'Two-Wheeler Express',
-  },
-  {
-    title: 'Parcel & Cargo',
-    desc: 'Consignments vary significantly by volume, weight, and urgency. We offer fast doorstep pickup and scheduled linehaul connecting 230+ cities.',
-    href: '/parcel-shifting',
-    badge: 'Intercity Cargo',
-  },
-  {
-    title: 'Office Relocation',
-    desc: 'Commercial shifting demands anti-static IT server packing, numbered workstation crates, and phased weekend execution to eliminate work downtime.',
-    href: '/office-relocation',
-    badge: 'Corporate Shifting',
-  },
-  {
-    title: 'International Moving',
-    desc: 'Overseas relocation involves export-grade sea/air packing, comprehensive customs documentation assistance, and vetted destination partners.',
-    href: '/international-moving',
-    badge: 'Global Freight',
+    title: 'Corporate & PSU Reimbursement Ready',
+    desc: 'CBIC SAC 9965 (GTA) and SAC 9987 (Composite Packing) compliant invoices accepted by banks, PSUs, and corporate HR desks.',
   },
 ];
 
@@ -180,23 +142,23 @@ const serviceExpertise = [
 const decisionFaqs = [
   {
     q: 'What should I consider before choosing a relocation service?',
-    a: 'Look beyond the lowest price quote. Check whether the company provides a transparent written estimate with itemized inclusions, uses dedicated multi-layer packing materials (such as 5-layer corrugated boxes and bubble wrap), operates closed container vehicles, assigns a dedicated move coordinator, and has verifiable customer feedback.',
+    a: 'Look beyond the lowest price quote. Verify active GST registration (ours is 19AAWFB0500G1ZL under SAC 9965 / 9987), check whether the mover issues a written pre-move CFT estimate, confirm 5-ply cartons and waterproof EPE/stretch-film packing, and verify physical local offices.',
   },
   {
     q: 'How does Bharat Relocators plan a move?',
-    a: 'Every relocation starts with a comprehensive pre-move survey (virtual or in-person) to calculate cargo volume, evaluate building accessibility (lifts, stairwells, truck parking clearances), identify items needing special crating, and formulate a confirmed schedule with an all-inclusive written quote.',
+    a: 'Every relocation starts with a virtual or on-site survey from our Haltu (700078) or Behala (700061) office to measure CFT volume, check MyGate/NKDA/NDITA service-lift slots, assess 8-ft para-lane Tata Ace shuttle needs, and schedule loading around Kolkata Traffic Police No-Entry hours.',
   },
   {
     q: 'Does every type of move follow the same process?',
-    a: 'No. While all moves benefit from structured planning and careful transit, operational workflows adapt to the cargo. Household moves prioritize room-by-room packing and furniture assembly, car transport uses enclosed carriers with wheel chocks, and office moves focus on IT server protection and phased weekend scheduling.',
+    a: 'No. Household moves focus on 5-ply dish-barrels, EPE foam, and furniture assembly; car transport uses hydraulic ramps, wheel chocks, and a Vehicle Condition Report (VCR); bike shifts use timber crating; and office moves in Sector V or New Town use anti-static ESD crates on weekend schedules.',
   },
   {
     q: 'How are fragile or special items handled?',
-    a: 'Delicate belongings such as fine glassware, crystal stemware, LED TVs, framed mirrors, and artwork are wrapped in honeycomb paper, high-density bubble cushioning, and corrugated corner guards. High-value or irregularly shaped items receive custom wooden crating for maximum transit protection.',
+    a: 'Glassware, crockery, LED TVs, framed mirrors, and marble idols are cushioned with honeycomb kraft paper, 4mm EPE foam, 23-micron stretch film, corrugated corner guards, and custom ISPM-15 pinewood crating for high-risk pieces.',
   },
   {
     q: 'How can I stay informed during my move?',
-    a: 'You are assigned a dedicated move coordinator as your primary point of contact. You receive direct status updates at packing completion, vehicle dispatch, key highway transit milestones, and advance coordination before the delivery vehicle arrives at your destination.',
+    a: 'At loading you receive your Stamped Consignment Note (LR/Bilty) tracking ID and direct phone/WhatsApp contact for your Haltu or Behala coordinator, with status updates at dispatch, key highway checkpoint calls, and a 2-hour pre-arrival notice at destination.',
   },
 ];
 
@@ -205,7 +167,7 @@ const pageSchema = buildGraphSchema([
     '@type': 'WebPage',
     name: 'Why Choose Bharat Relocators',
     description:
-      'Discover how Bharat Relocators approaches household, vehicle, office and other relocation services through organized planning, careful handling, transit coordination and customer support.',
+      'Why Kolkata families and offices choose Bharat Relocators: 5-ply dish-barrels, 4mm EPE foam, 8-ft para-lane Tata Ace shuttles, dual Haltu & Behala hubs, and GSTIN 19AAWFB0500G1ZL billing.',
     url: `${getSiteUrl()}/why-us`,
     mainEntity: {
       '@id': getOrganizationId(),
@@ -268,7 +230,7 @@ export default function WhyUsPage() {
               A Move Has More Moving Parts Than the Truck
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Bharat Relocators manages relocations across Kolkata and PAN India as a complete logistics lifecycle rather than a simple transport run. A smooth move depends on methodical preparation before the carrier arrives, protective packing for transit, and careful room placement after reaching your destination.
+              Bharat Relocators plans every Kolkata and PAN-India relocation around real on-ground constraints—narrow 8-ft <em>para</em> lanes, society service-lift permissions, Kolkata Traffic Police No-Entry windows, monsoon-grade wrapping, and documented destination handover.
             </p>
           </div>
 
@@ -278,10 +240,10 @@ export default function WhyUsPage() {
                 01
               </div>
               <h3 className="font-bold text-[#082F52] text-lg font-display mb-2">
-                Preparation & Sorting
+                Kolkata Site &amp; Access Audit
               </h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Evaluating volume, identifying delicate items, securing elevator permissions, and dismantling modular furniture before loading day prevents rushed decisions.
+                Securing MyGate, NKDA, or NDITA service-lift slots, verifying 8-ft <em>para</em> lane <em>Tata Ace</em> shuttle needs, and timing trucks around EM Bypass, Vidyasagar Setu, and D.H. Road No-Entry restrictions.
               </p>
             </div>
 
@@ -290,10 +252,10 @@ export default function WhyUsPage() {
                 02
               </div>
               <h3 className="font-bold text-[#082F52] text-lg font-display mb-2">
-                Protection in Transit
+                5-Layer Moisture &amp; Shock Seal
               </h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Road vibration, sudden braking, and weather variations can impact cargo. Appropriate multi-layer cushioning and interior cargo lashing protect your belongings on the road.
+                Wrapping appliances and furniture in 4mm EPE foam, 5-ply dish-barrel cartons, and 23-micron waterproof stretch film, then lashing inside 14ft, 17ft, or 19ft closed steel containers.
               </p>
             </div>
 
@@ -302,10 +264,10 @@ export default function WhyUsPage() {
                 03
               </div>
               <h3 className="font-bold text-[#082F52] text-lg font-display mb-2">
-                Destination Placement
+                Room Setup &amp; Manifest Sign-Off
               </h3>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Leaving cartons dumped on the ground creates hours of stress. Careful unloading directly into assigned rooms, furniture reassembly, and debris removal complete the move.
+                Unloading into tagged rooms, reassembling beds and wardrobes, reconciling every box against your carbon-copy packing list, clearing used wrap, and delivering your GST invoice.
               </p>
             </div>
           </div>
@@ -430,46 +392,68 @@ export default function WhyUsPage() {
         </div>
       </section>
 
-      {/* 5. Service-Specific Expertise */}
-      <section className="py-20 sm:py-24 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            label="Service Scope"
-            title="Different Moves Need Different Thinking"
-            subtitle="Belongings vary widely by fragility, weight, dimensions, and destination. We apply specialized packing methods and equipment tailored to each service category."
+      {/* 5. 4 Mandatory Move Documents + Specialized Divisions */}
+      <section className="py-16 sm:py-20 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <MandatoryDocumentsBlock
+            heading="4 Mandatory Documents You Receive on Every Move"
+            serviceContext="Every Bharat Relocators booking—whether local Kolkata or PAN-India—includes four signed paper and digital records so billing, inventory count, and claim accountability stay verifiable."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {serviceExpertise.map((srv) => (
-              <div
-                key={srv.title}
-                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs flex flex-col justify-between group hover:border-[#1478B5]/50 transition-all duration-200"
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs text-center">
+            <span className="inline-block bg-red-50 text-[#E53935] text-xs font-semibold uppercase tracking-[0.08em] px-4 py-1.5 rounded-full mb-3 border border-red-200">
+              Specialized Moving Divisions
+            </span>
+            <h3 className="text-xl sm:text-2xl font-display font-bold text-[#082F52] mb-2">
+              Explore Protocols &amp; Pricing by Service
+            </h3>
+            <p className="text-slate-600 text-sm max-w-2xl mx-auto mb-5">
+              Review dedicated packing specs, closed-container options, and our 2026 Kolkata cost guide.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <Link
+                href="/household-shifting"
+                className="bg-slate-50 hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[11px] font-semibold text-[#F28A32] uppercase tracking-wider bg-orange-50 px-2.5 py-1 rounded-md border border-orange-100">
-                      {srv.badge}
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-bold font-display text-[#082F52] mb-2 group-hover:text-[#E53935] transition-colors">
-                    {srv.title}
-                  </h3>
-
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                    {srv.desc}
-                  </p>
-                </div>
-
-                <Link
-                  href={srv.href}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#082F52] group-hover:text-[#E53935] transition-colors pt-4 border-t border-slate-100"
-                >
-                  <span>Explore Service Details</span>
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
-            ))}
+                Household Shifting
+              </Link>
+              <Link
+                href="/car-shifting"
+                className="bg-slate-50 hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+              >
+                Car Transportation
+              </Link>
+              <Link
+                href="/bike-shifting"
+                className="bg-slate-50 hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+              >
+                Bike Transport
+              </Link>
+              <Link
+                href="/parcel-shifting"
+                className="bg-slate-50 hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+              >
+                Parcel &amp; Cargo
+              </Link>
+              <Link
+                href="/office-relocation"
+                className="bg-slate-50 hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+              >
+                Office Relocation
+              </Link>
+              <Link
+                href="/international-moving"
+                className="bg-slate-50 hover:bg-[#082F52] text-[#082F52] hover:text-white border border-slate-200 text-xs sm:text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+              >
+                International Moving
+              </Link>
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="bg-red-50 hover:bg-[#E53935] text-[#E53935] hover:text-white border border-red-200 text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-colors"
+              >
+                2026 Kolkata Rate Card →
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -482,13 +466,13 @@ export default function WhyUsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mb-14 sm:mb-16">
             <span className="inline-block bg-white/10 border border-white/20 text-[#F28A32] text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-full mb-3">
-              Accountability & Trust
+              Accountability &amp; Trust
             </span>
             <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-4 tracking-tight">
               Know What&apos;s Happening With Your Move
             </h2>
             <p className="text-white/80 text-sm sm:text-base leading-relaxed">
-              A well-organized move isn&apos;t only about what happens to the belongings. It&apos;s also about keeping the customer informed along the way.
+              Written CFT surveys, dual-branch coordinator desks in Haltu and Behala, and traceable LR/Bilty dispatch records keep every charge and transit slot accountable.
             </p>
           </div>
 
@@ -501,7 +485,7 @@ export default function WhyUsPage() {
                 Upfront Written Quotes
               </h3>
               <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed">
-                Clear pricing with detailed inventory inclusions, packing specifications, and zero hidden surcharges on moving day.
+                Itemized CFT volume, staircase/lift scope, and shuttle requirements locked on paper before crew dispatch under GSTIN {BUSINESS.gstin}.
               </p>
             </div>
 
@@ -510,10 +494,10 @@ export default function WhyUsPage() {
                 02
               </div>
               <h3 className="text-base font-bold text-white font-display mb-2">
-                Dedicated Coordinator
+                Haltu &amp; Behala Coordinators
               </h3>
               <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed">
-                A single point of contact who understands your move requirements and coordinates packing crews, vehicle arrival, and dispatch.
+                Reach our Haltu HQ ({BUSINESS.locations.main.phoneFormatted}) or Behala Branch ({BUSINESS.locations.secondary.phoneFormatted}) coordinator directly from survey through delivery.
               </p>
             </div>
 
@@ -522,10 +506,10 @@ export default function WhyUsPage() {
                 03
               </div>
               <h3 className="text-base font-bold text-white font-display mb-2">
-                Milestone Transit Alerts
+                LR / Bilty &amp; Highway Check-Ins
               </h3>
               <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed">
-                Timely updates via phone, SMS, or WhatsApp as your shipment passes major checkpoints and prepares for delivery.
+                Stamped LR/Bilty consignment number issued at loading with scheduled toll-plaza WhatsApp, SMS, and phone check-ins.
               </p>
             </div>
 
@@ -534,10 +518,10 @@ export default function WhyUsPage() {
                 04
               </div>
               <h3 className="text-base font-bold text-white font-display mb-2">
-                Delivery Coordination
+                Delivery Slot Coordination
               </h3>
               <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed">
-                Advance confirmation before the carrier arrives at your destination, allowing you to prepare building access and elevator availability.
+                Advance 2-hour pre-arrival call before the container arrives so you can book destination society service lifts and gate passes.
               </p>
             </div>
           </div>
@@ -553,10 +537,10 @@ export default function WhyUsPage() {
                 Destination Care
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-[#082F52] mb-5 leading-tight tracking-tight">
-                The Journey Doesn&apos;t End When the Vehicle Arrives
+                Room Placement, Reassembly &amp; Signed Manifest Handover
               </h2>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                Reaching the destination is only half the journey. What happens when the carrier doors open dictates whether your arrival feels calm or overwhelming. We treat unloading, placement, and handover with the same rigor as packing.
+                Arrival at your new apartment or office follows the same checklist discipline as origin packing: room-tagged unloading, bed and wardrobe reassembly, carton reconciliation, and debris removal.
               </p>
 
               <div className="space-y-3 mb-8">
@@ -566,7 +550,7 @@ export default function WhyUsPage() {
                   </div>
                   <div>
                     <strong className="text-sm text-[#082F52] font-semibold block">Room-by-Room Placement</strong>
-                    <span className="text-xs text-slate-600">Boxes and furniture placed directly into designated rooms according to color-coded labels.</span>
+                    <span className="text-xs text-slate-600">Boxes and furniture placed directly into designated rooms according to numbered room tags.</span>
                   </div>
                 </div>
 
@@ -576,7 +560,7 @@ export default function WhyUsPage() {
                   </div>
                   <div>
                     <strong className="text-sm text-[#082F52] font-semibold block">Furniture Reassembly</strong>
-                    <span className="text-xs text-slate-600">Modular beds, dining tables, and large furniture reassembled safely using original hardware.</span>
+                    <span className="text-xs text-slate-600">Modular beds, wardrobes, and dining tables reassembled safely using labeled hardware pouches.</span>
                   </div>
                 </div>
 
@@ -585,8 +569,8 @@ export default function WhyUsPage() {
                     ✓
                   </div>
                   <div>
-                    <strong className="text-sm text-[#082F52] font-semibold block">Itemized Inventory Reconciliation</strong>
-                    <span className="text-xs text-slate-600">Joint sign-off against the initial packing manifest to confirm all items arrived safely.</span>
+                    <strong className="text-sm text-[#082F52] font-semibold block">Carbon-Copy Packing List Sign-Off</strong>
+                    <span className="text-xs text-slate-600">Joint tally against your numbered packing list (and VCR for vehicles) before final handover.</span>
                   </div>
                 </div>
 
@@ -595,8 +579,8 @@ export default function WhyUsPage() {
                     ✓
                   </div>
                   <div>
-                    <strong className="text-sm text-[#082F52] font-semibold block">Debris Clearance</strong>
-                    <span className="text-xs text-slate-600">Collection of unpacked cartons, plastic film, and tape scraps so your new home remains tidy.</span>
+                    <strong className="text-sm text-[#082F52] font-semibold block">Debris Clearance &amp; GST Invoice</strong>
+                    <span className="text-xs text-slate-600">Collection of used EPE foam, stretch film, and opened cartons alongside your GSTIN {BUSINESS.gstin} tax invoice.</span>
                   </div>
                 </div>
               </div>
@@ -616,17 +600,17 @@ export default function WhyUsPage() {
               </h3>
               <div className="space-y-4 text-xs sm:text-sm text-slate-600 leading-relaxed">
                 <p>
-                  Many movers consider their job done the moment boxes are unloaded onto the floor or curbside. For our team, handover is an essential part of the relocation contract.
+                  Many transport operators leave boxes stacked on the ground floor or curbside. Our crew brings heavy furniture upstairs, reassembles beds and tables, and reconciles every carton number before closing the job.
                 </p>
                 <p>
-                  By ensuring beds are ready to sleep in, large items are positioned correctly, and packing clutter is minimized, we help you transition into your new space without unnecessary stress.
+                  For corporate transfers and B2B moves, we also deliver the stamped LR/Bilty and {BUSINESS.sacCodes} GST Tax Invoice ready for HR or finance reimbursement.
                 </p>
                 <div className="bg-white p-4 rounded-2xl border border-slate-200 mt-4">
                   <span className="text-xs font-bold text-[#E53935] uppercase tracking-wider block mb-1">
-                    Quality Standard
+                    Documented Closure
                   </span>
                   <span className="text-slate-700 text-xs">
-                    Every move is concluded with a joint inventory check sheet signed by both the customer and the move supervisor.
+                    Every move concludes with a signed Numbered Carbon-Copy Packing List and GST Tax Invoice ({BUSINESS.gstin}).
                   </span>
                 </div>
               </div>
@@ -691,7 +675,7 @@ export default function WhyUsPage() {
                 3. Continuous Support
               </h3>
               <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
-                Coordinate transparent communication, milestone updates during transit, and respectful destination handover.
+                Stamped LR/Bilty tracking, highway checkpoint calls, and signed manifest handover at your destination.
               </p>
               <Link
                 href="/process"
@@ -780,6 +764,8 @@ export default function WhyUsPage() {
               <span>→</span>
             </Link>
           </div>
+
+          <VerifiedCredentialsBlock compact className="mt-12" />
         </div>
       </section>
 

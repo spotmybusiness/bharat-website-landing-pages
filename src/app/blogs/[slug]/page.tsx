@@ -616,7 +616,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     <figure className="rounded-2xl overflow-hidden border border-slate-200 bg-slate-50 shadow-xs">
                       <div className="aspect-[4/3] w-full overflow-hidden bg-slate-100">
                         <img
-                          src="/images/g9.jpeg"
+                          src="/images/gallery/g9.jpeg"
                           alt="Bharat Relocators closed-body container truck loading household goods in Kolkata"
                           loading="lazy"
                           className="w-full h-full object-cover"
@@ -972,9 +972,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                     Published by the operations desk at Bharat Relocators Kolkata (GSTIN: 19AAWFB0500G1ZL). Operating two primary hubs in Haltu (South Kolkata 700078) and Behala (West Kolkata 700061) with a 4.9★ Google rating over 306+ verified moves.
                   </p>
                   <div className="pt-2 flex flex-wrap gap-3 text-xs text-[#082F52] font-semibold justify-center sm:justify-start">
-                    <span>📍 Haltu Office: Ramlal Bazar Rd</span>
+                    <span>📍 Haltu HQ: 17, Ramlal Bazar Road, 700078</span>
                     <span>•</span>
-                    <span>📍 Behala Branch: D.H. Road</span>
+                    <span>📍 Behala Branch: 217, Parui Kacha Road, 700061</span>
                     <span>•</span>
                     <a href={getTelUrl()} className="text-[#E53935] hover:underline">
                       📞 {BUSINESS.phone.primaryFormatted}

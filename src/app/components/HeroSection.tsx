@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { BUSINESS } from '@/lib/business';
 
 export default function HeroSection() {
   const handleScrollTo = (id: string) => {
@@ -515,7 +516,7 @@ export default function HeroSection() {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#ff3401]" />
               </span>
               <span className="text-xs font-bold uppercase tracking-wider text-white/90">
-                ISO 9001:2015 Certified · Kolkata to PAN India
+                GST Registered ({BUSINESS.gstin}) · Kolkata to PAN India
               </span>
             </div>
           </div>

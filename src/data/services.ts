@@ -67,7 +67,7 @@ export const SERVICES: ServiceDefinition[] = [
     category: 'Global Freight & Customs',
     shortDesc:
       'Cross-border relocation with documentation assistance, air/sea cargo packing, and door-to-door destination delivery worldwide.',
-    img: 'https://images.unsplash.com/photo-1528259105746-48a73c688cd2',
+    img: '/images/international.jpeg',
     alt: 'Air and ocean cargo container freight logistics for international moving',
     features: ['Customs Documentation', 'Air & Sea Freight', 'Door Delivery Worldwide'],
   },

@@ -1,5 +1,6 @@
 import React from 'react';
 import Breadcrumb, { BreadcrumbItem } from '@/components/Breadcrumb';
+import { BUSINESS } from '@/lib/business';
 
 export interface PageHeroProps {
   label?: string;
@@ -454,7 +455,7 @@ export default function PageHero({
                   <div className="mt-4 flex items-center justify-between text-[11px] text-slate-300 px-1 pt-2 border-t border-white/10">
                     <span className="inline-flex items-center gap-1.5 font-medium">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      ISO 9001:2015 Certified
+                      GSTIN: {BUSINESS.gstin} Verified
                     </span>
                     <span className="font-semibold text-[10px] text-[#F28A32] bg-white/5 px-2.5 py-0.5 rounded border border-white/10">
                       4.9★ (306+ Reviews)

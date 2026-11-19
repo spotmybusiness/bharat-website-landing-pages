@@ -80,8 +80,15 @@ export function getOrganizationSchema(): Record<string, unknown> {
     legalName: BUSINESS.legalName,
     url: siteUrl,
     logo: `${siteUrl}/images/logo.png`,
+    image: [
+      `${siteUrl}/images/hero_banner.png`,
+      `${siteUrl}/images/packaging.png`,
+    ],
     telephone: mainLoc.phone,
     email: BUSINESS.email.primary,
+    taxID: BUSINESS.gstin,
+    priceRange: '₹₹',
+    hasMap: mainLoc.google.mapsShortlink,
     address: {
       '@type': 'PostalAddress',
       streetAddress: mainLoc.address.street,
@@ -90,6 +97,23 @@ export function getOrganizationSchema(): Record<string, unknown> {
       postalCode: mainLoc.address.postalCode,
       addressCountry: mainLoc.address.country,
     },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 22.504767,
+      longitude: 88.382855,
+    },
+    areaServed: [
+      { '@type': 'City', name: 'Kolkata' },
+      { '@type': 'Place', name: 'Haltu' },
+      { '@type': 'Place', name: 'Behala' },
+      { '@type': 'Place', name: 'Salt Lake' },
+      { '@type': 'Place', name: 'New Town' },
+      { '@type': 'Place', name: 'Jadavpur' },
+      { '@type': 'Place', name: 'Ballygunge' },
+      { '@type': 'City', name: 'Howrah' },
+      { '@type': 'AdministrativeArea', name: 'West Bengal' },
+      { '@type': 'Country', name: 'India' },
+    ],
     sameAs: [
       BUSINESS.social.facebook,
       BUSINESS.social.instagram,
@@ -113,6 +137,12 @@ export function getOrganizationSchema(): Record<string, unknown> {
         addressRegion: secLoc.address.state,
         postalCode: secLoc.address.postalCode,
         addressCountry: secLoc.address.country,
+      },
+      hasMap: secLoc.google.shareUrl,
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 22.4981,
+        longitude: 88.3105,
       },
       aggregateRating: {
         '@type': 'AggregateRating',
