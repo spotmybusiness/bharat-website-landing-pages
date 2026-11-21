@@ -104,6 +104,13 @@ export interface BlogPost {
   targetKeywords: string[];
   tags: string[];
   showCostCalculator?: boolean;
+  priceSnapshots?: {
+    label: string;
+    value: string;
+    highlight?: boolean;
+  }[];
+  topicBadges?: string[];
+  ctaLabel?: string;
   quickAnswer: {
     headline: string;
     summary: string;
@@ -225,6 +232,18 @@ export const BLOG_POSTS: BlogPost[] = [
       'Household Shifting',
     ],
     showCostCalculator: true,
+    priceSnapshots: [
+      { label: '1 BHK Local', value: '₹4,500 – ₹8,500' },
+      { label: '2 BHK Local', value: '₹7,500 – ₹13,500' },
+      { label: '3 BHK Local', value: '₹11,000 – ₹19,500', highlight: true },
+    ],
+    topicBadges: [
+      'Quick Answer Cost Box',
+      'Corridor Pricing Table',
+      'Lift vs Staircase Sample Bill',
+      'Narrow-Lane Shuttle & 18% GST',
+    ],
+    ctaLabel: 'Read Complete 2026 Rate Card',
     quickAnswer: {
       headline: 'Quick Answer: How Much Do Packers and Movers Charge in Kolkata? (2026 Baseline)',
       summary:
@@ -711,6 +730,18 @@ export const BLOG_POSTS: BlogPost[] = [
       'Wooden Crating Bike',
       'RTO Bike Rules',
     ],
+    priceSnapshots: [
+      { label: 'Scooters & EVs', value: '₹3,800 – ₹6,200' },
+      { label: '125–200cc Bikes', value: '₹4,200 – ₹6,500' },
+      { label: 'Royal Enfield 350cc', value: '₹5,200 – ₹7,800', highlight: true },
+    ],
+    topicBadges: [
+      'Quick Answer Engine Matrix',
+      '10-City Corridor Rate Table',
+      '4-Layer Foam vs Pinewood Crate Bill',
+      'EV Scooter & Parivahan RTO Rules',
+    ],
+    ctaLabel: 'Read Complete 2026 Rate Card',
     quickAnswer: {
       headline: 'Quick Answer: How Much Does Bike Transport from Kolkata Cost in 2026?',
       summary:

@@ -54,7 +54,6 @@ const secondaryGuides = [
 
 export default function BlogsPage() {
   const posts = getAllBlogPosts();
-  const featuredPost = posts[0];
   const siteUrl = getSiteUrl();
 
   const collectionSchema = {
@@ -146,119 +145,16 @@ export default function BlogsPage() {
         }
       />
 
-      {/* Published Blog Articles Grid — Above the Fold so New Posts Appear Immediately */}
-      <section className="py-12 lg:py-16 bg-slate-50 border-b border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-slate-200">
-            <div>
-              <span className="text-xs uppercase font-bold text-[#E53935] tracking-wider block">
-                Published 2026 Guides &amp; Rate Cards ({posts.length} Live)
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
-                Latest Kolkata Relocation Blogs &amp; Cost Guides
-              </h2>
-            </div>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 self-start sm:self-auto">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              Verified 2026 Rates
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[...posts].reverse().map((post, idx) => {
-              const postNumber = posts.findIndex((p) => p.slug === post.slug) + 1;
-              const isLatest = idx === 0 && posts.length > 1;
-              return (
-                <article
-                  key={post.slug}
-                  className={`bg-white rounded-3xl border-2 shadow-md hover:shadow-xl transition-all flex flex-col justify-between overflow-hidden ${
-                    isLatest
-                      ? 'border-[#E53935]/50 ring-2 ring-[#E53935]/10'
-                      : 'border-[#082F52]/15 hover:border-[#082F52]/40'
-                  }`}
-                >
-                  <div>
-                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100 border-b border-slate-100">
-                      <img
-                        src={post.featuredImage}
-                        alt={post.featuredImageAlt}
-                        loading={idx < 2 ? 'eager' : 'lazy'}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute top-3.5 left-3.5 flex flex-wrap gap-2">
-                        {isLatest && (
-                          <span className="bg-[#E53935] text-white text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
-                            ★ New Release · Post #{postNumber}
-                          </span>
-                        )}
-                        <span className="bg-[#082F52]/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-xs">
-                          Post #{postNumber} · {post.publishWeek}
-                        </span>
-                        <span className="bg-white/95 text-[#082F52] text-xs font-bold px-3 py-1 rounded-full shadow-xs">
-                          {post.category}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="p-6 sm:p-7 space-y-3.5">
-                      <div className="flex items-center justify-between text-xs text-slate-500">
-                        <span className="font-semibold text-[#1478B5]">{post.contentFormat}</span>
-                        <span>{post.readTime} · Updated {post.updatedDate}</span>
-                      </div>
-
-                      <h3 className="font-display font-bold text-[#082F52] text-xl sm:text-2xl leading-snug hover:text-[#E53935] transition-colors">
-                        <Link href={`/blogs/${post.slug}`}>
-                          {post.h1}
-                        </Link>
-                      </h3>
-
-                      <p className="text-slate-600 text-sm leading-relaxed">
-                        {post.excerpt}
-                      </p>
-
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        {post.targetKeywords.slice(0, 3).map((kw) => (
-                          <span
-                            key={kw}
-                            className="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md font-medium"
-                          >
-                            {kw}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="px-6 sm:px-7 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2 text-xs text-slate-500">
-                      <span className="font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-md">
-                        ✓ {post.externalLinks.length} Official Gov Portals
-                      </span>
-                    </div>
-                    <Link
-                      href={`/blogs/${post.slug}`}
-                      className="inline-flex items-center gap-1.5 bg-[#082F52] hover:bg-[#E53935] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition-colors shrink-0 shadow-xs"
-                    >
-                      Read Full Guide →
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Blog Post Hero Banner */}
+      {/* Full-Width Horizontal Featured Blog Post Cards (Image 1 Quality Format for All Published Posts) */}
       <section className="py-12 lg:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="flex items-center justify-between pb-4 border-b border-slate-200">
             <div>
               <span className="text-xs uppercase font-bold text-[#E53935] tracking-wider block">
-                Featured Pillar Rate Card ({featuredPost.publishWeek})
+                Featured 2026 Rate Cards &amp; Cost Guides
               </span>
               <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
-                Flagship 2026 Kolkata Relocation Rate Card
+                Flagship 2026 Kolkata Relocation Rate Cards
               </h2>
             </div>
             <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
@@ -267,94 +163,124 @@ export default function BlogsPage() {
             </span>
           </div>
 
-          {/* Featured Article Card */}
-          <div className="bg-gradient-to-br from-slate-50 via-white to-red-50/20 rounded-3xl p-6 sm:p-10 border-2 border-[#082F52]/15 shadow-xl transition-all hover:shadow-2xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-7 space-y-5">
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <span className="bg-[#E53935] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
-                    {featuredPost.category}
-                  </span>
-                  <span className="bg-slate-200/80 text-slate-700 text-xs font-semibold px-2.5 py-1 rounded-full">
-                    {featuredPost.readTime}
-                  </span>
-                  <span className="text-xs text-slate-500">
-                    Updated: {featuredPost.updatedDate}
-                  </span>
-                </div>
+          {posts.map((post) => {
+            const snapshots =
+              post.priceSnapshots ??
+              post.quickAnswer.rates.slice(0, 3).map((r, i) => ({
+                label: r.homeSize.split('(')[0].trim(),
+                value: r.localCost,
+                highlight: i === 2,
+              }));
 
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-[#082F52] leading-tight hover:text-[#E53935] transition-colors">
-                  <Link href={`/blogs/${featuredPost.slug}`}>
-                    {featuredPost.h1}
-                  </Link>
-                </h3>
+            const badges = post.topicBadges ?? [
+              'Quick Answer Cost Box',
+              'Corridor Pricing Table',
+              'Side-by-Side Comparison Bill',
+              'Official Gov & GST Rules',
+            ];
 
-                <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                  {featuredPost.excerpt}
-                </p>
+            return (
+              <div
+                key={post.slug}
+                className="bg-gradient-to-br from-slate-50 via-white to-red-50/20 rounded-3xl p-6 sm:p-10 border-2 border-[#082F52]/15 shadow-xl transition-all hover:shadow-2xl"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  <div className="lg:col-span-7 space-y-5">
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      <span className="bg-[#E53935] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                        {post.category}
+                      </span>
+                      <span className="bg-slate-200/80 text-slate-700 text-xs font-semibold px-2.5 py-1 rounded-full">
+                        {post.readTime}
+                      </span>
+                      <span className="text-xs text-slate-500">
+                        Updated: {post.updatedDate}
+                      </span>
+                    </div>
 
-                {/* Quick Price Snapshot Badges */}
-                <div className="grid grid-cols-3 gap-2.5 pt-1">
-                  <div className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-xs">
-                    <span className="text-[11px] font-bold text-slate-400 block uppercase">1 BHK Local</span>
-                    <span className="text-sm sm:text-base font-black text-[#082F52]">₹4,500 – ₹8,500</span>
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-[#082F52] leading-tight hover:text-[#E53935] transition-colors">
+                      <Link href={`/blogs/${post.slug}`}>
+                        {post.h1}
+                      </Link>
+                    </h3>
+
+                    <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                      {post.excerpt}
+                    </p>
+
+                    {/* Quick Price Snapshot Badges */}
+                    <div className="grid grid-cols-3 gap-2.5 pt-1">
+                      {snapshots.map((snap) => (
+                        <div
+                          key={snap.label}
+                          className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-xs"
+                        >
+                          <span className="text-[11px] font-bold text-slate-400 block uppercase">
+                            {snap.label}
+                          </span>
+                          <span
+                            className={`text-sm sm:text-base font-black ${
+                              snap.highlight ? 'text-[#E53935]' : 'text-[#082F52]'
+                            }`}
+                          >
+                            {snap.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Key Blueprint Topics Covered */}
+                    <div className="flex flex-wrap gap-2 text-xs text-slate-600 pt-1">
+                      {badges.map((badge) => (
+                        <span
+                          key={badge}
+                          className="bg-slate-100 px-2.5 py-1 rounded-md font-medium"
+                        >
+                          ✓ {badge}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="pt-3 flex flex-wrap items-center gap-4">
+                      <Link
+                        href={`/blogs/${post.slug}`}
+                        className="inline-flex items-center gap-2 bg-[#082F52] hover:bg-[#0b3b60] text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-colors"
+                      >
+                        {post.ctaLabel ?? 'Read Complete 2026 Rate Card'}
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </Link>
+                      <Link
+                        href="/get-a-quote"
+                        className="inline-flex items-center gap-2 text-sm font-bold text-[#E53935] hover:underline"
+                      >
+                        Get Free Quote →
+                      </Link>
+                    </div>
                   </div>
-                  <div className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-xs">
-                    <span className="text-[11px] font-bold text-slate-400 block uppercase">2 BHK Local</span>
-                    <span className="text-sm sm:text-base font-black text-[#082F52]">₹7,500 – ₹13,500</span>
-                  </div>
-                  <div className="bg-white p-3 rounded-xl border border-slate-200 text-center shadow-xs">
-                    <span className="text-[11px] font-bold text-slate-400 block uppercase">3 BHK Local</span>
-                    <span className="text-sm sm:text-base font-black text-[#E53935]">₹11,000 – ₹19,500</span>
-                  </div>
-                </div>
 
-                {/* Key Blueprint Topics Covered */}
-                <div className="flex flex-wrap gap-2 text-xs text-slate-600 pt-1">
-                  <span className="bg-slate-100 px-2.5 py-1 rounded-md font-medium">✓ Quick Answer Cost Box</span>
-                  <span className="bg-slate-100 px-2.5 py-1 rounded-md font-medium">✓ Corridor Pricing Table</span>
-                  <span className="bg-slate-100 px-2.5 py-1 rounded-md font-medium">✓ Lift vs Staircase Sample Bill</span>
-                  <span className="bg-slate-100 px-2.5 py-1 rounded-md font-medium">✓ Narrow-Lane Shuttle &amp; 18% GST</span>
-                </div>
-
-                <div className="pt-3 flex flex-wrap items-center gap-4">
-                  <Link
-                    href={`/blogs/${featuredPost.slug}`}
-                    className="inline-flex items-center gap-2 bg-[#082F52] hover:bg-[#0b3b60] text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-colors"
-                  >
-                    Read Complete 2026 Rate Card
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </Link>
-                  <Link
-                    href="/get-a-quote"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-[#E53935] hover:underline"
-                  >
-                    Get Free Quote →
-                  </Link>
+                  {/* Right Visual Card */}
+                  <div className="lg:col-span-5">
+                    <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/3] border-2 border-slate-200">
+                      <AppImage
+                        src={post.featuredImage}
+                        alt={post.featuredImageAlt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 40vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#082F52]/80 via-transparent to-transparent flex items-end p-6">
+                        <span className="text-white text-xs font-semibold backdrop-blur-xs bg-black/40 px-3 py-1.5 rounded-lg border border-white/20">
+                          Bharat Relocators Kolkata Logistics Desk
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              {/* Right Visual Card */}
-              <div className="lg:col-span-5">
-                <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/3] border-2 border-slate-200">
-                  <AppImage
-                    src={featuredPost.featuredImage}
-                    alt={featuredPost.featuredImageAlt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 1024px) 100vw, 40vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#082F52]/80 via-transparent to-transparent flex items-end p-6">
-                    <span className="text-white text-xs font-semibold backdrop-blur-xs bg-black/40 px-3 py-1.5 rounded-lg border border-white/20">
-                      Bharat Relocators Kolkata Logistics Desk
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </section>
 
