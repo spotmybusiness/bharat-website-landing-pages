@@ -479,10 +479,10 @@ export default function BikeShiftingPage() {
               </a>{' '}
               in our{' '}
               <Link
-                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                href="/blogs/bike-transport-kolkata-charges-wooden-crating-guide"
                 className="text-[#E53935] font-semibold hover:underline"
               >
-                2026 Kolkata Packers &amp; Movers Rate Card
+                2026 Bike Transport from Kolkata Cost &amp; Wooden Crating Guide
               </Link>
               .
             </p>
@@ -498,8 +498,14 @@ export default function BikeShiftingPage() {
             </p>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold">
               <Link
-                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                href="/blogs/bike-transport-kolkata-charges-wooden-crating-guide"
                 className="text-[#E53935] hover:underline"
+              >
+                2026 Bike Transport Cost &amp; Wooden Crating Guide →
+              </Link>
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="text-[#082F52] hover:underline"
               >
                 2026 Kolkata Packers &amp; Movers Rate Card →
               </Link>

@@ -663,11 +663,11 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 
   // ============================================================================
-  // POST 2 — WEEK 2: BIKE TRANSPORT KOLKATA CHARGES & WOODEN CRATING GUIDE
+  // POST 2 — WEEK 2: BIKE TRANSPORT KOLKATA CHARGES & WOODEN CRATING GUIDE (PUBLISHED)
   // ============================================================================
   {
     slug: 'bike-transport-kolkata-charges-wooden-crating-guide',
-    isPublished: false,
+    isPublished: true,
     publishWeek: 'Week 2',
     sprintSchedule: 'Week 1 (Post 2)',
     contentFormat: 'Service Cost Guide + Packing Comparison Table',
@@ -678,18 +678,18 @@ export const BLOG_POSTS: BlogPost[] = [
     metaTitle:
       'Bike Transport Kolkata Charges [2026]: City-Wise Rates, Crating & RTO Rules',
     metaDescription:
-      'Need safe bike transport from Kolkata? Check 2026 two-wheeler shifting charges to Bangalore, Hyderabad, Pune, Delhi & Mumbai (₹3,800 - ₹9,500), 4-layer foam vs wooden crating costs & RTO documents.',
+      'Need safe bike transport from Kolkata? Check 2026 two-wheeler shifting charges to Bangalore, Hyderabad, Pune, Delhi & Mumbai (₹3,800 - ₹9,500), 4-layer foam vs wooden crating costs, EV scooter rules & RTO documents.',
     excerpt:
-      'Complete 2026 pricing and safety guide for transporting scooters, commuter motorcycles, and 350cc+ Royal Enfield cruisers from Kolkata across India with zero dent or mirror damage.',
+      'Complete 2026 pricing and safety guide for transporting scooters, electric EVs (Ola/Ather), commuter motorcycles, and 350cc+ Royal Enfield cruisers from Kolkata across India with zero dent or mirror damage.',
     introParagraphs: [
-      'Transporting a two-wheeler from Kolkata—whether a daily commuter scooter like a Honda Activa or a heavy cruiser like a Royal Enfield Classic 350 or Himalayan—requires specialized multi-layer cushioning, wheel-chock anchoring, and compliant RTO transit documentation.',
-      'This 2026 Bike Transport Cost Guide breaks down exact city-wise charges from Kolkata (Haltu, Behala, Salt Lake, and New Town pickups), compares 4-layer foam wrapping against full wooden crating, and lists every Parivahan RTO document needed for smooth interstate check-post clearance.',
+      'Transporting a two-wheeler from Kolkata—whether a daily commuter scooter like a Honda Activa or TVS Jupiter, an electric scooter like an Ather 450X or Ola S1 Pro, or a heavy 195 kg cruiser like a Royal Enfield Classic 350 or Himalayan—requires specialized multi-layer cushioning, wheel-chock anchoring, and compliant RTO transit documentation.',
+      'This verified 2026 Bike Transport Cost Guide breaks down exact city-wise charges from our Haltu (700078) and Behala (700061) hubs to 10 major Indian corridors, compares 4-layer foam wrapping against full seasoned-pinewood crating, details lithium-ion EV scooter transport protocols, and lists every Parivahan RTO document needed for smooth interstate check-post clearance.',
     ],
     category: 'Vehicle Relocation',
     categorySlug: 'vehicle-relocation',
     publishedDate: '2026-01-22',
-    updatedDate: '2026-11-15',
-    readTime: '8 min read',
+    updatedDate: '2026-11-21',
+    readTime: '10 min read',
     author: {
       name: 'Bharat Relocators Automotive Desk',
       role: 'Two-Wheeler Carrier Specialist',
@@ -703,6 +703,7 @@ export const BLOG_POSTS: BlogPost[] = [
       'motorcycle shifting cost from kolkata',
       'two wheeler transport kolkata to bangalore',
       'royal enfield transport cost kolkata',
+      'bike courier service kolkata price',
     ],
     tags: [
       'Bike Transport Kolkata',
@@ -713,17 +714,17 @@ export const BLOG_POSTS: BlogPost[] = [
     quickAnswer: {
       headline: 'Quick Answer: How Much Does Bike Transport from Kolkata Cost in 2026?',
       summary:
-        'Interstate bike transport from Kolkata typically costs between ₹3,800 and ₹6,500 for scooters and 100cc–150cc commuter bikes, and ₹5,200 to ₹9,500 for heavy 250cc–650cc motorcycles (Royal Enfield, KTM, Triumph). Adding a custom wooden crate adds ₹1,500 to ₹2,500 for 360-degree impact protection.',
+        'Interstate bike transport from Kolkata typically costs between ₹3,800 and ₹6,500 for scooters, electric EVs, and 100cc–150cc commuter bikes, and ₹5,200 to ₹9,500 for heavy 250cc–650cc motorcycles (Royal Enfield, KTM, Triumph, Kawasaki). Adding a custom on-site seasoned pinewood crate adds ₹1,500 to ₹2,500 for 360-degree crush-proof protection.',
       columnHeaders: {
-        col1: 'Bike Engine Category',
+        col1: 'Bike Engine / EV Category',
         col2: '4-Layer Foam Pack Cost',
-        col3: 'With Wooden Crate',
-        col4: 'Carrier Type',
+        col3: 'With Full Wooden Crate',
+        col4: 'Carrier Bay Type',
         col5: 'Transit Window',
       },
       rates: [
         {
-          homeSize: 'Scooters (Activa, Jupiter, Access 125)',
+          homeSize: 'Petrol Scooters (Activa, Jupiter, Access 125)',
           localCost: '₹3,800 – ₹5,800',
           intercityCost: '₹5,300 – ₹7,800',
           truckType: 'Closed Wheel-Chock Container',
@@ -731,7 +732,15 @@ export const BLOG_POSTS: BlogPost[] = [
           duration: '4 – 7 Days',
         },
         {
-          homeSize: 'Commuter Bikes (125cc – 180cc Pulsar/Apache)',
+          homeSize: 'Electric Scooters (Ather 450X, Ola S1, TVS iQube, Chetak)',
+          localCost: '₹4,200 – ₹6,200',
+          intercityCost: '₹5,800 – ₹8,200',
+          truckType: 'Insulated Dry Floor Deck Bay',
+          crewSize: '2 Handlers + Charger Box',
+          duration: '4 – 7 Days',
+        },
+        {
+          homeSize: 'Commuter Bikes (125cc – 200cc Pulsar / Apache / MT-15)',
           localCost: '₹4,200 – ₹6,500',
           intercityCost: '₹5,800 – ₹8,500',
           truckType: 'Closed Multi-Bike Carrier',
@@ -739,7 +748,7 @@ export const BLOG_POSTS: BlogPost[] = [
           duration: '4 – 7 Days',
         },
         {
-          homeSize: 'Cruisers (Royal Enfield 350cc / Jawa / CB350)',
+          homeSize: 'Cruisers (Royal Enfield 350cc / Meteor / Jawa / CB350)',
           localCost: '₹5,200 – ₹7,800',
           intercityCost: '₹7,000 – ₹10,200',
           truckType: 'Heavy-Duty Ratchet Bay',
@@ -747,20 +756,20 @@ export const BLOG_POSTS: BlogPost[] = [
           duration: '5 – 8 Days',
         },
         {
-          homeSize: 'Premium Sports & ADV (390cc – 650cc+ Superbikes)',
+          homeSize: 'Premium Sports & ADV ( Himalayan 450 / Interceptor 650 / KTM 390)',
           localCost: '₹6,800 – ₹9,500',
           intercityCost: '₹9,000 – ₹12,500',
-          truckType: 'Enclosed Dedicated Cage',
+          truckType: 'Enclosed Dedicated Timber Cage',
           crewSize: '3 Specialists + Custom Crate',
           duration: '5 – 8 Days',
         },
       ],
       inclusionsSummary: [
-        'Doorstep pickup from any Kolkata neighborhood (including narrow lanes via Tata Ace feeder)',
-        '4-layer protective wrapping: anti-scratch foam sheet, air-bubble wrap, corrugated board & stretch film',
-        'Handlebar, clutch lever, tank, and silencer guard padding',
-        'Fuel tank drainage protocol & battery terminal disconnection for fire safety',
-        'Signed physical Vehicle Condition Report (VCR) at pickup and delivery',
+        'Doorstep pickup from any Kolkata neighborhood (including narrow lanes in Haltu, Behala & Jadavpur via Tata Ace feeder)',
+        '4-layer protective wrapping: 4mm anti-scratch EPE foam sheet, 10mm air-bubble wrap, 5-ply corrugated board & waterproof stretch film',
+        'Rear-view mirror detachment, handlebar/clutch lever foam sleeves, fuel tank crown pad & silencer guard wrap',
+        'Fuel tank reserve drainage protocol (< 1L) or EV Vacation-Mode isolation for highway fire safety',
+        'Signed physical Vehicle Condition Report (VCR) recording exact odometer km, paint panels, and key handover',
       ],
     },
     articleSections: [
@@ -769,33 +778,61 @@ export const BLOG_POSTS: BlogPost[] = [
         badge: 'RTO & Highway Compliance',
         heading: 'Mandatory RTO Documents for Interstate Bike Shifting from Kolkata',
         paragraphs: [
-          'When transporting a motorcycle across state borders on NH-16 or NH-19, highway check-posts and Goods Transport Enforcement squads inspect the carrier manifest. You do not need to hand over original smart cards—self-attested photocopies or DigiLocker/mParivahan printouts are sufficient.',
-          'If you are relocating permanently for more than 12 months to another state (such as Karnataka or Maharashtra), you can apply for an interstate Form 28 NOC via the Parivahan Sewa portal, though an NOC is not mandatory simply to transport the bike via a licensed mover.',
+          'When transporting a motorcycle across state borders on NH-16 (towards Bhubaneswar, Vizag, Hyderabad, Chennai, and Bangalore) or NH-19 (towards Varanasi, Lucknow, and Delhi NCR), highway check-posts and Goods Transport Enforcement squads inspect the carrier manifest. You never need to hand over original smart cards—self-attested photocopies or DigiLocker/mParivahan printouts clipped to your Consignment Note (LR) are 100% sufficient.',
+          'Many two-wheeler owners confuse transport documentation with re-registration paperwork. You do NOT need an RTO Form 28 No Objection Certificate (NOC) simply to ship your motorcycle via a licensed packer and mover. An RTO NOC is only required later if you plan to permanently re-register your WB-02/WB-06/WB-24 plate in another state after 12 months of continuous stay.',
         ],
         bullets: [
-          'Registration Certificate (RC Copy) matching the chassis and engine number on our Condition Report',
-          'Valid Two-Wheeler Insurance Policy copy (Comprehensive or Third-Party) active during transit dates',
-          'Active Pollution Under Control (PUC) Certificate verifiable on the Parivahan portal',
-          'Owner Government Photo ID (Aadhaar / PAN / Passport) and a signed Self-Declaration Letter authorizing Bharat Relocators to transport personal vehicle (non-commercial sale)',
+          'Registration Certificate (RC Copy) matching the chassis number and engine number recorded on our Vehicle Condition Report (VCR)',
+          'Valid Two-Wheeler Insurance Policy copy (Comprehensive or Third-Party) active across the scheduled transit dates',
+          'Active Pollution Under Control (PUC) Certificate verifiable online on puc.parivahan.gov.in (for petrol vehicles)',
+          'Owner Government Photo ID (Aadhaar / PAN / Passport) and a signed Self-Declaration Form stating the two-wheeler is personal used property not intended for commercial resale',
+        ],
+      },
+      {
+        id: 'wooden-crating-engineering-royal-enfield',
+        badge: 'Heavy Cruiser Protection',
+        heading: 'Why 195 kg Royal Enfield Cruisers & Matte-Finish Tanks Benefit from Pinewood Crating',
+        paragraphs: [
+          'A Royal Enfield Classic 350, Bullet, Meteor, or Interceptor 650 weighs between 191 kg and 217 kg—nearly double the weight of a 110 kg commuter scooter. When a heavy cruiser is leaned onto its side-stand or center-stand inside an ordinary tempo without a wheel chock, highway braking forces put massive lateral torque on the stand mount, bend brake/gear levers, and cause handlebars to knock against adjacent cargo.',
+          'In our Full Wooden Crating protocol, we first wrap the entire motorcycle in 4mm closed-cell EPE foam (which prevents any adhesive or friction burn on matte black or chrome tanks), add double 10mm air-bubble wrap over the speedometer, headlamp dome, and mudguards, and then construct a rigid 12mm seasoned pinewood skeleton crate around the bike. The front wheel is locked upright inside a timber wheel chock while 4-point nylon ratchet straps compress the front telescopic forks by 15%–20% so the motorcycle rides on its own suspension without straining fork oil seals.',
+        ],
+        bullets: [
+          'Detachable Parts Boxed Separately: Rear-view mirrors, aftermarket auxiliary fog lamps, and tall touring windscreens are unbolted with spanners, bubble-wrapped, and taped inside the crate footwell',
+          'Exhaust & Engine Fin Guard: Thick 5-ply corrugated sheets are contoured around the catalytic converter, bend pipe, and alloy crankcase covers to prevent scuffs during ramp loading',
+          'Zero-Scratch Guarantee for Matte & Chrome Tanks: No brown packaging tape ever touches painted metal—tape is applied strictly over the outer 3rd and 4th layers of corrugated board and LLDPE stretch film',
+        ],
+      },
+      {
+        id: 'ev-scooter-transport-protocol-kolkata',
+        badge: '2026 Electric Vehicle Standard',
+        heading: 'Transporting Electric Scooters (Ola S1, Ather 450X, TVS iQube & Chetak EV) from Kolkata',
+        paragraphs: [
+          'With electric two-wheelers rapidly growing across New Town, Salt Lake, and South Kolkata, interstate EV shipping requires distinct battery and electronics handling compared to petrol motorcycles. Lithium-ion floorboard batteries should never be shipped at 100% full charge (which increases thermal stress in hot highway containers) or 0% depleted charge (which risks deep-discharge BMS lockouts over a 6-day trip).',
+          'Before our Kolkata pickup crew wraps your electric scooter, we verify that the battery State of Charge (SoC) is between 35% and 50%, engage "Vacation Mode / Deep Sleep Mode" on the touchscreen dashboard (or switch off the under-seat master isolator MCB), and pack your portable home charger in a foam-lined accessory carton listed explicitly on the Consignment Note.',
+        ],
+        bullets: [
+          'Charge Level Rule: Keep EV scooter battery at 35% to 50% SoC on pickup day—ideal for 6 to 10 days of zero-drain storage in Vacation Mode',
+          'Touchscreen & TFT Console Shield: A 20mm high-density EPE foam block is fitted over digital TFT displays (Ather/Ola/TVS) before bubble wrapping to prevent screen pressure cracks',
+          'Portable Charger & Document Pouch: Your OEM portable charger brick and spare key fob are sealed in a dedicated waterproof carton strapped inside the scooter floorboard bay',
         ],
       },
     ],
     corridorTableMeta: {
       badge: '2026 Corridor Tariff',
-      heading: 'City-Wise Bike Transport Charges from Kolkata',
-      subtitle: 'Door-to-door enclosed container rates from Kolkata to major Indian IT and industrial hubs.',
+      heading: 'City-Wise Bike Transport Charges from Kolkata (10 Major Routes)',
+      subtitle: 'Door-to-door enclosed container rates from Kolkata (Haltu, Behala, Salt Lake & New Town) to major Indian cities.',
       headers: {
         col1: 'Destination Corridor',
         col2: 'Highway Distance',
-        col3: '100cc–150cc Bike',
+        col3: '100cc–150cc / Scooter',
         col4: 'Royal Enfield / 350cc',
-        col5: 'With Wooden Crate',
+        col5: 'With Pinewood Crate',
         col6: 'Transit Time',
       },
     },
     corridorRates: [
       {
-        corridor: 'Kolkata to Bangalore (via NH-16)',
+        corridor: 'Kolkata to Bangalore (Whitefield / HSR / EC via NH-16)',
         distanceKm: '1,870 km',
         oneBhk: '₹4,800 – ₹6,200',
         twoBhk: '₹5,800 – ₹7,500',
@@ -803,7 +840,7 @@ export const BLOG_POSTS: BlogPost[] = [
         duration: '5 – 7 Days',
       },
       {
-        corridor: 'Kolkata to Hyderabad (via NH-16 & NH-65)',
+        corridor: 'Kolkata to Hyderabad (Gachibowli / HITEC City via NH-16/65)',
         distanceKm: '1,490 km',
         oneBhk: '₹4,400 – ₹5,600',
         twoBhk: '₹5,200 – ₹6,800',
@@ -811,7 +848,7 @@ export const BLOG_POSTS: BlogPost[] = [
         duration: '4 – 6 Days',
       },
       {
-        corridor: 'Kolkata to Delhi NCR (Noida / Gurgaon via NH-19)',
+        corridor: 'Kolkata to Delhi NCR (Noida / Gurgaon / Dwarka via NH-19)',
         distanceKm: '1,530 km',
         oneBhk: '₹4,500 – ₹5,800',
         twoBhk: '₹5,400 – ₹7,000',
@@ -819,15 +856,23 @@ export const BLOG_POSTS: BlogPost[] = [
         duration: '5 – 6 Days',
       },
       {
-        corridor: 'Kolkata to Pune / Mumbai (via NH-53)',
-        distanceKm: '1,880 – 1,960 km',
+        corridor: 'Kolkata to Pune (Hinjewadi / Kharadi / Wakad via NH-53)',
+        distanceKm: '1,880 km',
+        oneBhk: '₹5,000 – ₹6,300',
+        twoBhk: '₹6,000 – ₹7,600',
+        threeBhk: '₹7,600 – ₹9,800',
+        duration: '6 – 8 Days',
+      },
+      {
+        corridor: 'Kolkata to Mumbai / Navi Mumbai / Thane (via NH-53)',
+        distanceKm: '1,960 km',
         oneBhk: '₹5,200 – ₹6,500',
         twoBhk: '₹6,200 – ₹7,800',
         threeBhk: '₹7,800 – ₹10,200',
         duration: '6 – 8 Days',
       },
       {
-        corridor: 'Kolkata to Chennai (via NH-16)',
+        corridor: 'Kolkata to Chennai (OMR / Guindy / Anna Nagar via NH-16)',
         distanceKm: '1,670 km',
         oneBhk: '₹4,600 – ₹5,900',
         twoBhk: '₹5,500 – ₹7,100',
@@ -835,12 +880,36 @@ export const BLOG_POSTS: BlogPost[] = [
         duration: '5 – 7 Days',
       },
       {
-        corridor: 'Kolkata to Bhubaneswar / Guwahati',
-        distanceKm: '440 – 1,020 km',
-        oneBhk: '₹3,500 – ₹4,800',
-        twoBhk: '₹4,200 – ₹5,600',
-        threeBhk: '₹5,800 – ₹7,400',
-        duration: '2 – 4 Days',
+        corridor: 'Kolkata to Bhubaneswar / Cuttack (NH-16 Express)',
+        distanceKm: '440 km',
+        oneBhk: '₹3,200 – ₹4,200',
+        twoBhk: '₹3,800 – ₹4,900',
+        threeBhk: '₹5,400 – ₹6,800',
+        duration: '2 – 3 Days',
+      },
+      {
+        corridor: 'Kolkata to Siliguri / Guwahati (North Bengal & NE Corridor)',
+        distanceKm: '560 – 1,020 km',
+        oneBhk: '₹3,600 – ₹4,900',
+        twoBhk: '₹4,400 – ₹5,800',
+        threeBhk: '₹6,000 – ₹7,600',
+        duration: '3 – 5 Days',
+      },
+      {
+        corridor: 'Kolkata to Patna / Ranchi / Jamshedpur (Eastern Hub)',
+        distanceKm: '280 – 580 km',
+        oneBhk: '₹3,000 – ₹4,200',
+        twoBhk: '₹3,600 – ₹4,800',
+        threeBhk: '₹5,200 – ₹6,600',
+        duration: '2 – 3 Days',
+      },
+      {
+        corridor: 'Kolkata to Ahmedabad / Gandhinagar (Western Corridor)',
+        distanceKm: '2,060 km',
+        oneBhk: '₹5,400 – ₹6,800',
+        twoBhk: '₹6,500 – ₹8,200',
+        threeBhk: '₹8,200 – ₹10,600',
+        duration: '6 – 8 Days',
       },
     ],
     liftComparison: {
@@ -907,13 +976,13 @@ export const BLOG_POSTS: BlogPost[] = [
       sectionTitle: 'Kolkata Doorstep Feeder & GST Billing for Bike Transport',
       shuttleHeadline: 'How Doorstep Bike Pickup Works in Narrow Kolkata Lanes',
       shuttleDesc:
-        'Multi-axle interstate bike carriers operate from highway hubs near Dankuni, Dhulagarh, and EM Bypass. Our team picks up your motorcycle directly from your apartment in Haltu, Behala, Jadavpur, or Salt Lake using a hydraulic-ramp pickup van, wraps it at your doorstep so you can inspect every layer, and transfers it to the highway carrier.',
+        'Multi-axle interstate bike carriers operate from highway hubs near Dankuni, Dhulagarh, and EM Bypass. Our team picks up your motorcycle directly from your apartment in Haltu (17, Ramlal Bazar Road hub), Behala (217, Parui Kacha Road branch), Jadavpur, or Salt Lake using a hydraulic-ramp pickup van, wraps it at your doorstep so you can inspect every layer, and transfers it to the highway carrier.',
       shuttleRates: [
         {
           vehicle: 'Doorstep Feeder Pickup Van (Kolkata Metro Limits)',
           capacity: '1 – 3 Motorcycles with Wheel Chocks',
           chargePerTrip: 'Included in Door-to-Door Quote',
-          applicableZones: 'All KMC Wards, Salt Lake, New Town, Howrah & Behala',
+          applicableZones: 'All KMC Wards, Salt Lake, New Town, Howrah, Haltu & Behala',
         },
         {
           vehicle: 'Extended Suburb Pickup (Kalyani / Baruipur / Uluberia)',
@@ -924,7 +993,7 @@ export const BLOG_POSTS: BlogPost[] = [
       ],
       gstHeadline: 'GST Invoice for Corporate Bike Relocation Claims',
       gstDesc:
-        'Employees transferring to Bangalore, Hyderabad, or Pune can claim two-wheeler transportation charges under corporate relocation benefits using our GST tax invoice and Consignment Note (LR).',
+        'Employees transferring to Bangalore, Hyderabad, Delhi NCR, or Pune can claim two-wheeler transportation charges under corporate relocation benefits using our verified GST tax invoice (GSTIN: 19AAWFB0500G1ZL) and Consignment Note (LR).',
       gstTypes: [
         {
           rate: '18% GST (Composite Door-to-Door Crating & Carrier)',
@@ -949,11 +1018,25 @@ export const BLOG_POSTS: BlogPost[] = [
           'Verify vehicle registration status, download digital RC details, or check Form 28 interstate NOC requirements.',
       },
       {
+        label: 'Parivahan Sewa Online PUC Emission Certificate Portal',
+        url: 'https://puc.parivahan.gov.in/',
+        authority: 'Ministry of Road Transport & Highways (MoRTH)',
+        description:
+          'Verify and download your active Pollution Under Control (PUC) certificate before interstate dispatch.',
+      },
+      {
         label: 'Indian Railways Official Coaching & Bike Parcel Tariff Portal',
         url: 'https://parcel.indianrail.gov.in/',
         authority: 'Indian Railways (Ministry of Railways)',
         description:
           'Compare railway brake-van luggage/parcel rules and station-to-station tariff structures.',
+      },
+      {
+        label: 'Official Government of India GST Portal — Verify Taxpayer (19AAWFB0500G1ZL)',
+        url: 'https://services.gst.gov.in/services/searchtp',
+        authority: 'Goods and Services Tax Network (Government of India)',
+        description:
+          'Verify Bharat Relocators’ active West Bengal GSTIN (19AAWFB0500G1ZL) for corporate vehicle relocation reimbursement.',
       },
     ],
     internalLinks: [
@@ -963,9 +1046,29 @@ export const BLOG_POSTS: BlogPost[] = [
         description: 'View our enclosed wheel-chock carrier specifications and book doorstep bike pickup.',
       },
       {
+        label: 'Request an Instant Written Bike Transport Quote',
+        href: '/get-a-quote',
+        description: 'Get a fixed, all-inclusive doorstep bike shifting quotation from our Haltu or Behala desk.',
+      },
+      {
         label: 'Vehicle Transportation & Safety Pillar Guide',
         href: '/vehicle-transportation-guide',
         description: 'Read our complete operational manual for car and motorcycle highway logistics.',
+      },
+      {
+        label: '2026 Kolkata Packers & Movers Rate Card (Bundle Bike + 1BHK/2BHK)',
+        href: '/blogs/packers-and-movers-kolkata-charges-rate-card',
+        description: 'Check how bundling your motorcycle with a 1BHK or 2BHK household move saves ₹1,500–₹2,500.',
+      },
+      {
+        label: 'Kolkata Intercity Relocation Guide (NH-16 & NH-19 Corridors)',
+        href: '/intercity-moving-guide',
+        description: 'Explore interstate highway transit timelines, waybills, and insurance coverage.',
+      },
+      {
+        label: 'Live Consignment & Bike Carrier Tracking',
+        href: '/tracking',
+        description: 'Track your two-wheeler carrier shipment milestones across India.',
       },
     ],
     faqs: [
@@ -977,17 +1080,37 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         question: 'Is wooden crating necessary for bike transport from Kolkata?',
         answer:
-          'Standard 4-layer packing (foam sheet, air-bubble wrap, corrugated board, and stretch film) is sufficient for dedicated bike carriers. However, if your bike is travelling in a mixed household container or is a high-value cruiser/sports bike, full wooden crating is strongly recommended to prevent any handlebar, indicator, or fairing pressure.',
+          'Standard 4-layer packing (4mm EPE foam sheet, 10mm air-bubble wrap, 5-ply corrugated board, and stretch film) is sufficient when your bike travels inside a dedicated wheel-chock bike carrier. However, if your bike is travelling in a mixed household container or is a heavy cruiser (Royal Enfield 350cc/650cc) or sports bike with delicate fairings, full pinewood crating (₹1,500–₹2,500 extra) is strongly recommended for 360-degree crush protection.',
       },
       {
         question: 'Why must petrol be drained before loading the motorcycle?',
         answer:
-          'Under Indian road transport safety regulations, carrying flammable liquid fuel inside an enclosed container truck is a fire hazard due to highway heat buildup and vapor expansion. We drain the fuel tank down to under 1 litre at pickup and note the fuel level on your Vehicle Condition Report.',
+          'Under Indian road transport safety regulations, carrying flammable liquid fuel inside an enclosed container truck is a fire hazard due to highway heat buildup and carburetor/injector vapor expansion. We drain the fuel tank down to under 1 litre at pickup and note the fuel reading on your signed Vehicle Condition Report.',
       },
       {
         question: 'Is an RTO NOC mandatory to transport my bike to another state?',
         answer:
           'No, an RTO NOC (Form 28) is not required just to transport your bike via a movers carrier. You only need copies of your RC, valid insurance, PUC, and ID proof for transit. An RTO NOC is only needed later if you intend to permanently re-register the vehicle in the new state after 12 months.',
+      },
+      {
+        question: 'Can you transport electric scooters (Ola S1 Pro, Ather 450X, TVS iQube) from Kolkata?',
+        answer:
+          'Yes! We regularly transport electric two-wheelers from Kolkata to Bangalore, Hyderabad, Pune, and Delhi. Keep the lithium-ion battery charged between 35% and 50%, activate Vacation/Deep-Sleep Mode on the console at pickup, and hand over the portable home charger so our crew can pack it inside a cushioned accessory box.',
+      },
+      {
+        question: 'Do I get a discount if I shift my bike along with my 1BHK or 2BHK household goods?',
+        answer:
+          'Yes. When you bundle a motorcycle or scooter with a 1BHK, 2BHK, or 3BHK interstate household move from Kolkata, the bike is wheel-chocked and partitioned inside the same closed container truck, saving you ₹1,500 to ₹2,500 compared to standalone two-wheeler shipping.',
+      },
+      {
+        question: 'How is bike transit insurance calculated and what does it cover?',
+        answer:
+          'Optional All-Risk Carrier Transit Insurance is calculated at 1.5% to 2.5% of your motorcycle’s current Insured Declared Value (IDV) as shown on your motor insurance policy. It covers transit contingencies, loading/unloading mishaps, and highway carrier accidents from Kolkata pickup to destination delivery.',
+      },
+      {
+        question: 'Do you pick up bikes directly from narrow lanes in South or North Kolkata?',
+        answer:
+          'Yes. Our hydraulic-ramp feeder pickup vans collect motorcycles directly from your doorstep in Haltu, Behala, Jadavpur, Tollygunge, Dum Dum, Salt Lake, New Town, and Howrah, completing the 4-layer foam wrapping and signed Vehicle Condition Report right in front of you.',
       },
     ],
   },

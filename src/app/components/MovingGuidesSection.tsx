@@ -227,7 +227,16 @@ export default function MovingGuidesSection() {
         </div>
 
         {/* Hub CTA */}
-        <div className="mt-10 text-center">
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+          <Link
+            href="/blogs/bike-transport-kolkata-charges-wooden-crating-guide"
+            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-red-50 text-[#082F52] border-2 border-[#082F52]/20 hover:border-[#E53935] font-semibold text-sm px-5 py-3.5 rounded-xl shadow-xs transition-all"
+          >
+            <span className="text-xs font-bold uppercase tracking-wider bg-red-100 text-[#E53935] px-2 py-0.5 rounded">
+              New
+            </span>
+            <span>2026 Bike Transport Cost &amp; Crating Guide →</span>
+          </Link>
           <Link
             href="/blogs"
             className="inline-flex items-center justify-center gap-2 bg-[#082F52] hover:bg-[#0b3b60] text-white font-semibold text-sm px-6 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all"
