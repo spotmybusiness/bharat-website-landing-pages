@@ -124,11 +124,11 @@ export default function MovingGuidesSection() {
             </div>
           </article>
 
-          {/* Card 3: Vehicle Transportation Guide */}
-          <article className="group bg-white rounded-2xl p-6 border-2 border-[#082F52]/15 hover:border-[#E53935] shadow-[0_4px_16px_rgba(8,47,82,0.06)] hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
+          {/* Card 2: 2026 Bike Transport Cost & Wooden Crating Guide (Post 2) */}
+          <article className="group bg-white rounded-2xl p-6 border-2 border-[#E53935]/40 hover:border-[#E53935] shadow-[0_4px_16px_rgba(8,47,82,0.06)] hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between gap-2 mb-5">
-                <div className="w-10 h-10 rounded-xl bg-slate-50 border border-slate-200/80 text-[#082F52] group-hover:bg-[#E53935] group-hover:text-white group-hover:border-[#E53935] flex items-center justify-center transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 text-[#E53935] group-hover:bg-[#E53935] group-hover:text-white group-hover:border-[#E53935] flex items-center justify-center transition-colors">
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -145,34 +145,34 @@ export default function MovingGuidesSection() {
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"
+                      d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1"
                     />
                   </svg>
                 </div>
-                <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 text-[#082F52]">
-                  RTO &amp; Safety
+                <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#E53935] text-white">
+                  ★ New · Post #2
                 </span>
               </div>
 
               <h3 className="text-lg font-display font-bold text-[#082F52] group-hover:text-[#E53935] transition-colors leading-snug mb-2.5">
-                <Link href="/vehicle-transportation-guide">
-                  Car &amp; Bike Transportation Safety Guide
+                <Link href="/blogs/bike-transport-kolkata-charges-wooden-crating-guide">
+                  Bike Transport from Kolkata (2026 Cost &amp; Crating Guide)
                 </Link>
               </h3>
 
               <p className="text-slate-600 text-xs sm:text-[13px] leading-relaxed mb-5">
-                Essential RC, insurance, PUC &amp; NOC paperwork, fuel reserve prep, wooden bike
-                crating, and closed hydraulic car carriers.
+                City-wise two-wheeler carrier rates (₹3,800–₹9,500), 4-layer foam vs. pinewood
+                crating for Royal Enfield cruisers, EV scooter rules &amp; RTO documents.
               </p>
             </div>
 
             <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
-              <span className="text-slate-500 font-medium">7 min read · Car &amp; Bike</span>
+              <span className="text-slate-500 font-medium">10 min read · Bike Rates</span>
               <Link
-                href="/vehicle-transportation-guide"
+                href="/blogs/bike-transport-kolkata-charges-wooden-crating-guide"
                 className="font-bold text-[#082F52] group-hover:text-[#E53935] inline-flex items-center gap-1 transition-colors"
               >
-                Read Guide →
+                View Rates →
               </Link>
             </div>
           </article>

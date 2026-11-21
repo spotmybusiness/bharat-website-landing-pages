@@ -146,6 +146,109 @@ export default function BlogsPage() {
         }
       />
 
+      {/* Published Blog Articles Grid — Above the Fold so New Posts Appear Immediately */}
+      <section className="py-12 lg:py-16 bg-slate-50 border-b border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-slate-200">
+            <div>
+              <span className="text-xs uppercase font-bold text-[#E53935] tracking-wider block">
+                Published 2026 Guides &amp; Rate Cards ({posts.length} Live)
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#082F52]">
+                Latest Kolkata Relocation Blogs &amp; Cost Guides
+              </h2>
+            </div>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200 self-start sm:self-auto">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Verified 2026 Rates
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[...posts].reverse().map((post, idx) => {
+              const postNumber = posts.findIndex((p) => p.slug === post.slug) + 1;
+              const isLatest = idx === 0 && posts.length > 1;
+              return (
+                <article
+                  key={post.slug}
+                  className={`bg-white rounded-3xl border-2 shadow-md hover:shadow-xl transition-all flex flex-col justify-between overflow-hidden ${
+                    isLatest
+                      ? 'border-[#E53935]/50 ring-2 ring-[#E53935]/10'
+                      : 'border-[#082F52]/15 hover:border-[#082F52]/40'
+                  }`}
+                >
+                  <div>
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100 border-b border-slate-100">
+                      <img
+                        src={post.featuredImage}
+                        alt={post.featuredImageAlt}
+                        loading={idx < 2 ? 'eager' : 'lazy'}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-3.5 left-3.5 flex flex-wrap gap-2">
+                        {isLatest && (
+                          <span className="bg-[#E53935] text-white text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full shadow-md">
+                            ★ New Release · Post #{postNumber}
+                          </span>
+                        )}
+                        <span className="bg-[#082F52]/90 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-xs">
+                          Post #{postNumber} · {post.publishWeek}
+                        </span>
+                        <span className="bg-white/95 text-[#082F52] text-xs font-bold px-3 py-1 rounded-full shadow-xs">
+                          {post.category}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6 sm:p-7 space-y-3.5">
+                      <div className="flex items-center justify-between text-xs text-slate-500">
+                        <span className="font-semibold text-[#1478B5]">{post.contentFormat}</span>
+                        <span>{post.readTime} · Updated {post.updatedDate}</span>
+                      </div>
+
+                      <h3 className="font-display font-bold text-[#082F52] text-xl sm:text-2xl leading-snug hover:text-[#E53935] transition-colors">
+                        <Link href={`/blogs/${post.slug}`}>
+                          {post.h1}
+                        </Link>
+                      </h3>
+
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        {post.excerpt}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {post.targetKeywords.slice(0, 3).map((kw) => (
+                          <span
+                            key={kw}
+                            className="text-[11px] bg-slate-100 text-slate-700 px-2.5 py-1 rounded-md font-medium"
+                          >
+                            {kw}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="px-6 sm:px-7 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2 text-xs text-slate-500">
+                      <span className="font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-md">
+                        ✓ {post.externalLinks.length} Official Gov Portals
+                      </span>
+                    </div>
+                    <Link
+                      href={`/blogs/${post.slug}`}
+                      className="inline-flex items-center gap-1.5 bg-[#082F52] hover:bg-[#E53935] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl transition-colors shrink-0 shadow-xs"
+                    >
+                      Read Full Guide →
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Featured Blog Post Hero Banner */}
       <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -254,97 +357,6 @@ export default function BlogsPage() {
           </div>
         </div>
       </section>
-
-      {/* Additional Published Blog Articles Grid (Renders as Week 2..12 Posts Go Live) */}
-      {posts.length > 1 && (
-        <section className="py-14 lg:py-20 bg-slate-50 border-t border-slate-200/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <SectionHeader
-              label="Editorial Library"
-              title="All 2026 Kolkata Relocation Rate Cards & Deep-Dive Guides"
-              subtitle="Every guide includes a Quick Answer summary table, route-wise pricing matrix, side-by-side bill comparison, official government portal links, and expert FAQs."
-            />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {posts.map((post, idx) => (
-                <article
-                  key={post.slug}
-                  className="bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-lg hover:border-[#082F52]/30 transition-all flex flex-col justify-between overflow-hidden"
-                >
-                  <div>
-                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 border-b border-slate-100">
-                      <img
-                        src={post.featuredImage}
-                        alt={post.featuredImageAlt}
-                        loading="lazy"
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                        <span className="bg-[#082F52]/90 text-white text-[11px] font-bold px-2.5 py-1 rounded-full backdrop-blur-xs">
-                          #{idx + 1} · {post.publishWeek}
-                        </span>
-                        <span className="bg-[#E53935] text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
-                          {post.category}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="p-6 space-y-3">
-                      <div className="flex items-center justify-between text-xs text-slate-500">
-                        <span className="font-semibold text-[#1478B5]">{post.contentFormat}</span>
-                        <span>{post.readTime}</span>
-                      </div>
-
-                      <h3 className="font-display font-bold text-[#082F52] text-lg leading-snug hover:text-[#E53935] transition-colors">
-                        <Link href={`/blogs/${post.slug}`}>
-                          {post.h1}
-                        </Link>
-                      </h3>
-
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
-                        {post.excerpt}
-                      </p>
-
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        {post.targetKeywords.slice(0, 2).map((kw) => (
-                          <span
-                            key={kw}
-                            className="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-medium"
-                          >
-                            {kw}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="px-6 py-4 bg-slate-50/70 border-t border-slate-100 flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 text-[11px] text-slate-500">
-                      <span className="font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
-                        {post.externalLinks.length} Gov Links
-                      </span>
-                      {post.internalLinks[0] && (
-                        <Link
-                          href={post.internalLinks[0].href}
-                          className="text-[#082F52] hover:underline font-medium truncate max-w-[130px]"
-                        >
-                          {post.internalLinks[0].href}
-                        </Link>
-                      )}
-                    </div>
-                    <Link
-                      href={`/blogs/${post.slug}`}
-                      className="text-xs font-bold text-[#E53935] hover:text-[#082F52] transition-colors shrink-0"
-                    >
-                      Read Guide →
-                    </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Pinned Cornerstone Relocation Guides */}
       <section className="py-14 bg-white border-y border-slate-200/80">
