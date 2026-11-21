@@ -163,7 +163,7 @@ export default function BlogsPage() {
             </span>
           </div>
 
-          {posts.map((post) => {
+          {[...posts].reverse().map((post) => {
             const snapshots =
               post.priceSnapshots ??
               post.quickAnswer.rates.slice(0, 3).map((r, i) => ({
