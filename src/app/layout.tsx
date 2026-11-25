@@ -68,8 +68,8 @@ import { getOrganizationSchema, getWebsiteSchema, buildGraphSchema } from '@/lib
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${plusJakartaSansDisplay.variable} overflow-x-hidden max-w-full`}>
-      <body className="font-sans antialiased bg-background text-foreground overflow-x-hidden min-h-screen w-full max-w-full">
+    <html lang="en" className={`${plusJakartaSans.variable} ${plusJakartaSansDisplay.variable} overflow-x-clip max-w-full`}>
+      <body className="font-sans antialiased bg-background text-foreground overflow-x-clip min-h-screen w-full max-w-full">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:px-4 focus:py-2.5 focus:bg-[#E53935] focus:text-white focus:font-semibold focus:text-sm focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-white"

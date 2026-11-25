@@ -985,96 +985,146 @@ export default async function BlogPostPage({ params }: PageProps) {
             </div>
 
             {/* Right Sidebar Column (4 cols) */}
-            <aside className="lg:col-span-4 space-y-8">
-              <div className="sticky top-24 space-y-6">
+            <aside className="lg:col-span-4 space-y-6">
+              {/* Upper Static Cards: Recommended Services & Verified Kolkata Trust Card */}
+              <div className="bg-white rounded-2xl p-6 border-2 border-[#082F52]/15 space-y-3 shadow-xs">
+                <h4 className="text-xs uppercase font-bold text-[#E53935] tracking-wider">
+                  Recommended Services for This Move
+                </h4>
+                <div className="space-y-2.5">
+                  {post.internalLinks.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block p-3 rounded-xl bg-slate-50 hover:bg-red-50/40 border border-slate-200 hover:border-[#E53935] transition-all"
+                    >
+                      <span className="font-bold text-[#082F52] text-xs block">
+                        {item.label} →
+                      </span>
+                      <span className="text-[11px] text-slate-600 mt-0.5 block leading-snug">
+                        {item.description}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Verified Kolkata Hubs & GST Statutory Trust Card */}
+              <div className="bg-emerald-50/60 rounded-2xl p-5 border border-emerald-200 space-y-3">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-[11px] uppercase font-bold text-emerald-800 tracking-wider">
+                    Verified Kolkata Movers
+                  </span>
+                  <span className="text-[11px] font-bold bg-amber-100 text-amber-900 px-2 py-0.5 rounded">
+                    ★ 4.9 (306+ Reviews)
+                  </span>
+                </div>
+                <div className="space-y-1.5 text-xs text-slate-700">
+                  <p>
+                    <strong className="text-[#082F52]">GSTIN:</strong>{' '}
+                    <span className="font-mono font-bold text-emerald-800">19AAWFB0500G1ZL</span>
+                  </p>
+                  <p>
+                    <strong className="text-[#082F52]">Haltu HQ:</strong> 17, Ramlal Bazar Rd, Kolkata 700078
+                  </p>
+                  <p>
+                    <strong className="text-[#082F52]">Behala Branch:</strong> 217, Parui Kacha Rd, Kolkata 700061
+                  </p>
+                </div>
+                <div className="pt-2 border-t border-emerald-200/70 flex items-center justify-between text-[11px] font-semibold">
+                  <a
+                    href="https://services.gst.gov.in/services/searchtp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-emerald-800 hover:text-[#E53935] underline"
+                  >
+                    Verify GSTIN on gst.gov.in ↗
+                  </a>
+                  <Link href="/tracking" className="text-[#082F52] hover:text-[#E53935]">
+                    Track Shipment →
+                  </Link>
+                </div>
+              </div>
+
+              {/* Sticky Navigation & Conversion Rail — Glides Down Alongside Entire Article */}
+              <div className="lg:sticky lg:top-24 space-y-5">
                 {/* Quick Jump Table of Contents */}
-                <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
-                  <h3 className="text-xs uppercase font-bold text-[#082F52] tracking-wider mb-3">
-                    Table of Contents
+                <div className="bg-slate-50 rounded-2xl p-5 border border-slate-200">
+                  <h3 className="text-xs uppercase font-bold text-[#082F52] tracking-wider mb-2.5">
+                    On This Page
                   </h3>
-                  <nav className="space-y-2 text-xs font-medium text-slate-600">
+                  <nav className="space-y-1 text-xs font-medium text-slate-600">
                     <a href="#quick-answer" className="block hover:text-[#E53935] transition-colors py-1">
-                      1. Quick Answer Cost Summary
+                      • Quick Answer Cost Summary
                     </a>
                     {post.showCostCalculator && (
                       <a href="#calculator" className="block hover:text-[#E53935] transition-colors py-1">
-                        2. Interactive 2026 Cost Estimator
+                        • Interactive 2026 Cost Estimator
                       </a>
                     )}
-                    <a href="#corridor-pricing" className="block hover:text-[#E53935] transition-colors py-1">
-                      3. {corridorMeta.heading}
+                    {post.articleSections?.map((sec) => (
+                      <a
+                        key={sec.id}
+                        href={`#${sec.id}`}
+                        className="block hover:text-[#E53935] transition-colors py-1 truncate"
+                        title={sec.heading}
+                      >
+                        • {sec.heading}
+                      </a>
+                    ))}
+                    <a href="#corridor-pricing" className="block hover:text-[#E53935] transition-colors py-1 truncate" title={corridorMeta.heading}>
+                      • {corridorMeta.heading}
                     </a>
-                    <a href="#lift-comparison" className="block hover:text-[#E53935] transition-colors py-1">
-                      4. {post.liftComparison.scenarioTitle}
+                    <a href="#lift-comparison" className="block hover:text-[#E53935] transition-colors py-1 truncate" title={post.liftComparison.scenarioTitle}>
+                      • {post.liftComparison.scenarioTitle}
                     </a>
                     <a href="#shuttle-tempo-gst" className="block hover:text-[#E53935] transition-colors py-1">
-                      5. Logistics &amp; GST Compliance
+                      • Logistics &amp; GST Compliance
                     </a>
                     <a href="#official-references" className="block hover:text-[#E53935] transition-colors py-1">
-                      6. Official Government Portals
+                      • Official Government Portals
                     </a>
                     <a href="#faqs" className="block hover:text-[#E53935] transition-colors py-1">
-                      7. Frequently Asked Questions
+                      • Frequently Asked Questions
                     </a>
                   </nav>
                 </div>
 
-                {/* Recommended Internal Service Links for This Post */}
-                <div className="bg-white rounded-2xl p-6 border-2 border-[#082F52]/15 space-y-3 shadow-xs">
-                  <h4 className="text-xs uppercase font-bold text-[#E53935] tracking-wider">
-                    Recommended Services for This Move
-                  </h4>
-                  <div className="space-y-3">
-                    {post.internalLinks.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="block p-3.5 rounded-xl bg-slate-50 hover:bg-red-50/40 border border-slate-200 hover:border-[#E53935] transition-all"
-                      >
-                        <span className="font-bold text-[#082F52] text-xs block">
-                          {item.label} →
-                        </span>
-                        <span className="text-[11px] text-slate-600 mt-1 block leading-snug">
-                          {item.description}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-
                 {/* Free Instant Estimate Card */}
-                <div className="bg-gradient-to-br from-[#082F52] to-[#0A3D6B] rounded-2xl p-6 text-white shadow-lg space-y-4">
+                <div className="bg-gradient-to-br from-[#082F52] to-[#0A3D6B] rounded-2xl p-5 text-white shadow-lg space-y-3.5">
                   <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                    <span className="text-xs uppercase font-bold text-slate-200 tracking-wider">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[11px] uppercase font-bold text-slate-200 tracking-wider">
                       Free Booking Estimate
                     </span>
                   </div>
-                  <h4 className="text-lg font-display font-bold text-white leading-tight">
+                  <h4 className="text-base font-display font-bold text-white leading-tight">
                     Moving in Kolkata Soon? Get a Guaranteed Quote
                   </h4>
                   <p className="text-xs text-slate-300 leading-relaxed">
-                    Zero surprise costs on moving day. Includes full inventory review, 5-layer packing, and container transport.
+                    Zero surprise costs on moving day. Includes inventory survey, 5-layer packing, and enclosed container transport.
                   </p>
-                  <Link
-                    href="/get-a-quote"
-                    className="w-full block text-center bg-[#E53935] hover:bg-[#c62828] text-white font-bold text-xs py-3 px-4 rounded-xl shadow-md transition-colors"
-                  >
-                    Open Free Quote Form →
-                  </Link>
-                  <a
-                    href={getWhatsAppUrl(`Hi, I would like to book a moving quote in Kolkata after reading ${post.title}.`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs py-3 px-4 rounded-xl transition-colors shadow-sm"
-                  >
-                    WhatsApp Move Specialist
-                  </a>
+                  <div className="space-y-2 pt-1">
+                    <Link
+                      href="/get-a-quote"
+                      className="w-full block text-center bg-[#E53935] hover:bg-[#c62828] text-white font-bold text-xs py-3 px-4 rounded-xl shadow-md transition-colors"
+                    >
+                      Open Free Quote Form →
+                    </Link>
+                    <a
+                      href={getWhatsAppUrl(`Hi, I would like to book a moving quote in Kolkata after reading ${post.title}.`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs py-3 px-4 rounded-xl transition-colors shadow-sm"
+                    >
+                      WhatsApp Move Specialist
+                    </a>
+                  </div>
                 </div>
 
                 {/* Direct Hotline */}
-                <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200 text-center space-y-2">
-                  <span className="text-xs uppercase font-bold text-slate-400 block">
+                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 text-center space-y-1">
+                  <span className="text-[11px] uppercase font-bold text-slate-400 block">
                     Speak With A Relocation Coordinator
                   </span>
                   <a
@@ -1083,7 +1133,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   >
                     {BUSINESS.phone.primaryFormatted}
                   </a>
-                  <p className="text-[11px] text-slate-500">24/7 Available across Kolkata</p>
+                  <p className="text-[11px] text-slate-500">24/7 Available · Haltu &amp; Behala Hubs</p>
                 </div>
               </div>
             </aside>
