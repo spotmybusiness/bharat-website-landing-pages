@@ -314,7 +314,14 @@ export default function VehicleTransportationGuidePage() {
               >
                 Indian Railways Official Parcel Portal
               </a>
-              . For city-wise two-wheeler carrier rates and 4-layer foam vs. pinewood crating costs, see our{' '}
+              . For city-wise enclosed carrier tariffs, explore our{' '}
+              <Link
+                href="/blogs/car-transport-from-kolkata-cost-carrier-guide"
+                className="text-[#E53935] font-bold underline hover:text-[#082F52]"
+              >
+                2026 Car Transport from Kolkata Cost &amp; Carrier Guide
+              </Link>{' '}
+              and{' '}
               <Link
                 href="/blogs/bike-transport-kolkata-charges-wooden-crating-guide"
                 className="text-[#E53935] font-bold underline hover:text-[#082F52]"

@@ -1147,11 +1147,11 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 
   // ============================================================================
-  // POST 3 — WEEK 3: CAR TRANSPORT FROM KOLKATA COST & CARRIER GUIDE
+  // POST 3 — WEEK 3: CAR TRANSPORT FROM KOLKATA COST & CARRIER GUIDE (PUBLISHED)
   // ============================================================================
   {
     slug: 'car-transport-from-kolkata-cost-carrier-guide',
-    isPublished: false,
+    isPublished: true,
     publishWeek: 'Week 3',
     sprintSchedule: 'Week 2 (Post 3)',
     contentFormat: 'Cost Breakdown + Carrier Comparison + Pre-Move Checklist',
@@ -1162,18 +1162,18 @@ export const BLOG_POSTS: BlogPost[] = [
     metaTitle:
       'Car Transport from Kolkata Cost [2026]: Closed Carrier Rates & Transit Time',
     metaDescription:
-      'Shifting your car from Kolkata? Check verified 2026 car carrier rates to Bangalore, Delhi, Mumbai, Hyderabad & Pune (₹14,500 - ₹32,000). Single vs multi-car enclosed trailers, transit time & checklist.',
+      'Shifting your car from Kolkata? Check verified 2026 car carrier rates to Bangalore, Delhi, Mumbai, Hyderabad & Pune (₹14,500 - ₹32,000). Single vs multi-car enclosed trailers, EV car rules, odometer lock & checklist.',
     excerpt:
-      'Verified 2026 rate card for transporting hatchbacks, sedans, and SUVs from Kolkata via hydraulic enclosed car carriers. Compare single vs multi-car trailers, odometer logging, and city-wise transit times.',
+      'Verified 2026 rate card for transporting hatchbacks, EVs, sedans, and 7-seater SUVs from Kolkata via hydraulic enclosed car carriers. Compare single vs multi-car trailers, odometer video logging, FASTag shielding, and 10-city transit times.',
     introParagraphs: [
-      'Driving a personal car 1,500 to 2,000 kilometers from Kolkata to Bangalore, Mumbai, or Delhi NCR adds heavy tire wear, highway stone-chip risk, ₹15,000+ in fuel and FASTag tolls, and three days of exhausting highway driving.',
-      'Shipping your vehicle inside an enclosed hydraulic car carrier ensures zero road wear, weatherproof protection against monsoon rain and highway dust, and documented odometer security from pickup in Kolkata to doorstep delivery at your destination.',
+      'Driving a personal car 1,500 to 2,000 kilometers from Kolkata to Bangalore, Mumbai, Pune, or Delhi NCR adds heavy tire wear, highway stone-chip damage, ₹16,000+ in petrol/diesel and FASTag tolls, overnight hotel costs, and three days of exhausting highway driving.',
+      'Shipping your vehicle from our Haltu (700078) or Behala (700061) dispatch hubs inside an enclosed hydraulic steel car carrier eliminates road wear, shields paintwork from monsoon rain and highway gravel, and guarantees documented odometer video security from pickup to destination delivery.',
     ],
     category: 'Vehicle Relocation',
     categorySlug: 'vehicle-relocation',
     publishedDate: '2026-01-29',
-    updatedDate: '2026-11-15',
-    readTime: '9 min read',
+    updatedDate: '2026-11-25',
+    readTime: '11 min read',
     author: {
       name: 'Bharat Relocators Automotive Desk',
       role: 'Enclosed Car Carrier Coordinator',
@@ -1187,6 +1187,7 @@ export const BLOG_POSTS: BlogPost[] = [
       'car carrier kolkata to bangalore charges',
       'car shifting charges kolkata',
       'enclosed car carrier kolkata',
+      'car transport kolkata to delhi cost',
     ],
     tags: [
       'Car Transport Kolkata',
@@ -1194,10 +1195,22 @@ export const BLOG_POSTS: BlogPost[] = [
       'Enclosed Car Trailer',
       'Vehicle Relocation',
     ],
+    priceSnapshots: [
+      { label: 'Hatchbacks', value: '₹14,500 – ₹18,500' },
+      { label: 'Sedans & Compact SUV', value: '₹16,000 – ₹20,500' },
+      { label: 'Large 7-Seater SUVs', value: '₹19,500 – ₹25,500', highlight: true },
+    ],
+    topicBadges: [
+      'Quick Answer Segment Matrix',
+      '10-City Car Carrier Tariff',
+      'Multi-Car vs Single Container Bill',
+      'Odometer Lock, EV & FASTag Rules',
+    ],
+    ctaLabel: 'Read Complete 2026 Rate Card',
     quickAnswer: {
       headline: 'Quick Answer: What Is the Cost of Car Transport from Kolkata in 2026?',
       summary:
-        'Car transport from Kolkata in an enclosed hydraulic multi-car carrier costs ₹14,500 to ₹22,000 for hatchbacks (Swift, i20, Baleno), ₹16,500 to ₹25,500 for sedans and compact SUVs (City, Nexon, Creta), and ₹19,500 to ₹32,000 for large 7-seater SUVs (Innova Hycross, XUV700, Fortuner) depending on destination distance.',
+        'Car transport from Kolkata in an enclosed hydraulic multi-car carrier costs ₹14,500 to ₹22,000 for hatchbacks (Swift, i20, Baleno), ₹16,000 to ₹24,500 for sedans, compact SUVs, and EVs (City, Nexon EV, Brezza), and ₹19,500 to ₹32,000 for large 7-seater SUVs and luxury cars (Innova Hycross, XUV700, Fortuner, BMW) depending on highway distance.',
       columnHeaders: {
         col1: 'Vehicle Segment',
         col2: '1,000–1,600 km (Delhi/Hyd)',
@@ -1207,7 +1220,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       rates: [
         {
-          homeSize: 'Hatchbacks (Swift, Baleno, i20, Tiago)',
+          homeSize: 'Hatchbacks (Swift, Baleno, i20, Tiago, Altroz)',
           localCost: '₹14,500 – ₹18,500',
           intercityCost: '₹16,500 – ₹22,000',
           truckType: 'Enclosed 6/8-Car Hydraulic Carrier',
@@ -1215,7 +1228,15 @@ export const BLOG_POSTS: BlogPost[] = [
           duration: '5 – 8 Days',
         },
         {
-          homeSize: 'Sedans & Compact SUVs (City, Verna, Brezza, Nexon)',
+          homeSize: 'Electric Cars (Tata Nexon EV, Punch EV, MG ZS EV, BYD Atto 3)',
+          localCost: '₹16,500 – ₹21,000',
+          intercityCost: '₹19,000 – ₹25,000',
+          truckType: 'Low-Incline Lower Deck Bay',
+          crewSize: 'EV SoC Check + Tire Lashing',
+          duration: '5 – 8 Days',
+        },
+        {
+          homeSize: 'Sedans & Compact SUVs (City, Virtus, Verna, Brezza, Nexon)',
           localCost: '₹16,000 – ₹20,500',
           intercityCost: '₹18,500 – ₹24,500',
           truckType: 'Enclosed Multi-Deck Trailer',
@@ -1223,7 +1244,7 @@ export const BLOG_POSTS: BlogPost[] = [
           duration: '5 – 8 Days',
         },
         {
-          homeSize: 'Mid-Size SUVs (Creta, Seltos, Grand Vitara, Harrier)',
+          homeSize: 'Mid-Size SUVs (Creta, Seltos, Grand Vitara, Harrier, Scorpio-N)',
           localCost: '₹17,500 – ₹22,500',
           intercityCost: '₹20,500 – ₹27,500',
           truckType: 'High-Clearance Lower Deck Bay',
@@ -1231,7 +1252,7 @@ export const BLOG_POSTS: BlogPost[] = [
           duration: '6 – 8 Days',
         },
         {
-          homeSize: 'Large 7-Seater SUVs & Luxury Cars (Innova, XUV700, BMW)',
+          homeSize: 'Large 7-Seater SUVs & Luxury Cars (Innova Hycross, XUV700, Fortuner, BMW)',
           localCost: '₹19,500 – ₹25,500',
           intercityCost: '₹23,500 – ₹32,000',
           truckType: 'Single Covered Container / Lower Bay',
@@ -1240,34 +1261,62 @@ export const BLOG_POSTS: BlogPost[] = [
         },
       ],
       inclusionsSummary: [
-        '360-degree exterior dent, scratch, glass, and paint inspection chart at Kolkata pickup',
-        'Exact odometer (km) and fuel gauge reading logged on signed Vehicle Condition Report',
-        'Hydraulic ramp loading onto enclosed steel-body car carrier (zero highway stone chips)',
-        'Four-wheel over-the-tire nylon ratchet strapping and steel wheel stoppers',
-        'Daily GPS corridor tracking updates via our Kolkata control desk',
+        '360-degree exterior dent, scratch, alloy, windshield, and interior inspection chart at Kolkata pickup',
+        'Exact odometer (km) and fuel/battery gauge reading logged via timestamped video on Vehicle Condition Report (VCR)',
+        'Low-angle hydraulic ramp loading onto enclosed steel-body car carrier (zero highway stone chips or rain exposure)',
+        'Four-wheel over-the-tire nylon ratchet strapping and bolted steel wheel stoppers (zero suspension stress)',
+        'Daily GPS corridor tracking updates via our Haltu (17, Ramlal Bazar Rd) & Behala (217, Parui Kacha Rd) desks',
       ],
     },
     articleSections: [
       {
         id: 'fastag-and-inspection-protocol',
         badge: 'Zero-Misuse Guarantee',
-        heading: 'Odometer Lock, FASTag Shielding & 15-Point Pre-Dispatch Checklist',
+        heading: 'Odometer Video Lock, FASTag Shielding & 15-Point Pre-Dispatch Checklist',
         paragraphs: [
-          'A common concern among car owners in Kolkata is whether their car is driven on the highway instead of carried on a trailer. At Bharat Relocators, we record a timestamped video of your dashboard odometer at your doorstep in Kolkata. Only the 8 to 15 km needed to move the car from your residential lane to the 70-foot trailer terminal at Dankuni/Dhulagarh is logged.',
-          'Additionally, we recommend wrapping your windshield FASTag in aluminum foil or temporarily pausing it in your issuer app during transit so overhead toll gantry scanners never accidentally read your tag while your car is riding inside the steel trailer.',
+          'The #1 anxiety among car owners in Kolkata is whether a mover will drive their vehicle along NH-16 or NH-19 instead of loading it inside a trailer. At Bharat Relocators, our supervisor records a continuous timestamped smartphone video of your dashboard odometer, fuel needle, VIN/chassis plate, and all four exterior panels right at your doorstep in Salt Lake, New Town, Ballygunge, Behala, or Haltu. Only the 8 to 18 km required to transfer the vehicle between your residential lane and our 70-foot hydraulic trailer terminal at Dankuni/Dhulagarh is logged—and you receive a photo of your car locked inside the steel trailer before highway departure.',
+          'Additionally, overhead NHAI RFID toll gantries can occasionally scan a windshield FASTag even through carrier side louvers. Before dispatch, either cover your windshield FASTag with a small folded square of aluminum foil or temporarily toggle FASTag status / low balance in your issuer bank app so zero accidental deductions occur during transit.',
         ],
         bullets: [
-          'Keep fuel level between 5 and 10 litres (quarter tank) for ramp loading and terminal positioning',
-          'Remove all personal luggage, loose coins, dashcams, and toll receipts from the cabin (RTO rules prohibit household cartons inside cars on car carriers)',
-          'Verify active PUC certificate on puc.parivahan.gov.in and keep photocopies of RC and Comprehensive Insurance in the glovebox',
-          'Check tire pressure (32–35 PSI) and battery health so the car starts smoothly upon unloading after 6–7 days of transit',
+          'Fuel Level Rule: Keep petrol/diesel between 5 and 10 litres (roughly quarter tank)—enough for smooth ramp loading and terminal transfer without excess flammable weight',
+          'Empty Cabin & Boot Policy: Remove personal suitcases, dashcams, loose coins, and perfumes (RTO enforcement rules strictly prohibit household cartons inside cars on commercial car carriers)',
+          'Transit Document Folder: Place self-attested copies of RC, active Comprehensive Insurance, active PUC certificate (verifiable on puc.parivahan.gov.in), and Owner Aadhaar/PAN inside the glovebox',
+          'Battery & Tire Readiness: Inflate all four tires to 32–35 PSI, fold side mirrors inward, disable aftermarket anti-theft sirens, and confirm the 12V battery cranks cleanly after 6–8 days parked',
+        ],
+      },
+      {
+        id: 'electric-car-transport-kolkata-2026',
+        badge: '2026 Electric Car Standard',
+        heading: 'Transporting Electric Cars (Tata Nexon EV, Punch EV, MG ZS EV, BYD Atto 3) from Kolkata',
+        paragraphs: [
+          'Electric SUVs and sedans carry heavy floor-mounted high-voltage lithium-ion battery packs (30 kWh to 75 kWh), which increases curb weight by 250–400 kg and lowers underbody breakover clearance compared to petrol counterparts. Loading an EV onto a steep makeshift wooden ramp risks scraping the aluminum battery skid plate.',
+          'All electric cars shipped by Bharat Relocators from Kolkata are allocated strictly to lower-deck hydraulic bays with extended low-approach aluminum ramps. We follow the global 35%–55% State-of-Charge (SoC) highway safety band—low enough to prevent thermal stress inside enclosed steel containers, yet high enough to avoid 12V auxiliary battery sleep lockout upon arrival in Bangalore, Pune, or Delhi NCR.',
+        ],
+        bullets: [
+          'Battery Charge Target: Maintain high-voltage traction battery between 35% and 55% SoC on pickup morning—never ship at 100% full charge or below 15%',
+          'Portable 15A Charger & Adapter Bag: Keep your OEM portable charging cable sealed in its zip bag inside the boot and explicitly listed on the Vehicle Condition Report',
+          'Regen & Electronic Parking Brake Check: Show our pickup driver how to engage Neutral/Transport Mode and ensure your key fob battery is fresh for destination unloading',
+        ],
+      },
+      {
+        id: 'low-ground-clearance-luxury-flatbed-protocol',
+        badge: 'Luxury & Low-Clearance Sedans',
+        heading: 'Low-Ground-Clearance Sedans (Honda City, Virtus, Slavia, BMW, Mercedes) & Zero-Km Flatbed Pickup',
+        paragraphs: [
+          'Low-slung sedans (160 mm to 170 mm ground clearance) and German luxury models (BMW 3 Series, Mercedes-Benz C/E-Class, Audi A4/A6, Skoda Slavia, VW Virtus) require specialized 7-degree hydraulic approach ramps and wooden wedge extenders so front bumper splitters and underbody shields never kiss the trailer hinge.',
+          'Inside the enclosed container, our crew secures your car strictly via over-the-tire nylon basket straps wrapped around the rubber tread and locked into heavy-duty deck floor tracks—never hooking steel chains onto forged aluminum suspension arms or subframe mounts. For luxury or brand-new vehicles where you want literally 0 km added in Kolkata city traffic, you can opt for our Hydraulic Flatbed Tow-Truck Feeder right from your apartment gate in Alipore, Ballygunge, or New Town directly to the highway carrier terminal.',
+        ],
+        bullets: [
+          'Zero-Km Flatbed Upgrade (₹2,500–₹4,000): Eliminates even the 8–18 km terminal transfer drive for luxury, vintage, or non-running vehicles',
+          'Over-the-Tire Nylon Basket Lashing: Holds the vehicle solidly on all 4 wheels while letting the car’s own springs absorb highway expansion-joint vibrations',
+          'Interior Seat & Steering Protection: Disposable plastic seat covers, steering wheel wrap, and paper floor mats are placed before our licensed terminal driver enters the cabin',
         ],
       },
     ],
     corridorTableMeta: {
       badge: '2026 Car Carrier Tariff',
-      heading: 'City-Wise Car Transport Cost from Kolkata',
-      subtitle: 'Verified enclosed multi-car carrier rates from Kolkata to major Indian cities.',
+      heading: 'City-Wise Car Transport Cost from Kolkata (10 Major Corridors)',
+      subtitle: 'Verified enclosed multi-car hydraulic carrier rates from Kolkata to major Indian metros and regional hubs.',
       headers: {
         col1: 'Route Corridor from Kolkata',
         col2: 'Highway Distance',
@@ -1279,7 +1328,7 @@ export const BLOG_POSTS: BlogPost[] = [
     },
     corridorRates: [
       {
-        corridor: 'Kolkata to Bangalore (Whitefield / Electronic City)',
+        corridor: 'Kolkata to Bangalore (Whitefield / Electronic City / HSR)',
         distanceKm: '1,870 km (NH-16)',
         oneBhk: '₹16,500 – ₹19,500',
         twoBhk: '₹18,500 – ₹22,500',
@@ -1295,7 +1344,7 @@ export const BLOG_POSTS: BlogPost[] = [
         duration: '5 – 7 Days',
       },
       {
-        corridor: 'Kolkata to Hyderabad (Gachibowli / HITEC City)',
+        corridor: 'Kolkata to Hyderabad (Gachibowli / HITEC City / Kondapur)',
         distanceKm: '1,490 km (NH-16/65)',
         oneBhk: '₹15,000 – ₹18,000',
         twoBhk: '₹17,000 – ₹20,500',
@@ -1319,12 +1368,44 @@ export const BLOG_POSTS: BlogPost[] = [
         duration: '6 – 8 Days',
       },
       {
-        corridor: 'Kolkata to Chennai (OMR / Anna Nagar)',
+        corridor: 'Kolkata to Chennai (OMR / Anna Nagar / Guindy)',
         distanceKm: '1,670 km (NH-16)',
         oneBhk: '₹16,000 – ₹19,000',
         twoBhk: '₹18,000 – ₹21,500',
         threeBhk: '₹21,000 – ₹26,500',
         duration: '5 – 7 Days',
+      },
+      {
+        corridor: 'Kolkata to Bhubaneswar / Visakhapatnam (Coastal NH-16)',
+        distanceKm: '440 – 880 km',
+        oneBhk: '₹9,500 – ₹13,500',
+        twoBhk: '₹11,000 – ₹15,500',
+        threeBhk: '₹13,500 – ₹18,500',
+        duration: '2 – 4 Days',
+      },
+      {
+        corridor: 'Kolkata to Siliguri / Guwahati (North Bengal & Assam)',
+        distanceKm: '560 – 1,020 km',
+        oneBhk: '₹12,500 – ₹16,500',
+        twoBhk: '₹14,500 – ₹18,500',
+        threeBhk: '₹17,000 – ₹22,500',
+        duration: '3 – 5 Days',
+      },
+      {
+        corridor: 'Kolkata to Ahmedabad / Vadodara / Gandhinagar',
+        distanceKm: '2,060 km',
+        oneBhk: '₹18,500 – ₹22,000',
+        twoBhk: '₹21,000 – ₹25,000',
+        threeBhk: '₹24,500 – ₹31,500',
+        duration: '7 – 9 Days',
+      },
+      {
+        corridor: 'Kolkata to Kochi / Trivandrum / Coimbatore',
+        distanceKm: '2,180 – 2,350 km',
+        oneBhk: '₹19,500 – ₹23,500',
+        twoBhk: '₹22,000 – ₹26,500',
+        threeBhk: '₹26,000 – ₹33,000',
+        duration: '8 – 10 Days',
       },
     ],
     liftComparison: {
@@ -1391,7 +1472,7 @@ export const BLOG_POSTS: BlogPost[] = [
       sectionTitle: 'Terminal Transfer in Kolkata & Corporate GST Invoices',
       shuttleHeadline: 'Why 70-Foot Car Carriers Use Terminal Transfers in Kolkata',
       shuttleDesc:
-        'A standard interstate multi-car carrier trailer is 65 to 70 feet long and is prohibited from entering residential streets in South Kolkata, Salt Lake, or Behala under Kolkata Traffic Police regulations. Our licensed driver collects your car at your doorstep (or you can drop it at our hub) and loads it onto the hydraulic trailer at our Dankuni/Dhulagarh highway terminal with full video documentation.',
+        'A standard interstate multi-car carrier trailer is 65 to 70 feet long and is prohibited from entering residential streets in South Kolkata, Salt Lake, or Behala under Kolkata Traffic Police regulations. Our licensed driver collects your car at your doorstep (or you can drop it at our Haltu 17, Ramlal Bazar Road / Behala 217, Parui Kacha Road hub) and loads it onto the hydraulic trailer at our Dankuni/Dhulagarh highway terminal with full video documentation.',
       shuttleRates: [
         {
           vehicle: 'Supervised Doorstep Collection & Terminal Loading',
@@ -1408,7 +1489,7 @@ export const BLOG_POSTS: BlogPost[] = [
       ],
       gstHeadline: 'Claimable GST Car Transport Bills for Corporate & Bank Transfers',
       gstDesc:
-        'All Bharat Relocators car carrier shipments include an official GST Tax Invoice, Consignment Note (Bilty/LR), and stamped Money Receipt accepted by IT companies, public sector banks (IBA reimbursement norms), and central government departments.',
+        'All Bharat Relocators car carrier shipments include an official GST Tax Invoice (GSTIN: 19AAWFB0500G1ZL), Consignment Note (Bilty/LR) mentioning your car RC & chassis number, and stamped Money Receipt accepted by IT companies, public sector banks (IBA reimbursement norms), and central government departments.',
       gstTypes: [
         {
           rate: '18% GST (Door-to-Door Vehicle Relocation Package)',
@@ -1439,6 +1520,20 @@ export const BLOG_POSTS: BlogPost[] = [
         description:
           'Check and download your active Pollution Under Control (PUC) certificate before interstate car transport.',
       },
+      {
+        label: 'Parivahan Sewa Official Vehicle RC & Form 28 NOC Portal',
+        url: 'https://vahan.parivahan.gov.in/',
+        authority: 'Ministry of Road Transport & Highways (MoRTH)',
+        description:
+          'Verify your car Registration Certificate status or check Form 28 interstate re-registration guidelines.',
+      },
+      {
+        label: 'Official Government of India GST Portal — Verify Taxpayer (19AAWFB0500G1ZL)',
+        url: 'https://services.gst.gov.in/services/searchtp',
+        authority: 'Goods and Services Tax Network (Government of India)',
+        description:
+          'Verify Bharat Relocators’ active West Bengal GSTIN (19AAWFB0500G1ZL) for corporate or bank transfer claims.',
+      },
     ],
     internalLinks: [
       {
@@ -1447,9 +1542,29 @@ export const BLOG_POSTS: BlogPost[] = [
         description: 'Explore our hydraulic single and multi-car carrier fleet and request an instant quote.',
       },
       {
+        label: 'Request a Guaranteed Written Car Transport Quote',
+        href: '/get-a-quote',
+        description: 'Lock in your car carrier slot, feeder option, and GST invoice from our Haltu or Behala desk.',
+      },
+      {
         label: 'Live Consignment & Vehicle Carrier Tracking',
         href: '/tracking',
         description: 'Track your vehicle carrier shipment status in real time across Indian national highways.',
+      },
+      {
+        label: 'Vehicle Transportation & Safety Pillar Guide',
+        href: '/vehicle-transportation-guide',
+        description: 'Review full RTO paperwork checklists, VCR inspection steps, and enclosed carrier mechanics.',
+      },
+      {
+        label: '2026 Kolkata Packers & Movers Rate Card (Bundle Car + Home Move)',
+        href: '/blogs/packers-and-movers-kolkata-charges-rate-card',
+        description: 'Coordinate parallel car carrier and household container dispatch for your interstate move.',
+      },
+      {
+        label: '2026 Bike Transport from Kolkata Cost & Wooden Crating Guide',
+        href: '/blogs/bike-transport-kolkata-charges-wooden-crating-guide',
+        description: 'Shipping a two-wheeler alongside your car? Check our 10-city bike carrier rate card.',
       },
     ],
     faqs: [
@@ -1461,7 +1576,7 @@ export const BLOG_POSTS: BlogPost[] = [
       {
         question: 'How many kilometers will be added to my car odometer during transport?',
         answer:
-          'Because 70-foot car carrier trailers cannot enter narrow city lanes or apartment basements, approximately 8 to 18 km is logged on each end to move the vehicle between your residence and the highway loading terminal. If you prefer 0 km on the odometer, you can request a flatbed tow-truck feeder pickup.',
+          'Because 70-foot car carrier trailers cannot enter narrow city lanes or apartment basements, approximately 8 to 18 km is logged on each end to move the vehicle between your residence and the highway loading terminal. If you prefer 0 km on the odometer, you can request a hydraulic flatbed tow-truck feeder pickup.',
       },
       {
         question: 'How long does it take to transport a car from Kolkata to Bangalore or Mumbai?',
@@ -1472,6 +1587,26 @@ export const BLOG_POSTS: BlogPost[] = [
         question: 'Is my existing car insurance valid during carrier transit?',
         answer:
           'Your motor policy covers road accidents when driven, whereas carrier transit risks (such as trailer mishaps or loading incidents) are covered under specific Marine/Transit Carrier Insurance (typically 1.5% to 2.5% of your car IDV), which we arrange with an official policy certificate.',
+      },
+      {
+        question: 'Can you transport electric cars like Tata Nexon EV or MG ZS EV from Kolkata?',
+        answer:
+          'Yes! We transport electric cars on lower-deck hydraulic bays with low-incline ramps to protect the underbody battery pack. Simply maintain your high-voltage battery State of Charge between 35% and 55% at pickup and place your portable 15A charging cable in the boot.',
+      },
+      {
+        question: 'Will my windshield FASTag get charged while my car is inside the carrier trailer?',
+        answer:
+          'While enclosed steel trailers block most RFID signals, overhead NHAI toll scanners can occasionally pick up a windshield tag through trailer louvers. Covering the FASTag with aluminum foil or temporarily pausing it in your bank app prevents any accidental toll deduction.',
+      },
+      {
+        question: 'Do I need an RTO NOC before transporting my car from Kolkata to another state?',
+        answer:
+          'No. An RTO Form 28 NOC is NOT required merely to transport your car across India via a licensed car carrier. You only need copies of your RC, valid insurance, active PUC, and owner ID proof for transit. Form 28 NOC is only needed later if you permanently re-register your car in the destination state after 12 months.',
+      },
+      {
+        question: 'Can I get a separate GST bill for car transportation for bank or corporate reimbursement?',
+        answer:
+          'Yes! Bharat Relocators issues a dedicated GST Tax Invoice (GSTIN: 19AAWFB0500G1ZL), Consignment Note (LR) listing your car’s RC and chassis number, and stamped Money Receipt matching your NEFT/UPI payment—100% compliant with bank (IBA), PSU, and corporate HR audit requirements.',
       },
     ],
   },

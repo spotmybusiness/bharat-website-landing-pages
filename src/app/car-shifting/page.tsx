@@ -497,14 +497,20 @@ export default function CarShiftingPage() {
               2026 Verified Cost &amp; Planning Guide
             </p>
             <p className="text-sm text-slate-700 leading-relaxed mb-3">
-              Review 2026 Kolkata car carrier rate slabs, VCR inspection checklists, and highway transit documents before handing over your keys:
+              Review 2026 Kolkata enclosed car carrier rate slabs across 10 cities, EV &amp; low-clearance sedan loading protocols, odometer video locking, and FASTag rules before handing over your keys:
             </p>
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs sm:text-sm font-semibold">
               <Link
-                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                href="/blogs/car-transport-from-kolkata-cost-carrier-guide"
                 className="text-[#E53935] hover:underline"
               >
-                2026 Kolkata Shifting &amp; Car Carrier Rate Card →
+                2026 Car Transport from Kolkata Cost &amp; Carrier Guide →
+              </Link>
+              <Link
+                href="/blogs/packers-and-movers-kolkata-charges-rate-card"
+                className="text-[#082F52] hover:underline"
+              >
+                2026 Kolkata Household Shifting Rate Card →
               </Link>
               <Link
                 href="/vehicle-transportation-guide"
