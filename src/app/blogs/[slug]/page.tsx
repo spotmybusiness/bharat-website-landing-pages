@@ -1062,16 +1062,37 @@ export default async function BlogPostPage({ params }: PageProps) {
                         • Interactive 2026 Cost Estimator
                       </a>
                     )}
-                    {post.articleSections?.map((sec) => (
-                      <a
-                        key={sec.id}
-                        href={`#${sec.id}`}
-                        className="block hover:text-[#E53935] transition-colors py-1 truncate"
-                        title={sec.heading}
-                      >
-                        • {sec.heading}
+                    {post.articleSections && post.articleSections.length > 0 ? (
+                      post.articleSections.map((sec) => (
+                        <a
+                          key={sec.id}
+                          href={`#${sec.id}`}
+                          className="block hover:text-[#E53935] transition-colors py-1 truncate"
+                          title={sec.heading}
+                        >
+                          • {sec.heading}
+                        </a>
+                      ))
+                    ) : (
+                      <>
+                        <a href="#1bhk-moving-cost" className="block hover:text-[#E53935] transition-colors py-1">
+                          • 1BHK Moving Cost in Kolkata
+                        </a>
+                        <a href="#2bhk-3bhk-cost" className="block hover:text-[#E53935] transition-colors py-1">
+                          • 2BHK &amp; 3BHK Shifting Cost
+                        </a>
+                      </>
+                    )}
+                    {post.distanceMatrix && post.distanceMatrix.length > 0 && (
+                      <a href="#distance-matrix" className="block hover:text-[#E53935] transition-colors py-1">
+                        • Distance Slab Rate Matrix
                       </a>
-                    ))}
+                    )}
+                    {post.packingLabourMatrix && post.packingLabourMatrix.length > 0 && (
+                      <a href="#packing-labour-breakdown" className="block hover:text-[#E53935] transition-colors py-1">
+                        • Cartons, Packing &amp; Labour Breakdown
+                      </a>
+                    )}
                     <a href="#corridor-pricing" className="block hover:text-[#E53935] transition-colors py-1 truncate" title={corridorMeta.heading}>
                       • {corridorMeta.heading}
                     </a>

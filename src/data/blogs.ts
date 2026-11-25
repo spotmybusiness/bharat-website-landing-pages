@@ -207,7 +207,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Cost & Pricing Guides',
     categorySlug: 'pricing-guides',
     publishedDate: '2026-01-15',
-    updatedDate: '2026-11-15',
+    updatedDate: '2026-11-25',
     readTime: '11 min read',
     author: {
       name: 'Bharat Relocators Moving Team',
@@ -627,14 +627,14 @@ export const BLOG_POSTS: BlogPost[] = [
         description: 'Plan interstate container moves from Kolkata to Bangalore, Delhi, Mumbai & Hyderabad.',
       },
       {
-        label: 'Two-Wheeler & Bike Shifting Services',
-        href: '/bike-shifting',
-        description: 'Add crated motorcycle or scooter transport to your household relocation.',
+        label: '2026 Bike Transport from Kolkata Cost & Wooden Crating Guide',
+        href: '/blogs/bike-transport-kolkata-charges-wooden-crating-guide',
+        description: 'Check 10-city two-wheeler carrier tariffs, 4-layer foam vs. pinewood crating & EV rules.',
       },
       {
-        label: 'Enclosed Car Carrier Transportation',
-        href: '/car-shifting',
-        description: 'Ship your hatchback, sedan, or SUV across India in hydraulic enclosed trailers.',
+        label: '2026 Car Transport from Kolkata Closed Carrier Rate Card',
+        href: '/blogs/car-transport-from-kolkata-cost-carrier-guide',
+        description: 'Compare 10-city enclosed car carrier rates, odometer video lock & FASTag rules.',
       },
     ],
     faqs: [
@@ -707,7 +707,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: 'Vehicle Relocation',
     categorySlug: 'vehicle-relocation',
     publishedDate: '2026-01-22',
-    updatedDate: '2026-11-21',
+    updatedDate: '2026-11-25',
     readTime: '10 min read',
     author: {
       name: 'Bharat Relocators Automotive Desk',
@@ -1092,9 +1092,9 @@ export const BLOG_POSTS: BlogPost[] = [
         description: 'Check how bundling your motorcycle with a 1BHK or 2BHK household move saves ₹1,500–₹2,500.',
       },
       {
-        label: 'Kolkata Intercity Relocation Guide (NH-16 & NH-19 Corridors)',
-        href: '/intercity-moving-guide',
-        description: 'Explore interstate highway transit timelines, waybills, and insurance coverage.',
+        label: '2026 Car Transport from Kolkata Closed Carrier Rate Card',
+        href: '/blogs/car-transport-from-kolkata-cost-carrier-guide',
+        description: 'Shipping a car alongside your motorcycle? Check our 10-city hydraulic car carrier rates.',
       },
       {
         label: 'Live Consignment & Bike Carrier Tracking',

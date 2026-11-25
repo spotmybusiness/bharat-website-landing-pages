@@ -58,6 +58,8 @@ const validSectionHashes = new Set([
   '#calculator',
   '#1bhk-moving-cost',
   '#2bhk-3bhk-cost',
+  '#distance-matrix',
+  '#packing-labour-breakdown',
   '#corridor-pricing',
   '#lift-comparison',
   '#shuttle-tempo-gst',
